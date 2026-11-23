@@ -42,15 +42,15 @@ Une propriété de contenu remplit un élément du composant : un texte, une ico
 | icon, leftIcon, rightIcon | Instance swap | Une instance de la librairie | Toujours icon, quel que soit son usage, avec left ou right seulement s'il y en a deux. | Oui, parfois sous un autre nom |
 | children, header, actions | Slot | Des éléments libres | Une zone libre du composant. La principale s'appelle children, comme dans le code, les autres portent le nom de leur rôle. Exemple : header pour l'en-tête, actions pour les boutons. | Oui, parfois sous un autre nom |
 
-Une variante prend par défaut la valeur du code, sauf décision contraire écrite dans la fiche du composant. Un booléen d'affichage vaut true quand l'élément sert dans la plupart des usages, et false sinon. Exemple : showHelper vaut true, et le showIcon de TextInput vaut false.
+Une variante prend par défaut la valeur du code, sauf décision contraire écrite dans la fiche du composant. breakpoint, qui n'existe pas dans le code, prend par défaut la valeur du desktop, comme 1024 en B2C. Un booléen d'affichage vaut true quand l'élément sert dans la plupart des usages, et false sinon. Exemple : showHelper vaut true, et le showIcon de TextInput vaut false.
 
-Une propriété texte a pour valeur par défaut son propre nom, avec une majuscule. Exemple : « Label » pour label, « Message » pour message, « Description » pour description. Seule exception, un champ au format fixe montre un exemple de ce format, comme « JJ/MM/AAAA » pour une date ou « 07 89 10 11 12 » pour un numéro de téléphone. Un designer qui oublie de remplacer ce texte le voit tout de suite dans sa maquette, et une IA ne le prend pas pour un vrai texte.
+Une propriété texte a pour valeur par défaut son propre nom, avec une majuscule. Exemple : « Label » pour label, « Message » pour message, « Description » pour description. Seule exception, un texte au format fixe montre un exemple de ce format, comme « JJ/MM/AAAA » pour une date, « 07 89 10 11 12 » pour un numéro de téléphone ou « Page 1 sur 7 » pour le compteur de Pagination. Un designer qui oublie de remplacer ce texte le voit tout de suite dans sa maquette, et une IA ne le prend pas pour un vrai texte.
 
 ## Les noms à éviter
 
 | Nom à éviter | Nom à écrire |
 |---|---|
-| variant | hierarchy |
+| variant | hierarchy, tone ou type, selon son rôle |
 | mode | tone |
 | invalid | tone |
 | theme | _theme |
@@ -64,7 +64,7 @@ Une propriété texte a pour valeur par défaut son propre nom, avec une majuscu
 - showLabel=false n'est permis que quand un autre texte visible nomme déjà l'élément, comme le titre d'une FormCard ou l'en-tête d'une colonne de tableau. Dans le code, l'élément se relie à ce texte avec `aria-labelledby`.
 - Les niveaux d'importance passent par hierarchy, pas par des composants séparés. Exemple : un seul Button, pas un Button Primary et un Button Secondary.
 - Tout composant qui peut charger a la propriété loading, même quand son code obtient aujourd'hui ce cas autrement. Le code adopte ensuite la même propriété, pour que tous les composants se règlent de la même façon. Exemple : un champ dont le code affiche un Spinner à la place de son icon.
-- Pour un nombre, comme un pourcentage, la variante propose quelques valeurs et garde le nom du code. Exemple : value sur une barre de progression, avec 0, 5, 10 et ainsi de suite jusqu'à 100.
+- Pour un nombre, comme un pourcentage, la variante propose quelques valeurs et garde le nom du code. Exemple : value sur une ProgressBar, avec 0, 5, 10 et ainsi de suite jusqu'à 100.
 - Un composant dont le rendu change d'un breakpoint à l'autre a une variante par breakpoint, avec la propriété breakpoint. Chaque largeur d'écran a ainsi un rendu montré dans Figma, et le composant ne change pas d'un breakpoint à l'autre sans variante pour le montrer. Exemple : Tag, dont le texte passe de 14 px en mobile à 16 px en desktop.
 - Un composant qui garde le même rendu sur toutes les largeurs d'écran n'a pas de propriété breakpoint. Exemple : Spinner ou Divider.
 
@@ -73,13 +73,14 @@ Une propriété texte a pour valeur par défaut son propre nom, avec une majuscu
 - Quand un composant en contient un autre, les propriétés du composant contenu sont exposées dans le panneau de celui qui le contient. Elles gardent leur nom et ne sont pas recréées. Exemple : un champ contient un libellé, le texte du libellé se règle depuis le panneau du champ.
 - Une propriété qui ne règle qu'un élément porte le nom de cet élément en préfixe. Exemple : iconPlacement pour placer l'icon d'un titre.
 - Une liste d'éléments devient un slot, avec le nom du code, même quand Figma l'affiche aujourd'hui avec des booléens numérotés. Exemple : items pour les _Tab de Tabs, comme dans le code.
+- Quand le code ne reçoit qu'un nombre et construit lui-même les éléments, ce nombre devient une variante, avec le nom du code. Exemple : stepsCount pour les barres de LevelSelector.
 - Un texte reste une propriété texte, nommée selon son rôle, même quand le code le reçoit dans children. Exemple : description pour le texte d'un message.
 
 ### Les propriétés hors nomenclature
 
-Une propriété qui commence par un tiret bas est hors nomenclature. Soit elle ne sert qu'au prototype et n'aura jamais d'équivalent dans le code, soit elle est provisoire et disparaîtra. Le tiret bas prévient les designers, et permet à un outil qui relie Figma au code de l'ignorer. Exemple : _scrollable pour le défilement en prototype. Le thème est aussi hors nomenclature, parce que ses couleurs passent par les modes de variables. Quand sa forme change, il s'écrit _theme, avec les valeurs client et prospect.
+Une propriété qui commence par un tiret bas est hors nomenclature. Soit elle ne sert qu'au prototype et n'aura jamais d'équivalent dans le code, soit elle est provisoire et disparaîtra. Le tiret bas prévient les designers, et permet à un outil qui relie Figma au code de l'ignorer. Exemples : _animation, qui anime le Spinner dans un prototype, et _showCursor, qui affiche ou masque le curseur de saisie d'un champ. Le thème est aussi hors nomenclature, parce que ses couleurs passent par les modes de variables. Quand sa forme change, il s'écrit _theme, avec les valeurs client et prospect.
 
-Un composant garde _theme quand sa forme change entre les thèmes : ses espacements, ou un arrondi qui passe du rond à l'angle. Exemples : Button, IconButton et Stepper. Un simple écart d'arrondi, comme 8 et 4 px, se fusionne sur le thème prospect, comme pour TextInput, Radio et Checkbox.
+Un composant garde _theme quand sa forme change entre les thèmes : ses espacements, ou un arrondi qui passe du rond à l'angle. Exemples : Button, IconButton et Stepper. Un simple écart d'arrondi, comme 8 et 4 px, se fusionne sur le thème prospect, comme pour TextInput et Checkbox.
 
 Les propriétés marquées Figma seulement dans les tableaux n'ont pas de tiret bas. Elles font partie de la nomenclature, c'est simplement le code qui gère ces cas tout seul.
 

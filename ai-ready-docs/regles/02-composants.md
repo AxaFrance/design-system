@@ -19,14 +19,17 @@ Les noms s'écrivent en PascalCase, c'est-à-dire avec une capitale au début de
 
 Un sous-composant sert à construire les autres, il n'est pas posé tel quel dans une maquette. Il commence par un tiret bas et n'est pas publié.
 
-- Un élément qui se répète dans plusieurs composants devient un sous-composant, plutôt que d'être reconstruit dans chacun. Il se modifie ainsi à un seul endroit. Exemple : _FormLabel, le libellé de tous les champs.
+- Un élément qui se répète, dans un même composant ou dans plusieurs, devient un sous-composant, plutôt que d'être reconstruit à chaque fois. Il se modifie ainsi à un seul endroit. Exemple : _FormLabel, le libellé de tous les champs.
 - Son nom reprend celui du composant qu'il construit, puis l'élément. Exemple : _PaginationItem pour un numéro de page de Pagination. Il reste ainsi rangé à côté de son parent.
-- Si le code l'exporte sous un autre nom, la même règle s'applique, et le code s'aligne peu à peu. Exemple : _FileUploadItem dans Figma, ItemFile dans le code.
+- Si le code l'exporte sous un autre nom, la même règle s'applique, et le code s'aligne peu à peu. Exemple : _FormLabel dans Figma, ItemLabel dans le code.
 - Il est rangé dans la famille du composant qu'il construit. S'il en construit plusieurs, il va dans la famille de ce qu'il est. Exemple : _FormLabel va dans Forms, même s'il sert aussi aux cellules de tableau.
+- S'il ne sert qu'à un seul composant, il n'a pas de Markdown à lui : le Markdown de ce composant porte ses règles, et son JSON est rangé dans le même dossier. Exemple : _PaginationItem, dans la fiche de Pagination. S'il sert à plusieurs composants, il a sa propre fiche, comme _FormLabel.
 
 ## Les modifications locales
 
 Un composant ne se modifie pas localement : ni sa taille, ni ses espacements, ni ses couleurs, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system, qui fait évoluer le composant.
+
+Seule exception, la largeur d'un composant qui suit celle de son conteneur dans le code. Dans Figma, ce composant a une largeur d'exemple, et le designer le règle en Fill container dans sa maquette. Exemple : Skeleton.
 
 ## Les composants du navigateur
 

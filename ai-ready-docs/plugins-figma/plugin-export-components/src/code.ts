@@ -50,7 +50,7 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> START EXTRACTION
-const VERSION = "0.7.7";
+const VERSION = "0.7.8";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -151,7 +151,7 @@ const TRUE_FALSE_VARIANTS: Record<string, string[]> = {
 };
 // Names not to use, with what to write instead.
 const SYNONYMS: Record<string, string> = {
-  variant: "hierarchy",
+  variant: "hierarchy, tone ou type, selon son rôle",
   mode: "tone",
   invalid: "tone",
   theme: "_theme",

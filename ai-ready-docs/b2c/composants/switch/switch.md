@@ -42,7 +42,7 @@ Sur un écran de moins de 1024 px de large. Le libellé utilise la version mobil
 ## Exemples
 
 - Préférence de l'espace client : label « Recevoir les offres par e-mail », checked=false.
-- Réglage bloqué tant qu'une information manque : checked=false et disabled=true, label « Rappel par SMS », avec le texte d'aide « Ajoutez un numéro de téléphone pour activer ce réglage ».
+- Réglage bloqué tant qu'une information manque : checked=false et disabled=true, label « Rappel par SMS », avec l'aide « Ajoutez un numéro de téléphone pour activer ce réglage » sous le Switch.
 - Ligne de liste dont le titre nomme déjà l'option : showLabel=false.
 
 ## Interdits

@@ -143,7 +143,7 @@ Ces noms désignent LevelSelector. Le seul nom à employer est LevelSelector.
 
 ## Décisions
 
-- **1.0.0 - 20/11/26.** Le LevelSelector garde la propriété _theme, car ses IconButton changent de forme entre les thèmes : ronds dans le thème prospect, carrés dans le thème client. Le reste du composant est le même dans les deux thèmes.
+- **1.0.0 - 20/11/26.** Le LevelSelector garde la propriété _theme, car ses IconButton changent de forme entre les thèmes : ronds dans le thème prospect, avec un arrondi de 8 px dans le thème client. Le reste du composant est le même dans les deux thèmes.
 - **1.0.0 - 20/11/26.** La propriété stepsCount règle le nombre de barres, de 1 à 3, et vaut 2 par défaut, comme dans le code. Avant cette version, Figma avait toujours trois barres.
 - **1.0.0 - 20/11/26.** Le LevelSelector a 36 variantes : une par valeur de value, de 0 à stepsCount, pour chaque valeur de stepsCount, chaque breakpoint et chaque thème.
 - **1.0.0 - 20/11/26.** Les boutons moins et plus sont des IconButton secondaires, à la petite taille, avec les icônes icon/remove et icon/add de la librairie Figma Fondations Canopée. Ils remplacent l'ancien composant Figma ClickIcon, archivé.

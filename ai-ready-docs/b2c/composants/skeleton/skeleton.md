@@ -133,6 +133,7 @@ Ces noms désignent Skeleton. Le seul nom à employer est Skeleton.
 - **Contraste.** color/gray/100 sur fond blanc donne 1,26:1. Le Skeleton signale un chargement, et l'application du critère WCAG 1.4.11, qui demande 3:1, n'est pas tranchée. En attendant : signaler.
 - **Taille selon le contenu.** Ni Figma ni le code ne disent quelle valeur de size prendre pour une ligne de texte, un titre ou une image. En attendant : signaler.
 - **Délai et durée.** Le délai avant d'afficher un Skeleton et sa durée minimale ne sont pas définis. En attendant : signaler.
+- **Nom de la zone qui charge.** Les lecteurs d'écran lisent la zone « Chargement » par défaut. La fiche ne dit pas si ce nom peut citer le contenu attendu, comme « Chargement du profil ». En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

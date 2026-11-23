@@ -167,7 +167,6 @@ Ces noms désignent Checkbox. Le seul nom à employer est Checkbox.
 - **État mixte.** Une Checkbox qui coche tout un groupe, comme « Tout sélectionner », a un troisième état quand une partie seulement du groupe est cochée (ARIA Authoring Practices Guide). La nomenclature prévoit la valeur mixed pour checked, mais ni Figma ni le code ne l'ont. En attendant : signaler.
 - **Groupe de Checkbox.** Aucun composant ne regroupe des Checkbox avec un titre. Le Fieldset du code est une carte avec un titre, pas un groupe d'options. En attendant : écrire le `<fieldset>` et sa `<legend>` à la main.
 - **Nombre d'options imposé.** Quand un groupe demande un nombre minimal ou maximal d'options, la fiche ne dit pas comment signaler l'erreur, car une Checkbox cochée ne peut pas passer en tone=error. En attendant : signaler.
-- **Longue liste d'options.** La fiche ne dit pas quel composant prendre pour cocher plusieurs options dans une longue liste. En attendant : signaler.
 - **Contraste au hover.** Au hover, le contour color/gray/500 atteint 2,57:1 sur le halo color/blue/100, sous les 3:1 du WCAG. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche

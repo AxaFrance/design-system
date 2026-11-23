@@ -6,7 +6,7 @@ Un template est un assemblage de composants de Canopée. Son numéro de version 
 
 ## Où lire la version
 
-Chaque composant a une fiche en deux parties : un Markdown qui dit quand et comment l'utiliser, et un JSON généré depuis Figma qui décrit ses propriétés et son rendu. La version figure en tête des deux fichiers, à côté du nom du composant, par exemple « Button 1.0.0 ».
+Chaque composant a une fiche en deux parties : un Markdown qui dit quand et comment l'utiliser, et un JSON généré depuis Figma qui décrit ses propriétés et son rendu. La version figure en tête des deux fichiers, à côté du nom du composant, par exemple « Button 1.0.0 ». Un sous-composant qui ne sert qu'à un seul composant n'a pas de Markdown à lui. Son JSON est rangé dans le dossier de ce composant, et le Markdown de ce composant porte ses règles. Ses évolutions comptent comme celles de ce composant.
 
 ## Majeure, mineure, patch
 
@@ -60,7 +60,7 @@ Un designer de l'équipe design system qui modifie un composant suit ces étapes
 
 ## Le changelog
 
-Chaque composant a un fichier de changelog à son nom, par exemple button-changelog.md, dans le même dossier que son Markdown et son JSON. Ce fichier liste toutes les versions du composant, de la plus récente à la plus ancienne. Le plugin le génère à chaque export : personne ne le rédige à la main.
+Chaque composant a un fichier de changelog à son nom, par exemple button-changelog.md, dans le même dossier que son Markdown et son JSON. Ce fichier liste toutes les versions du composant, de la plus récente à la plus ancienne. Le plugin le génère à chaque export : personne ne le rédige à la main. Un sous-composant sans Markdown à lui n'a pas de changelog : ses changements entrent dans celui du composant qui l'utilise.
 
 Chaque version y a une entrée, datée du jour de l'export. Ses changements sont rangés en trois rubriques : Ajouté, Modifié et Retiré. Exemple :
 

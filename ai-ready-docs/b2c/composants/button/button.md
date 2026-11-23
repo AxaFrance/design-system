@@ -124,7 +124,7 @@ Un élément `<button>` natif, de rôle ARIA button.
 - La zone cliquable mesure au moins 24 × 24 px (WCAG 2.2).
 - Un bouton désactivé n'est pas atteignable au clavier. La raison de l'indisponibilité est donc écrite dans le texte autour, pas seulement dans le bouton.
 - Le bouton s'atteint avec Tab et s'active avec Entrée ou Espace, dans un ordre de tabulation logique.
-- Des actions liées se regroupent dans une liste quand c'est pertinent, pour que les technologies d'assistance annoncent le groupe.
+- Des actions liées sont réunies dans un conteneur de rôle group, qui porte un nom. Le lecteur d'écran annonce ce nom à l'entrée du groupe. Exemple : « Actions sur le devis » pour Modifier et Supprimer.
 
 Référence : [ARIA Authoring Practices Guide, Button Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/button/).
 

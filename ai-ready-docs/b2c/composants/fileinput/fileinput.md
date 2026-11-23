@@ -14,7 +14,7 @@ Le FileInput permet à l'utilisateur d'importer un fichier, en le déposant ou e
 
 ### À ne pas utiliser pour
 
-- Montrer les fichiers déjà importés, avec leur chargement ou leur erreur : prendre FileUpload, qui contient le FileInput et la liste des fichiers.
+- Montrer les fichiers déjà importés, avec leur chargement ou leur erreur : prendre le template FileUpload, qui contient le FileInput et la liste des fichiers.
 - Saisir un texte : prendre TextInput ou TextArea.
 
 ## Règles selon les propriétés
@@ -168,6 +168,7 @@ Ces noms désignent FileInput. Le seul nom à employer est FileInput.
 - **FileInput sans FileUpload.** Utilisé seul, le FileInput ne montre pas le fichier choisi. Les cas où l'employer seul ne sont pas définis. En attendant : signaler.
 - **Plusieurs fichiers.** Le code accepte `multiple`, mais la fiche ne dit pas quand permettre plusieurs fichiers, ni ce que devient un second choix. En attendant : signaler.
 - **Texte du bouton et nom accessible.** Le nom accessible du champ, son libellé, ne contient pas le texte visible « Importer fichier ». Une personne qui pilote à la voix risque de ne rien déclencher en le prononçant (WCAG 2.5.3). En attendant : signaler.
+- **Cas de désactivation.** Les cas où désactiver le FileInput ne sont pas définis. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

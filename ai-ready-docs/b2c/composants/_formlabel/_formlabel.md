@@ -16,7 +16,7 @@ Le _FormLabel est le libellé d'un champ de formulaire, qui dit à l'utilisateur
 ### À ne pas utiliser pour
 
 - Ajouter un libellé au-dessus d'un champ de Canopée : le champ a déjà son _FormLabel.
-- Le texte d'aide ou le message sous un champ : prendre _FormHelperText.
+- L'aide ou le message sous un champ : prendre _FormHelperText.
 - Un titre de page ou de section : prendre Heading.
 
 ## Règles selon les propriétés

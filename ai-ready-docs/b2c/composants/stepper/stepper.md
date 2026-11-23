@@ -4,7 +4,7 @@ Utilise des design tokens qui ne sont pas encore dans une version publiée de Ca
 
 ## Description
 
-Le Stepper informe l'utilisateur de l'avancement de son parcours, pour qu'il estime le temps restant. Il affiche le titre de l'étape en cours, sa position dans le parcours et une barre de progression par étape.
+Le Stepper informe l'utilisateur de l'avancement de son parcours, pour qu'il estime le temps restant. Il affiche le titre de l'étape en cours, sa position dans le parcours et une ProgressBar par étape.
 
 ## Quand l'utiliser
 
@@ -55,7 +55,7 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent la version mobi
 
 - Un titre, obligatoire.
 - Un sous-titre et un _FormHelperText, facultatifs.
-- Une barre de progression par étape, de 2 à 8, réglées avec stepsCount. Les barres sont des ProgressBar, réunies dans un _StepperProgress ([_stepperprogress.json](_stepperprogress.json)).
+- Une ProgressBar par étape. stepsCount règle leur nombre, de 2 à 8, et un _StepperProgress les réunit ([_stepperprogress.json](_stepperprogress.json)).
 
 ## Rédaction
 

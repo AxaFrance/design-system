@@ -19,6 +19,7 @@ Le Spinner indique qu'un contenu est en cours de chargement, ou qu'une action es
 - Des chargements répétés tout au long d'un parcours : le système paraîtrait lent.
 - Un chargement qui affiche un titre, ou qui s'affiche par-dessus la page : prendre le template Loader, qui assemble un Spinner, un titre et un sous-titre.
 - Montrer la place d'un contenu qui charge, quand sa mise en page est connue : prendre Skeleton.
+- Une tâche dont le pourcentage d'avancement est connu, comme un fichier envoyé avec sa progression : prendre ProgressBar.
 
 ## Règles selon les propriétés
 
@@ -32,7 +33,7 @@ Sur un fond foncé, comme le fond bleu d'un Button.
 
 ### colorScheme=gray
 
-Sur un fond neutre, comme la ligne d'un fichier en cours d'envoi.
+Sur un fond neutre, comme la ligne d'un fichier dont l'envoi n'a pas de pourcentage connu.
 
 ### size=x-small
 

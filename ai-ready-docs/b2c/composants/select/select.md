@@ -52,7 +52,7 @@ Le champ ne peut pas être modifié. disabled=true sert aussi à montrer un choi
 
 ### multiple=true
 
-L'utilisateur peut choisir plusieurs options. Chaque option de la liste a sa case à cocher.
+L'utilisateur peut choisir plusieurs options. Chaque option de la liste a sa Checkbox.
 
 ### showLabel=false
 
@@ -121,6 +121,7 @@ En multiple=true, un élément `<button>` ouvre la liste, et `aria-controls` le 
 - En tone=error, en multiple=false, le champ porte `aria-invalid="true"`, et `aria-describedby` le relie au message, avec l'aide.
 - En tone=warning, `aria-describedby` relie le message au champ, sans `aria-invalid`.
 - En multiple=false, un champ obligatoire porte l'attribut `required`, que le lecteur d'écran annonce.
+- En multiple=false, un champ qui demande une donnée personnelle porte l'attribut `autocomplete` adapté, comme `country-name` pour un pays (WCAG 1.3.5).
 - En multiple=true, l'élément qui porte l'obligation, l'erreur et le lien vers l'aide et le message : Non documenté. Un `<button>` n'accepte ni `required` ni `aria-invalid`.
 - En multiple=true, la touche Tab passe du bouton aux cases de la liste ouverte, et la touche Espace coche ou décoche une case.
 - Le champ entre dans l'ordre de tabulation, sauf en disabled=true. Le focus reste toujours visible.
@@ -204,7 +205,7 @@ Ces noms désignent Select. Le seul nom à employer est Select.
 - **1.0.0 - 20/11/26.** Un seul Select couvre le choix unique et le choix multiple, avec la propriété multiple. Le champ, le libellé, l'aide et le message sont les mêmes, et seuls la liste et l'affichage du choix changent. Le code a deux composants, `Dropdown` et `DropdownMultiSelect`.
 - **1.0.0 - 20/11/26.** En multiple=true, les options choisies s'affichent en Tags dans le champ, à la place du texte, comme dans Material UI ou Ant Design. L'utilisateur voit son choix sans ouvrir la liste.
 - **1.0.0 - 20/11/26.** Les Tags du champ sont en tone=neutral, car une option choisie n'a pas de statut. En disabled=true, ils passent aussi en disabled=true.
-- **1.0.0 - 20/11/26.** En multiple=true, les lignes de la liste sont blanches, sans séparateur, comme dans Material UI. La case cochée suffit à montrer le choix. L'ancienne version alternait un fond bleu clair et un fond blanc, comme le code.
+- **1.0.0 - 20/11/26.** En multiple=true, les lignes de la liste sont blanches, sans trait entre elles, comme dans Material UI. La case cochée suffit à montrer le choix. L'ancienne version alternait un fond bleu clair et un fond blanc, comme le code.
 - **1.0.0 - 20/11/26.** Une seule variante par breakpoint et par valeur de multiple montre la liste ouverte, au moment où l'utilisateur l'ouvre : sur un champ au focus, vide et neutre. La liste s'ouvre aussi sur un champ rempli ou en erreur, sans variante dédiée dans Figma.
 - **1.0.0 - 20/11/26.** L'aide et le message sont deux _FormHelperText inclus dans le Select et réglables depuis lui, comme `helper` et `message` dans le code.
 - **1.0.0 - 20/11/26.** En disabled=true, seul le champ passe en gris. Le libellé et l'aide restent lisibles, car un champ désactivé montre aussi un choix bloqué.
@@ -221,7 +222,7 @@ Ces noms désignent Select. Le seul nom à employer est Select.
 - **Tags et résumé dans le code.** `DropdownMultiSelect` affiche dans le champ un résumé, comme « 2 éléments sélectionnés » (`DropdownMultiSelectCommon.tsx:167`), et les Tags sous le champ (`DropdownMultiSelectCommon.tsx:187`). Ses Tags n'ont pas de `variant` (`DropdownMultiSelectCommon.tsx:194`), et prennent donc `variant="info"`, la valeur par défaut de Tag (`TagCommon.tsx:21`). En attendant : signaler.
 - **Seuil des Tags dans le code.** Le commentaire de `hideThreshold` annonce 3 Tags par défaut (`DropdownMultiSelectCommon.tsx:38`), mais le code en affiche 2 avant le Tag « +N » : il reprend la valeur par défaut de `TagList` (`TagListCommon.tsx:20`). En attendant : deux Tags, puis « +N ».
 - **Lignes de la liste dans le code.** Le code alterne un fond bleu clair et un fond blanc (`MultiSelectListCommon.tsx:27`), et les lignes n'ont pas de hover. En attendant : signaler.
-- **Ombre de la liste.** Figma utilise le style d'ombre shadow de Fondations Canopée. Le code a sa propre ombre (`MultiSelectListAll.css:9`). En attendant : signaler.
+- **Ombre de la liste.** Figma utilise le style d'ombre shadow de Fondations Canopée. Le JSON de _SelectList l'écrit en valeur brute, car le plugin ne lit pas encore les styles d'effet. Le code a sa propre ombre (`MultiSelectListAll.css:9`). En attendant : signaler.
 - **Nom accessible en multiple=true.** Le code remplace le nom du bouton par le résumé, avec `aria-label` (`DropdownMultiSelectCommon.tsx:161`). Le libellé du champ n'est alors plus annoncé, et un champ vide prend le placeholder pour nom (`useDropdownMultiSelect.hook.tsx:32`). Le nombre d'options sur le total reste dans un texte caché qu'aucun attribut ne relie au bouton (`DropdownMultiSelectCommon.tsx:168`). Le bouton annonce aussi une liste, avec `aria-haspopup="listbox"` (`DropdownMultiSelectCommon.tsx:160`), alors qu'il ouvre un groupe de cases. En attendant : signaler.
 - **Champ obligatoire et erreur en multiple=true.** Le bouton de `DropdownMultiSelect` ne reçoit aucun attribut libre (`DropdownMultiSelectCommon.tsx:155`). Un `required` passé dans `inputProps` s'appliquerait à chaque case (`DropdownMultiSelectCommon.tsx:109`), et le navigateur exigerait alors que toutes soient cochées. En attendant : signaler.
 - **Lien des messages dans le code.** `Dropdown` ne relie ni l'aide ni le message au champ, et ne pose pas `aria-invalid` (`DropdownCommon.tsx:84`). `DropdownMultiSelect` non plus (`DropdownMultiSelectCommon.tsx:199`). En attendant : signaler.
@@ -231,6 +232,7 @@ Ces noms désignent Select. Le seul nom à employer est Select.
 - **Longueur des options.** La longueur maximale d'une option n'est pas définie. En multiple=true, une option choisie devient un Tag, que sa fiche limite à deux mots et 21 caractères. En attendant : signaler.
 - **Nombre d'options.** Le nombre d'options à partir duquel prendre Select plutôt que Radio ou Checkbox n'est pas défini. En attendant : signaler.
 - **Focus après « Modifier ».** La place du focus après un clic sur « Modifier » n'est pas définie. En attendant : signaler.
+- **Focus dans la liste en multiple=true.** La fiche ne dit pas ce qui se passe quand le focus quitte la liste. Elle ne dit pas non plus le rendu du champ pendant que le focus est dans la liste. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

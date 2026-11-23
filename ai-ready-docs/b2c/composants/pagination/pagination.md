@@ -54,7 +54,7 @@ Les flèches page précédente et page suivante sont masquées, et seuls les num
 - items affiche 8 _PaginationItem au plus. Jusqu'à 7 pages, chaque page a son numéro.
 - Au-delà de 7 pages, items montre toujours la première et la dernière page. Des « ... » remplacent les pages masquées.
   - Quand la page en cours est une des 5 premières, items montre les pages 1 à 6, des « ... », puis la dernière page.
-  - Quand la page en cours est une des 5 dernières, items montre la première page, des « ... », puis les 6 dernières pages.
+  - Sinon, quand la page en cours est une des 5 dernières, items montre la première page, des « ... », puis les 6 dernières pages.
   - Ailleurs, items montre la première page, des « ... », la page en cours entre ses deux voisines, des « ... », puis la dernière page.
 - counter dit la page en cours et le nombre de pages.
 - La Pagination se place sous la liste qu'elle découpe, comme le recommande Carbon.
@@ -178,6 +178,9 @@ Ces noms désignent Pagination. Le seul nom à employer est Pagination.
 - **Flèches masquées.** Le cas où masquer les flèches n'est pas défini. En attendant : signaler.
 - **Focus d'une flèche désactivée.** La flèche se désactive alors qu'elle a le focus, quand l'utilisateur atteint la première ou la dernière page (`PaginationCommon.tsx:62`, `PaginationCommon.tsx:79`). La place du focus n'est pas définie. En attendant : signaler.
 - **Focus après un changement de page.** L'élément qui reçoit le focus après un changement de page n'est pas défini. En attendant : signaler.
+- **Suite d'une liste.** La fiche ne dit pas quel composant prendre pour charger la suite d'une liste sur la même page, avec un bouton « Afficher plus » ou au défilement. En attendant : signaler.
+- **Clic sur la page en cours.** L'effet d'un clic sur la page en cours n'est pas défini. En attendant : signaler.
+- **Chargement de la page choisie.** Ce qui s'affiche pendant le chargement de la page choisie n'est pas défini. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

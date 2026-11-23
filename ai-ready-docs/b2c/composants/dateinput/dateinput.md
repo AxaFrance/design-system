@@ -68,7 +68,7 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent la version mobi
 ## Interdits
 
 - disabled=true avec un autre état que state=default, ou avec tone=warning ou tone=error.
-- open=true avec showIcon=false, avec un autre état que state=focus, avec filled=true, ou avec tone=warning ou tone=error.
+- open=true avec showIcon=false, ou avec un autre état que state=focus.
 - Remplacer le libellé par le placeholder.
 - Modifier localement la taille, l'espacement ou les couleurs du DateInput, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system.
 
@@ -176,7 +176,7 @@ Ces noms désignent DateInput. Le seul nom à employer est DateInput.
 - **1.0.0 - 19/11/26.** Les états suivent les principes d'interaction du pattern Contour. Au hover, la bordure passe à 2 px sans changer de couleur, et au focus en color/blue/400, 2 px. Une valeur saisie passe en color/gray/900 sans toucher à la bordure. L'ancienne version et le code mettent du bleu foncé au hover, au focus et en filled=true.
 - **1.0.0 - 19/11/26.** showIcon=true est la valeur par défaut, comme dans le code, où le calendrier s'affiche sans `hidePicker`.
 - **1.0.0 - 19/11/26.** L'icône est l'asset icon/event de la librairie Figma Fondations Canopée, à la taille icon/size/small.
-- **1.0.0 - 19/11/26.** Une seule variante par breakpoint montre le calendrier ouvert, au moment où l'utilisateur l'ouvre : sur un champ au focus, vide et neutre.
+- **1.0.0 - 19/11/26.** Une seule variante par breakpoint montre le calendrier ouvert, au moment où l'utilisateur l'ouvre : sur un champ au focus, vide et neutre. Le calendrier s'ouvre aussi sur un champ rempli, en avertissement ou en erreur, sans variante dédiée dans Figma.
 - **1.0.0 - 19/11/26.** L'aide et le message sont deux _FormHelperText inclus dans le DateInput et réglables depuis lui, comme `helper` et `message` dans le code.
 - **1.0.0 - 19/11/26.** En disabled=true, seul le champ passe en gris. Le libellé et l'aide restent lisibles, comme dans tous les champs de saisie.
 - **1.0.0 - 19/11/26.** Le DateInput a 42 variantes : toutes les combinaisons de state, filled et tone, deux variantes en disabled=true et une en open=true, pour chaque breakpoint.
@@ -193,6 +193,7 @@ Ces noms désignent DateInput. Le seul nom à employer est DateInput.
 - **Message de succès.** Le code accepte `messageType="success"`, que Figma n'a pas. En attendant : signaler.
 - **Lien des messages dans le code.** Le code relie le message d'erreur avec `aria-errormessage`, au lieu de `aria-describedby`. Le code ne met dans `aria-describedby` que l'aide et un message de succès (`InputDateCommon.tsx:68`). Le message d'avertissement n'est donc pas relu quand le champ reprend le focus. En attendant : signaler.
 - **Interligne dans le code.** Sur desktop, le code utilise un interligne de 1,25 (`InputDateCommon.css:74`), plus serré que celui du style label/1/regular. En attendant : signaler.
+- **Ouverture du calendrier au clavier.** La touche qui ouvre le calendrier dépend du navigateur, et la fiche ne la donne pas. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

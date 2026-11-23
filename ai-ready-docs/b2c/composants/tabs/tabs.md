@@ -46,7 +46,7 @@ Sur un écran de moins de 1024 px de large. Les _Tab utilisent leur version mobi
 - Autre chose qu'un _Tab dans items, comme un Button ou un texte.
 - Un _Tab aux couleurs du menu du Header dans Tabs.
 - Plusieurs _Tab sélectionnés, ou aucun.
-- Un _Tab sélectionné à l'état press : un onglet déjà affiché ne réagit plus au clic.
+- Un _Tab sélectionné à l'état press : un _Tab déjà sélectionné ne réagit plus au clic.
 - Modifier localement la taille, la couleur ou l'épaisseur du trait, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system.
 
 ## Contenu
@@ -68,7 +68,7 @@ Sur un écran de moins de 1024 px de large. Les _Tab utilisent leur version mobi
 - Tabs prend toute la largeur de son conteneur.
 - Au chargement, le _Tab sélectionné est affiché, le premier par défaut.
 - Un clic sur un _Tab affiche son contenu sous Tabs et masque les autres, sans recharger la page. Un clic sur le _Tab déjà affiché ne change rien.
-- Un _Tab n'a pas d'état désactivé. Que faire d'un onglet indisponible : Non documenté.
+- Un _Tab n'a pas d'état désactivé. Que faire d'un _Tab indisponible : Non documenté.
 - Quand les _Tab dépassent la largeur de l'écran : Non documenté.
 
 ## Accessibilité
@@ -146,7 +146,7 @@ Ces noms désignent Tabs. Le seul nom à employer est Tabs.
 ## Décisions
 
 - **1.0.0 - 19/11/26.** Dans Figma, les thèmes prospect et client partagent un seul Tabs et un seul _Tab. Leurs variantes étaient identiques.
-- **1.0.0 - 19/11/26.** Le _Tab suit le pattern Hybride des principes d'interaction : un fond au hover et au press, et un trait de 2 px sous le libellé quand il est sélectionné. Un _Tab sélectionné n'a pas d'état press, car un onglet déjà affiché ne réagit plus au clic.
+- **1.0.0 - 19/11/26.** Le _Tab suit le pattern Hybride des principes d'interaction : un fond au hover et au press, et un trait de 2 px sous le libellé quand il est sélectionné. Un _Tab sélectionné n'a pas d'état press, car un _Tab déjà sélectionné ne réagit plus au clic.
 - **1.0.0 - 19/11/26.** Le _Tab a une variante par largeur d'écran. Sur mobile, il fait 48 px de haut au moins, comme dans le code.
 - **1.0.0 - 19/11/26.** Le _Tab a aussi un jeu de couleurs pour le menu du Header, qui remplace l'ancien _ItemMenu de Figma. Ses règles seront écrites dans la fiche du Header.
 - **1.0.0 - 20/11/26.** placement suit le code : placement=center étire les _Tab sur toute la largeur, placement=left les garde à la largeur de leur libellé. Le trait sous la liste existe dans les deux cas. La valeur par défaut est placement=left, comme dans le code.
@@ -163,8 +163,8 @@ Ces noms désignent Tabs. Le seul nom à employer est Tabs.
 - **Rendu de la liste dans le code.** Le trait sous la liste prend une couleur de l'ancienne palette, `--blue-200`, au lieu de color/gray/200 (`TabBarApollo.css:5`, `TabBarLF.css:5`). En attendant : signaler.
 - **Rendu des _Tab dans le code.** Le code affiche un trait de 4 px au hover et sur le _Tab sélectionné (`ItemTabBarCommon.css:24`), sans fond au hover ni au press (`ItemTabBarCommon.css:16`). Hors sélection, le libellé est en graisse regular (`ItemTabBarCommon.css:13`), et en bleu dans le thème prospect (`ItemTabBarApollo.css:5`). L'interligne vaut 125 % (`ItemTabBarCommon.css:14`). Le contour de focus est écarté de 2 px de tous les côtés (`ItemTabBarCommon.css:32`). Le _Tab fait 52 px de haut au moins en desktop (`ItemTabBarCommon.css:44`), contre 56 px dans Figma. Ses couleurs viennent de l'ancienne palette (`ItemTabBarCommon.css:6`). En attendant : signaler.
 - **Largeur en placement=center dans le code.** Le code ajoute à chaque _Tab la même part de la place libre (`TabBarCommon.css:22`) : un libellé plus long donne un _Tab plus large. En attendant : signaler.
-- **Onglet choisi par la page.** TabBar ne permet pas à la page de changer le _Tab affiché après le premier affichage. En attendant : signaler.
-- **Onglet indisponible.** Le _Tab n'a pas d'état désactivé dans Figma. TabBar ne transmet à ItemTabBar que `title` (`TabBarCommon.tsx:110`). Un `disabled` passé dans `items` reste donc sans effet, alors que le plugin Copilot l'annonce (`10-navigation.md:28`). En attendant : signaler.
+- **_Tab choisi par la page.** TabBar ne permet pas à la page de changer le _Tab affiché après le premier affichage. En attendant : signaler.
+- **_Tab indisponible.** Le _Tab n'a pas d'état désactivé dans Figma. TabBar ne transmet à ItemTabBar que `title` (`TabBarCommon.tsx:110`). Un `disabled` passé dans `items` reste donc sans effet, alors que le plugin Copilot l'annonce (`10-navigation.md:28`). En attendant : signaler.
 - **Débordement.** Le comportement quand les _Tab dépassent la largeur de l'écran n'est pas défini. En attendant : signaler.
 - **Nombre et longueur.** Ni le nombre maximal de _Tab, ni la longueur maximale de leur libellé ne sont fixés. En attendant : signaler.
 

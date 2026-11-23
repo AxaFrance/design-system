@@ -8,13 +8,13 @@ Version du format : 0.7.
 
 - Le JSON suffit à reconstruire le composant dans Figma. Si une information manque pour le refaire à l'identique, elle manque au JSON.
 - Il ne contient que ce que Figma sait. Ce que traite le Markdown n'y figure pas : description, rôle, règles, exemples, interdits, correspondance avec le code.
-- Il nomme, il ne recopie pas. Une couleur, une marge ou une typo s'écrit par le nom de sa variable ou de son style. Une valeur brute est signalée comme un défaut.
+- Il nomme, il ne recopie pas. Une couleur, une marge ou une typo s'écrit par le nom de sa variable ou de son style. Une valeur brute est signalée comme un défaut. Quand aucun token ne convient, comme pour un dégradé aux extrémités transparentes, la valeur reste brute. Le JSON la signale quand même, et le Markdown dit pourquoi dans sa rubrique Décisions.
 - Il reprend les noms de Figma tels quels, ceux de la nomenclature.
 - Il est déterministe. Le même composant donne toujours le même fichier, dans le même ordre.
 
 ## La forme du fichier
 
-- Un fichier par composant, à côté de son Markdown. Exemple : `button.json` et `button.md`.
+- Un fichier par composant, à côté de son Markdown. Exemple : `button.json` et `button.md`. Le JSON d'un sous-composant sans Markdown à lui est rangé dans le dossier du composant qui l'utilise. Exemple : `_selectlist.json`, dans le dossier de Select.
 - Des clés en anglais et en camelCase. Les noms de propriétés et de calques sont ceux de Figma.
 - Pas de date de génération dans le fichier, sinon il changerait à chaque export. La date va dans le message du dépôt.
 

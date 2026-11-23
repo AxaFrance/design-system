@@ -147,7 +147,7 @@ Ces noms désignent _FormHelperText. Le seul nom à employer est _FormHelperText
 - **1.0.0 - 16/11/26.** Dans Figma, les thèmes prospect et client partagent un seul _FormHelperText. Ils ne différaient que par la largeur d'exemple du composant.
 - **1.0.0 - 16/11/26.** Le _FormHelperText a une propriété breakpoint, avec une variante par largeur d'écran : breakpoint=1024 pour desktop et breakpoint=0 pour mobile. La valeur par défaut est breakpoint=1024.
 - **1.0.0 - 16/11/26.** tone=neutral est ajouté pour l'aide à la saisie, comme le helper text de Material Design et de Carbon.
-- **1.0.0 - 16/11/26.** showIcon masque l'icône, seulement avec tone=neutral. Un texte d'aide se lit sans icône, comme dans Material Design et Carbon. Dans les autres tons, l'icône double le sens du texte, pour qu'il ne repose pas sur la couleur seule. L'ancienne documentation du B2C interdisait de masquer l'icône, quel que soit le ton.
+- **1.0.0 - 16/11/26.** showIcon masque l'icône, seulement avec tone=neutral. Une aide se lit sans icône, comme dans Material Design et Carbon. Dans les autres tons, l'icône double le sens du texte, pour qu'il ne repose pas sur la couleur seule. L'ancienne documentation du B2C interdisait de masquer l'icône, quel que soit le ton.
 - **1.0.0 - 16/11/26.** Les icônes viennent de Fondations Canopée, à la taille icon/size/extra-small.
 - **1.0.0 - 17/11/26.** tone=error est la valeur par défaut, comme dans le code.
 - **1.0.0 - 17/11/26.** Dans Figma, le _FormHelperText s'adapte à la longueur de son texte. Le composant qui le contient, comme un champ, règle sa largeur et le retour à la ligne.

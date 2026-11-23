@@ -91,6 +91,7 @@ Un élément `<button>` natif, de rôle ARIA button.
 - L'indicateur de focus reste toujours visible.
 - L'icône contraste avec le fond à 3:1 au moins, et l'anneau de focus aussi (WCAG).
 - La zone cliquable mesure au moins 24 × 24 px (WCAG 2.2).
+- Un IconButton désactivé n'est pas atteignable au clavier. La raison de l'indisponibilité est donc écrite dans le texte autour.
 - Le bouton s'atteint avec Tab et s'active avec Entrée ou Espace, dans un ordre de tabulation logique.
 - Plusieurs IconButton liés se regroupent dans un conteneur de rôle group, avec un nom pour le groupe. Exemple : « Actions sur l'adresse » pour Modifier et Dupliquer.
 

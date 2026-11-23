@@ -200,6 +200,7 @@ Ces noms désignent PhoneInput. Le seul nom à employer est PhoneInput.
 - **Lien des messages dans le code.** Le code relie le message d'erreur avec `aria-errormessage`, au lieu de `aria-describedby`. Le code ne met dans `aria-describedby` que l'aide et un message de succès (`InputPhoneCommon.tsx:84`). Le message d'avertissement n'est donc pas relu quand le champ reprend le focus. En attendant : signaler.
 - **Focus après « Modifier ».** La place du focus après un clic sur « Modifier » n'est pas définie. En attendant : signaler.
 - **Texte saisi et interligne dans le code.** Le champ du numéro reprend celui d'`InputText` : le code affiche le texte saisi en semi-gras (`InputTextAtomCommon.css:24`), alors que Figma l'affiche en regular. Son interligne de 1,25 (`InputTextAtomCommon.css:25`) est plus serré que celui du style label/1/regular. En attendant : signaler.
+- **Indicatif masqué.** Les cas où masquer l'indicatif ne sont pas définis. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

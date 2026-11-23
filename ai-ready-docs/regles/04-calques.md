@@ -36,7 +36,7 @@ Ces calques reprennent les propriétés de contenu, qui remplissent un élément
 | item | Un élément répété dans une list. |
 | input | La zone de saisie d'un champ, ou la partie à cocher d'un Checkbox, d'un Radio ou d'un Switch. |
 | divider | Le trait de séparation entre deux parties. |
-| focus-ring | L'anneau qui entoure le composant quand il a le focus. Il déborde du composant, il est donc posé hors de la mise en page. |
+| focus-ring | L'anneau qui entoure le composant quand il a le focus. Il est posé hors de la mise en page, et déborde en général du composant. Dans une ligne de liste, comme _SelectListItem, il reste à l'intérieur, car la liste coupe ce qui dépasse. |
 
 ## Appliquer les règles
 
@@ -54,5 +54,6 @@ Un cadre prend le nom de son rôle quand il en a un, comme header ou actions. Un
 ### Le même nom partout
 
 - Un même élément porte le même nom dans toutes les variantes. Exemple : label dans toutes les variantes du bouton, et non label dans l'une et text dans l'autre.
+- Un élément qui ne s'affiche que dans certaines variantes existe dans toutes, masqué là où il ne s'affiche pas. Les variantes gardent ainsi la même structure, et une instance garde ses textes quand le designer change de variante. Seul focus-ring n'existe que dans les variantes où il s'affiche.
 - Deux calques qui jouent des rôles différents ne portent jamais le même nom. Exemple : title et subtitle, et non text deux fois. Des calques qui jouent le même rôle gardent le même nom, comme les éléments répétés d'une list.
 - Une propriété de contenu remplit le calque qui porte son nom en kebab-case. Exemple : la propriété leftIcon remplit le calque left-icon. Deux exceptions : placeholder remplit le calque value, et un slot porte exactement le nom de sa propriété.
