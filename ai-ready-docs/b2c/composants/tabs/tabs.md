@@ -47,7 +47,7 @@ Sur un écran de moins de 1024 px de large. Les _Tab utilisent leur version mobi
 - Un _Tab aux couleurs du menu du Header dans Tabs.
 - Plusieurs _Tab sélectionnés, ou aucun.
 - Un _Tab sélectionné à l'état press : un _Tab déjà sélectionné ne réagit plus au clic.
-- Modifier localement la taille, la couleur ou l'épaisseur du trait, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system.
+- Modifier localement la hauteur, la couleur ou l'épaisseur du trait, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system.
 
 ## Contenu
 
@@ -148,7 +148,7 @@ Ces noms désignent Tabs. Le seul nom à employer est Tabs.
 - **1.0.0 - 19/11/26.** Dans Figma, les thèmes prospect et client partagent un seul Tabs et un seul _Tab. Leurs variantes étaient identiques.
 - **1.0.0 - 19/11/26.** Le _Tab suit le pattern Hybride des principes d'interaction : un fond au hover et au press, et un trait de 2 px sous le libellé quand il est sélectionné. Un _Tab sélectionné n'a pas d'état press, car un _Tab déjà sélectionné ne réagit plus au clic.
 - **1.0.0 - 19/11/26.** Le _Tab a une variante par largeur d'écran. Sur mobile, il fait 48 px de haut au moins, comme dans le code.
-- **1.0.0 - 19/11/26.** Le _Tab a aussi un jeu de couleurs pour le menu du Header, qui remplace l'ancien _ItemMenu de Figma. Ses règles seront écrites dans la fiche du Header.
+- **1.0.0 - 19/11/26.** Le _Tab a aussi un jeu de couleurs pour le menu du Header, qui remplace l'ancien _ItemMenu de Figma. Quand le Header sera documenté, le _Tab aura sa propre fiche, comme tout sous-composant partagé.
 - **1.0.0 - 20/11/26.** fullWidth=true étire les _Tab sur toute la largeur, fullWidth=false les garde à la largeur de leur libellé. Le trait sous la liste existe dans les deux cas. La valeur par défaut est fullWidth=false, comme dans le code.
 - **1.0.0 - 20/11/26.** Les _Tab se posent dans le slot items, du même nom que la prop du code. items remplace l'ancienne propriété itemsCount, qui limitait Tabs à deux ou trois _Tab.
 - **1.0.0 - 20/11/26.** items n'accepte que des _Tab.

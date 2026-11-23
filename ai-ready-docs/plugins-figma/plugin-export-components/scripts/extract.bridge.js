@@ -3,7 +3,7 @@
 // component set (or of a single component). Returns the JSON of the sheet, as text.
 const ID_COMPONENT_SET = "COMPONENT_SET_ID"
 
-const VERSION = "0.7.9";
+const VERSION = "0.7.10";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -102,6 +102,7 @@ const SYNONYMS = {
     mode: "tone",
     invalid: "tone",
     theme: "_theme",
+    direction: "orientation, ou fullWidth pour des éléments étirés",
 };
 // Order of the axes for grouping overrides: structural first, state last.
 const PRIORITY = [

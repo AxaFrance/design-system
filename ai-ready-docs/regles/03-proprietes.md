@@ -55,6 +55,7 @@ Une propriété texte a pour valeur par défaut son propre nom, avec une majuscu
 | mode | tone |
 | invalid | tone |
 | theme | _theme |
+| direction | orientation, ou fullWidth pour des éléments étirés |
 
 ## Appliquer les propriétés
 
@@ -74,7 +75,7 @@ Une propriété texte a pour valeur par défaut son propre nom, avec une majuscu
 - Quand un composant en contient un autre, les propriétés du composant contenu sont exposées dans le panneau de celui qui le contient. Elles gardent leur nom et ne sont pas recréées. Exemple : un champ contient un libellé, le texte du libellé se règle depuis le panneau du champ.
 - Une propriété qui ne règle qu'un élément porte le nom de cet élément en préfixe. Exemple : iconPlacement pour placer l'icon d'un titre.
 - Une liste d'éléments devient un slot, avec le nom du code, même quand Figma l'affiche aujourd'hui avec des booléens numérotés. Exemple : items pour les _Tab de Tabs, comme dans le code.
-- Quand le code ne reçoit qu'un nombre et construit lui-même les éléments, ce nombre devient une variante, avec le nom du code. Exemple : stepsCount pour les barres de LevelSelector.
+- Quand le code ne reçoit qu'un nombre et construit lui-même les éléments, ce nombre devient une variante, avec le nom du code. Exemple : stepsCount pour les barres de LevelSelector. Quand Figma ne sait pas calculer les éléments affichés, ils passent quand même par un slot. Exemple : items de Pagination, que le code calcule à partir de `numberPages` et `currentPage`.
 - Un texte reste une propriété texte, nommée selon son rôle, même quand le code le reçoit dans children. Exemple : description pour le texte d'un message.
 
 ### Les propriétés hors nomenclature

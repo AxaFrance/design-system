@@ -50,7 +50,7 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> START EXTRACTION
-const VERSION = "0.7.9";
+const VERSION = "0.7.10";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -157,6 +157,7 @@ const SYNONYMS: Record<string, string> = {
   mode: "tone",
   invalid: "tone",
   theme: "_theme",
+  direction: "orientation, ou fullWidth pour des éléments étirés",
 };
 // Order of the axes for grouping overrides: structural first, state last.
 const PRIORITY = [

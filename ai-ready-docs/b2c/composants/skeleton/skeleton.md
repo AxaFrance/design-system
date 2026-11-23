@@ -42,7 +42,7 @@ Un bouton.
 
 - type=circle avec size=x-small, size=x-large ou size=xx-large.
 - type=action avec une autre taille que size=medium.
-- Modifier localement la taille, l'arrondi ou les couleurs du Skeleton, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system.
+- Modifier localement la hauteur, l'arrondi ou les couleurs du Skeleton, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system.
 
 ## Contenu
 
@@ -122,7 +122,7 @@ Ces noms désignent Skeleton. Le seul nom à employer est Skeleton.
 - **1.0.0 - 23/11/26.** size suit l'échelle commune à tous les composants, de x-small à xx-large. La valeur xx-large a été ajoutée à cette échelle pour la forme de 400 px, comme `XXL` dans le code.
 - **1.0.0 - 23/11/26.** Dans Figma, les rectangles ont une largeur d'exemple de 343 px, et le bouton de 220 px. Dans une maquette, ils prennent la largeur de leur conteneur, en Fill container, comme dans le code.
 - **1.0.0 - 23/11/26.** Le sous-composant _SkeletonAnimation porte la forme et son reflet. Sa propriété de position ne sert qu'aux prototypes : la boucle fait passer le reflet du départ à l'arrivée en Smart Animate, à vitesse constante pendant une seconde, puis le ramène au départ sans transition.
-- **1.0.0 - 23/11/26.** Le reflet de _SkeletonAnimation est un dégradé aux extrémités transparentes. Ses couleurs restent en valeurs brutes, car un token de couleur ne garde pas cette transparence.
+- **1.0.0 - 23/11/26.** Le reflet de _SkeletonAnimation est un dégradé aux extrémités transparentes. Dans Figma, ses couleurs restent en valeurs brutes, car un token de couleur ne garde pas cette transparence. Le JSON ne reprend pas ce dégradé : il le signale seulement.
 - **1.0.0 - 23/11/26.** Les hauteurs de 150 et 400 px n'ont pas de token. Le code les écrit aussi en pixels.
 
 ## Points ouverts

@@ -8,7 +8,7 @@ Version du format : 0.7.
 
 - Le JSON suffit à reconstruire le composant dans Figma. Si une information manque pour le refaire à l'identique, elle manque au JSON.
 - Il ne contient que ce que Figma sait. Ce que traite le Markdown n'y figure pas : description, rôle, règles, exemples, interdits, correspondance avec le code.
-- Il nomme, il ne recopie pas. Une couleur, une marge ou une typo s'écrit par le nom de sa variable ou de son style. Une valeur brute est signalée comme un défaut. Quand aucun token ne convient, comme pour un dégradé aux extrémités transparentes, la valeur reste brute. Le JSON la signale quand même, et le Markdown dit pourquoi dans sa rubrique Décisions.
+- Il nomme, il ne recopie pas. Une couleur, une marge ou une typo s'écrit par le nom de sa variable ou de son style. Une valeur brute est signalée comme un défaut. Quand aucun token ne convient, comme pour une hauteur que le code écrit aussi en pixels, la valeur reste brute. Le JSON la signale quand même, et le Markdown dit pourquoi dans sa rubrique Décisions.
 - Il reprend les noms de Figma tels quels, ceux de la nomenclature.
 - Il est déterministe. Le même composant donne toujours le même fichier, dans le même ordre.
 
@@ -117,7 +117,7 @@ Les calques, les contenus que l'usage remplit, et les composants imbriqués.
 - `trees` donne l'arbre des calques. Quand la structure change selon les variantes, un arbre par cas, conditionné par `when`. L'arbre dont le `when` correspond le plus précisément à la variante s'applique en entier, et l'arbre de `when` vide vaut pour les autres. L'anneau de focus n'existe par exemple qu'en focus.
 - Quand aucune valeur de propriété ne distingue un arbre, il porte la liste exacte des variantes qui l'utilisent dans `configs`, avec un `when` vide, et ne vaut que pour elles. Pour une variante dont les valeurs égalent une de ces configurations, cet arbre passe avant le choix par `when`.
 - `hidden: true` signale un calque masqué par défaut.
-- `uses` liste tous les composants imbriqués dans les calques propres du composant, qu'ils soient ou non dans un ensemble de variantes, sans doublon et triés par nom. Ils sont cités par référence, leur intérieur est décrit dans leur propre fiche.
+- `uses` liste tous les composants imbriqués dans les calques propres du composant, qu'ils soient ou non dans un ensemble de variantes, sans doublon et triés par nom. Ils sont cités par référence, leur intérieur est décrit dans leur propre JSON.
 - Les arbres et les slots nomment les composants. Leur clé se lit dans l'index `components`.
 - Une instance d'un composant à variantes porte aussi `values`, les valeurs de la variante utilisée. Exemple : `{ "name": "spinner", "type": "instance", "component": "Spinner", "values": { "colorScheme": "white", "size": "small", "_animation": "1" } }`.
 
