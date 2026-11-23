@@ -11,7 +11,9 @@
       0,
       1024
     ],
-    "documentationLinks": []
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/levelselector/levelselector.md"
+    ]
   },
   "api": {
     "props": {
@@ -152,6 +154,18 @@
       {
         "when": {},
         "tree": []
+      },
+      {
+        "when": {
+          "state": "focus",
+          "checked": "true"
+        },
+        "tree": [
+          {
+            "name": "focus-ring",
+            "type": "frame"
+          }
+        ]
       }
     ],
     "uses": []
@@ -177,7 +191,25 @@
         "radius": {
           "token": "border/radius/16"
         },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "gap": {
+          "raw": 0
+        },
         "layout": {
+          "direction": "row",
           "clip": false,
           "sizingH": "fixed",
           "width": {
@@ -201,6 +233,7 @@
           },
           "root": {
             "layout": {
+              "direction": "row",
               "clip": false,
               "sizingH": "fixed",
               "width": {
@@ -255,6 +288,19 @@
       },
       {
         "when": {
+          "state": "focus",
+          "checked": "false"
+        },
+        "styles": {
+          "root": {
+            "background": {
+              "token": "color/gray/100"
+            }
+          }
+        }
+      },
+      {
+        "when": {
           "state": "default",
           "checked": "true"
         },
@@ -263,6 +309,82 @@
             "stroke": null,
             "strokeWeight": null,
             "strokeAlign": null
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus",
+          "checked": "true"
+        },
+        "styles": {
+          "focus-ring": {
+            "stroke": {
+              "token": "color/white"
+            },
+            "strokeWeight": {
+              "token": "border/width/2"
+            },
+            "strokeAlign": "inside",
+            "radius": {
+              "token": "border/radius/16"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus",
+          "checked": "true",
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "focus-ring": {
+            "layout": {
+              "absolute": true,
+              "x": 2,
+              "y": 2,
+              "constraints": {
+                "horizontal": "stretch",
+                "vertical": "stretch"
+              },
+              "sizingH": "fixed",
+              "width": {
+                "raw": 94
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 12
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus",
+          "checked": "true",
+          "breakpoint": "0"
+        },
+        "styles": {
+          "focus-ring": {
+            "layout": {
+              "absolute": true,
+              "x": 2,
+              "y": 2,
+              "constraints": {
+                "horizontal": "stretch",
+                "vertical": "stretch"
+              },
+              "sizingH": "fixed",
+              "width": {
+                "raw": 94
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 20
+              }
+            }
           }
         }
       }
@@ -299,6 +421,11 @@
       "collection": "Primitive",
       "key": "b6b5406c94907dbc3aca22c3e5680cf7a94aa698"
     },
+    "color/white": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "207050c6310c4663b3209cbaa9d2426f268f67b0"
+    },
     "size/16": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
@@ -319,5 +446,5 @@
     }
   },
   "issues": [],
-  "_tool": "canopee-export-components 0.7.6"
+  "_tool": "canopee-export-components 0.7.9"
 }

@@ -12,7 +12,9 @@
       0,
       1024
     ],
-    "documentationLinks": []
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/select/select.md"
+    ]
   },
   "api": {
     "props": {
@@ -268,6 +270,11 @@
           "state": "focus"
         },
         "styles": {
+          "root": {
+            "background": {
+              "token": "color/gray/100"
+            }
+          },
           "focus-ring": {
             "stroke": {
               "token": "color/blue/400"
@@ -352,5 +359,5 @@
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/regular/line-height, dans un composant inclus."
     }
   ],
-  "_tool": "canopee-export-components 0.7.6"
+  "_tool": "canopee-export-components 0.7.9"
 }

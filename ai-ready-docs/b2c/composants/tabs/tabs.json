@@ -17,13 +17,13 @@
   },
   "api": {
     "props": {
-      "placement": {
+      "fullWidth": {
         "type": "enum",
         "enum": [
-          "left",
-          "center"
+          "false",
+          "true"
         ],
-        "default": "left"
+        "default": "false"
       }
     }
   },
@@ -31,7 +31,7 @@
     {
       "values": {
         "breakpoint": "1024",
-        "placement": "left"
+        "fullWidth": "false"
       },
       "position": [
         48,
@@ -41,7 +41,7 @@
     {
       "values": {
         "breakpoint": "1024",
-        "placement": "center"
+        "fullWidth": "true"
       },
       "position": [
         48,
@@ -51,7 +51,7 @@
     {
       "values": {
         "breakpoint": "0",
-        "placement": "left"
+        "fullWidth": "false"
       },
       "position": [
         730,
@@ -61,7 +61,7 @@
     {
       "values": {
         "breakpoint": "0",
-        "placement": "center"
+        "fullWidth": "true"
       },
       "position": [
         730,
@@ -181,7 +181,7 @@
     "default": {
       "when": {
         "breakpoint": "0",
-        "placement": "left"
+        "fullWidth": "false"
       },
       "modes": {
         "Typography": "prospect-mobile"
@@ -459,7 +459,7 @@
       {
         "when": {
           "breakpoint": "1024",
-          "placement": "left"
+          "fullWidth": "false"
         },
         "styles": {
           "item-1": {
@@ -488,7 +488,7 @@
       {
         "when": {
           "breakpoint": "1024",
-          "placement": "center"
+          "fullWidth": "true"
         },
         "styles": {
           "item-1": {
@@ -520,7 +520,7 @@
       {
         "when": {
           "breakpoint": "0",
-          "placement": "center"
+          "fullWidth": "true"
         },
         "styles": {
           "item-1": {
@@ -634,5 +634,5 @@
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold/line-height, dans un composant inclus."
     }
   ],
-  "_tool": "canopee-export-components 0.7.6"
+  "_tool": "canopee-export-components 0.7.9"
 }
