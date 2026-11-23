@@ -155,7 +155,7 @@ disabled=true n'existe qu'avec state=default et tone=neutral : un composant dés
 
 | Composant | Règle |
 |---|---|
-| _SelectListItem | Seuls default, hover et focus sont les siens, et sa Checkbox ne change pas pendant ces trois états. Au hover, la ligne passe en color/gray/100, et la Checkbox n'a pas de halo. Au focus, l'anneau de 2 px se place à l'intérieur de la ligne, sans écart, car la liste coupe ce qui dépasse sur ses bords. La Checkbox prend tous les autres états, checked et disabled compris. |
+| _SelectListItem | Seuls default, hover et focus sont les siens, et sa Checkbox ne change pas pendant ces trois états. Au hover, la ligne passe en color/gray/100, et la Checkbox n'a pas de halo. Au focus, la ligne garde ce fond, et l'anneau de 2 px se place à l'intérieur de la ligne, sans écart, car la liste coupe ce qui dépasse sur ses bords. La Checkbox prend tous les autres états, checked et disabled compris. |
 | FormCard | La carte prend le hover et le focus, et porte checked et tone. Son Radio ou sa Checkbox, en showLabel=false, reprend checked et tone, mais ne change pas au hover ni au focus, et n'a pas de halo. |
 | PhoneInput | Les propriétés state, filled et tone décrivent le champ du numéro. L'indicatif, toujours rempli et prérempli avec +33, garde son rendu, texte et flèche en color/gray/900. Ses propres états ne sont pas encore définis. |
 | Accordion | Pas d'état d'interaction : l'IconButton de son en-tête prend le hover, le focus et le press. Le seul état propre à l'Accordion est open. |
