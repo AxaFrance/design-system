@@ -168,6 +168,7 @@ Ces noms désignent IconButton. Le seul nom à employer est IconButton.
 - **Plusieurs primary.** La fiche Button n'autorise qu'un seul Button primary par page, sans compter le Header. Rien ne dit si un IconButton primary compte dans cette limite. En attendant : signaler.
 - **Règles reprises de Button.** Plusieurs règles viennent de la fiche Button, sans source propre à IconButton : hierarchy, disabled=true et colorScheme, le Comportement, la Rédaction, `aria-expanded` et `aria-controls`, et le contraste de l'anneau de focus. En attendant : elles s'appliquent.
 - **Bleu d'interaction dans le code.** Le code dessine l'icône de ClickIcon dans le bleu de la marque, plus foncé que color/blue/600 (`IconCommon.css:24`). En attendant : signaler.
+- **Forme dans le thème client.** Dans le code, ClickIcon reste rond dans les deux thèmes (`ClickIconCommon.css:7`), alors que l'IconButton de Figma a un arrondi de 8 px dans le thème client, comme Button (`ButtonLF.css:7`). En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

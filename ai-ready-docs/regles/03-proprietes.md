@@ -80,7 +80,7 @@ Une propriété texte a pour valeur par défaut son propre nom, avec une majuscu
 
 Une propriété qui commence par un tiret bas est hors nomenclature. Soit elle ne sert qu'au prototype et n'aura jamais d'équivalent dans le code, soit elle est provisoire et disparaîtra. Le tiret bas prévient les designers, et permet à un outil qui relie Figma au code de l'ignorer. Exemples : _animation, qui anime le Spinner dans un prototype, et _showCursor, qui affiche ou masque le curseur de saisie d'un champ. Le thème est aussi hors nomenclature, parce que ses couleurs passent par les modes de variables. Quand sa forme change, il s'écrit _theme, avec les valeurs client et prospect.
 
-Un composant garde _theme quand sa forme change entre les thèmes : ses espacements, ou un arrondi qui passe du rond à l'angle. Exemples : Button, IconButton et Stepper. Un simple écart d'arrondi, comme 8 et 4 px, se fusionne sur le thème prospect, comme pour TextInput et Checkbox.
+Un composant garde _theme quand sa forme change entre les thèmes : ses espacements, ou une forme ronde dans un thème et à angles arrondis dans l'autre. Exemples : Button, IconButton et Stepper. Il garde aussi _theme quand un composant qu'il contient change ainsi de forme. Exemples : LevelSelector, FileInput et Pagination. Quand seul le rayon d'arrondi diffère, comme 8 px et 4 px, Figma garde un seul composant, celui du thème prospect. Exemples : TextInput et Checkbox.
 
 Les propriétés marquées Figma seulement dans les tableaux n'ont pas de tiret bas. Elles font partie de la nomenclature, c'est simplement le code qui gère ces cas tout seul.
 

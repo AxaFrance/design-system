@@ -163,6 +163,7 @@ Ces noms désignent LevelSelector. Le seul nom à employer est LevelSelector.
 - **Un seul niveau.** L'usage de stepsCount=1, plutôt qu'un Switch ou une Checkbox, n'est pas défini. En attendant : signaler.
 - **Exemple de la page Storybook.** Son exemple d'usage passe `steps` et un texte enfant, que le code n'accepte pas (`LevelSelector.mdx:19`). En attendant : utiliser `stepsCount`.
 - **État désactivé.** Le LevelSelector n'a d'état désactivé ni dans Figma ni dans le code. En attendant : signaler.
+- **Forme des boutons dans le code.** Le code dessine les boutons moins et plus avec ClickIcon, rond dans les deux thèmes (`ClickIconCommon.css:7`). En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

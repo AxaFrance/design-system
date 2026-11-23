@@ -143,8 +143,9 @@ Avec ce code, un clic sur un numéro recharge aussi la page, à l'adresse `/` su
 | counter | Sans équivalent, le code écrit le compteur à partir de `currentPage` et `numberPages` |
 | Les flèches | `ClickIcon`, réglables par `prevButtonProps` et `nextButtonProps` |
 | breakpoint | Sans équivalent, une media query change l'affichage à partir de 1024 px |
+| _theme | Le chemin d'import, `/prospect` ou `/client` |
 
-Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. `numberPages`, `currentPage` et `onChangePage` sont obligatoires. `onChangePage` reçoit le numéro de la page choisie. `aria-label` vaut « Pagination » par défaut. `asItem` remplace le lien de chaque numéro par un autre composant, par exemple `"button"`. Ce composant ne reçoit ni `href` ni `aria-current` : seule la classe `af-item-pagination--current` signale la page en cours.
+`numberPages`, `currentPage` et `onChangePage` sont obligatoires. `onChangePage` reçoit le numéro de la page choisie. `aria-label` vaut « Pagination » par défaut. `asItem` remplace le lien de chaque numéro par un autre composant, par exemple `"button"`. Ce composant ne reçoit ni `href` ni `aria-current` : seule la classe `af-item-pagination--current` signale la page en cours.
 
 ## Noms à ne pas employer
 
@@ -154,7 +155,7 @@ Ces noms désignent Pagination. Le seul nom à employer est Pagination.
 
 ## Décisions
 
-- **1.0.0 - 20/11/26.** Dans Figma, les thèmes prospect et client partagent une seule Pagination et un seul _PaginationItem. Leurs variantes étaient identiques.
+- **1.0.0 - 20/11/26.** Dans Figma, les thèmes prospect et client partagent un seul _PaginationItem. Ses variantes étaient identiques.
 - **1.0.0 - 20/11/26.** Les flèches sont des IconButton secondaires, avec les icônes icon/keyboard-arrow-left et icon/keyboard-arrow-right de la librairie Figma Fondations Canopée. Ils remplacent l'ancien ClickIcon de Figma.
 - **1.0.0 - 20/11/26.** Les _PaginationItem se posent dans le slot items. items remplace les anciennes propriétés currentPage et numberPages, car Figma ne sait pas calculer les numéros à afficher. items n'accepte que des _PaginationItem.
 - **1.0.0 - 20/11/26.** Par défaut, items contient 7 _PaginationItem, numérotés de 1 à 7, avec la page 1 en cours.
@@ -164,7 +165,8 @@ Ces noms désignent Pagination. Le seul nom à employer est Pagination.
 - **1.0.0 - 20/11/26.** counter et la propriété page du _PaginationItem montrent par défaut un exemple de leur format, et non le nom de leur propriété, comme un champ au format fixe.
 - **1.0.0 - 20/11/26.** showPrevNext reprend la convention show des booléens, à l'inverse de `hidePrevNext` dans le code. Il n'agit qu'en breakpoint=1024, car le code affiche toujours les flèches sur mobile.
 - **1.0.0 - 20/11/26.** La Pagination a une propriété breakpoint, avec une variante par largeur d'écran : breakpoint=1024 pour desktop et breakpoint=0 pour mobile. La valeur par défaut est breakpoint=1024.
-- **1.0.0 - 23/11/26.** Les deux variantes contiennent les numéros et le compteur, comme le code : le compteur est masqué en breakpoint=1024, et les numéros en breakpoint=0. Le compteur vaut « Page 1 sur 7 » par défaut, comme les 7 numéros d'items.
+- **1.0.0 - 23/11/26.** Toutes les variantes contiennent les numéros et le compteur, comme le code : le compteur est masqué en breakpoint=1024, et les numéros en breakpoint=0. Le compteur vaut « Page 1 sur 7 » par défaut, comme les 7 numéros d'items.
+- **1.0.0 - 23/11/26.** La Pagination a une propriété _theme, car ses flèches, des IconButton, changent de forme entre les thèmes : rondes dans le thème prospect, avec un arrondi de 8 px dans le thème client. Le reste de la Pagination est le même dans les deux thèmes.
 
 ## Points ouverts
 
@@ -181,6 +183,7 @@ Ces noms désignent Pagination. Le seul nom à employer est Pagination.
 - **Suite d'une liste.** La fiche ne dit pas quel composant prendre pour charger la suite d'une liste sur la même page, avec un bouton « Afficher plus » ou au défilement. En attendant : signaler.
 - **Clic sur la page en cours.** L'effet d'un clic sur la page en cours n'est pas défini. En attendant : signaler.
 - **Chargement de la page choisie.** Ce qui s'affiche pendant le chargement de la page choisie n'est pas défini. En attendant : signaler.
+- **Forme des flèches dans le code.** Le code dessine les flèches avec ClickIcon, rond dans les deux thèmes (`ClickIconCommon.css:7`). En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 
