@@ -50,7 +50,7 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> START EXTRACTION
-const VERSION = "0.7.6";
+const VERSION = "0.7.7";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -129,7 +129,7 @@ const ORDER: string[][] = [
 // Values imposed by the nomenclature for some variants.
 const FIXED_VALUES: Record<string, string[]> = {
   state: ["default", "hover", "focus", "press"],
-  size: ["x-small", "small", "medium", "large", "x-large"],
+  size: ["x-small", "small", "medium", "large", "x-large", "xx-large"],
   hierarchy: ["primary", "secondary", "tertiary"],
   tone: ["neutral", "information", "success", "warning", "error"],
   orientation: ["horizontal", "vertical"],
