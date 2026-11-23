@@ -129,7 +129,6 @@ Ces noms désignent ProgressBar. Le seul nom à employer est ProgressBar.
 - **Annonce de l'avancement.** Le code n'annonce pas l'avancement aux lecteurs d'écran, et aucune source ne dit à quel rythme l'annoncer. En attendant : la page l'ajoute, comme le décrit la rubrique Accessibilité.
 - **Mesure qui n'est pas un avancement.** Aucune source ne dit quel composant prendre pour un taux de remplissage ou un score. En attendant : signaler.
 - **Plugin Copilot et Storybook.** Le plugin et Storybook disent que le libellé est visible, alors que le code le masque à l'écran. Le plugin montre aussi une ProgressBar pour les étapes d'un formulaire, un cas réservé à Stepper. En attendant : la fiche fait foi.
-- **Retouches locales.** L'interdit de modifier la couleur, la hauteur ou l'arrondi reprend la règle de Button, d'IconButton, de Divider et de Spinner, sans source propre à la ProgressBar. En attendant : il s'applique.
 
 ## Pour l'IA qui lit cette fiche
 

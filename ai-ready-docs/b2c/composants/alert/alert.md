@@ -75,7 +75,7 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent leur taille mob
 - Un lien au plus, qui mène vers l'action à faire ou vers plus de détails.
 - Le lien est un Link, à sa taille et à ses couleurs par défaut. Il n'affiche son icône de droite que s'il ouvre un nouvel onglet, comme le prévoit la fiche Link.
 - L'icône vient du ton. Le designer ne la choisit pas.
-- Avec showPagination=true, la pagination s'affiche à gauche du lien. Une Alert avec pagination et sans lien : Non documenté (voir les points ouverts).
+- Avec showPagination=true, la pagination s'affiche à gauche du lien. La Pagination de l'Alert reste en breakpoint=0, avec le compteur, même quand l'Alert est en breakpoint=1024. Une Alert avec pagination et sans lien : Non documenté (voir les points ouverts).
 
 ## Rédaction
 

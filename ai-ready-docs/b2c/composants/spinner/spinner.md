@@ -10,7 +10,7 @@ Le Spinner indique qu'un contenu est en cours de chargement, ou qu'une action es
 
 ### À utiliser pour
 
-- Indiquer que des données sont en cours de chargement, ou qu'une action est en cours de traitement, comme l'envoi d'un formulaire.
+- Indiquer que des données sont en cours de chargement, ou qu'une action est en cours de traitement.
 - Indiquer le chargement dans un Button, qui affiche alors un Spinner.
 
 ### À ne pas utiliser pour
@@ -19,7 +19,7 @@ Le Spinner indique qu'un contenu est en cours de chargement, ou qu'une action es
 - Des chargements répétés tout au long d'un parcours : le système paraîtrait lent.
 - Un chargement qui affiche un titre, ou qui s'affiche par-dessus la page : prendre le template Loader, qui assemble un Spinner, un titre et un sous-titre.
 - Montrer la place d'un contenu qui charge, quand sa mise en page est connue : prendre Skeleton.
-- Une tâche dont le pourcentage d'avancement est connu, comme un fichier envoyé avec sa progression : prendre ProgressBar.
+- Une tâche dont l'avancement est connu en pourcentage, comme l'envoi d'un fichier : prendre ProgressBar.
 
 ## Règles selon les propriétés
 
@@ -33,7 +33,7 @@ Sur un fond foncé, comme le fond bleu d'un Button.
 
 ### colorScheme=gray
 
-Sur un fond neutre, comme la ligne d'un fichier dont l'envoi n'a pas de pourcentage connu.
+Sur un fond neutre, comme la ligne d'un fichier dont l'avancement n'est pas connu.
 
 ### size=x-small
 
@@ -145,7 +145,6 @@ Ces noms désignent Spinner. Le seul nom à employer est Spinner.
 - **Rôle ARIA du code.** Le code pose role="alert" par défaut, et toujours `aria-live="assertive"`, même pour un chargement qui laisse l'utilisateur continuer. En attendant : signaler.
 - **Mouvement réduit.** Le CSS du Spinner ne tient pas compte de `prefers-reduced-motion`. En attendant : signaler.
 - **Épaisseur du trait.** Le code du thème client trace un trait de 2 px en size=small et de 4 px en size=large, contre 3 px dans Figma pour ces deux tailles. En attendant : rien ne change à l'usage, l'écart se corrige dans le code.
-- **Retouches locales.** L'interdit de modifier la couleur ou la taille reprend la règle de Button, d'IconButton et de Divider, sans source propre au Spinner. En attendant : il s'applique.
 - **Fichier en cours d'envoi.** Dans le code, la ligne d'un fichier en cours d'envoi affiche un Spinner bleu, alors que la fiche le donne en colorScheme=gray. En attendant : signaler.
 - **Spinner du Button dans le code.** Le code met toujours un Spinner de 24 px dans un Button (`ButtonCommon.tsx:56`), même dans un petit bouton. En attendant : signaler.
 

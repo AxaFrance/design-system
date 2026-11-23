@@ -132,7 +132,7 @@ Sans équivalent dans Figma : `icon` et `iconProps`, qui affichent une icône de
 
 ## Noms à ne pas employer
 
-Barre d'étapes, fil d'étapes, progression du parcours, _Progress_Bar_Group, Progress Bar Group.
+Barre d'étapes, fil d'étapes, progression du parcours.
 
 Ces noms désignent Stepper. Le seul nom à employer est Stepper.
 

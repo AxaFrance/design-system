@@ -113,7 +113,6 @@ Ces noms désignent Divider. Le seul nom à employer est Divider.
 - **Couleur du code.** Le code du B2C trace le trait avec `--blue-200`, et non avec color/gray/200. En attendant : rien ne change à l'usage, l'écart se corrige dans le code.
 - **Plugin Copilot.** La page Divider du plugin cite une propriété `classModifier`, que le code n'a pas. En attendant : ne pas l'utiliser.
 - **Titres plutôt que Divider.** Le renvoi aux titres pour structurer une page vient de l'ancienne documentation du B2B. En attendant : il s'applique.
-- **Retouches locales.** L'interdit de modifier la couleur ou l'épaisseur du trait reprend la règle de Button et d'IconButton, sans source propre au Divider. En attendant : il s'applique.
 
 ## Pour l'IA qui lit cette fiche
 

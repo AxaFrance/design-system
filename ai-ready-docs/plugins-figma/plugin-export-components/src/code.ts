@@ -50,7 +50,7 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> START EXTRACTION
-const VERSION = "0.7.11";
+const VERSION = "0.7.12";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -123,7 +123,7 @@ const ORDER: string[][] = [
     "value",
   ],
   ["icon", "leftIcon", "rightIcon"],
-  ["children", "header", "actions"],
+  ["children", "header", "actions", "items"],
 ];
 // ORDER, FIXED_VALUES, TRUE_FALSE_VARIANTS and SYNONYMS are the embedded copy of the
 // Properties page. The plugin replaces them at launch with what it reads in the doc (loadRules).

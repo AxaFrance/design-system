@@ -78,6 +78,7 @@ Un IconButton placé dans un composant déjà cliquable en entier. Exemple : l'a
 - Un clic ou une activation au clavier déclenche une seule action, jamais deux effets différents.
 - Au repos, le bouton est à l'état par défaut ou désactivé. Le survol, l'appui et le focus ne viennent que de l'interaction.
 - Désactivé, le bouton ne réagit ni au clic ni au clavier.
+- Un IconButton en chargement : Non documenté.
 
 ## Accessibilité
 
@@ -169,6 +170,7 @@ Ces noms désignent IconButton. Le seul nom à employer est IconButton.
 - **Règles reprises de Button.** Plusieurs règles viennent de la fiche Button, sans source propre à IconButton : hierarchy, disabled=true et colorScheme, le Comportement, la Rédaction, `aria-expanded` et `aria-controls`, et le contraste de l'anneau de focus. En attendant : elles s'appliquent.
 - **Bleu d'interaction dans le code.** Le code dessine l'icône de ClickIcon dans le bleu de la marque, plus foncé que color/blue/600 (`IconCommon.css:24`). En attendant : signaler.
 - **Forme dans le thème client.** Dans le code, ClickIcon reste rond dans les deux thèmes (`ClickIconCommon.css:7`), alors que l'IconButton de Figma a un arrondi de 8 px dans le thème client, comme Button (`ButtonLF.css:7`). En attendant : signaler.
+- **Chargement.** IconButton n'a pas de propriété loading, contrairement à Button. Une action en cours sur un IconButton n'a donc pas de rendu prévu. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

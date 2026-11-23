@@ -45,7 +45,7 @@ Ces calques reprennent les propriétés de contenu, qui remplissent un élément
 - Un calque porte le nom de son rôle, sans reprendre celui du composant. Exemple : label, et non checkbox-label.
 - Aucun calque ne garde un nom par défaut. Exemple d'écart : Frame 27.
 - Un calque de texte porte le nom de son rôle, jamais son contenu. Exemple : title, et non Votre devis en 2 minutes.
-- Une instance imbriquée prend le nom de son rôle dans le composant, pas celui de son composant d'origine. Exemple : icon, et non arrow-right.
+- Une instance imbriquée prend le nom de son rôle dans le composant, pas celui de son composant d'origine. Exemple : icon, et non arrow-right. Le nom du composant d'origine reste permis quand il dit déjà le rôle, comme spinner dans Button.
 
 ### Les cadres d'auto-layout
 
@@ -54,7 +54,7 @@ Un cadre prend le nom de son rôle quand il en a un, comme header ou actions. Un
 ### Le même nom partout
 
 - Un même élément porte le même nom dans toutes les variantes. Exemple : label dans toutes les variantes du bouton, et non label dans l'une et text dans l'autre.
-- Un élément qui change d'un breakpoint à l'autre existe dans toutes les variantes, masqué là où il ne s'affiche pas, comme dans le code qui le masque en CSS. Une instance garde ainsi ses textes quand le designer change de breakpoint. Exemple : le compteur et les numéros de Pagination.
-- Un élément propre à un état, à un type ou à un nombre n'existe que dans les variantes concernées. Exemples : focus-ring au focus, le halo de Radio au hover, la liste de Select en open=true, les barres de LevelSelector selon stepsCount.
+- Un élément qui porte un texte réglé par le designer existe dans toutes les variantes, masqué là où il ne s'affiche pas. Une instance garde ainsi ses textes quand le designer change de variante. Exemples : le compteur et les numéros de Pagination selon le breakpoint, le message d'un champ selon tone, les Tags de Select selon filled.
+- Un élément purement visuel, ou qui ne s'affiche qu'à l'ouverture, n'existe que dans les variantes concernées. Exemples : focus-ring au focus, le halo de Radio au hover, les barres de LevelSelector selon stepsCount, la liste de Select en open=true.
 - Deux calques qui jouent des rôles différents ne portent jamais le même nom. Exemple : title et subtitle, et non text deux fois. Des calques qui jouent le même rôle gardent le même nom, comme les éléments répétés d'une list.
 - Une propriété de contenu remplit le calque qui porte son nom en kebab-case. Exemple : la propriété leftIcon remplit le calque left-icon. Deux exceptions : placeholder remplit le calque value, et un slot porte exactement le nom de sa propriété.

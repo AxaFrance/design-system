@@ -130,7 +130,6 @@ Ces noms désignent Avatar. Le seul nom à employer est Avatar.
 - **Logo sans texte alternatif dans le code.** Sans `src` ni `alt`, le code affiche le logo AXA avec un texte alternatif vide. En attendant : renseigner `alt="AXA"`, ou `alt=""` quand AXA est déjà écrit à côté.
 - **Initiales.** Canopée n'a pas d'Avatar à initiales. En attendant : type=profile.
 - **Textes alternatifs de type=logo et type=profile.** L'ancienne documentation du B2C ne donne le texte alternatif que pour une photo. Pour type=profile, la fiche reprend cette règle. Pour type=logo, elle donne le nom de l'entreprise, AXA. En attendant : ces textes alternatifs s'appliquent.
-- **Retouches locales.** L'interdit de modifier la taille, la forme ou les couleurs reprend la règle de Button, d'IconButton, de Divider et de Spinner, sans source propre à l'Avatar. En attendant : il s'applique.
 - **Nom lu deux fois dans le code.** ContentItemMono et DataAgent donnent comme texte alternatif le titre déjà écrit à côté de la photo. En attendant : signaler.
 - **Photo non carrée.** Dans le code, une photo qui n'est pas carrée est déformée pour remplir le cercle. En attendant : fournir une photo carrée.
 - **Image décorative.** Aucun composant n'est désigné pour une image décorative ou une illustration. En attendant : signaler.

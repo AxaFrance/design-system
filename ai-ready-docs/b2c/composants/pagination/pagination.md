@@ -149,7 +149,7 @@ Avec ce code, un clic sur un numéro recharge aussi la page, à l'adresse `/` su
 
 ## Noms à ne pas employer
 
-ItemPagination, item pagination, pager, paginator, pagineur, barre de pagination, pagination numérotée.
+Pager, paginator, pagineur, barre de pagination, pagination numérotée.
 
 Ces noms désignent Pagination. Le seul nom à employer est Pagination.
 

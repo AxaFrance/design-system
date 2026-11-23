@@ -51,7 +51,7 @@ Seulement pour un Tag qui fait partie d'un composant désactivé. Exemple : les 
 
 ### breakpoint=0
 
-Sur un écran de moins de 1024 px de large. Le texte passe de 16 à 14 px, et les marges à gauche et à droite de 8 à 6 px.
+Sur un écran de moins de 1024 px de large. Le Tag utilise sa version mobile, plus petite.
 
 ## Exemples
 

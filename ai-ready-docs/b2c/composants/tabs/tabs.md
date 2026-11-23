@@ -139,7 +139,7 @@ Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. 
 
 ## Noms à ne pas employer
 
-TabBar, ItemTabBar, Tab, item tab, onglets, barre d'onglets, tab bar, tab list, menu à onglets.
+TabBar, onglets, barre d'onglets, tab bar, tab list, menu à onglets.
 
 Ces noms désignent Tabs. Le seul nom à employer est Tabs.
 

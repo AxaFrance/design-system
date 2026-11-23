@@ -16,7 +16,7 @@ Le Button déclenche une action dans la page. Son importance se règle avec hier
 
 ### À ne pas utiliser pour
 
-- Naviguer vers une autre page : prendre Link. Seule exception, un appel à l'action qui doit avoir l'apparence d'un bouton, comme « Obtenir un tarif » : Button dans la maquette, et Link avec la `variant` du même niveau dans le code, comme `button-primary`.
+- Naviguer vers une autre page : prendre Link. Seule exception, un appel à l'action qui doit avoir l'apparence d'un bouton, comme « Obtenir un tarif » : Button dans la maquette. Le code le rend avec un Link, voir les décisions.
 - Une action représentée par une icône seule : prendre IconButton.
 - Activer ou désactiver une option : prendre Switch si l'effet est immédiat, sinon Checkbox.
 - Choisir une option parmi plusieurs : prendre Radio ou Checkbox, ou FormCard pour une option présentée en carte.
@@ -61,11 +61,11 @@ Le Button des actions du Header.
 
 ### size=small
 
-Le plus petit Button, surtout en hierarchy=tertiary, mais possible avec tous les niveaux. Exemple : l'action d'une alerte ou d'une ligne de liste.
+Le plus petit Button, surtout en hierarchy=tertiary, mais possible avec tous les niveaux. Exemple : l'action d'une ligne de liste.
 
 ### breakpoint=0
 
-Sur un écran de moins de 1024 px de large. size=large passe de 56 à 48 px de haut, et size=medium de 48 à 40 px. size=small garde 32 px. Le libellé utilise la version mobile de son style de texte.
+Sur un écran de moins de 1024 px de large. size=large et size=medium prennent une hauteur plus petite, et size=small garde la sienne. Le libellé utilise la version mobile de son style de texte.
 
 ## Exemples
 

@@ -49,7 +49,7 @@ Exemple : disabled ne sert jamais à masquer une permission manquante.
 L'élément HTML, le rôle ARIA et les attributs selon l'usage, puis le nom accessible, la navigation au clavier, le focus et les annonces.
 
 ## Code
-Liens : la page Storybook du composant, une par thème, son dossier sur GitHub et sa page dans le plugin Copilot. Le lien Storybook renseigné dans Figma doit en faire partie.
+Liens : la page Storybook du composant, une par thème, son dossier sur GitHub, sa page dans le plugin Copilot, et cette fiche sur GitHub, qui est le lien de documentation renseigné dans Figma. Le lien de documentation d'un sous-composant sans Markdown à lui pointe vers la fiche de son composant.
 Import : l'import par thème.
 Exemple : un exemple correct, le plus court possible.
 Écarts : les noms qui diffèrent entre Figma et le code, et ce qui n'existe que d'un côté.
@@ -58,7 +58,7 @@ Exemple : un exemple correct, le plus court possible.
 |---|---|
 
 ## Noms à ne pas employer
-Les noms qu'un designer, un dev ou un PO utilise parfois pour ce composant, y compris ses anciens noms. La liste ne cite jamais le nom d'une partie du composant que la fiche emploie, comme « case » pour la Checkbox.
+Les noms qu'un designer, un dev ou un PO utilise parfois pour ce composant, y compris ses anciens noms. La liste ne cite jamais le nom d'une partie du composant que la fiche emploie, comme « case » pour la Checkbox, ni le nom d'un sous-composant décrit dans la fiche, comme ItemTabBar pour Tabs. Ces noms désignent une partie, pas le composant entier.
 La liste finit par cette phrase : « Ces noms désignent <Composant>. Le seul nom à employer est <Composant>. »
 
 ## Décisions
@@ -82,7 +82,7 @@ Cette fiche fait foi. Si elle ne répond pas à une question, écrit « Non docu
 - Chaque règle n'est écrite qu'une fois. Si elle revient à deux endroits, les deux versions finissent par se contredire.
 - Aucune règle ne mène à une combinaison listée dans les Interdits. Exemple d'écart : une règle qui passe une Checkbox cochée en tone=error, alors que les Interdits excluent checked=true avec tone=error.
 - Chaque point ouvert finit par « En attendant : », suivi de la règle qui s'applique si elle est tranchée, ou de « signaler » si elle ne l'est pas. Sans cette mention, une IA qui lit le point ouvert renonce à la règle ou la devine.
-- Une règle qui vaut pour tous les composants va dans un fichier commun, pas dans chaque fiche.
+- Une règle qui vaut pour tous les composants va dans un fichier commun, pas dans chaque fiche. L'interdit de modifier localement le composant fait exception : chaque fiche le reprend, parce qu'une IA peut ne lire qu'une fiche.
 - La consigne pour l'IA, à la fin de la fiche, est la même partout, mot pour mot. Elle fait exception au fichier commun, parce qu'une IA peut ne lire qu'une fiche.
 - Le titre porte la version du composant, celle de `meta.version` dans le JSON. La ligne des design tokens, juste après le titre, reprend `meta.tokensVersion` du JSON. Le plugin calcule les deux. Quand `meta.tokensVersion` vaut `null`, aucune version publiée de Canopée n'a encore les tokens du composant avec leurs valeurs, et la ligne devient : « Utilise des design tokens qui ne sont pas encore dans une version publiée de Canopée. »
 - Les titres sont toujours les mêmes, dans le même ordre, pour qu'une machine s'y retrouve. Il ne faut ni en ajouter ni les renommer.

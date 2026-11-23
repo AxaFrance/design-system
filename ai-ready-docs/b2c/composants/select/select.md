@@ -211,6 +211,7 @@ Ces noms désignent Select. Le seul nom à employer est Select.
 - **1.0.0 - 20/11/26.** En disabled=true, seul le champ passe en gris. Le libellé et l'aide restent lisibles, car un champ désactivé montre aussi un choix bloqué.
 - **1.0.0 - 20/11/26.** Le Select a 84 variantes. Pour chaque breakpoint et chaque valeur de multiple, il a toutes les combinaisons de state, filled et tone, deux variantes en disabled=true et une en open=true.
 - **1.0.0 - 20/11/26.** Dans Figma, les thèmes prospect et client avaient chacun leur Select. Un seul Select sert maintenant aux deux thèmes, celui du thème prospect, avec un arrondi de 8 px.
+- **1.0.0 - 23/11/26.** Au focus, une ligne de la liste garde le fond color/gray/100 du hover, et prend un anneau color/blue/400 de 2 px à l'intérieur de la ligne.
 
 ## Points ouverts
 
@@ -233,6 +234,7 @@ Ces noms désignent Select. Le seul nom à employer est Select.
 - **Nombre d'options.** Le nombre d'options à partir duquel prendre Select plutôt que Radio ou Checkbox n'est pas défini. En attendant : signaler.
 - **Focus après « Modifier ».** La place du focus après un clic sur « Modifier » n'est pas définie. En attendant : signaler.
 - **Focus dans la liste en multiple=true.** La fiche ne dit pas ce qui se passe quand le focus quitte la liste. Elle ne dit pas non plus le rendu du champ pendant que le focus est dans la liste. En attendant : signaler.
+- **Annonce du nombre d'options choisies.** Le moyen d'annoncer au lecteur d'écran le nombre d'options choisies en multiple=true n'est pas défini. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

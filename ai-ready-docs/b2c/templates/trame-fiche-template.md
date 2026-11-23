@@ -54,7 +54,7 @@ L'élément HTML et le rôle ARIA de l'ensemble, l'ordre de lecture et de tabula
 
 ## Code
 Si le template existe dans le code :
-Liens : la page Storybook du template, une par thème, son dossier sur GitHub et sa page dans le plugin Copilot. Le lien Storybook renseigné dans Figma doit en faire partie.
+Liens : la page Storybook du template, une par thème, son dossier sur GitHub, sa page dans le plugin Copilot, et cette fiche sur GitHub, qui est le lien de documentation renseigné dans Figma.
 Import : l'import par thème.
 Exemple : un exemple correct, le plus court possible.
 Écarts : les noms qui diffèrent entre Figma et le code, et ce qui n'existe que d'un côté.

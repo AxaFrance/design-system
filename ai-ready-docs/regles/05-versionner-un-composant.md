@@ -60,7 +60,7 @@ Un designer de l'équipe design system qui modifie un composant suit ces étapes
 
 ## Le changelog
 
-Chaque composant a un fichier de changelog à son nom, par exemple button-changelog.md, dans le même dossier que son Markdown et son JSON. Ce fichier liste toutes les versions du composant, de la plus récente à la plus ancienne. Le plugin le génère à chaque export : personne ne le rédige à la main. Un sous-composant sans Markdown à lui n'a pas de changelog : ses changements entrent dans celui du composant qui l'utilise.
+Chaque composant a un fichier de changelog à son nom, par exemple button-changelog.md, dans le même dossier que son Markdown et son JSON. Ce fichier liste toutes les versions du composant, de la plus récente à la plus ancienne. Le plugin le génère à chaque export : personne ne le rédige à la main. Un sous-composant sans Markdown à lui n'a pas de changelog : ses changements entrent dans celui du composant qui l'utilise. Quand le designer exporte un sous-composant seul, le plugin propose aussi un changelog. Le designer ne le publie pas dans le repo Canopée.
 
 Chaque version y a une entrée, datée du jour de l'export. Ses changements sont rangés en trois rubriques : Ajouté, Modifié et Retiré. Exemple :
 

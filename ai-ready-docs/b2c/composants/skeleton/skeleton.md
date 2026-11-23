@@ -16,7 +16,7 @@ Le Skeleton remplace un contenu par une forme grise animée, le temps de son cha
 
 - Une action en cours, comme l'envoi d'un formulaire : prendre un Button en chargement.
 - Un contenu dont la mise en page n'est pas connue à l'avance : prendre Spinner.
-- L'avancement mesurable d'une tâche, comme l'envoi d'un fichier : prendre ProgressBar.
+- Une tâche dont l'avancement est connu en pourcentage, comme l'envoi d'un fichier : prendre ProgressBar.
 
 ## Règles selon les propriétés
 

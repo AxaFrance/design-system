@@ -2,7 +2,7 @@
 
 Plugin Figma qui exporte le JSON d'un composant. Ce JSON est la partie de la fiche qui décrit le composant tel qu'il existe dans Figma : ses propriétés, ses variantes, sa structure et ses styles. Il suit le [format du JSON d'un composant](https://github.com/AxaFrance/design-system/blob/ai-ready-docs/ai-ready-docs/b2c/composants/format-json-composant.md). Le plugin ne touche ni au Markdown de la fiche ni au composant.
 
-Le code est écrit en TypeScript, et Vite construit les deux fichiers que Figma charge, dans `dist/`. Le seul accès réseau est la lecture, sur le repo public de Canopée, de la liste des versions et de leurs fichiers de tokens, pour calculer la version des design tokens. L'extraction elle-même n'appelle jamais le réseau.
+Le code est écrit en TypeScript, et Vite construit les deux fichiers que Figma charge, dans `dist/`. Le plugin n'accède au réseau que pour lire le repo public de Canopée : la liste des versions et leurs fichiers de tokens, pour calculer la version des design tokens, et la page des propriétés de la doc, pour ses contrôles. L'extraction elle-même n'appelle jamais le réseau.
 
 ## Installer en développement
 
@@ -173,7 +173,7 @@ Ce plugin est dérivé du kit Component as Data d'Alexis Vaysse, sous licence MI
 - que la ligne suivante, après une ligne vide, est « Utilise les design tokens de Canopée <meta.tokensVersion> ou d'une version plus récente. », ou « Utilise des design tokens qui ne sont pas encore dans une version publiée de Canopée. » quand `meta.tokensVersion` vaut `null` ;
 - que chaque décision de la rubrique « Décisions » commence par `- **X.Y.Z - JJ/MM/AA.**`, sans version plus récente que `meta.version` ;
 - que chaque point ouvert finit par « En attendant : » ;
-- que le lien Storybook renseigné dans Figma figure dans la rubrique Code ;
+- que le lien de documentation renseigné dans Figma figure dans la rubrique Code ;
 - que la consigne pour l'IA est la dernière rubrique, mot pour mot comme dans la trame.
 
-Il sort en erreur si une propriété ou une valeur est inconnue, si la version manque dans le JSON, ou si `meta.tokensVersion` n'y figure pas, si le titre, la consigne ou la ligne des design tokens ne sont pas ceux attendus, si une décision n'a pas sa version et sa date, si un point ouvert ne dit pas ce qui s'applique en attendant ou si le lien Storybook manque.
+Il sort en erreur si une propriété ou une valeur est inconnue, si la version manque dans le JSON, ou si `meta.tokensVersion` n'y figure pas, si le titre, la consigne ou la ligne des design tokens ne sont pas ceux attendus, si une décision n'a pas sa version et sa date, si un point ouvert ne dit pas ce qui s'applique en attendant ou si le lien de documentation manque.
