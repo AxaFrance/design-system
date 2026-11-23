@@ -38,3 +38,4 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 | Tabs | [tabs.md](tabs/tabs.md) | [tabs.json](tabs/tabs.json) | [tabs-changelog.md](tabs/tabs-changelog.md) |
 | Pagination | [pagination.md](pagination/pagination.md) | [pagination.json](pagination/pagination.json) | [pagination-changelog.md](pagination/pagination-changelog.md) |
 | Skeleton | [skeleton.md](skeleton/skeleton.md) | [skeleton.json](skeleton/skeleton.json) | [skeleton-changelog.md](skeleton/skeleton-changelog.md) |
+| Alert | [alert.md](alert/alert.md) | [alert.json](alert/alert.json) | [alert-changelog.md](alert/alert-changelog.md) |

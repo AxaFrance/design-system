@@ -19,7 +19,7 @@ Le _FormHelperText est un message court qui aide à remplir un champ ou répond 
 ### À ne pas utiliser pour
 
 - Nommer un champ : prendre _FormLabel.
-- Un message qui concerne toute la page ou tout un formulaire : prendre Alert.
+- Un message qui concerne tout un formulaire : prendre Alert. Un message qui concerne toute la page : prendre Banner.
 - Donner le statut ou la catégorie d'un élément : prendre Tag. Exemple : « Suspendue » sur une carte.
 - Une action ou un lien : prendre Button ou Link.
 - Un message qui répète ce que l'interface dit déjà : ne rien ajouter.
