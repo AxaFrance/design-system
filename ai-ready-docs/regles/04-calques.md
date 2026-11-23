@@ -36,7 +36,7 @@ Ces calques reprennent les propriétés de contenu, qui remplissent un élément
 | item | Un élément répété dans une list. |
 | input | La zone de saisie d'un champ, ou la partie à cocher d'un Checkbox, d'un Radio ou d'un Switch. |
 | divider | Le trait de séparation entre deux parties. |
-| focus-ring | L'anneau qui entoure le composant quand il a le focus. Il est posé hors de la mise en page, et déborde en général du composant. Dans une ligne de liste, comme _SelectListItem, il reste à l'intérieur, car la liste coupe ce qui dépasse. |
+| focus-ring | L'anneau qui entoure le composant quand il a le focus. Il est posé hors de la mise en page, et déborde en général du composant. Dans une ligne de liste ou une barre, comme _SelectListItem ou _LevelSelectorStep, il reste à l'intérieur, car la liste coupe ce qui dépasse. |
 
 ## Appliquer les règles
 
