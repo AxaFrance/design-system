@@ -1,0 +1,698 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "Pagination",
+    "version": "1.0.0",
+    "tokensVersion": null,
+    "type": "atom",
+    "figmaKey": "9a12f970154602267e0d6822b7b650b645f4d517",
+    "library": "B2C",
+    "breakpoints": [
+      0,
+      1024
+    ],
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/pagination/pagination.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "showPrevNext": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "next-button",
+            "attribute": "visible"
+          },
+          {
+            "layer": "prev-button",
+            "attribute": "visible"
+          }
+        ]
+      }
+    }
+  },
+  "variants": [
+    {
+      "values": {
+        "breakpoint": "1024"
+      },
+      "position": [
+        41,
+        41
+      ]
+    },
+    {
+      "values": {
+        "breakpoint": "0"
+      },
+      "position": [
+        625,
+        41
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {
+      "counter": {
+        "as": "children",
+        "default": {
+          "text": "Page 1 sur 7"
+        },
+        "controls": [
+          {
+            "layer": "counter",
+            "attribute": "text"
+          }
+        ]
+      },
+      "items": {
+        "as": "slot",
+        "controls": [
+          {
+            "layer": "items",
+            "attribute": "slotContentId"
+          }
+        ]
+      }
+    },
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "prev-button",
+            "type": "instance",
+            "component": "IconButton",
+            "values": {
+              "state": "default",
+              "disabled": "true",
+              "hierarchy": "secondary",
+              "colorScheme": "default",
+              "size": "small",
+              "_theme": "prospect"
+            }
+          },
+          {
+            "name": "counter",
+            "type": "text"
+          },
+          {
+            "name": "items",
+            "type": "slot",
+            "hidden": true,
+            "children": [
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_PaginationItem",
+                "values": {
+                  "state": "default",
+                  "current": "true"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_PaginationItem",
+                "values": {
+                  "state": "default",
+                  "current": "false"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_PaginationItem",
+                "values": {
+                  "state": "default",
+                  "current": "false"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_PaginationItem",
+                "values": {
+                  "state": "default",
+                  "current": "false"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_PaginationItem",
+                "values": {
+                  "state": "default",
+                  "current": "false"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_PaginationItem",
+                "values": {
+                  "state": "default",
+                  "current": "false"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_PaginationItem",
+                "values": {
+                  "state": "default",
+                  "current": "false"
+                }
+              }
+            ]
+          },
+          {
+            "name": "next-button",
+            "type": "instance",
+            "component": "IconButton",
+            "values": {
+              "state": "default",
+              "disabled": "false",
+              "hierarchy": "secondary",
+              "colorScheme": "default",
+              "size": "small",
+              "_theme": "prospect"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "prev-button",
+            "type": "instance",
+            "component": "IconButton",
+            "values": {
+              "state": "default",
+              "disabled": "true",
+              "hierarchy": "secondary",
+              "colorScheme": "default",
+              "size": "small",
+              "_theme": "prospect"
+            }
+          },
+          {
+            "name": "counter",
+            "type": "text",
+            "hidden": true
+          },
+          {
+            "name": "items",
+            "type": "slot",
+            "children": [
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_PaginationItem",
+                "values": {
+                  "state": "default",
+                  "current": "true"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_PaginationItem",
+                "values": {
+                  "state": "default",
+                  "current": "false"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_PaginationItem",
+                "values": {
+                  "state": "default",
+                  "current": "false"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_PaginationItem",
+                "values": {
+                  "state": "default",
+                  "current": "false"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_PaginationItem",
+                "values": {
+                  "state": "default",
+                  "current": "false"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_PaginationItem",
+                "values": {
+                  "state": "default",
+                  "current": "false"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_PaginationItem",
+                "values": {
+                  "state": "default",
+                  "current": "false"
+                }
+              }
+            ]
+          },
+          {
+            "name": "next-button",
+            "type": "instance",
+            "component": "IconButton",
+            "values": {
+              "state": "default",
+              "disabled": "false",
+              "hierarchy": "secondary",
+              "colorScheme": "default",
+              "size": "small",
+              "_theme": "prospect"
+            }
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "IconButton",
+      "_PaginationItem"
+    ]
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "breakpoint": "0"
+      },
+      "modes": {
+        "Typography": "prospect-mobile"
+      },
+      "root": {
+        "background": {
+          "token": "color/white"
+        },
+        "stroke": {
+          "token": "color/gray/200"
+        },
+        "strokeWeight": {
+          "token": "border/width/1"
+        },
+        "strokeAlign": "inside",
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/8"
+          },
+          "right": {
+            "token": "spacing/8"
+          },
+          "bottom": {
+            "token": "spacing/8"
+          },
+          "left": {
+            "token": "spacing/8"
+          }
+        },
+        "gap": {
+          "token": "spacing/16"
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "clip": false,
+          "sizingH": "hug",
+          "sizingV": "hug"
+        }
+      },
+      "prev-button": {
+        "background": {
+          "token": "color/gray/050"
+        },
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/8"
+          },
+          "right": {
+            "token": "spacing/8"
+          },
+          "bottom": {
+            "token": "spacing/8"
+          },
+          "left": {
+            "token": "spacing/8"
+          }
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/40"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/40"
+          }
+        }
+      },
+      "prev-button/vector": {
+        "background": {
+          "token": "color/gray/400"
+        }
+      },
+      "counter": {
+        "textColor": {
+          "token": "color/gray/600"
+        },
+        "textStyle": "label/1/semibold",
+        "textAlign": "center",
+        "layout": {
+          "textAlignVertical": "center"
+        }
+      },
+      "items": {
+        "gap": {
+          "token": "spacing/16"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center"
+        }
+      },
+      "item-1": {
+        "background": {
+          "token": "color/blue/600"
+        },
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/40"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/40"
+          }
+        }
+      },
+      "item-2": {
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/40"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/40"
+          }
+        }
+      },
+      "item-3": {
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/40"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/40"
+          }
+        }
+      },
+      "item-4": {
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/40"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/40"
+          }
+        }
+      },
+      "item-5": {
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/40"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/40"
+          }
+        }
+      },
+      "item-6": {
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/40"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/40"
+          }
+        }
+      },
+      "item-7": {
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/40"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/40"
+          }
+        }
+      },
+      "next-button": {
+        "stroke": {
+          "token": "color/blue/600"
+        },
+        "strokeWeight": {
+          "token": "border/width/2"
+        },
+        "strokeAlign": "inside",
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/8"
+          },
+          "right": {
+            "token": "spacing/8"
+          },
+          "bottom": {
+            "token": "spacing/8"
+          },
+          "left": {
+            "token": "spacing/8"
+          }
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/40"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/40"
+          }
+        }
+      },
+      "next-button/vector": {
+        "background": {
+          "token": "color/blue/600"
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "modes": {
+            "Typography": "prospect-desktop"
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/radius/full": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "1fcf11522d356a0d693232bf2ced5fbcc75d781a"
+    },
+    "border/width/1": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a3fa5d8b91d34001a5c85064ef0d8a63bb5dafd2"
+    },
+    "border/width/2": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d6066603f0a6830a87efc9e782c85822c718d4ec"
+    },
+    "color/blue/600": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
+    },
+    "color/gray/050": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "9a7161bb3eb2c89a2754cb33f96c5a8387652a88"
+    },
+    "color/gray/200": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a221368bce559430e99d794dd8575360a84e91a2"
+    },
+    "color/gray/400": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "eaff1ed01f768ac5086ba33fed8a6e56d3c91536"
+    },
+    "color/gray/600": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d12a13846395d779ce6239438a435137917d7841"
+    },
+    "color/white": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "207050c6310c4663b3209cbaa9d2426f268f67b0"
+    },
+    "size/40": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "aecbeec91b0b99619019ff470811099ddb5a6ac9"
+    },
+    "spacing/16": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "c671d8ceb08a490376605ccd3862b43109626d25"
+    },
+    "spacing/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f79c6b1de93d24589305065ca591b49ab3a32d6b"
+    }
+  },
+  "textStyles": {
+    "label/1/semibold": {
+      "library": null,
+      "key": "93f55f2c2de90c39788c6b9212105e0463dd959d"
+    }
+  },
+  "components": {
+    "IconButton": {
+      "library": "B2C",
+      "key": "921b5fa9be9ebca368ea2a027222ebc806a6dad6"
+    },
+    "_PaginationItem": {
+      "library": "B2C",
+      "key": "60e1f1ee99851583a144b108c0783c361084ec62"
+    }
+  },
+  "modeCollections": {
+    "Typography": {
+      "library": "Fondations Canopée",
+      "key": "be959715ddac77dedafba55e157014b702551c02"
+    }
+  },
+  "issues": [
+    {
+      "level": "warning",
+      "rule": "token-unpublished",
+      "where": "structure.uses",
+      "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small, dans un composant inclus."
+    },
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold/line-height, dans un composant inclus."
+    },
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.label/1/semibold",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.6"
+}

@@ -1,0 +1,354 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "_PaginationItem",
+    "version": "1.0.0",
+    "tokensVersion": null,
+    "type": "atom",
+    "figmaKey": "60e1f1ee99851583a144b108c0783c361084ec62",
+    "library": "B2C",
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/pagination/pagination.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "state": {
+        "type": "enum",
+        "enum": [
+          "default",
+          "hover",
+          "focus",
+          "press"
+        ],
+        "default": "default"
+      },
+      "current": {
+        "type": "enum",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      }
+    }
+  },
+  "variants": [
+    {
+      "values": {
+        "state": "default",
+        "current": "false"
+      },
+      "position": [
+        48,
+        48
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "current": "true"
+      },
+      "position": [
+        48,
+        136
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "current": "false"
+      },
+      "position": [
+        136,
+        48
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "current": "false"
+      },
+      "position": [
+        312,
+        48
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "current": "true"
+      },
+      "position": [
+        136,
+        136
+      ]
+    },
+    {
+      "values": {
+        "state": "press",
+        "current": "false"
+      },
+      "position": [
+        224,
+        48
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {
+      "page": {
+        "as": "children",
+        "default": {
+          "text": "1"
+        },
+        "controls": [
+          {
+            "layer": "page",
+            "attribute": "text"
+          }
+        ]
+      }
+    },
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "page",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "focus"
+        },
+        "tree": [
+          {
+            "name": "page",
+            "type": "text"
+          },
+          {
+            "name": "focus-ring",
+            "type": "frame"
+          }
+        ]
+      }
+    ],
+    "uses": []
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "state": "default",
+        "current": "false"
+      },
+      "modes": {
+        "Typography": "prospect-desktop"
+      },
+      "root": {
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "gap": {
+          "raw": 0
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "clip": false,
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/40"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/40"
+          }
+        }
+      },
+      "page": {
+        "textColor": {
+          "token": "color/blue/600"
+        },
+        "textStyle": "label/1/semibold",
+        "textAlign": "center",
+        "layout": {
+          "textAlignVertical": "center"
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "current": "true"
+        },
+        "styles": {
+          "root": {
+            "background": {
+              "token": "color/blue/600"
+            }
+          },
+          "page": {
+            "textColor": {
+              "token": "color/white"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "hover"
+        },
+        "styles": {
+          "root": {
+            "background": {
+              "token": "color/gray/100"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus"
+        },
+        "styles": {
+          "focus-ring": {
+            "stroke": {
+              "token": "color/blue/400"
+            },
+            "strokeWeight": {
+              "token": "border/width/2"
+            },
+            "strokeAlign": "inside",
+            "radius": {
+              "token": "border/radius/full"
+            },
+            "layout": {
+              "absolute": true,
+              "x": -4,
+              "y": -4,
+              "constraints": {
+                "horizontal": "stretch",
+                "vertical": "stretch"
+              },
+              "sizingH": "fixed",
+              "width": {
+                "raw": 48
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 48
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "press"
+        },
+        "styles": {
+          "root": {
+            "background": {
+              "token": "color/gray/200"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus",
+          "current": "false"
+        },
+        "styles": {
+          "root": {
+            "background": {
+              "token": "color/gray/100"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/radius/full": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "1fcf11522d356a0d693232bf2ced5fbcc75d781a"
+    },
+    "border/width/2": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d6066603f0a6830a87efc9e782c85822c718d4ec"
+    },
+    "color/blue/400": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "7cf31063821d1c4cfafc6be64eb8dc1485d91077"
+    },
+    "color/blue/600": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
+    },
+    "color/gray/100": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "b6b5406c94907dbc3aca22c3e5680cf7a94aa698"
+    },
+    "color/gray/200": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a221368bce559430e99d794dd8575360a84e91a2"
+    },
+    "color/white": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "207050c6310c4663b3209cbaa9d2426f268f67b0"
+    },
+    "size/40": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "aecbeec91b0b99619019ff470811099ddb5a6ac9"
+    }
+  },
+  "textStyles": {
+    "label/1/semibold": {
+      "library": null,
+      "key": "93f55f2c2de90c39788c6b9212105e0463dd959d"
+    }
+  },
+  "components": {},
+  "modeCollections": {
+    "Typography": {
+      "library": "Fondations Canopée",
+      "key": "be959715ddac77dedafba55e157014b702551c02"
+    }
+  },
+  "issues": [
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.label/1/semibold",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.6"
+}
