@@ -1,0 +1,481 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "Skeleton",
+    "version": "1.0.0",
+    "tokensVersion": "2.0.0",
+    "type": "atom",
+    "figmaKey": "36d13c66ecc14c81caf25fec854acd7988b1f6cd",
+    "library": "B2C",
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/skeleton/skeleton.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "size": {
+        "type": "enum",
+        "enum": [
+          "x-small",
+          "small",
+          "medium",
+          "large",
+          "x-large",
+          "xx-large"
+        ],
+        "default": "medium"
+      },
+      "type": {
+        "type": "enum",
+        "enum": [
+          "rectangle",
+          "circle",
+          "action"
+        ],
+        "default": "rectangle"
+      }
+    }
+  },
+  "variants": [
+    {
+      "values": {
+        "size": "x-small",
+        "type": "rectangle"
+      },
+      "position": [
+        40,
+        120
+      ]
+    },
+    {
+      "values": {
+        "size": "small",
+        "type": "rectangle"
+      },
+      "position": [
+        40,
+        168
+      ]
+    },
+    {
+      "values": {
+        "size": "small",
+        "type": "circle"
+      },
+      "position": [
+        463,
+        40
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "rectangle"
+      },
+      "position": [
+        40,
+        40
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "circle"
+      },
+      "position": [
+        463,
+        88
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "action"
+      },
+      "position": [
+        463,
+        248
+      ]
+    },
+    {
+      "values": {
+        "size": "large",
+        "type": "rectangle"
+      },
+      "position": [
+        40,
+        232
+      ]
+    },
+    {
+      "values": {
+        "size": "large",
+        "type": "circle"
+      },
+      "position": [
+        463,
+        160
+      ]
+    },
+    {
+      "values": {
+        "size": "x-large",
+        "type": "rectangle"
+      },
+      "position": [
+        40,
+        336
+      ]
+    },
+    {
+      "values": {
+        "size": "xx-large",
+        "type": "rectangle"
+      },
+      "position": [
+        40,
+        510
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {},
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "animation",
+            "type": "instance",
+            "component": "_SkeletonAnimation",
+            "values": {
+              "_position": "start"
+            }
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "_SkeletonAnimation"
+    ]
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "size": "medium",
+        "type": "rectangle"
+      },
+      "root": {
+        "radius": {
+          "token": "border/radius/8"
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "gap": {
+          "raw": 0
+        },
+        "layout": {
+          "direction": "column",
+          "clip": true,
+          "sizingH": "fixed",
+          "width": {
+            "raw": 343
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/56"
+          }
+        }
+      },
+      "animation": {
+        "background": {
+          "token": "color/gray/100"
+        },
+        "layout": {
+          "sizingH": "fill",
+          "sizingV": "fill"
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "type": "circle"
+        },
+        "styles": {
+          "root": {
+            "radius": {
+              "token": "border/radius/full"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "type": "action"
+        },
+        "styles": {
+          "root": {
+            "radius": {
+              "token": "border/radius/full"
+            },
+            "layout": {
+              "direction": "column",
+              "clip": true,
+              "sizingH": "fixed",
+              "width": {
+                "raw": 220
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/56"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "x-small"
+        },
+        "styles": {
+          "root": {
+            "layout": {
+              "direction": "column",
+              "clip": true,
+              "sizingH": "fixed",
+              "width": {
+                "raw": 343
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/24"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "x-large"
+        },
+        "styles": {
+          "root": {
+            "layout": {
+              "direction": "column",
+              "clip": true,
+              "sizingH": "fixed",
+              "width": {
+                "raw": 343
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 150
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "xx-large"
+        },
+        "styles": {
+          "root": {
+            "layout": {
+              "direction": "column",
+              "clip": true,
+              "sizingH": "fixed",
+              "width": {
+                "raw": 343
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 400
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "small",
+          "type": "rectangle"
+        },
+        "styles": {
+          "root": {
+            "layout": {
+              "direction": "column",
+              "clip": true,
+              "sizingH": "fixed",
+              "width": {
+                "raw": 343
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/40"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "large",
+          "type": "rectangle"
+        },
+        "styles": {
+          "root": {
+            "layout": {
+              "direction": "column",
+              "clip": true,
+              "sizingH": "fixed",
+              "width": {
+                "raw": 343
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/80"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "small",
+          "type": "circle"
+        },
+        "styles": {
+          "root": {
+            "layout": {
+              "direction": "column",
+              "clip": true,
+              "sizingH": "fixed",
+              "width": {
+                "token": "size/24"
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/24"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "medium",
+          "type": "circle"
+        },
+        "styles": {
+          "root": {
+            "layout": {
+              "direction": "column",
+              "clip": true,
+              "sizingH": "fixed",
+              "width": {
+                "token": "size/48"
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/48"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "large",
+          "type": "circle"
+        },
+        "styles": {
+          "root": {
+            "layout": {
+              "direction": "column",
+              "clip": true,
+              "sizingH": "fixed",
+              "width": {
+                "token": "size/64"
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/64"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/radius/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a1de4b2e8994f5a0b6465f03861f2c845d0c7fe4"
+    },
+    "border/radius/full": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "1fcf11522d356a0d693232bf2ced5fbcc75d781a"
+    },
+    "color/gray/100": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "b6b5406c94907dbc3aca22c3e5680cf7a94aa698"
+    },
+    "size/24": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "5e38d21160185c1068f481ef9380b4cfb8321532"
+    },
+    "size/40": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "aecbeec91b0b99619019ff470811099ddb5a6ac9"
+    },
+    "size/48": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "e7040d5d297c3771090baa2b84f63664b7b3cde8"
+    },
+    "size/56": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "0e0e1c903b515483bcc195921f33ddc7196c95c3"
+    },
+    "size/64": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "e0c293ac2adb8adb79cf2d284aa22db288ae0808"
+    },
+    "size/80": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "dc1082dc055800fd9b5ddaa1c8a29dc76da16f3f"
+    }
+  },
+  "textStyles": {},
+  "components": {
+    "_SkeletonAnimation": {
+      "library": "B2C",
+      "key": "2d25347955d4eee28cbc3698b141585cadde2269"
+    }
+  },
+  "modeCollections": {},
+  "issues": [],
+  "_tool": "canopee-export-components 0.7.7"
+}

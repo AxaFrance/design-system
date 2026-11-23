@@ -18,6 +18,7 @@ Le Spinner indique qu'un contenu est en cours de chargement, ou qu'une action es
 - Une action dont le résultat s'affiche tout de suite : le Spinner ferait croire à un chargement.
 - Des chargements répétés tout au long d'un parcours : le système paraîtrait lent.
 - Un chargement qui affiche un titre, ou qui s'affiche par-dessus la page : prendre le template Loader, qui assemble un Spinner, un titre et un sous-titre.
+- Montrer la place d'un contenu qui charge, quand sa mise en page est connue : prendre Skeleton.
 
 ## Règles selon les propriétés
 

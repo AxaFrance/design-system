@@ -1,0 +1,128 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "_SkeletonAnimation",
+    "version": "1.0.0",
+    "tokensVersion": "2.0.0",
+    "type": "atom",
+    "figmaKey": "2d25347955d4eee28cbc3698b141585cadde2269",
+    "library": "B2C",
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/skeleton/skeleton.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "_position": {
+        "type": "enum",
+        "enum": [
+          "start",
+          "end"
+        ],
+        "default": "start"
+      }
+    }
+  },
+  "variants": [
+    {
+      "values": {
+        "_position": "start"
+      },
+      "position": [
+        40,
+        40
+      ]
+    },
+    {
+      "values": {
+        "_position": "end"
+      },
+      "position": [
+        280,
+        40
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {},
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "wave",
+            "type": "rectangle"
+          }
+        ]
+      }
+    ],
+    "uses": []
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "_position": "start"
+      },
+      "root": {
+        "background": {
+          "token": "color/gray/100"
+        },
+        "radius": {
+          "raw": 0
+        },
+        "layout": {
+          "clip": true,
+          "sizingH": "fixed",
+          "width": {
+            "raw": 200
+          },
+          "sizingV": "fixed",
+          "height": {
+            "raw": 40
+          }
+        }
+      },
+      "wave": {
+        "background": {
+          "unsupported": "GRADIENT_LINEAR"
+        },
+        "layout": {
+          "sizingH": "fixed",
+          "width": {
+            "raw": 100
+          },
+          "sizingV": "fixed",
+          "height": {
+            "raw": 40
+          }
+        }
+      }
+    }
+  },
+  "tokens": {
+    "color/gray/100": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "b6b5406c94907dbc3aca22c3e5680cf7a94aa698"
+    }
+  },
+  "textStyles": {},
+  "components": {},
+  "modeCollections": {},
+  "issues": [
+    {
+      "level": "warning",
+      "rule": "paint",
+      "where": "styles.wave.background",
+      "message": "Peinture de type GRADIENT_LINEAR non reprise : seule une couleur unie se relie à une variable.",
+      "occurrences": 2
+    },
+    {
+      "level": "info",
+      "rule": "prop-outside-nomenclature",
+      "where": "api.props._position",
+      "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.6"
+}
