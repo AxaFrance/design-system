@@ -24,13 +24,13 @@ Tabs permet à l'utilisateur de passer d'un contenu à l'autre, sans changer d'�
 
 ## Règles selon les propriétés
 
-### placement=left
+### fullWidth=false
 
 Les _Tab gardent la largeur de leur libellé et s'alignent à gauche. C'est la valeur par défaut, pour la plupart des usages.
 
-### placement=center
+### fullWidth=true
 
-Les _Tab se partagent toute la largeur de Tabs, à parts égales. placement=center convient à deux ou trois _Tab aux libellés courts, surtout sur mobile. Dans Figma, le designer règle en Fill container chaque _Tab qu'il ajoute dans items.
+Les _Tab se partagent toute la largeur de Tabs, à parts égales. fullWidth=true convient à deux ou trois _Tab aux libellés courts, surtout sur mobile. Dans Figma, le designer règle en Fill container chaque _Tab qu'il ajoute dans items.
 
 ### breakpoint=0
 
@@ -38,8 +38,8 @@ Sur un écran de moins de 1024 px de large. Les _Tab utilisent leur version mobi
 
 ## Exemples
 
-- Page d'un contrat, en breakpoint=1024 : placement=left, trois _Tab, « Garanties » sélectionné, « Documents » et « Paiements ».
-- Liste des contrats, en breakpoint=0 : placement=center, deux _Tab, « Contrats actifs » sélectionné et « Anciens contrats ».
+- Page d'un contrat, en breakpoint=1024 : fullWidth=false, trois _Tab, « Garanties » sélectionné, « Documents » et « Paiements ».
+- Liste des contrats, en breakpoint=0 : fullWidth=true, deux _Tab, « Contrats actifs » sélectionné et « Anciens contrats ».
 
 ## Interdits
 
@@ -126,7 +126,7 @@ Exemple :
 | Figma | Code |
 |---|---|
 | Tabs | `TabBar` |
-| placement | `direction` |
+| fullWidth | `direction`, avec `center` pour fullWidth=true |
 | items | `items`, une liste d'objets avec `title` et `content` |
 | _Tab | `ItemTabBar`, affiché par TabBar pour chaque élément de `items` |
 | Le libellé d'un _Tab | `title` |
@@ -149,12 +149,13 @@ Ces noms désignent Tabs. Le seul nom à employer est Tabs.
 - **1.0.0 - 19/11/26.** Le _Tab suit le pattern Hybride des principes d'interaction : un fond au hover et au press, et un trait de 2 px sous le libellé quand il est sélectionné. Un _Tab sélectionné n'a pas d'état press, car un _Tab déjà sélectionné ne réagit plus au clic.
 - **1.0.0 - 19/11/26.** Le _Tab a une variante par largeur d'écran. Sur mobile, il fait 48 px de haut au moins, comme dans le code.
 - **1.0.0 - 19/11/26.** Le _Tab a aussi un jeu de couleurs pour le menu du Header, qui remplace l'ancien _ItemMenu de Figma. Ses règles seront écrites dans la fiche du Header.
-- **1.0.0 - 20/11/26.** placement suit le code : placement=center étire les _Tab sur toute la largeur, placement=left les garde à la largeur de leur libellé. Le trait sous la liste existe dans les deux cas. La valeur par défaut est placement=left, comme dans le code.
+- **1.0.0 - 20/11/26.** fullWidth=true étire les _Tab sur toute la largeur, fullWidth=false les garde à la largeur de leur libellé. Le trait sous la liste existe dans les deux cas. La valeur par défaut est fullWidth=false, comme dans le code.
 - **1.0.0 - 20/11/26.** Les _Tab se posent dans le slot items, du même nom que la prop du code. items remplace l'ancienne propriété itemsCount, qui limitait Tabs à deux ou trois _Tab.
 - **1.0.0 - 20/11/26.** items n'accepte que des _Tab.
-- **1.0.0 - 20/11/26.** En placement=center, le designer règle en Fill container chaque _Tab qu'il ajoute dans items, car Figma n'étire pas tout seul un _Tab ajouté dans le slot.
+- **1.0.0 - 20/11/26.** En fullWidth=true, le designer règle en Fill container chaque _Tab qu'il ajoute dans items, car Figma n'étire pas tout seul un _Tab ajouté dans le slot.
 - **1.0.0 - 20/11/26.** Dans Figma, Tabs a une largeur d'exemple, 522 px en desktop et 343 px en mobile. Dans une maquette, il prend la largeur de son conteneur.
 - **1.0.0 - 20/11/26.** Tabs a une propriété breakpoint, avec une variante par largeur d'écran : breakpoint=1024 pour desktop et breakpoint=0 pour mobile. La valeur par défaut est breakpoint=1024.
+- **1.0.0 - 23/11/26.** La propriété qui étire les _Tab s'appelle fullWidth, comme dans MUI. Elle s'appelait placement, mais center veut dire « centré » dans la nomenclature, alors que les _Tab s'étirent. Le code l'écrit `direction="center"`.
 
 ## Points ouverts
 
@@ -162,7 +163,7 @@ Ces noms désignent Tabs. Le seul nom à employer est Tabs.
 - **Focus du contenu dans le code.** TabBar ne met pas `tabindex="0"` sur le contenu affiché (`TabBarCommon.tsx:128`). En attendant : la rubrique Accessibilité de cette fiche s'applique.
 - **Rendu de la liste dans le code.** Le trait sous la liste prend une couleur de l'ancienne palette, `--blue-200`, au lieu de color/gray/200 (`TabBarApollo.css:5`, `TabBarLF.css:5`). En attendant : signaler.
 - **Rendu des _Tab dans le code.** Le code affiche un trait de 4 px au hover et sur le _Tab sélectionné (`ItemTabBarCommon.css:24`), sans fond au hover ni au press (`ItemTabBarCommon.css:16`). Hors sélection, le libellé est en graisse regular (`ItemTabBarCommon.css:13`), et en bleu dans le thème prospect (`ItemTabBarApollo.css:5`). L'interligne vaut 125 % (`ItemTabBarCommon.css:14`). Le contour de focus est écarté de 2 px de tous les côtés (`ItemTabBarCommon.css:32`). Le _Tab fait 52 px de haut au moins en desktop (`ItemTabBarCommon.css:44`), contre 56 px dans Figma. Ses couleurs viennent de l'ancienne palette (`ItemTabBarCommon.css:6`). En attendant : signaler.
-- **Largeur en placement=center dans le code.** Le code ajoute à chaque _Tab la même part de la place libre (`TabBarCommon.css:22`) : un libellé plus long donne un _Tab plus large. En attendant : signaler.
+- **Largeur en fullWidth=true dans le code.** Le code ajoute à chaque _Tab la même part de la place libre (`TabBarCommon.css:22`) : un libellé plus long donne un _Tab plus large. En attendant : signaler.
 - **_Tab choisi par la page.** TabBar ne permet pas à la page de changer le _Tab affiché après le premier affichage. En attendant : signaler.
 - **_Tab indisponible.** Le _Tab n'a pas d'état désactivé dans Figma. TabBar ne transmet à ItemTabBar que `title` (`TabBarCommon.tsx:110`). Un `disabled` passé dans `items` reste donc sans effet, alors que le plugin Copilot l'annonce (`10-navigation.md:28`). En attendant : signaler.
 - **Débordement.** Le comportement quand les _Tab dépassent la largeur de l'écran n'est pas défini. En attendant : signaler.
