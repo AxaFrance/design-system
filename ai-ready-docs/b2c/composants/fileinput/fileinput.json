@@ -490,6 +490,21 @@
             "type": "frame",
             "children": [
               {
+                "name": "content",
+                "type": "frame",
+                "hidden": true,
+                "children": [
+                  {
+                    "name": "dropzone-label",
+                    "type": "text"
+                  },
+                  {
+                    "name": "or-label",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
                 "name": "button",
                 "type": "instance",
                 "component": "Button",
@@ -695,6 +710,21 @@
             "type": "frame",
             "children": [
               {
+                "name": "content",
+                "type": "frame",
+                "hidden": true,
+                "children": [
+                  {
+                    "name": "dropzone-label",
+                    "type": "text"
+                  },
+                  {
+                    "name": "or-label",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
                 "name": "button",
                 "type": "instance",
                 "component": "Button",
@@ -898,6 +928,21 @@
             "type": "frame",
             "children": [
               {
+                "name": "content",
+                "type": "frame",
+                "hidden": true,
+                "children": [
+                  {
+                    "name": "dropzone-label",
+                    "type": "text"
+                  },
+                  {
+                    "name": "or-label",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
                 "name": "button",
                 "type": "instance",
                 "component": "Button",
@@ -955,6 +1000,21 @@
             "name": "dropzone",
             "type": "frame",
             "children": [
+              {
+                "name": "content",
+                "type": "frame",
+                "hidden": true,
+                "children": [
+                  {
+                    "name": "dropzone-label",
+                    "type": "text"
+                  },
+                  {
+                    "name": "or-label",
+                    "type": "text"
+                  }
+                ]
+              },
               {
                 "name": "button",
                 "type": "instance",
@@ -1160,6 +1220,21 @@
             "type": "frame",
             "children": [
               {
+                "name": "content",
+                "type": "frame",
+                "hidden": true,
+                "children": [
+                  {
+                    "name": "dropzone-label",
+                    "type": "text"
+                  },
+                  {
+                    "name": "or-label",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
                 "name": "button",
                 "type": "instance",
                 "component": "Button",
@@ -1219,6 +1294,21 @@
             "type": "frame",
             "children": [
               {
+                "name": "content",
+                "type": "frame",
+                "hidden": true,
+                "children": [
+                  {
+                    "name": "dropzone-label",
+                    "type": "text"
+                  },
+                  {
+                    "name": "or-label",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
                 "name": "button",
                 "type": "instance",
                 "component": "Button",
@@ -1433,6 +1523,21 @@
             "type": "frame",
             "children": [
               {
+                "name": "content",
+                "type": "frame",
+                "hidden": true,
+                "children": [
+                  {
+                    "name": "dropzone-label",
+                    "type": "text"
+                  },
+                  {
+                    "name": "or-label",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
                 "name": "button",
                 "type": "instance",
                 "component": "Button",
@@ -1495,6 +1600,21 @@
             "type": "frame",
             "children": [
               {
+                "name": "content",
+                "type": "frame",
+                "hidden": true,
+                "children": [
+                  {
+                    "name": "dropzone-label",
+                    "type": "text"
+                  },
+                  {
+                    "name": "or-label",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
                 "name": "button",
                 "type": "instance",
                 "component": "Button",
@@ -1707,6 +1827,21 @@
             "type": "frame",
             "children": [
               {
+                "name": "content",
+                "type": "frame",
+                "hidden": true,
+                "children": [
+                  {
+                    "name": "dropzone-label",
+                    "type": "text"
+                  },
+                  {
+                    "name": "or-label",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
                 "name": "button",
                 "type": "instance",
                 "component": "Button",
@@ -1767,6 +1902,21 @@
             "name": "dropzone",
             "type": "frame",
             "children": [
+              {
+                "name": "content",
+                "type": "frame",
+                "hidden": true,
+                "children": [
+                  {
+                    "name": "dropzone-label",
+                    "type": "text"
+                  },
+                  {
+                    "name": "or-label",
+                    "type": "text"
+                  }
+                ]
+              },
               {
                 "name": "button",
                 "type": "instance",
@@ -1902,6 +2052,29 @@
           "sizingH": "fill"
         }
       },
+      "content": {
+        "gap": {
+          "token": "spacing/4"
+        },
+        "layout": {
+          "direction": "column",
+          "crossAlign": "center"
+        }
+      },
+      "dropzone-label": {
+        "textColor": {
+          "token": "color/blue/600"
+        },
+        "textStyle": "body/1/regular",
+        "textAlign": "center"
+      },
+      "or-label": {
+        "textColor": {
+          "token": "color/blue/600"
+        },
+        "textStyle": "body/1/regular",
+        "textAlign": "center"
+      },
       "button": {
         "radius": {
           "token": "border/radius/full"
@@ -2028,23 +2201,6 @@
                 "token": "size/56"
               }
             }
-          },
-          "content": {
-            "gap": {
-              "token": "spacing/4"
-            },
-            "layout": {
-              "direction": "column",
-              "crossAlign": "center"
-            }
-          },
-          "dropzone-label": {
-            "textStyle": "body/1/regular",
-            "textAlign": "center"
-          },
-          "or-label": {
-            "textStyle": "body/1/regular",
-            "textAlign": "center"
           }
         }
       },
@@ -2098,6 +2254,16 @@
               "token": "color/gray/300"
             }
           },
+          "dropzone-label": {
+            "textColor": {
+              "token": "color/gray/400"
+            }
+          },
+          "or-label": {
+            "textColor": {
+              "token": "color/gray/400"
+            }
+          },
           "button": {
             "background": {
               "token": "color/gray/050"
@@ -2144,42 +2310,6 @@
           "dropzone": {
             "stroke": {
               "token": "color/red/600"
-            }
-          }
-        }
-      },
-      {
-        "when": {
-          "disabled": "false",
-          "breakpoint": "1024"
-        },
-        "styles": {
-          "dropzone-label": {
-            "textColor": {
-              "token": "color/blue/600"
-            }
-          },
-          "or-label": {
-            "textColor": {
-              "token": "color/blue/600"
-            }
-          }
-        }
-      },
-      {
-        "when": {
-          "disabled": "true",
-          "breakpoint": "1024"
-        },
-        "styles": {
-          "dropzone-label": {
-            "textColor": {
-              "token": "color/gray/400"
-            }
-          },
-          "or-label": {
-            "textColor": {
-              "token": "color/gray/400"
             }
           }
         }
