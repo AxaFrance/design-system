@@ -14,7 +14,7 @@ La Modal affiche un contenu libre dans une fenêtre qui s'ouvre par-dessus l'éc
 
 ### À ne pas utiliser pour
 
-- Une confirmation courte, avec une question et deux réponses, comme « Supprimer ce document ? » : Non documenté. Un Dialog est en préparation.
+- Une confirmation courte, avec une question et deux réponses, comme « Supprimer ce document ? » : prendre Dialog.
 - Un message qui ne bloque pas l'utilisateur : prendre Alert.
 - Un parcours en plusieurs étapes : prendre une page, avec Stepper.
 
@@ -171,7 +171,6 @@ Ces noms désignent Modal. Le seul nom à employer est Modal.
 - **Attribut title dans le code.** Le code pose aussi `title` en attribut HTML sur le `<dialog>` (`ModalCore.tsx:18`), ce qui peut afficher une infobulle au survol de la fenêtre. En attendant : signaler.
 - **Action en cours ou en échec.** L'effet du Button tertiary, et ce que fait la Modal quand l'action du Button primary charge ou échoue, ne sont pas définis. En attendant : signaler.
 - **Clic hors de la fenêtre pendant une saisie.** Fermer la Modal sur un clic hors de la fenêtre peut faire perdre une saisie en cours. En attendant : signaler.
-- **Confirmation courte.** Aucun composant ne pose une question courte avec deux réponses. Un Dialog est en préparation. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

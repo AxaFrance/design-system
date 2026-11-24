@@ -71,7 +71,7 @@ Sur un écran de moins de 1024 px de large. size=large et size=medium prennent u
 
 - Action principale d'un formulaire : hierarchy=primary, label « Enregistrer ».
 - Début et fin d'un parcours : hierarchy=primary, label « Commencer », puis « Finaliser ».
-- Modale de confirmation : hierarchy=primary, label « Confirmer la résiliation » plutôt que « Oui », et hierarchy=secondary, label « Annuler ».
+- Confirmation dans un Dialog : hierarchy=primary, label « Confirmer la résiliation » plutôt que « Oui », et hierarchy=secondary, label « Annuler ».
 - Étape facultative d'un parcours : hierarchy=primary, label « Continuer », et hierarchy=tertiary, label « Passer cette étape ».
 - Bannière sur fond bleu : hierarchy=primary, colorScheme=inverse, label « Obtenir un tarif ».
 - Formulaire en cours d'enregistrement : hierarchy=primary, loading=true, label « Enregistrer ».
@@ -105,7 +105,7 @@ Sur un écran de moins de 1024 px de large. size=large et size=medium prennent u
 - Au repos, le bouton est à l'état par défaut ou désactivé. Le survol, l'appui et le focus ne viennent que de l'interaction.
 - Désactivé, le bouton ne réagit ni au clic ni au clavier.
 - Pendant un chargement, le bouton ne réagit ni au clic ni au clavier, et son aspect ne change pas au survol ni à l'appui. Contrairement à un bouton désactivé, il reste atteignable au clavier et garde son anneau de focus.
-- Sur desktop, plusieurs boutons voisins s'affichent sur une même ligne. Sur mobile, ils s'empilent en colonne, sauf dans un parcours et dans une Modal, où ils restent sur une ligne.
+- Sur desktop, plusieurs boutons voisins s'affichent sur une même ligne. Sur mobile, ils s'empilent en colonne, sauf dans un parcours, une Modal ou un Dialog, où ils restent sur une ligne.
 - Sur une ligne, le primary est le dernier bouton à droite, dans une fenêtre modale comme dans un parcours.
 
 ## Accessibilité

@@ -1,0 +1,769 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "Dialog",
+    "version": "1.0.0",
+    "tokensVersion": null,
+    "type": "composed",
+    "extends": "Button",
+    "figmaKey": "298e2b8907acd593f09c602cf6da2a672ed26d10",
+    "library": "B2C",
+    "breakpoints": [
+      0,
+      1024
+    ],
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/dialog/dialog.md"
+    ]
+  },
+  "api": {
+    "props": {},
+    "exposed": [
+      {
+        "from": "Button",
+        "props": [
+          "rightIcon",
+          "leftIcon",
+          "showLeftIcon",
+          "showRightIcon",
+          "label",
+          "state",
+          "disabled",
+          "loading",
+          "hierarchy",
+          "colorScheme",
+          "size",
+          "breakpoint",
+          "_theme"
+        ]
+      },
+      {
+        "from": "Button",
+        "props": [
+          "label",
+          "rightIcon",
+          "leftIcon",
+          "showLeftIcon",
+          "showRightIcon",
+          "state",
+          "disabled",
+          "loading",
+          "hierarchy",
+          "colorScheme",
+          "size",
+          "breakpoint",
+          "_theme"
+        ]
+      }
+    ]
+  },
+  "variants": [
+    {
+      "values": {
+        "breakpoint": "1024"
+      },
+      "position": [
+        40,
+        40
+      ]
+    },
+    {
+      "values": {
+        "breakpoint": "0"
+      },
+      "position": [
+        945,
+        40
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {
+      "title": {
+        "as": "children",
+        "default": {
+          "text": "Title"
+        },
+        "controls": [
+          {
+            "layer": "title",
+            "attribute": "text"
+          }
+        ]
+      },
+      "description": {
+        "as": "children",
+        "default": {
+          "text": "Description"
+        },
+        "controls": [
+          {
+            "layer": "description",
+            "attribute": "text"
+          }
+        ]
+      }
+    },
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "container",
+            "type": "frame",
+            "children": [
+              {
+                "name": "header",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "content",
+                    "type": "frame",
+                    "children": [
+                      {
+                        "name": "content",
+                        "type": "frame",
+                        "children": [
+                          {
+                            "name": "title",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "body",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "description",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "actions",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "secondary-button",
+                    "type": "instance",
+                    "component": "Button",
+                    "values": {
+                      "state": "default",
+                      "disabled": "false",
+                      "loading": "false",
+                      "hierarchy": "secondary",
+                      "colorScheme": "default",
+                      "size": "large",
+                      "breakpoint": "0",
+                      "_theme": "prospect"
+                    }
+                  },
+                  {
+                    "name": "primary-button",
+                    "type": "instance",
+                    "component": "Button",
+                    "values": {
+                      "state": "default",
+                      "disabled": "false",
+                      "loading": "false",
+                      "hierarchy": "primary",
+                      "colorScheme": "default",
+                      "size": "large",
+                      "breakpoint": "0",
+                      "_theme": "prospect"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "container",
+            "type": "frame",
+            "children": [
+              {
+                "name": "header",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "content",
+                    "type": "frame",
+                    "children": [
+                      {
+                        "name": "content",
+                        "type": "frame",
+                        "children": [
+                          {
+                            "name": "title",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "body",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "description",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "actions",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "secondary-button",
+                    "type": "instance",
+                    "component": "Button",
+                    "values": {
+                      "state": "default",
+                      "disabled": "false",
+                      "loading": "false",
+                      "hierarchy": "secondary",
+                      "colorScheme": "default",
+                      "size": "large",
+                      "breakpoint": "1024",
+                      "_theme": "prospect"
+                    }
+                  },
+                  {
+                    "name": "primary-button",
+                    "type": "instance",
+                    "component": "Button",
+                    "values": {
+                      "state": "default",
+                      "disabled": "false",
+                      "loading": "false",
+                      "hierarchy": "primary",
+                      "colorScheme": "default",
+                      "size": "large",
+                      "breakpoint": "1024",
+                      "_theme": "prospect"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "Button"
+    ]
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "breakpoint": "0"
+      },
+      "modes": {
+        "Typography": "prospect-mobile"
+      },
+      "root": {
+        "background": {
+          "token": "color/gray/800"
+        },
+        "radius": {
+          "raw": 0
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "token": "spacing/24"
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "token": "spacing/24"
+          }
+        },
+        "gap": {
+          "raw": 0
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center",
+          "clip": true,
+          "sizingH": "fixed",
+          "width": {
+            "raw": 375
+          },
+          "sizingV": "fixed",
+          "height": {
+            "raw": 800
+          }
+        }
+      },
+      "container": {
+        "background": {
+          "token": "color/white"
+        },
+        "radius": {
+          "token": "border/radius/16"
+        },
+        "layout": {
+          "direction": "column",
+          "sizingH": "fill"
+        }
+      },
+      "header": {
+        "padding": {
+          "top": {
+            "token": "spacing/24"
+          },
+          "right": {
+            "token": "spacing/24"
+          },
+          "bottom": {
+            "token": "spacing/8"
+          },
+          "left": {
+            "token": "spacing/24"
+          }
+        },
+        "gap": {
+          "token": "spacing/16"
+        },
+        "layout": {
+          "direction": "row",
+          "sizingH": "fill"
+        }
+      },
+      "content-1": {
+        "gap": {
+          "token": "spacing/8"
+        },
+        "layout": {
+          "direction": "row",
+          "sizingH": "fill",
+          "sizingV": "fill"
+        }
+      },
+      "content-2": {
+        "gap": {
+          "token": "spacing/4"
+        },
+        "layout": {
+          "direction": "column",
+          "sizingH": "fill"
+        }
+      },
+      "title": {
+        "textColor": {
+          "token": "color/blue/700"
+        },
+        "textStyle": "heading/h2",
+        "layout": {
+          "sizingH": "fill",
+          "textAlignVertical": "center"
+        }
+      },
+      "body": {
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "token": "spacing/24"
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "token": "spacing/24"
+          }
+        },
+        "layout": {
+          "direction": "column",
+          "sizingH": "fill"
+        }
+      },
+      "description": {
+        "textColor": {
+          "token": "color/gray/700"
+        },
+        "textStyle": "body/1/regular",
+        "layout": {
+          "sizingH": "fill"
+        }
+      },
+      "actions": {
+        "padding": {
+          "top": {
+            "token": "spacing/24"
+          },
+          "right": {
+            "token": "spacing/24"
+          },
+          "bottom": {
+            "token": "spacing/24"
+          },
+          "left": {
+            "token": "spacing/24"
+          }
+        },
+        "gap": {
+          "token": "spacing/16"
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "end",
+          "crossAlign": "center",
+          "sizingH": "fill"
+        }
+      },
+      "secondary-button": {
+        "stroke": {
+          "token": "color/blue/600"
+        },
+        "strokeWeight": {
+          "token": "border/width/2"
+        },
+        "strokeAlign": "inside",
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/12"
+          },
+          "right": {
+            "token": "spacing/24"
+          },
+          "bottom": {
+            "token": "spacing/12"
+          },
+          "left": {
+            "token": "spacing/24"
+          }
+        },
+        "gap": {
+          "token": "spacing/12"
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "minHeight": {
+            "token": "size/48"
+          },
+          "sizingH": "fill"
+        }
+      },
+      "secondary-button/vector": {
+        "background": {
+          "token": "color/blue/600"
+        }
+      },
+      "primary-button": {
+        "background": {
+          "token": "color/blue/600"
+        },
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/12"
+          },
+          "right": {
+            "token": "spacing/24"
+          },
+          "bottom": {
+            "token": "spacing/12"
+          },
+          "left": {
+            "token": "spacing/24"
+          }
+        },
+        "gap": {
+          "token": "spacing/12"
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "minHeight": {
+            "token": "size/48"
+          },
+          "sizingH": "fill"
+        }
+      },
+      "primary-button/vector": {
+        "background": {
+          "token": "color/white"
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "modes": {
+            "Typography": "prospect-desktop"
+          },
+          "root": {
+            "padding": {
+              "top": {
+                "raw": 0
+              },
+              "right": {
+                "raw": 0
+              },
+              "bottom": {
+                "raw": 0
+              },
+              "left": {
+                "raw": 0
+              }
+            },
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center",
+              "clip": true,
+              "sizingH": "fixed",
+              "width": {
+                "raw": 825
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 1262
+              }
+            }
+          },
+          "container": {
+            "layout": {
+              "direction": "column",
+              "sizingH": "fixed",
+              "width": {
+                "raw": 480
+              }
+            }
+          },
+          "header": {
+            "gap": {
+              "token": "spacing/24"
+            }
+          },
+          "content-1": {
+            "gap": {
+              "token": "spacing/12"
+            }
+          },
+          "secondary-button": {
+            "padding": {
+              "top": {
+                "token": "spacing/16"
+              },
+              "right": {
+                "token": "spacing/24"
+              },
+              "bottom": {
+                "token": "spacing/16"
+              },
+              "left": {
+                "token": "spacing/24"
+              }
+            },
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center",
+              "minHeight": {
+                "token": "size/56"
+              }
+            }
+          },
+          "primary-button": {
+            "padding": {
+              "top": {
+                "token": "spacing/16"
+              },
+              "right": {
+                "token": "spacing/24"
+              },
+              "bottom": {
+                "token": "spacing/16"
+              },
+              "left": {
+                "token": "spacing/24"
+              }
+            },
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center",
+              "minHeight": {
+                "token": "size/56"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/radius/16": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "82fb631e5ec1073cae184ebde5fa4adb67361a29"
+    },
+    "border/radius/full": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "1fcf11522d356a0d693232bf2ced5fbcc75d781a"
+    },
+    "border/width/2": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d6066603f0a6830a87efc9e782c85822c718d4ec"
+    },
+    "color/blue/600": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
+    },
+    "color/blue/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
+    },
+    "color/gray/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "6831a991c0cce7ca390e5e11b802ec1ae51cab06"
+    },
+    "color/gray/800": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "fe28dbe1aed177067927c271ad02e997ffda2c24"
+    },
+    "color/white": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "207050c6310c4663b3209cbaa9d2426f268f67b0"
+    },
+    "size/48": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "e7040d5d297c3771090baa2b84f63664b7b3cde8"
+    },
+    "size/56": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "0e0e1c903b515483bcc195921f33ddc7196c95c3"
+    },
+    "spacing/12": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "6cfd5a3c3e9c964463b4b26cce753ba1aec30649"
+    },
+    "spacing/16": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "c671d8ceb08a490376605ccd3862b43109626d25"
+    },
+    "spacing/24": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "4344572ea5671cb93751381dd4d4db2d8ee60144"
+    },
+    "spacing/4": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "ece7a179702a367a2194768137236fd4d4231725"
+    },
+    "spacing/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f79c6b1de93d24589305065ca591b49ab3a32d6b"
+    }
+  },
+  "textStyles": {
+    "body/1/regular": {
+      "library": null,
+      "key": "4f1ce1e577bd77712c8f60a2fd9d0510e72fcbe2"
+    },
+    "heading/h2": {
+      "library": null,
+      "key": "0e59ec74f1d2a06e0184b6f1db44267d1c5c872b"
+    }
+  },
+  "components": {
+    "Button": {
+      "library": "B2C",
+      "key": "cbe527a60bc95af0ec43a05d55103c699fa75f2d"
+    }
+  },
+  "modeCollections": {
+    "Typography": {
+      "library": "Fondations Canopée",
+      "key": "be959715ddac77dedafba55e157014b702551c02"
+    }
+  },
+  "issues": [
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.container.layout.width",
+      "message": "Valeur brute (480) : la relier à une variable.",
+      "occurrences": 1
+    },
+    {
+      "level": "warning",
+      "rule": "token-unpublished",
+      "where": "structure.uses",
+      "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small, dans un composant inclus."
+    },
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold, dans un composant inclus."
+    },
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold/line-height, dans un composant inclus."
+    },
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.body/1/regular",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : body/1/regular."
+    },
+    {
+      "level": "warning",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.heading/h2",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : heading/h2."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.14"
+}
