@@ -4,7 +4,7 @@ Utilise des design tokens qui ne sont pas encore dans une version publiée de Ca
 
 ## Description
 
-La ProgressBar montre l'avancement d'une tâche dont la durée est connue. Son remplissage se règle avec value, de 0 à 100.
+La ProgressBar montre l'avancement mesurable d'une tâche. Son remplissage se règle avec value, de 0 à 100.
 
 ## Quand l'utiliser
 
@@ -14,7 +14,7 @@ La ProgressBar montre l'avancement d'une tâche dont la durée est connue. Son r
 
 ### À ne pas utiliser pour
 
-- Un chargement dont la durée n'est pas connue : prendre Spinner.
+- Un chargement dont l'avancement ne se mesure pas : prendre Spinner.
 - Les étapes d'un parcours, comme un formulaire en plusieurs pages : prendre Stepper.
 - Une mesure qui n'est pas un avancement, comme un taux de remplissage ou un score : Non documenté.
 
@@ -113,13 +113,14 @@ Ces noms désignent ProgressBar. Le seul nom à employer est ProgressBar.
 
 - **1.0.0 - 12/10/26.** Les propriétés Size et Percentage deviennent value et showPercentage, les noms du code.
 - **1.0.0 - 16/11/26.** Dans Figma, les thèmes prospect et client partagent une seule ProgressBar, celle du thème prospect, car leurs deux versions avaient le même rendu.
-- **1.0.0 - 16/11/26.** La ProgressBar s'utilise seule, quand la durée d'une tâche est connue. L'ancienne documentation du B2C la réservait au Stepper.
+- **1.0.0 - 16/11/26.** La ProgressBar s'utilise seule, quand l'avancement d'une tâche se mesure. L'ancienne documentation du B2C la réservait au Stepper.
 - **1.0.0 - 16/11/26.** value prend 21 valeurs, de 0 à 100 par pas de 5, parce que Figma ne peut pas faire varier une longueur avec un nombre. Dans une maquette, une autre valeur s'arrondit au multiple de 5 le plus proche.
 - **1.0.0 - 16/11/26.** Le pourcentage est en label/2/semibold, comme dans le code. Dans Figma, sa largeur suit son texte.
 - **1.0.0 - 16/11/26.** La hauteur de la barre reprend celle du code, sans token, car Fondations Canopée n'a pas de taille qui lui corresponde.
 - **1.0.0 - 16/11/26.** Le libellé n'a pas de propriété dans Figma, car il ne s'affiche pas : il ne sert qu'aux lecteurs d'écran.
 - **1.0.0 - 16/11/26.** Le pourcentage s'affiche quand la tâche dure assez longtemps pour être suivie. Aucune source ne le disait : la règle reprend les pratiques courantes.
 - **1.0.0 - 16/11/26.** À la fin de la tâche, la barre atteint 100 %. Quand la tâche échoue, elle s'arrête à sa valeur, sans état d'erreur, et la page affiche un message. Aucune source ne le disait : la règle reprend les pratiques courantes.
+- **1.0.0 - 24/11/26.** La description parle d'un avancement mesurable, et non plus d'une durée connue : un envoi de fichier a un pourcentage connu, mais rarement une durée.
 
 ## Points ouverts
 
