@@ -11,14 +11,13 @@ L'Alert affiche un message court et important, sans interrompre ce que fait l'ut
 ### À utiliser pour
 
 - Un message qui concerne une partie de l'écran, posé à côté d'elle. Exemple : une erreur de paiement au-dessus du formulaire de carte bancaire.
-- Le résultat d'une action, quand il doit rester visible. Exemple : la confirmation d'une demande envoyée.
 - Plusieurs messages du même endroit, affichés un à la fois, avec showPagination=true.
 
 ### À ne pas utiliser pour
 
 - Un message qui concerne toute la page ou tout le service, comme une maintenance prévue : prendre Banner.
 - L'erreur d'un seul champ de formulaire : prendre le _FormHelperText du champ, en tone=error.
-- Une confirmation qui disparaît d'elle-même après quelques secondes : Non documenté.
+- Le résultat d'une action : prendre le _FormHelperText de l'élément concerné. Une action qui ne se rattache à aucun élément, comme une demande envoyée : Non documenté.
 - Une information qui demande une réponse avant de continuer : prendre Modal.
 
 ## Règles selon les propriétés
@@ -33,7 +32,7 @@ Une information utile pour la suite du parcours. C'est la valeur par défaut.
 
 ### tone=success
 
-Une action qui a réussi.
+Une situation favorable que l'utilisateur doit connaître, comme un dossier complet ou un contrat actif.
 
 ### tone=warning
 
@@ -54,7 +53,7 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent leur taille mob
 ## Exemples
 
 - Paiement refusé : tone=error, title « Paiement refusé », description « Votre carte a été refusée. Vérifiez sa date d'expiration. », lien « Modifier la carte ».
-- Demande envoyée : tone=success, title « Demande envoyée », description « Vous recevrez une réponse sous 48 heures. », sans lien.
+- Dossier complet : tone=success, title « Dossier complet », description « Nous avons reçu tous vos justificatifs. », sans lien.
 - Document à fournir : tone=warning, title « Justificatif manquant », description « Ajoutez votre justificatif de domicile avant le 15 décembre. », lien « Ajouter le document ».
 - Nouvelle attestation : tone=information, title « Nouvelle attestation », description « Votre attestation 2027 est disponible. », lien « Télécharger l'attestation ».
 - Horaires du service client : tone=neutral, title « Horaires », description « Nos conseillers vous répondent du lundi au vendredi, de 9 h à 18 h. », sans lien.
@@ -216,7 +215,7 @@ Ces noms désignent Alert. Le seul nom à employer est Alert.
 - **Focus d'une flèche désactivée.** La flèche se désactive alors qu'elle a le focus, sur le premier ou le dernier message (`PaginationCommon.tsx:62`, `PaginationCommon.tsx:79`). La place du focus n'est pas définie. En attendant : signaler.
 - **Alert au chargement de la page.** Une Alert affichée après un rechargement, comme un paiement refusé, n'est ni annoncée ni mise au focus. La façon de la signaler n'est pas définie. En attendant : signaler.
 - **Ordre des messages.** L'ordre des messages, et ce que devient un message résolu, ne sont pas définis. En attendant : signaler.
-- **Confirmation temporaire.** Aucun composant n'affiche une confirmation qui disparaît d'elle-même. En attendant : signaler.
+- **Résultat d'une action sans élément.** Aucun composant n'affiche le résultat d'une action qui ne se rattache à aucun élément, comme une demande envoyée. Un composant qui s'affiche un temps puis disparaît, de type toast, reste à créer. En attendant : signaler.
 - **Neutral ou information.** Aucune source ne dit quand prendre tone=neutral plutôt que tone=information. En attendant : signaler.
 - **Palier de la couleur du texte.** Comme pour le Tag, le texte et l'icône prennent le palier 700 dans tous les tons. L'équipe design system prévoit de retravailler la palette verte, puis de passer le texte en 600, comme celui de _FormHelperText. En attendant : 700.
 - **Fond de tone=success.** Le fond très pâle de tone=success se distingue mal d'une page blanche, comme pour le Tag. En attendant : signaler.

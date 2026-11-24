@@ -11,7 +11,7 @@ Le _FormHelperText est un message court qui aide à remplir un champ ou répond 
 ### À utiliser pour
 
 - Dire ce qui ne va pas dans une saisie, sous le champ concerné. Exemple : « Renseignez votre e-mail. » sous TextInput.
-- Confirmer qu'une saisie ou une action a abouti. Exemple : « Modifications enregistrées ».
+- Confirmer qu'une saisie ou une action a abouti, sous l'élément concerné. Exemple : « Modifications enregistrées ».
 - Attirer l'attention sur une information importante qui ne bloque pas. Exemple : « Cette adresse e-mail semble erronée. Si c'est bien la vôtre, vous pouvez continuer. »
 - Aider à remplir un champ, avant toute saisie. Exemple : « Format attendu : JJ/MM/AAAA ».
 - Donner le résultat d'une action sous un élément qui n'est pas un champ : une étape de Stepper, une cellule de tableau, une valeur de ContentItemDuo.
@@ -20,6 +20,7 @@ Le _FormHelperText est un message court qui aide à remplir un champ ou répond 
 
 - Nommer un champ : prendre _FormLabel.
 - Un message qui concerne tout un formulaire : prendre Alert. Un message qui concerne toute la page : prendre Banner.
+- Le résultat d'une action qui ne se rattache à aucun élément, comme une demande envoyée : Non documenté.
 - Donner le statut ou la catégorie d'un élément : prendre Tag. Exemple : « Suspendue » sur une carte.
 - Une action ou un lien : prendre Button ou Link.
 - Un message qui répète ce que l'interface dit déjà : ne rien ajouter.
@@ -167,6 +168,7 @@ Ces noms désignent _FormHelperText. Le seul nom à employer est _FormHelperText
 - **Texte masqué du ton dans le code.** Le code n'ajoute pas le texte masqué qui donne le ton au lecteur d'écran. Cette règle reprend celle de GOV.UK. En attendant : signaler.
 - **Page Storybook.** Sa documentation appelle la prop `type`, alors que le composant attend `messageType`. En attendant : la fiche fait foi.
 - **tone=neutral sans source B2C.** L'ancienne documentation du B2C n'a pas de ton neutre, mais le code a déjà une aide à la saisie, la prop `helper` des champs. Cette fiche en fait un ton, comme les design systems du marché. En attendant : il s'applique.
+- **Résultat d'une action sans élément.** Aucun composant n'affiche le résultat d'une action qui ne se rattache à aucun élément, comme une demande envoyée. Un composant de type toast reste à créer. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 
