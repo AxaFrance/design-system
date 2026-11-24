@@ -55,14 +55,6 @@
             "attribute": "visible"
           }
         ]
-      },
-      "_theme": {
-        "type": "enum",
-        "enum": [
-          "prospect",
-          "client"
-        ],
-        "default": "prospect"
       }
     }
   },
@@ -71,8 +63,7 @@
       "values": {
         "breakpoint": "1024",
         "value": "0",
-        "stepsCount": "1",
-        "_theme": "prospect"
+        "stepsCount": "1"
       },
       "position": [
         581,
@@ -83,20 +74,7 @@
       "values": {
         "breakpoint": "1024",
         "value": "0",
-        "stepsCount": "1",
-        "_theme": "client"
-      },
-      "position": [
-        2252,
-        40
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "1024",
-        "value": "0",
-        "stepsCount": "2",
-        "_theme": "prospect"
+        "stepsCount": "2"
       },
       "position": [
         40,
@@ -107,20 +85,7 @@
       "values": {
         "breakpoint": "1024",
         "value": "0",
-        "stepsCount": "2",
-        "_theme": "client"
-      },
-      "position": [
-        1711,
-        40
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "1024",
-        "value": "0",
-        "stepsCount": "3",
-        "_theme": "prospect"
+        "stepsCount": "3"
       },
       "position": [
         1122,
@@ -130,21 +95,8 @@
     {
       "values": {
         "breakpoint": "1024",
-        "value": "0",
-        "stepsCount": "3",
-        "_theme": "client"
-      },
-      "position": [
-        2793,
-        40
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "1024",
         "value": "1",
-        "stepsCount": "1",
-        "_theme": "prospect"
+        "stepsCount": "1"
       },
       "position": [
         581,
@@ -155,20 +107,7 @@
       "values": {
         "breakpoint": "1024",
         "value": "1",
-        "stepsCount": "1",
-        "_theme": "client"
-      },
-      "position": [
-        2252,
-        240
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "1024",
-        "value": "1",
-        "stepsCount": "2",
-        "_theme": "prospect"
+        "stepsCount": "2"
       },
       "position": [
         40,
@@ -179,20 +118,7 @@
       "values": {
         "breakpoint": "1024",
         "value": "1",
-        "stepsCount": "2",
-        "_theme": "client"
-      },
-      "position": [
-        1711,
-        240
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "1024",
-        "value": "1",
-        "stepsCount": "3",
-        "_theme": "prospect"
+        "stepsCount": "3"
       },
       "position": [
         1122,
@@ -202,21 +128,8 @@
     {
       "values": {
         "breakpoint": "1024",
-        "value": "1",
-        "stepsCount": "3",
-        "_theme": "client"
-      },
-      "position": [
-        2793,
-        240
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "1024",
         "value": "2",
-        "stepsCount": "2",
-        "_theme": "prospect"
+        "stepsCount": "2"
       },
       "position": [
         40,
@@ -227,20 +140,7 @@
       "values": {
         "breakpoint": "1024",
         "value": "2",
-        "stepsCount": "2",
-        "_theme": "client"
-      },
-      "position": [
-        1711,
-        440
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "1024",
-        "value": "2",
-        "stepsCount": "3",
-        "_theme": "prospect"
+        "stepsCount": "3"
       },
       "position": [
         1122,
@@ -250,36 +150,11 @@
     {
       "values": {
         "breakpoint": "1024",
-        "value": "2",
-        "stepsCount": "3",
-        "_theme": "client"
-      },
-      "position": [
-        2793,
-        440
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "1024",
         "value": "3",
-        "stepsCount": "3",
-        "_theme": "prospect"
+        "stepsCount": "3"
       },
       "position": [
         1122,
-        640
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "1024",
-        "value": "3",
-        "stepsCount": "3",
-        "_theme": "client"
-      },
-      "position": [
-        2793,
         640
       ]
     },
@@ -287,8 +162,7 @@
       "values": {
         "breakpoint": "0",
         "value": "0",
-        "stepsCount": "1",
-        "_theme": "prospect"
+        "stepsCount": "1"
       },
       "position": [
         660,
@@ -299,20 +173,7 @@
       "values": {
         "breakpoint": "0",
         "value": "0",
-        "stepsCount": "1",
-        "_theme": "client"
-      },
-      "position": [
-        2331,
-        888
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "0",
-        "value": "0",
-        "stepsCount": "2",
-        "_theme": "prospect"
+        "stepsCount": "2"
       },
       "position": [
         119,
@@ -323,20 +184,7 @@
       "values": {
         "breakpoint": "0",
         "value": "0",
-        "stepsCount": "2",
-        "_theme": "client"
-      },
-      "position": [
-        1790,
-        888
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "0",
-        "value": "0",
-        "stepsCount": "3",
-        "_theme": "prospect"
+        "stepsCount": "3"
       },
       "position": [
         1201,
@@ -346,21 +194,8 @@
     {
       "values": {
         "breakpoint": "0",
-        "value": "0",
-        "stepsCount": "3",
-        "_theme": "client"
-      },
-      "position": [
-        2872,
-        888
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "0",
         "value": "1",
-        "stepsCount": "1",
-        "_theme": "prospect"
+        "stepsCount": "1"
       },
       "position": [
         660,
@@ -371,20 +206,7 @@
       "values": {
         "breakpoint": "0",
         "value": "1",
-        "stepsCount": "1",
-        "_theme": "client"
-      },
-      "position": [
-        2331,
-        1088
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "0",
-        "value": "1",
-        "stepsCount": "2",
-        "_theme": "prospect"
+        "stepsCount": "2"
       },
       "position": [
         119,
@@ -395,20 +217,7 @@
       "values": {
         "breakpoint": "0",
         "value": "1",
-        "stepsCount": "2",
-        "_theme": "client"
-      },
-      "position": [
-        1790,
-        1088
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "0",
-        "value": "1",
-        "stepsCount": "3",
-        "_theme": "prospect"
+        "stepsCount": "3"
       },
       "position": [
         1201,
@@ -418,21 +227,8 @@
     {
       "values": {
         "breakpoint": "0",
-        "value": "1",
-        "stepsCount": "3",
-        "_theme": "client"
-      },
-      "position": [
-        2872,
-        1088
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "0",
         "value": "2",
-        "stepsCount": "2",
-        "_theme": "prospect"
+        "stepsCount": "2"
       },
       "position": [
         119,
@@ -443,20 +239,7 @@
       "values": {
         "breakpoint": "0",
         "value": "2",
-        "stepsCount": "2",
-        "_theme": "client"
-      },
-      "position": [
-        1790,
-        1288
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "0",
-        "value": "2",
-        "stepsCount": "3",
-        "_theme": "prospect"
+        "stepsCount": "3"
       },
       "position": [
         1201,
@@ -466,36 +249,11 @@
     {
       "values": {
         "breakpoint": "0",
-        "value": "2",
-        "stepsCount": "3",
-        "_theme": "client"
-      },
-      "position": [
-        2872,
-        1288
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "0",
         "value": "3",
-        "stepsCount": "3",
-        "_theme": "prospect"
+        "stepsCount": "3"
       },
       "position": [
         1201,
-        1488
-      ]
-    },
-    {
-      "values": {
-        "breakpoint": "0",
-        "value": "3",
-        "stepsCount": "3",
-        "_theme": "client"
-      },
-      "position": [
-        2872,
         1488
       ]
     }
@@ -603,8 +361,7 @@
         "when": {
           "breakpoint": "1024",
           "value": "0",
-          "stepsCount": "1",
-          "_theme": "prospect"
+          "stepsCount": "1"
         },
         "tree": [
           {
@@ -669,74 +426,7 @@
         "when": {
           "breakpoint": "1024",
           "value": "0",
-          "stepsCount": "1",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "true",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "1024"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "1024",
-          "value": "0",
-          "stepsCount": "2",
-          "_theme": "prospect"
+          "stepsCount": "2"
         },
         "tree": [
           {
@@ -811,84 +501,7 @@
         "when": {
           "breakpoint": "1024",
           "value": "0",
-          "stepsCount": "2",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "true",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "1024"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "1024"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "1024",
-          "value": "0",
-          "stepsCount": "3",
-          "_theme": "prospect"
+          "stepsCount": "3"
         },
         "tree": [
           {
@@ -972,95 +585,8 @@
       {
         "when": {
           "breakpoint": "1024",
-          "value": "0",
-          "stepsCount": "3",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "true",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "1024"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "1024"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "1024"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "1024",
           "value": "1",
-          "stepsCount": "1",
-          "_theme": "prospect"
+          "stepsCount": "1"
         },
         "tree": [
           {
@@ -1125,74 +651,7 @@
         "when": {
           "breakpoint": "1024",
           "value": "1",
-          "stepsCount": "1",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "1024"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "true",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "1024",
-          "value": "1",
-          "stepsCount": "2",
-          "_theme": "prospect"
+          "stepsCount": "2"
         },
         "tree": [
           {
@@ -1267,84 +726,7 @@
         "when": {
           "breakpoint": "1024",
           "value": "1",
-          "stepsCount": "2",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "1024"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "1024"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "1024",
-          "value": "1",
-          "stepsCount": "3",
-          "_theme": "prospect"
+          "stepsCount": "3"
         },
         "tree": [
           {
@@ -1415,92 +797,6 @@
                   "colorScheme": "default",
                   "size": "small",
                   "_theme": "prospect"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "1024",
-          "value": "1",
-          "stepsCount": "3",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "1024"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "1024"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "1024"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
                 }
               }
             ]
@@ -1515,8 +811,7 @@
         "when": {
           "breakpoint": "1024",
           "value": "2",
-          "stepsCount": "2",
-          "_theme": "prospect"
+          "stepsCount": "2"
         },
         "tree": [
           {
@@ -1591,84 +886,7 @@
         "when": {
           "breakpoint": "1024",
           "value": "2",
-          "stepsCount": "2",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "1024"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "1024"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "true",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "1024",
-          "value": "2",
-          "stepsCount": "3",
-          "_theme": "prospect"
+          "stepsCount": "3"
         },
         "tree": [
           {
@@ -1735,178 +953,6 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "prospect"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "1024",
-          "value": "2",
-          "stepsCount": "3",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "1024"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "1024"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "1024"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "1024",
-          "value": "3",
-          "stepsCount": "3",
-          "_theme": "prospect"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "prospect"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "1024"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "1024"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "1024"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "true",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1925,8 +971,7 @@
         "when": {
           "breakpoint": "1024",
           "value": "3",
-          "stepsCount": "3",
-          "_theme": "client"
+          "stepsCount": "3"
         },
         "tree": [
           {
@@ -1947,7 +992,7 @@
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
-                  "_theme": "client"
+                  "_theme": "prospect"
                 }
               },
               {
@@ -1996,7 +1041,7 @@
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
-                  "_theme": "client"
+                  "_theme": "prospect"
                 }
               }
             ]
@@ -2011,8 +1056,7 @@
         "when": {
           "breakpoint": "0",
           "value": "0",
-          "stepsCount": "1",
-          "_theme": "prospect"
+          "stepsCount": "1"
         },
         "tree": [
           {
@@ -2040,234 +1084,6 @@
                 "name": "list",
                 "type": "frame",
                 "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "0"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "prospect"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "0",
-          "value": "0",
-          "stepsCount": "1",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "true",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "0"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "0",
-          "value": "0",
-          "stepsCount": "2",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "true",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "0"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "0"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "0",
-          "value": "0",
-          "stepsCount": "3",
-          "_theme": "prospect"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "true",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "prospect"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "0"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "0"
-                    }
-                  },
                   {
                     "name": "item",
                     "type": "instance",
@@ -2305,8 +1121,7 @@
         "when": {
           "breakpoint": "0",
           "value": "0",
-          "stepsCount": "3",
-          "_theme": "client"
+          "stepsCount": "3"
         },
         "tree": [
           {
@@ -2327,7 +1142,7 @@
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
-                  "_theme": "client"
+                  "_theme": "prospect"
                 }
               },
               {
@@ -2376,7 +1191,7 @@
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
-                  "_theme": "client"
+                  "_theme": "prospect"
                 }
               }
             ]
@@ -2391,8 +1206,7 @@
         "when": {
           "breakpoint": "0",
           "value": "1",
-          "stepsCount": "1",
-          "_theme": "prospect"
+          "stepsCount": "1"
         },
         "tree": [
           {
@@ -2414,72 +1228,6 @@
                   "colorScheme": "default",
                   "size": "small",
                   "_theme": "prospect"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "0"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "true",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "prospect"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "0",
-          "value": "1",
-          "stepsCount": "1",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
                 }
               },
               {
@@ -2508,7 +1256,7 @@
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
-                  "_theme": "client"
+                  "_theme": "prospect"
                 }
               }
             ]
@@ -2523,8 +1271,7 @@
         "when": {
           "breakpoint": "0",
           "value": "1",
-          "stepsCount": "2",
-          "_theme": "prospect"
+          "stepsCount": "2"
         },
         "tree": [
           {
@@ -2599,84 +1346,7 @@
         "when": {
           "breakpoint": "0",
           "value": "1",
-          "stepsCount": "2",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "0"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "0"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "0",
-          "value": "1",
-          "stepsCount": "3",
-          "_theme": "prospect"
+          "stepsCount": "3"
         },
         "tree": [
           {
@@ -2747,92 +1417,6 @@
                   "colorScheme": "default",
                   "size": "small",
                   "_theme": "prospect"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "0",
-          "value": "1",
-          "stepsCount": "3",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "0"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "0"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "0"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
                 }
               }
             ]
@@ -2847,8 +1431,7 @@
         "when": {
           "breakpoint": "0",
           "value": "2",
-          "stepsCount": "2",
-          "_theme": "prospect"
+          "stepsCount": "2"
         },
         "tree": [
           {
@@ -2923,84 +1506,7 @@
         "when": {
           "breakpoint": "0",
           "value": "2",
-          "stepsCount": "2",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "0"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "0"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "true",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "0",
-          "value": "2",
-          "stepsCount": "3",
-          "_theme": "prospect"
+          "stepsCount": "3"
         },
         "tree": [
           {
@@ -3067,178 +1573,6 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "prospect"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "0",
-          "value": "2",
-          "stepsCount": "3",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "0"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "0"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "false",
-                      "breakpoint": "0"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "description",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "0",
-          "value": "3",
-          "stepsCount": "3",
-          "_theme": "prospect"
-        },
-        "tree": [
-          {
-            "name": "title",
-            "type": "text"
-          },
-          {
-            "name": "content",
-            "type": "frame",
-            "children": [
-              {
-                "name": "minus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "small",
-                  "_theme": "prospect"
-                }
-              },
-              {
-                "name": "list",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "0"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "0"
-                    }
-                  },
-                  {
-                    "name": "item",
-                    "type": "instance",
-                    "component": "_LevelSelectorStep",
-                    "values": {
-                      "state": "default",
-                      "checked": "true",
-                      "breakpoint": "0"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "plus-button",
-                "type": "instance",
-                "component": "IconButton",
-                "values": {
-                  "state": "default",
-                  "disabled": "true",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -3257,8 +1591,7 @@
         "when": {
           "breakpoint": "0",
           "value": "3",
-          "stepsCount": "3",
-          "_theme": "client"
+          "stepsCount": "3"
         },
         "tree": [
           {
@@ -3279,7 +1612,7 @@
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
-                  "_theme": "client"
+                  "_theme": "prospect"
                 }
               },
               {
@@ -3328,7 +1661,7 @@
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
-                  "_theme": "client"
+                  "_theme": "prospect"
                 }
               }
             ]
@@ -3350,8 +1683,7 @@
       "when": {
         "breakpoint": "0",
         "value": "0",
-        "stepsCount": "2",
-        "_theme": "prospect"
+        "stepsCount": "2"
       },
       "modes": {
         "Typography": "prospect-mobile"
@@ -3481,6 +1813,7 @@
           "token": "border/radius/16"
         },
         "layout": {
+          "direction": "row",
           "sizingH": "fill",
           "sizingV": "fixed",
           "height": {
@@ -3500,6 +1833,7 @@
           "token": "border/radius/16"
         },
         "layout": {
+          "direction": "row",
           "sizingH": "fill",
           "sizingV": "fixed",
           "height": {
@@ -3568,6 +1902,9 @@
           "breakpoint": "1024"
         },
         "styles": {
+          "modes": {
+            "Typography": "prospect-desktop"
+          },
           "root": {
             "layout": {
               "direction": "column",
@@ -3588,6 +1925,7 @@
           },
           "item-1": {
             "layout": {
+              "direction": "row",
               "sizingH": "fill",
               "sizingV": "fixed",
               "height": {
@@ -3749,29 +2087,13 @@
       },
       {
         "when": {
-          "_theme": "client"
-        },
-        "styles": {
-          "minus-button": {
-            "radius": {
-              "token": "border/radius/8"
-            }
-          },
-          "plus-button": {
-            "radius": {
-              "token": "border/radius/8"
-            }
-          }
-        }
-      },
-      {
-        "when": {
           "breakpoint": "1024",
           "stepsCount": "2"
         },
         "styles": {
           "item-2": {
             "layout": {
+              "direction": "row",
               "sizingH": "fill",
               "sizingV": "fixed",
               "height": {
@@ -3789,6 +2111,7 @@
         "styles": {
           "item-2": {
             "layout": {
+              "direction": "row",
               "sizingH": "fill",
               "sizingV": "fixed",
               "height": {
@@ -3798,6 +2121,7 @@
           },
           "item-3": {
             "layout": {
+              "direction": "row",
               "sizingH": "fill",
               "sizingV": "fixed",
               "height": {
@@ -3815,45 +2139,13 @@
         "styles": {
           "item-3": {
             "layout": {
+              "direction": "row",
               "sizingH": "fill",
               "sizingV": "fixed",
               "height": {
                 "token": "size/24"
               }
             }
-          }
-        }
-      },
-      {
-        "when": {
-          "breakpoint": "1024",
-          "_theme": "prospect"
-        },
-        "styles": {
-          "modes": {
-            "Typography": "prospect-desktop"
-          }
-        }
-      },
-      {
-        "when": {
-          "breakpoint": "1024",
-          "_theme": "client"
-        },
-        "styles": {
-          "modes": {
-            "Typography": "client-desktop"
-          }
-        }
-      },
-      {
-        "when": {
-          "breakpoint": "0",
-          "_theme": "client"
-        },
-        "styles": {
-          "modes": {
-            "Typography": "client-mobile"
           }
         }
       },
@@ -4088,13 +2380,7 @@
       "rule": "token-value-unpublished",
       "where": "textStyles.title/1/regular",
       "message": "Valeur absente de toutes les versions publiées de Canopée : title/1/regular."
-    },
-    {
-      "level": "info",
-      "rule": "prop-outside-nomenclature",
-      "where": "api.props._theme",
-      "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-export-components 0.7.6"
+  "_tool": "canopee-export-components 0.7.13"
 }

@@ -62,14 +62,6 @@
             "attribute": "visible"
           }
         ]
-      },
-      "_theme": {
-        "type": "enum",
-        "enum": [
-          "prospect",
-          "client"
-        ],
-        "default": "prospect"
       }
     },
     "exposed": [
@@ -83,6 +75,24 @@
           "label",
           "description",
           "breakpoint"
+        ]
+      },
+      {
+        "from": "Button",
+        "props": [
+          "rightIcon",
+          "leftIcon",
+          "label",
+          "showLeftIcon",
+          "showRightIcon",
+          "state",
+          "disabled",
+          "loading",
+          "hierarchy",
+          "colorScheme",
+          "size",
+          "breakpoint",
+          "_theme"
         ]
       },
       {
@@ -111,8 +121,7 @@
         "state": "default",
         "disabled": "false",
         "tone": "neutral",
-        "breakpoint": "1024",
-        "_theme": "prospect"
+        "breakpoint": "1024"
       },
       "position": [
         40,
@@ -124,21 +133,7 @@
         "state": "default",
         "disabled": "false",
         "tone": "neutral",
-        "breakpoint": "1024",
-        "_theme": "client"
-      },
-      "position": [
-        40,
-        1168
-      ]
-    },
-    {
-      "values": {
-        "state": "default",
-        "disabled": "false",
-        "tone": "neutral",
-        "breakpoint": "0",
-        "_theme": "prospect"
+        "breakpoint": "0"
       },
       "position": [
         1204,
@@ -149,22 +144,8 @@
       "values": {
         "state": "default",
         "disabled": "false",
-        "tone": "neutral",
-        "breakpoint": "0",
-        "_theme": "client"
-      },
-      "position": [
-        1204,
-        1168
-      ]
-    },
-    {
-      "values": {
-        "state": "default",
-        "disabled": "false",
         "tone": "error",
-        "breakpoint": "1024",
-        "_theme": "prospect"
+        "breakpoint": "1024"
       },
       "position": [
         40,
@@ -176,38 +157,11 @@
         "state": "default",
         "disabled": "false",
         "tone": "error",
-        "breakpoint": "1024",
-        "_theme": "client"
-      },
-      "position": [
-        40,
-        1508
-      ]
-    },
-    {
-      "values": {
-        "state": "default",
-        "disabled": "false",
-        "tone": "error",
-        "breakpoint": "0",
-        "_theme": "prospect"
+        "breakpoint": "0"
       },
       "position": [
         1204,
         380
-      ]
-    },
-    {
-      "values": {
-        "state": "default",
-        "disabled": "false",
-        "tone": "error",
-        "breakpoint": "0",
-        "_theme": "client"
-      },
-      "position": [
-        1204,
-        1508
       ]
     },
     {
@@ -215,8 +169,7 @@
         "state": "default",
         "disabled": "true",
         "tone": "neutral",
-        "breakpoint": "1024",
-        "_theme": "prospect"
+        "breakpoint": "1024"
       },
       "position": [
         40,
@@ -228,21 +181,7 @@
         "state": "default",
         "disabled": "true",
         "tone": "neutral",
-        "breakpoint": "1024",
-        "_theme": "client"
-      },
-      "position": [
-        40,
-        1876
-      ]
-    },
-    {
-      "values": {
-        "state": "default",
-        "disabled": "true",
-        "tone": "neutral",
-        "breakpoint": "0",
-        "_theme": "prospect"
+        "breakpoint": "0"
       },
       "position": [
         1204,
@@ -251,24 +190,10 @@
     },
     {
       "values": {
-        "state": "default",
-        "disabled": "true",
-        "tone": "neutral",
-        "breakpoint": "0",
-        "_theme": "client"
-      },
-      "position": [
-        1204,
-        1876
-      ]
-    },
-    {
-      "values": {
         "state": "hover",
         "disabled": "false",
         "tone": "neutral",
-        "breakpoint": "1024",
-        "_theme": "prospect"
+        "breakpoint": "1024"
       },
       "position": [
         412,
@@ -280,21 +205,7 @@
         "state": "hover",
         "disabled": "false",
         "tone": "neutral",
-        "breakpoint": "1024",
-        "_theme": "client"
-      },
-      "position": [
-        412,
-        1168
-      ]
-    },
-    {
-      "values": {
-        "state": "hover",
-        "disabled": "false",
-        "tone": "neutral",
-        "breakpoint": "0",
-        "_theme": "prospect"
+        "breakpoint": "0"
       },
       "position": [
         1576,
@@ -305,22 +216,8 @@
       "values": {
         "state": "hover",
         "disabled": "false",
-        "tone": "neutral",
-        "breakpoint": "0",
-        "_theme": "client"
-      },
-      "position": [
-        1576,
-        1168
-      ]
-    },
-    {
-      "values": {
-        "state": "hover",
-        "disabled": "false",
         "tone": "error",
-        "breakpoint": "1024",
-        "_theme": "prospect"
+        "breakpoint": "1024"
       },
       "position": [
         412,
@@ -332,21 +229,7 @@
         "state": "hover",
         "disabled": "false",
         "tone": "error",
-        "breakpoint": "1024",
-        "_theme": "client"
-      },
-      "position": [
-        412,
-        1508
-      ]
-    },
-    {
-      "values": {
-        "state": "hover",
-        "disabled": "false",
-        "tone": "error",
-        "breakpoint": "0",
-        "_theme": "prospect"
+        "breakpoint": "0"
       },
       "position": [
         1576,
@@ -355,24 +238,10 @@
     },
     {
       "values": {
-        "state": "hover",
-        "disabled": "false",
-        "tone": "error",
-        "breakpoint": "0",
-        "_theme": "client"
-      },
-      "position": [
-        1576,
-        1508
-      ]
-    },
-    {
-      "values": {
         "state": "focus",
         "disabled": "false",
         "tone": "neutral",
-        "breakpoint": "1024",
-        "_theme": "prospect"
+        "breakpoint": "1024"
       },
       "position": [
         784,
@@ -384,21 +253,7 @@
         "state": "focus",
         "disabled": "false",
         "tone": "neutral",
-        "breakpoint": "1024",
-        "_theme": "client"
-      },
-      "position": [
-        784,
-        1168
-      ]
-    },
-    {
-      "values": {
-        "state": "focus",
-        "disabled": "false",
-        "tone": "neutral",
-        "breakpoint": "0",
-        "_theme": "prospect"
+        "breakpoint": "0"
       },
       "position": [
         1948,
@@ -409,22 +264,8 @@
       "values": {
         "state": "focus",
         "disabled": "false",
-        "tone": "neutral",
-        "breakpoint": "0",
-        "_theme": "client"
-      },
-      "position": [
-        1948,
-        1168
-      ]
-    },
-    {
-      "values": {
-        "state": "focus",
-        "disabled": "false",
         "tone": "error",
-        "breakpoint": "1024",
-        "_theme": "prospect"
+        "breakpoint": "1024"
       },
       "position": [
         784,
@@ -436,38 +277,11 @@
         "state": "focus",
         "disabled": "false",
         "tone": "error",
-        "breakpoint": "1024",
-        "_theme": "client"
-      },
-      "position": [
-        784,
-        1508
-      ]
-    },
-    {
-      "values": {
-        "state": "focus",
-        "disabled": "false",
-        "tone": "error",
-        "breakpoint": "0",
-        "_theme": "prospect"
+        "breakpoint": "0"
       },
       "position": [
         1948,
         380
-      ]
-    },
-    {
-      "values": {
-        "state": "focus",
-        "disabled": "false",
-        "tone": "error",
-        "breakpoint": "0",
-        "_theme": "client"
-      },
-      "position": [
-        1948,
-        1508
       ]
     }
   ],
@@ -547,8 +361,7 @@
           "state": "default",
           "disabled": "false",
           "tone": "neutral",
-          "breakpoint": "1024",
-          "_theme": "prospect"
+          "breakpoint": "1024"
         },
         "tree": [
           {
@@ -619,156 +432,8 @@
         "when": {
           "state": "default",
           "disabled": "false",
-          "tone": "neutral",
-          "breakpoint": "1024",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "label",
-            "type": "instance",
-            "component": "_FormLabel",
-            "values": {
-              "breakpoint": "1024"
-            }
-          },
-          {
-            "name": "dropzone",
-            "type": "frame",
-            "children": [
-              {
-                "name": "content",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "dropzone-label",
-                    "type": "text"
-                  },
-                  {
-                    "name": "or-label",
-                    "type": "text"
-                  }
-                ]
-              },
-              {
-                "name": "button",
-                "type": "instance",
-                "component": "Button",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "loading": "false",
-                  "hierarchy": "tertiary",
-                  "colorScheme": "default",
-                  "size": "large",
-                  "breakpoint": "1024",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "helper",
-            "type": "instance",
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "neutral",
-              "breakpoint": "1024"
-            }
-          },
-          {
-            "name": "message",
-            "type": "instance",
-            "hidden": true,
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "neutral",
-              "breakpoint": "1024"
-            }
-          }
-        ]
-      },
-      {
-        "when": {
-          "state": "default",
-          "disabled": "false",
-          "tone": "neutral",
-          "breakpoint": "0",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "label",
-            "type": "instance",
-            "component": "_FormLabel",
-            "values": {
-              "breakpoint": "0"
-            }
-          },
-          {
-            "name": "dropzone",
-            "type": "frame",
-            "children": [
-              {
-                "name": "content",
-                "type": "frame",
-                "hidden": true,
-                "children": [
-                  {
-                    "name": "dropzone-label",
-                    "type": "text"
-                  },
-                  {
-                    "name": "or-label",
-                    "type": "text"
-                  }
-                ]
-              },
-              {
-                "name": "button",
-                "type": "instance",
-                "component": "Button",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "loading": "false",
-                  "hierarchy": "tertiary",
-                  "colorScheme": "default",
-                  "size": "large",
-                  "breakpoint": "0",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "helper",
-            "type": "instance",
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "neutral",
-              "breakpoint": "0"
-            }
-          },
-          {
-            "name": "message",
-            "type": "instance",
-            "hidden": true,
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "neutral",
-              "breakpoint": "0"
-            }
-          }
-        ]
-      },
-      {
-        "when": {
-          "state": "default",
-          "disabled": "false",
           "tone": "error",
-          "breakpoint": "1024",
-          "_theme": "prospect"
+          "breakpoint": "1024"
         },
         "tree": [
           {
@@ -839,80 +504,7 @@
           "state": "default",
           "disabled": "false",
           "tone": "error",
-          "breakpoint": "1024",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "label",
-            "type": "instance",
-            "component": "_FormLabel",
-            "values": {
-              "breakpoint": "1024"
-            }
-          },
-          {
-            "name": "dropzone",
-            "type": "frame",
-            "children": [
-              {
-                "name": "content",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "dropzone-label",
-                    "type": "text"
-                  },
-                  {
-                    "name": "or-label",
-                    "type": "text"
-                  }
-                ]
-              },
-              {
-                "name": "button",
-                "type": "instance",
-                "component": "Button",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "loading": "false",
-                  "hierarchy": "tertiary",
-                  "colorScheme": "default",
-                  "size": "large",
-                  "breakpoint": "1024",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "helper",
-            "type": "instance",
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "neutral",
-              "breakpoint": "1024"
-            }
-          },
-          {
-            "name": "message",
-            "type": "instance",
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "error",
-              "breakpoint": "1024"
-            }
-          }
-        ]
-      },
-      {
-        "when": {
-          "state": "default",
-          "disabled": "false",
-          "tone": "error",
-          "breakpoint": "0",
-          "_theme": "prospect"
+          "breakpoint": "0"
         },
         "tree": [
           {
@@ -955,79 +547,6 @@
                   "size": "large",
                   "breakpoint": "0",
                   "_theme": "prospect"
-                }
-              }
-            ]
-          },
-          {
-            "name": "helper",
-            "type": "instance",
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "neutral",
-              "breakpoint": "0"
-            }
-          },
-          {
-            "name": "message",
-            "type": "instance",
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "error",
-              "breakpoint": "0"
-            }
-          }
-        ]
-      },
-      {
-        "when": {
-          "state": "default",
-          "disabled": "false",
-          "tone": "error",
-          "breakpoint": "0",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "label",
-            "type": "instance",
-            "component": "_FormLabel",
-            "values": {
-              "breakpoint": "0"
-            }
-          },
-          {
-            "name": "dropzone",
-            "type": "frame",
-            "children": [
-              {
-                "name": "content",
-                "type": "frame",
-                "hidden": true,
-                "children": [
-                  {
-                    "name": "dropzone-label",
-                    "type": "text"
-                  },
-                  {
-                    "name": "or-label",
-                    "type": "text"
-                  }
-                ]
-              },
-              {
-                "name": "button",
-                "type": "instance",
-                "component": "Button",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "loading": "false",
-                  "hierarchy": "tertiary",
-                  "colorScheme": "default",
-                  "size": "large",
-                  "breakpoint": "0",
-                  "_theme": "client"
                 }
               }
             ]
@@ -1057,8 +576,7 @@
           "state": "default",
           "disabled": "true",
           "tone": "neutral",
-          "breakpoint": "1024",
-          "_theme": "prospect"
+          "breakpoint": "1024"
         },
         "tree": [
           {
@@ -1130,81 +648,7 @@
           "state": "default",
           "disabled": "true",
           "tone": "neutral",
-          "breakpoint": "1024",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "label",
-            "type": "instance",
-            "component": "_FormLabel",
-            "values": {
-              "breakpoint": "1024"
-            }
-          },
-          {
-            "name": "dropzone",
-            "type": "frame",
-            "children": [
-              {
-                "name": "content",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "dropzone-label",
-                    "type": "text"
-                  },
-                  {
-                    "name": "or-label",
-                    "type": "text"
-                  }
-                ]
-              },
-              {
-                "name": "button",
-                "type": "instance",
-                "component": "Button",
-                "values": {
-                  "state": "default",
-                  "disabled": "true",
-                  "loading": "false",
-                  "hierarchy": "tertiary",
-                  "colorScheme": "default",
-                  "size": "large",
-                  "breakpoint": "1024",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "helper",
-            "type": "instance",
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "neutral",
-              "breakpoint": "1024"
-            }
-          },
-          {
-            "name": "message",
-            "type": "instance",
-            "hidden": true,
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "neutral",
-              "breakpoint": "1024"
-            }
-          }
-        ]
-      },
-      {
-        "when": {
-          "state": "default",
-          "disabled": "true",
-          "tone": "neutral",
-          "breakpoint": "0",
-          "_theme": "prospect"
+          "breakpoint": "0"
         },
         "tree": [
           {
@@ -1274,88 +718,13 @@
       },
       {
         "when": {
-          "state": "default",
-          "disabled": "true",
-          "tone": "neutral",
-          "breakpoint": "0",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "label",
-            "type": "instance",
-            "component": "_FormLabel",
-            "values": {
-              "breakpoint": "1024"
-            }
-          },
-          {
-            "name": "dropzone",
-            "type": "frame",
-            "children": [
-              {
-                "name": "content",
-                "type": "frame",
-                "hidden": true,
-                "children": [
-                  {
-                    "name": "dropzone-label",
-                    "type": "text"
-                  },
-                  {
-                    "name": "or-label",
-                    "type": "text"
-                  }
-                ]
-              },
-              {
-                "name": "button",
-                "type": "instance",
-                "component": "Button",
-                "values": {
-                  "state": "default",
-                  "disabled": "true",
-                  "loading": "false",
-                  "hierarchy": "tertiary",
-                  "colorScheme": "default",
-                  "size": "large",
-                  "breakpoint": "0",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "helper",
-            "type": "instance",
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "neutral",
-              "breakpoint": "0"
-            }
-          },
-          {
-            "name": "message",
-            "type": "instance",
-            "hidden": true,
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "neutral",
-              "breakpoint": "0"
-            }
-          }
-        ]
-      },
-      {
-        "when": {
           "state": [
             "focus",
             "hover"
           ],
           "disabled": "false",
           "tone": "neutral",
-          "breakpoint": "1024",
-          "_theme": "prospect"
+          "breakpoint": "1024"
         },
         "tree": [
           {
@@ -1430,84 +799,7 @@
           ],
           "disabled": "false",
           "tone": "neutral",
-          "breakpoint": "1024",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "label",
-            "type": "instance",
-            "component": "_FormLabel",
-            "values": {
-              "breakpoint": "1024"
-            }
-          },
-          {
-            "name": "dropzone",
-            "type": "frame",
-            "children": [
-              {
-                "name": "content",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "dropzone-label",
-                    "type": "text"
-                  },
-                  {
-                    "name": "or-label",
-                    "type": "text"
-                  }
-                ]
-              },
-              {
-                "name": "button",
-                "type": "instance",
-                "component": "Button",
-                "values": {
-                  "state": "hover",
-                  "disabled": "false",
-                  "loading": "false",
-                  "hierarchy": "tertiary",
-                  "colorScheme": "default",
-                  "size": "large",
-                  "breakpoint": "1024",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "helper",
-            "type": "instance",
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "neutral",
-              "breakpoint": "1024"
-            }
-          },
-          {
-            "name": "message",
-            "type": "instance",
-            "hidden": true,
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "neutral",
-              "breakpoint": "1024"
-            }
-          }
-        ]
-      },
-      {
-        "when": {
-          "state": [
-            "focus",
-            "hover"
-          ],
-          "disabled": "false",
-          "tone": "neutral",
-          "breakpoint": "0",
-          "_theme": "prospect"
+          "breakpoint": "0"
         },
         "tree": [
           {
@@ -1550,83 +842,6 @@
                   "size": "large",
                   "breakpoint": "0",
                   "_theme": "prospect"
-                }
-              }
-            ]
-          },
-          {
-            "name": "helper",
-            "type": "instance",
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "neutral",
-              "breakpoint": "0"
-            }
-          },
-          {
-            "name": "message",
-            "type": "instance",
-            "hidden": true,
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "neutral",
-              "breakpoint": "0"
-            }
-          }
-        ]
-      },
-      {
-        "when": {
-          "state": [
-            "focus",
-            "hover"
-          ],
-          "disabled": "false",
-          "tone": "neutral",
-          "breakpoint": "0",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "label",
-            "type": "instance",
-            "component": "_FormLabel",
-            "values": {
-              "breakpoint": "0"
-            }
-          },
-          {
-            "name": "dropzone",
-            "type": "frame",
-            "children": [
-              {
-                "name": "content",
-                "type": "frame",
-                "hidden": true,
-                "children": [
-                  {
-                    "name": "dropzone-label",
-                    "type": "text"
-                  },
-                  {
-                    "name": "or-label",
-                    "type": "text"
-                  }
-                ]
-              },
-              {
-                "name": "button",
-                "type": "instance",
-                "component": "Button",
-                "values": {
-                  "state": "hover",
-                  "disabled": "false",
-                  "loading": "false",
-                  "hierarchy": "tertiary",
-                  "colorScheme": "default",
-                  "size": "large",
-                  "breakpoint": "0",
-                  "_theme": "client"
                 }
               }
             ]
@@ -1660,8 +875,7 @@
           ],
           "disabled": "false",
           "tone": "error",
-          "breakpoint": "1024",
-          "_theme": "prospect"
+          "breakpoint": "1024"
         },
         "tree": [
           {
@@ -1735,83 +949,7 @@
           ],
           "disabled": "false",
           "tone": "error",
-          "breakpoint": "1024",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "label",
-            "type": "instance",
-            "component": "_FormLabel",
-            "values": {
-              "breakpoint": "1024"
-            }
-          },
-          {
-            "name": "dropzone",
-            "type": "frame",
-            "children": [
-              {
-                "name": "content",
-                "type": "frame",
-                "children": [
-                  {
-                    "name": "dropzone-label",
-                    "type": "text"
-                  },
-                  {
-                    "name": "or-label",
-                    "type": "text"
-                  }
-                ]
-              },
-              {
-                "name": "button",
-                "type": "instance",
-                "component": "Button",
-                "values": {
-                  "state": "hover",
-                  "disabled": "false",
-                  "loading": "false",
-                  "hierarchy": "tertiary",
-                  "colorScheme": "default",
-                  "size": "large",
-                  "breakpoint": "1024",
-                  "_theme": "client"
-                }
-              }
-            ]
-          },
-          {
-            "name": "helper",
-            "type": "instance",
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "neutral",
-              "breakpoint": "1024"
-            }
-          },
-          {
-            "name": "message",
-            "type": "instance",
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "error",
-              "breakpoint": "1024"
-            }
-          }
-        ]
-      },
-      {
-        "when": {
-          "state": [
-            "focus",
-            "hover"
-          ],
-          "disabled": "false",
-          "tone": "error",
-          "breakpoint": "0",
-          "_theme": "prospect"
+          "breakpoint": "0"
         },
         "tree": [
           {
@@ -1854,82 +992,6 @@
                   "size": "large",
                   "breakpoint": "0",
                   "_theme": "prospect"
-                }
-              }
-            ]
-          },
-          {
-            "name": "helper",
-            "type": "instance",
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "neutral",
-              "breakpoint": "0"
-            }
-          },
-          {
-            "name": "message",
-            "type": "instance",
-            "component": "_FormHelperText",
-            "values": {
-              "tone": "error",
-              "breakpoint": "0"
-            }
-          }
-        ]
-      },
-      {
-        "when": {
-          "state": [
-            "focus",
-            "hover"
-          ],
-          "disabled": "false",
-          "tone": "error",
-          "breakpoint": "0",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "label",
-            "type": "instance",
-            "component": "_FormLabel",
-            "values": {
-              "breakpoint": "0"
-            }
-          },
-          {
-            "name": "dropzone",
-            "type": "frame",
-            "children": [
-              {
-                "name": "content",
-                "type": "frame",
-                "hidden": true,
-                "children": [
-                  {
-                    "name": "dropzone-label",
-                    "type": "text"
-                  },
-                  {
-                    "name": "or-label",
-                    "type": "text"
-                  }
-                ]
-              },
-              {
-                "name": "button",
-                "type": "instance",
-                "component": "Button",
-                "values": {
-                  "state": "hover",
-                  "disabled": "false",
-                  "loading": "false",
-                  "hierarchy": "tertiary",
-                  "colorScheme": "default",
-                  "size": "large",
-                  "breakpoint": "0",
-                  "_theme": "client"
                 }
               }
             ]
@@ -1967,8 +1029,7 @@
         "state": "default",
         "disabled": "false",
         "tone": "neutral",
-        "breakpoint": "0",
-        "_theme": "prospect"
+        "breakpoint": "0"
       },
       "root": {
         "radius": {
@@ -2193,6 +1254,20 @@
             }
           },
           "button": {
+            "padding": {
+              "top": {
+                "token": "spacing/16"
+              },
+              "right": {
+                "token": "spacing/24"
+              },
+              "bottom": {
+                "token": "spacing/16"
+              },
+              "left": {
+                "token": "spacing/24"
+              }
+            },
             "layout": {
               "direction": "row",
               "mainAlign": "center",
@@ -2278,18 +1353,6 @@
       },
       {
         "when": {
-          "_theme": "client"
-        },
-        "styles": {
-          "button": {
-            "radius": {
-              "token": "border/radius/8"
-            }
-          }
-        }
-      },
-      {
-        "when": {
           "state": "default",
           "tone": "error"
         },
@@ -2310,78 +1373,6 @@
           "dropzone": {
             "stroke": {
               "token": "color/red/600"
-            }
-          }
-        }
-      },
-      {
-        "when": {
-          "breakpoint": "1024",
-          "_theme": "prospect"
-        },
-        "styles": {
-          "button": {
-            "padding": {
-              "top": {
-                "token": "spacing/16"
-              },
-              "right": {
-                "token": "spacing/24"
-              },
-              "bottom": {
-                "token": "spacing/16"
-              },
-              "left": {
-                "token": "spacing/24"
-              }
-            }
-          }
-        }
-      },
-      {
-        "when": {
-          "breakpoint": "1024",
-          "_theme": "client"
-        },
-        "styles": {
-          "button": {
-            "padding": {
-              "top": {
-                "token": "spacing/16"
-              },
-              "right": {
-                "token": "spacing/16"
-              },
-              "bottom": {
-                "token": "spacing/16"
-              },
-              "left": {
-                "token": "spacing/16"
-              }
-            }
-          }
-        }
-      },
-      {
-        "when": {
-          "breakpoint": "0",
-          "_theme": "client"
-        },
-        "styles": {
-          "button": {
-            "padding": {
-              "top": {
-                "token": "spacing/12"
-              },
-              "right": {
-                "token": "spacing/16"
-              },
-              "bottom": {
-                "token": "spacing/12"
-              },
-              "left": {
-                "token": "spacing/16"
-              }
             }
           }
         }
@@ -2596,12 +1587,6 @@
     },
     {
       "level": "info",
-      "rule": "prop-outside-nomenclature",
-      "where": "api.props._theme",
-      "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
-    },
-    {
-      "level": "info",
       "rule": "text-not-linked",
       "where": "layer dropzone-label",
       "message": "Ce texte n'est relié à aucune propriété de texte."
@@ -2613,5 +1598,5 @@
       "message": "Ce texte n'est relié à aucune propriété de texte."
     }
   ],
-  "_tool": "canopee-export-components 0.7.6"
+  "_tool": "canopee-export-components 0.7.13"
 }
