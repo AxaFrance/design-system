@@ -728,42 +728,42 @@
   },
   "issues": [
     {
-      "level": "warning",
+      "level": "info",
       "rule": "raw-value",
       "where": "styles.container.layout.width",
-      "message": "Valeur brute (480) : la relier à une variable.",
+      "message": "Valeur brute (480) : la relier à une variable. Accepté dans Figma.",
       "occurrences": 1
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-unpublished",
       "where": "structure.uses",
       "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold/line-height, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "textStyles.body/1/regular",
       "message": "Valeur absente de toutes les versions publiées de Canopée : body/1/regular."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "textStyles.heading/h2",
       "message": "Valeur absente de toutes les versions publiées de Canopée : heading/h2."
     }
   ],
-  "_tool": "canopee-export-components 0.7.14"
+  "_tool": "canopee-export-components 0.7.15"
 }
