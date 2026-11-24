@@ -4,6 +4,7 @@ import type {
   Card,
   PluginToUiMessage,
   Sentence,
+  Summary,
   UiToPluginMessage,
   VersionView,
 } from "../messages";
@@ -105,6 +106,8 @@ interface State {
   file: string | null;
   changelogFile: string | null;
   issues: IssueDetail[];
+  // the warnings of the generated sheet that the designer accepted
+  accepted: number;
   inProgress: boolean;
   tab: Tab;
   generated: boolean;
@@ -120,6 +123,7 @@ const state: State = {
   file: null,
   changelogFile: null,
   issues: [],
+  accepted: 0,
   inProgress: false,
   tab: "issues",
   generated: false,
@@ -200,7 +204,7 @@ function updateButtons(progress?: string): void {
 const visibleTabs = (): Tab[] =>
   !state.json
     ? ["issues"]
-    : state.issues.length
+    : state.issues.length || state.accepted
       ? TABS
       : TABS.filter((name) => name !== "issues");
 function updateTabs(): void {
@@ -255,7 +259,7 @@ $("tabs").onkeydown = (event) => {
 };
 
 // One row per issue. With nodes to show, it is a button that selects them in Figma.
-const issueRow = (i: IssueDetail, k: number): string => {
+const issueRow = (i: IssueDetail, k: number, acceptable: boolean): string => {
   const inVariants =
     i.variants > 1
       ? '<span class="msg">, dans ' + plural(i.variants, "variante") + "</span>"
@@ -285,20 +289,55 @@ const issueRow = (i: IssueDetail, k: number): string => {
         '">' +
         content +
         "</div>";
+  // only a warning of the generated sheet can be accepted, never an error
+  if (acceptable && i.level === "warning")
+    return (
+      '<li class="with-action">' +
+      body +
+      '<button type="button" class="accept" data-accept="' +
+      k +
+      '">Accepter</button></li>'
+    );
   return "<li>" + body + "</li>";
 };
 
 // The À corriger list: the nomenclature check before the export, the issues of the sheet after.
-// The info issues are not displayed, they stay in the JSON.
-function showIssues(issues: IssueDetail[]): void {
+// The info issues are not displayed, they stay in the JSON. After the generation, a warning has a button
+// Accepter, and the line Avertissements acceptés brings them back.
+function showIssues(
+  issues: IssueDetail[],
+  generated = false,
+  accepted = 0,
+): void {
   state.issues = issues.filter((i) => i.level !== "info");
+  state.accepted = accepted;
   $("issues-ok").hidden = state.issues.length > 0;
-  $("issues-list").innerHTML = state.issues.map(issueRow).join("");
+  $("issues-ok-help").textContent = generated
+    ? "Tous les avertissements ont été acceptés."
+    : "Le composant respecte la nomenclature. Générer le JSON pour calculer sa version et son changelog.";
+  $("issues-list").innerHTML = state.issues
+    .map((i, k) => issueRow(i, k, generated))
+    .join("");
+  $("issues-accepted").hidden = accepted <= 0;
+  $("accepted-text").textContent = "Avertissements acceptés : " + accepted;
   updateCounter("issues", state.issues.length);
   adjustHeight();
 }
 
 $("issues-list").onclick = (event) => {
+  const a = closest(event, "button[data-accept]");
+  if (a) {
+    const d = state.issues[Number(a.dataset.accept)];
+    if (d)
+      send({
+        type: "accept-issue",
+        id: state.id,
+        rule: d.rule,
+        where: d.where,
+        message: d.message,
+      });
+    return;
+  }
   const b = closest(event, "button[data-issue]");
   if (!b) return;
   const d = state.issues[Number(b.dataset.issue)];
@@ -374,7 +413,9 @@ function showSelection(m: Message<"selection">): void {
   $("card").hidden = !m.name;
   $("issues-list").innerHTML = "";
   $("issues-ok").hidden = true;
+  $("issues-accepted").hidden = true;
   state.issues = [];
+  state.accepted = 0;
   updateCounter("issues", 0);
   updateTabs();
   if (!m.name) {
@@ -496,9 +537,19 @@ function showVersion(v: VersionView): void {
   $("version-tile").hidden = false;
   $("tokens-tile").hidden = false;
   const tokens = $("tokens-value");
-  tokens.textContent = v.tokensVersion || "non calculée";
-  tokens.title = v.tokensVersion ? "" : "Voir l'onglet À corriger";
-  tokens.classList.toggle("tokens-error", !v.tokensVersion);
+  // no version because tokens are not published yet is information, a failed computation is an error
+  const unpublished = !v.tokensVersion && v.tokensUnpublished > 0;
+  tokens.textContent =
+    v.tokensVersion || (unpublished ? "pas encore publiés" : "non calculée");
+  tokens.title = v.tokensVersion
+    ? ""
+    : unpublished
+      ? v.tokensUnpublished === 1
+        ? "1 token ou style n'est pas encore dans une version publiée de Canopée."
+        : v.tokensUnpublished +
+          " tokens ou styles ne sont pas encore dans une version publiée de Canopée."
+      : "Voir l'onglet À corriger";
+  tokens.classList.toggle("tokens-error", !v.tokensVersion && !unpublished);
   updateQuestion();
   updateButtons();
   adjustHeight();
@@ -585,6 +636,29 @@ function showChosenVersion(m: Message<"version">): void {
   showVersion(m.version);
 }
 
+// A warning was accepted: the JSON, the summary and the lists follow, the version choices stay.
+function showAcceptedIssue(m: Message<"issues">): void {
+  if (m.id !== state.id || !state.json) return;
+  state.json = m.json;
+  state.changelog = m.changelog;
+  $("json").innerHTML = colorize(m.json);
+  $("changelog").textContent = m.changelog || "";
+  $("summary").textContent = summaryText(m.summary);
+  showChanges(m.changes);
+  showIssues(m.issues, true, m.accepted);
+  updateTabs();
+  updateButtons();
+  adjustHeight();
+}
+
+const summaryText = (s: Summary): string =>
+  plural(s.variables, "variable") +
+  ", " +
+  plural(s.overrides, "surcharge") +
+  ", " +
+  s.kb +
+  " Ko";
+
 function showSheet(m: Message<"sheet">): void {
   if (m.id !== state.id) return;
   state.inProgress = false;
@@ -600,15 +674,9 @@ function showSheet(m: Message<"sheet">): void {
   $("result-title").textContent = m.file;
   $("json").innerHTML = colorize(m.json);
   $("changelog").textContent = m.changelog || "";
-  $("summary").textContent =
-    plural(m.summary.variables, "variable") +
-    ", " +
-    plural(m.summary.overrides, "surcharge") +
-    ", " +
-    m.summary.kb +
-    " Ko";
+  $("summary").textContent = summaryText(m.summary);
   showChanges(m.changes);
-  showIssues(m.issues);
+  showIssues(m.issues, true, m.accepted);
   // first generation: the first tab, « À corriger » if issues remain, « JSON » otherwise.
   // After that, the user's choice stays.
   if (!state.generated) {
@@ -732,6 +800,14 @@ $button("generate").onclick = () => {
   send({ type: "record-export", id: state.id });
 };
 $button("regenerate").onclick = generate;
+// Réafficher: the accepted warnings are forgotten for this component, and the sheet is generated again.
+$button("reveal").onclick = () => {
+  showError("");
+  showSuccess("");
+  state.inProgress = true;
+  updateButtons();
+  send({ type: "reveal-issues", id: state.id });
+};
 $button("copy").onclick = async () => {
   if (!state.json || state.stale) return;
   if (onChangelog()) {
@@ -788,6 +864,8 @@ onmessage = (
       return showCard(m);
     case "version":
       return showChosenVersion(m);
+    case "issues":
+      return showAcceptedIssue(m);
     case "recompute-height":
       return adjustHeight();
     case "error":

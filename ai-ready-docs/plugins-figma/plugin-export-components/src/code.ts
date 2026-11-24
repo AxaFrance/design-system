@@ -50,7 +50,7 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> START EXTRACTION
-const VERSION = "0.7.14";
+const VERSION = "0.7.15";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -1922,6 +1922,8 @@ function groupOverrides(
 
 interface ExtractOptions {
   progress?: (done: number, total: number) => void;
+  // the keys of the warnings that the designer accepted (see issueKey): they become info
+  accepted?: ReadonlySet<string>;
   computeTokensVersion?: (inputs: {
     tokens: Index;
     textStyles: Index;
@@ -2010,7 +2012,12 @@ async function nestedTokens(
 async function extractDetail(
   target: Layer,
   opts?: ExtractOptions,
-): Promise<{ sheet: Sheet; locations: IssueLocation[] }> {
+): Promise<{
+  sheet: Sheet;
+  locations: IssueLocation[];
+  // the issues before the acceptance, sorted, each with its nodes
+  raw: LocatedIssue[];
+}> {
   const options: ExtractOptions = opts || {};
   const ctx = newContext();
   const prep = prepare(target);
@@ -2412,6 +2419,13 @@ async function extractDetail(
     });
   }
 
+  const rawIssues = sortIssues(issues);
+  const rawLocations = locateIssues(ctx, prep, rawIssues, all);
+  const raw = rawIssues.map((issue, k): LocatedIssue => ({
+    issue,
+    location: rawLocations[k],
+  }));
+  const shown = acceptIssues(raw, options.accepted);
   const sheet = {
     formatVersion: FORMAT,
     meta,
@@ -2423,10 +2437,10 @@ async function extractDetail(
     textStyles,
     components,
     modeCollections,
-    issues: sortIssues(issues),
+    issues: shown.map((s) => s.issue),
     _tool: "canopee-export-components " + VERSION,
   };
-  return { sheet, locations: locateIssues(ctx, prep, sheet.issues, all) };
+  return { sheet, locations: shown.map((s) => s.location), raw };
 }
 
 // The Figma nodes designated by each issue, in the order of the list: { ids, variants }.
@@ -2504,13 +2518,54 @@ function sortIssues(list: Issue[]): Issue[] {
     seen[sig] = true;
     out.push(i);
   }
-  return out.sort(
-    (a, b) =>
-      LEVELS.indexOf(a.level) - LEVELS.indexOf(b.level) ||
-      alphaOrder(a.rule, b.rule) ||
-      alphaOrder(a.where, b.where) ||
-      alphaOrder(a.message, b.message),
+  return out.sort(compareIssues);
+}
+function compareIssues(a: Issue, b: Issue): number {
+  return (
+    LEVELS.indexOf(a.level) - LEVELS.indexOf(b.level) ||
+    alphaOrder(a.rule, b.rule) ||
+    alphaOrder(a.where, b.where) ||
+    alphaOrder(a.message, b.message)
   );
+}
+
+// An issue with the nodes it designates.
+interface LocatedIssue {
+  issue: Issue;
+  location: IssueLocation;
+}
+
+// The key of an accepted warning. The message holds the value, so a changed value is a new key.
+const issueKey = (i: Pick<Issue, "rule" | "where" | "message">): string =>
+  i.rule + "|" + i.where + "|" + i.message;
+
+const ACCEPTED_SUFFIX = "Accepté dans Figma.";
+
+// A warning whose key is accepted becomes an info, with the suffix after its message. The list
+// stays in the order of sortIssues. A new generation and a patch of the displayed JSON both
+// go through here, so they give the same issues.
+function acceptIssues(
+  list: LocatedIssue[],
+  accepted?: ReadonlySet<string>,
+): LocatedIssue[] {
+  if (!accepted || !accepted.size) return list;
+  const changed = (s: LocatedIssue): boolean =>
+    s.issue.level === "warning" && accepted.has(issueKey(s.issue));
+  if (!list.some(changed)) return list;
+  return list
+    .map((s) =>
+      changed(s)
+        ? {
+            issue: {
+              ...s.issue,
+              level: "info" as const,
+              message: s.issue.message + " " + ACCEPTED_SUFFIX,
+            },
+            location: s.location,
+          }
+        : s,
+    )
+    .sort((a, b) => compareIssues(a.issue, b.issue));
 }
 
 const serialize = (sheet: Sheet): string =>
@@ -3483,6 +3538,25 @@ const PREVIOUS_KEY = "previous-version";
 // of the parent only: an export of a sub-component alone never reads or writes it, so that it
 // does not erase the difference.
 const SUBS_KEY = "subExports";
+// The keys of the warnings accepted by the designer, as a sorted JSON array without duplicates,
+// in the node that carries the base.
+const ACCEPTED_KEY = "accepted-issues";
+
+function readAcceptedKeys(node: Layer): string[] {
+  try {
+    const value: unknown = JSON.parse(readShared(node, ACCEPTED_KEY) || "[]");
+    return Array.isArray(value)
+      ? value.filter((k): k is string => typeof k === "string")
+      : [];
+  } catch (e) {
+    // An unreadable list accepts nothing: every warning shows again.
+    return [];
+  }
+}
+function writeAcceptedKeys(node: Layer, keys: Iterable<string>): void {
+  const list = [...new Set(keys)].sort(alphaOrder);
+  writeShared(node, ACCEPTED_KEY, list.length ? JSON.stringify(list) : "");
+}
 
 // An attached sub-component: its name, its JSON stored at the last export of the parent
 // (null without a copy: it does not count) and its current JSON.
@@ -3982,8 +4056,8 @@ function sameValues(
 // reader: { versions(): names of the tags, paths(tag): Set of the paths of the tokens file of the tag,
 // values(tag): the same file, to read the value of a path by context }. Without values, the
 // values are not compared.
-// Returns { version, issues }: version is null, with an issue of level warning, when it
-// cannot be computed.
+// Returns { version, issues }: version is null when it cannot be computed. The issue is a warning
+// when the computation failed, and an info when tokens or values are not published yet.
 interface GitHubReader {
   versions(): Promise<string[]>;
   paths(tag: string): Promise<Set<string>>;
@@ -4061,8 +4135,9 @@ async function computeTokensVersion(
   const otherValue = required.filter(
     (r) => union.has(r.path) && !confirmed.has(r.path),
   );
+  // a token or a value not published yet is information, not a failure of the computation
   const issues: Issue[] = missing.map((r): Issue => ({
-    level: "warning",
+    level: "info",
     rule: "token-unpublished",
     where: r.where,
     message:
@@ -4072,7 +4147,7 @@ async function computeTokensVersion(
   }));
   for (const r of otherValue)
     issues.push({
-      level: "warning",
+      level: "info",
       rule: "token-value-unpublished",
       where: r.where,
       message:
@@ -4669,7 +4744,8 @@ interface Watcher {
 }
 let watcher: Watcher | null = null;
 
-const POSITION_PROPERTIES = ["x", "y", "relativeTransform"];
+// Moving the root, or writing plugin data on it (an accepted warning, an export), does not change the component.
+const POSITION_PROPERTIES = ["x", "y", "relativeTransform", "pluginData"];
 
 // Does a change reported by Figma touch the component? ids: the identifiers of the component
 // when the watching started.
@@ -4679,7 +4755,7 @@ function concernsComponent(
   ids: Set<string>,
 ): boolean {
   const c = change;
-  // moving the root on the canvas does not change the component
+  // moving the root on the canvas, or writing plugin data on it, does not change the component
   if (
     c.id === root.id &&
     "properties" in c &&
@@ -4785,6 +4861,9 @@ interface Generation {
   // the attached sub-components, with their stored copy and their current JSON
   subs: SubChange[];
   unreadable: boolean;
+  // the issues before the acceptance, and the accepted keys they were filtered with
+  raw: LocatedIssue[];
+  accepted: Set<string>;
   stored: ChangelogEntry[];
   previous: SheetLike | null;
   choices: Choices;
@@ -4803,6 +4882,11 @@ const describeVersion = (d: Generation): VersionView => ({
   level: d.chosen.level,
   detected: d.info.level,
   tokensVersion: d.sheet.meta.tokensVersion,
+  // the tokens and styles that no published version holds (info issues of the tokens version)
+  tokensUnpublished: d.sheet.issues.filter(
+    (i) =>
+      i.rule === "token-unpublished" || i.rule === "token-value-unpublished",
+  ).length,
   kept: !!d.chosen.kept,
   // the version a delivery would bring: the one of the detected level, or the major if the overhaul is checked
   next: d.info.level
@@ -4826,6 +4910,22 @@ const historyOf = (d: Generation, date: string) =>
 // The Markdown of the changelog, as the interface displays and downloads it.
 const changelogOf = (d: Generation): string =>
   renderChangelog(d.sheet.meta.name, historyOf(d, todayDate()).history);
+
+// The Changements tab of a generation: the differences with the stored base, none without a readable base.
+function changesOf(d: Generation): { sentences: Sentence[] } | null {
+  try {
+    if (d.base) return { sentences: compareSheets(d.base, d.sheet, d.subs) };
+  } catch (e) {
+    // Without a readable reference export, the Changements tab stays empty.
+  }
+  return null;
+}
+
+// The number of warnings of this generation that an accepted key turned into info.
+const acceptedCount = (d: Generation): number =>
+  d.raw.filter(
+    (s) => s.issue.level === "warning" && d.accepted.has(issueKey(s.issue)),
+  ).length;
 
 // One handler per message of the interface. The switch below dispatches them, and its last case
 // stops compiling when a message type of messages.ts has no handler.
@@ -4866,7 +4966,9 @@ const handlers: Handlers = {
     }
     // before the extraction: a change during the generation counts too
     await watch(c.node, c.viaInstance);
-    const { sheet, locations } = await extractDetail(c.node, {
+    const accepted = new Set(readAcceptedKeys(c.node));
+    const { sheet, locations, raw } = await extractDetail(c.node, {
+      accepted,
       progress: (done: number, total: number) =>
         post({ type: "progress", done, total }),
       computeTokensVersion: (inputs: {
@@ -4914,16 +5016,13 @@ const handlers: Handlers = {
       subs,
       unreadable:
         baseRead.state === "unreadable" || historyRead.state === "unreadable",
+      raw,
+      accepted,
       stored: historyRead.value || [],
       previous: previousRead.value,
       choices: {},
     };
-    let changes: { sentences: Sentence[] } | null = null;
-    try {
-      if (base) changes = { sentences: compareSheets(base, sheet, subs) };
-    } catch (e) {
-      // Without a readable reference export, the Changements tab stays empty.
-    }
+    const changes = changesOf(lastGeneration);
     // the designer may have renamed the component before generating
     post({ type: "card", ...describeCard(c) });
     post({
@@ -4933,6 +5032,7 @@ const handlers: Handlers = {
       file: fileName(c.node.name),
       changelogFile: changelogName(c.node.name),
       issues: detailIssues(sheet.issues, locations),
+      accepted: acceptedCount(lastGeneration),
       summary: summarize(sheet, json),
       changes,
       version: describeVersion(lastGeneration),
@@ -4973,6 +5073,52 @@ const handlers: Handlers = {
       version: describeVersion(d),
       changelog: changelogOf(d),
     });
+  },
+  // A warning accepted: its key is stored in the node that carries the base, and the displayed JSON
+  // is rebuilt from the issues before the acceptance, the way a new generation would. The base
+  // is not touched, so neither the stale check nor the check of another export is concerned.
+  "accept-issue": async (msg) => {
+    const d = lastGeneration;
+    if (!d || d.id !== msg.id) return;
+    const key = issueKey(msg);
+    if (
+      !d.raw.some(
+        (s) => s.issue.level === "warning" && issueKey(s.issue) === key,
+      )
+    )
+      return;
+    const node = await figma.getNodeByIdAsync(d.id);
+    if (!node || node.type === "DOCUMENT" || node.type === "PAGE")
+      throw new Error(
+        "Le composant n'existe plus. Générer de nouveau le JSON.",
+      );
+    const keys = new Set(readAcceptedKeys(node));
+    keys.add(key);
+    writeAcceptedKeys(node, keys);
+    d.accepted = keys;
+    const shown = acceptIssues(d.raw, keys);
+    d.sheet.issues = shown.map((s) => s.issue);
+    d.json = serialize(d.sheet);
+    post({
+      type: "issues",
+      id: d.id,
+      json: d.json,
+      issues: detailIssues(
+        d.sheet.issues,
+        shown.map((s) => s.location),
+      ),
+      accepted: acceptedCount(d),
+      summary: summarize(d.sheet, d.json),
+      changes: changesOf(d),
+      changelog: changelogOf(d),
+    });
+  },
+  // Show the accepted warnings again: the list is emptied, then the sheet is generated again.
+  "reveal-issues": async (msg) => {
+    const c = await currentTarget();
+    if (!c || c.node.id !== msg.id) return;
+    writeAcceptedKeys(c.node, []);
+    await handlers.generate({ type: "generate" });
   },
   select: async (msg) => {
     const nodes: SceneNode[] = [];
@@ -5150,6 +5296,10 @@ figma.ui.onmessage = async (msg: UiToPluginMessage) => {
         return await handlers["record-export"](msg);
       case "choose-version":
         return await handlers["choose-version"](msg);
+      case "accept-issue":
+        return await handlers["accept-issue"](msg);
+      case "reveal-issues":
+        return await handlers["reveal-issues"](msg);
       case "select":
         return await handlers.select(msg);
       case "resize":
@@ -5228,6 +5378,10 @@ const testHooks = {
   canonical,
   writeShared,
   readShared,
+  issueKey,
+  acceptIssues,
+  ACCEPTED_KEY,
+  ACCEPTED_SUFFIX,
 };
 
 declare global {

@@ -2617,6 +2617,7 @@ describe("The interface", () => {
         level: "minor",
         detected: "minor",
         tokensVersion: "2.0.0",
+        tokensUnpublished: 0,
         next: "1.1.0",
       },
       v,
@@ -2644,6 +2645,7 @@ describe("The interface", () => {
       sentences: ["Une propriété a été ajoutée", "Une valeur a changé"],
     },
     issues: [],
+    accepted: 0,
   });
   const generated = (v: MockData) => {
     const ui = fakeInterface();
@@ -3034,7 +3036,7 @@ describe("The interface", () => {
     ui.receive({ type: "check-result", id: "1:2", issues: [] });
     expect(ui.el["issues-ok"].hidden).toBe(false);
     expect(ui.source).toMatch(
-      /<div class="empty" id="issues-ok" hidden>[\s\S]*?<p class="empty-title">Rien à corriger<\/p>\s*<p class="help">Le composant respecte la nomenclature\. Générer le JSON pour calculer sa version et son changelog\.<\/p>/,
+      /<div class="empty" id="issues-ok" hidden>[\s\S]*?<p class="empty-title">Rien à corriger<\/p>\s*<p class="help" id="issues-ok-help">Le composant respecte la nomenclature\. Générer le JSON pour calculer sa version et son changelog\.<\/p>/,
     );
   });
   it("a change of component after the generation shows the counters again", () => {
@@ -3105,6 +3107,80 @@ describe("The interface", () => {
     expect(zero.source).toMatch(
       /#tokens-value\.tokens-error \{ color: var\(--red\); \}/,
     );
+  });
+  it("the pill of the tokens says pas encore publiés for tokens not published yet, and keeps non calculée for a failure", () => {
+    const unpublished = generated({
+      tokensVersion: null,
+      tokensUnpublished: 3,
+    });
+    const value = unpublished.el["tokens-value"];
+    expect(value.textContent).toBe("pas encore publiés");
+    expect(value.title).toBe(
+      "3 tokens ou styles ne sont pas encore dans une version publiée de Canopée.",
+    );
+    expect(value.classList.contains("tokens-error")).toBe(false);
+    const one = generated({ tokensVersion: null, tokensUnpublished: 1 });
+    expect(one.el["tokens-value"].title).toBe(
+      "1 token ou style n'est pas encore dans une version publiée de Canopée.",
+    );
+    // a failure of the computation: unchanged
+    const failure = generated({ tokensVersion: null, tokensUnpublished: 0 });
+    expect(failure.el["tokens-value"].textContent).toBe("non calculée");
+    expect(failure.el["tokens-value"].title).toBe("Voir l'onglet À corriger");
+    expect(failure.el["tokens-value"].classList.contains("tokens-error")).toBe(
+      true,
+    );
+    // a version computed: the count does not matter
+    const computed = generated({
+      tokensVersion: "2.0.0",
+      tokensUnpublished: 2,
+    });
+    expect(computed.el["tokens-value"].textContent).toBe("2.0.0");
+    expect(computed.el["tokens-value"].title).toBe("");
+  });
+  it("Accepter: only on a warning of the generated sheet, never on an error or before the generation", () => {
+    const WARNING = { ...ISSUE, location: "Valeur", variants: 0 };
+    const ERROR = { ...ISSUE, level: "error", rule: "read-failed", where: "x" };
+    const ui = fakeInterface();
+    ui.receive(selection);
+    ui.receive({ type: "check-result", id: "1:2", issues: [WARNING] });
+    expect(ui.el["issues-list"].innerHTML).not.toContain("Accepter");
+    ui.receive(
+      Object.assign(sheetWith({}), {
+        issues: [ERROR, WARNING, { ...WARNING, level: "info" }],
+      }),
+    );
+    const html: string = ui.el["issues-list"].innerHTML;
+    expect(html.match(/data-accept=/g)).toHaveLength(1);
+    expect(html).toContain('data-accept="1">Accepter</button>');
+    expect(html).toContain("Erreur");
+    expect(ui.el["issues-accepted"].hidden).toBe(true);
+  });
+  it("the line Avertissements acceptés and Réafficher: shown from one accepted warning, even when none is left", () => {
+    const ui = fakeInterface();
+    ui.receive(selection);
+    ui.receive(Object.assign(sheetWith({}), { issues: [], accepted: 2 }));
+    expect(ui.el["issues-accepted"].hidden).toBe(false);
+    expect(ui.el["accepted-text"].textContent).toBe(
+      "Avertissements acceptés : 2",
+    );
+    expect(ui.source).toMatch(/id="reveal">Réafficher<\/button>/);
+    // the tab stays, to reach the button
+    expect(ui.el["tab-issues"].hidden).toBe(false);
+    expect(ui.el["issues-ok"].hidden).toBe(false);
+    expect(ui.el["issues-ok-help"].textContent).toBe(
+      "Tous les avertissements ont été acceptés.",
+    );
+    ui.el.reveal.onclick();
+    expect(plain(ui.sent.at(-1))).toStrictEqual({
+      type: "reveal-issues",
+      id: "1:2",
+    });
+    const none = fakeInterface();
+    none.receive(selection);
+    none.receive(sheetWith({}));
+    expect(none.el["issues-accepted"].hidden).toBe(true);
+    expect(none.el["tab-issues"].hidden).toBe(true);
   });
   it("the question and the checkboxes share the same box: the question on top, the checkboxes under a rule, one per line", () => {
     const { source } = fakeInterface();
@@ -4242,18 +4318,11 @@ describe("A template, recognized by its page in the library", () => {
       const sheet = await p.__test.extract(d.selection[0], {
         computeTokensVersion: async (i: MockData) => {
           inputs = plain(i);
-          return {
-            version: null,
-            issues: [
-              {
-                level: "warning",
-                rule: "token-unpublished",
-                where: "tokens.color/blue/800",
-                message:
-                  "Token absent de toutes les versions publiées de Canopée : color/blue/800.",
-              },
-            ],
-          };
+          // the real computation, over a Canopée that holds none of these tokens
+          return p.__test.computeTokensVersion(i, {
+            versions: async () => ["2.0.0"],
+            paths: async () => new Set(["spacing.16"]),
+          });
         },
       });
       return { inputs, sheet: plain(sheet) };
@@ -4263,10 +4332,13 @@ describe("A template, recognized by its page in the library", () => {
     // the nested token counts for the version, but stays out of the tokens index of the sheet
     expect(Object.keys(component.sheet.tokens)).not.toContain("color/blue/800");
     const issue = component.sheet.issues.find(
-      (i: MockData) => i.rule === "token-unpublished",
+      (i: MockData) =>
+        i.rule === "token-unpublished" && i.message.includes("color/blue/800"),
     );
     expect(issue.where).toBe("structure.uses");
     expect(issue.message).toContain("dans un composant inclus");
+    // not published yet: information, also for the tokens of an included component
+    expect(issue.level).toBe("info");
     const asset = await seen("icon/star");
     expect(Object.keys(asset.inputs.tokens)).not.toContain("color/blue/800");
   });
@@ -5328,7 +5400,7 @@ describe("The design tokens version", () => {
     expect(r.version).toBe(null);
     expect(r.issues).toStrictEqual([
       {
-        level: "warning",
+        level: "info",
         rule: "token-unpublished",
         where: "textStyles.label/1/semibold",
         message:
@@ -5346,7 +5418,7 @@ describe("The design tokens version", () => {
     expect(r.version).toBe(null);
     expect(r.issues).toStrictEqual([
       {
-        level: "warning",
+        level: "info",
         rule: "token-unpublished",
         where: "tokens.color/blue/700",
         message:
@@ -5584,6 +5656,7 @@ describe("The version in the plugin", () => {
       level: null,
       detected: null,
       tokensVersion: "2.1.0",
+      tokensUnpublished: 0,
       kept: false,
       next: null,
     });
@@ -5627,6 +5700,7 @@ describe("The version in the plugin", () => {
       level: null,
       detected: null,
       tokensVersion: "2.1.0",
+      tokensUnpublished: 0,
       kept: false,
       next: null,
     });
@@ -5892,6 +5966,8 @@ describe("The version in the plugin", () => {
     expect(msg.version.tokensVersion).toBe(null);
     const i = msg.issues.find((x: MockData) => x.rule === "tokens-unreachable");
     expect(i.level).toBe("warning");
+    // a failure is not a token that is not published yet
+    expect(msg.version.tokensUnpublished).toBe(0);
     expect(i.message).toBe(
       "GitHub ne répond pas : la version des design tokens n'a pas pu être calculée.",
     );
@@ -5912,6 +5988,22 @@ describe("The version in the plugin", () => {
       "Token absent de toutes les versions publiées de Canopée : radius/medium.",
     );
     expect(i.location).toBe("Variable radius/medium");
+    // information: it stays in the JSON, and the pill counts it
+    expect(i.level).toBe("info");
+    const inJson = JSON.parse(msg.json).issues.filter(
+      (x: MockData) => x.rule === "token-unpublished",
+    );
+    expect(inJson.map((x: MockData) => x.level)).toStrictEqual(["info"]);
+    expect(msg.version.tokensUnpublished).toBe(1);
+    expect(
+      plain(
+        msg.issues.filter(
+          (x: MockData) =>
+            x.level === "warning" &&
+            /^(tokens-|token-(value-)?unpublished)/.test(x.rule),
+        ),
+      ),
+    ).toStrictEqual([]);
   });
   it("version issues do not change the level: only the sheet counts", async () => {
     const { p } = await exported();
@@ -7332,7 +7424,7 @@ describe("The values of the design tokens", () => {
       version: null,
       issues: [
         {
-          level: "warning",
+          level: "info",
           rule: "token-value-unpublished",
           where: "textStyles.label/1/semibold",
           message:
@@ -7568,5 +7660,227 @@ describe("The values of the design tokens", () => {
         ),
     });
     expect(sheet.meta.tokensVersion).toBe("2.1.0");
+  });
+});
+
+// ------------------------------------------------------------ accepting a warning
+describe("Accepting a warning", () => {
+  const NS = "canopee_sheets";
+  const KEY = "accepted-issues";
+  const variantSet = (doc: MockData) => doc.nodes[1];
+  const generatedPlugin = async (doc = buttonDocument()) => {
+    const { p } = await openPlugin(doc);
+    await p.send({ type: "generate" });
+    return { doc, p, msg: p.lastMessage() };
+  };
+  const warning = (msg: MockData, where: string) =>
+    msg.issues.find(
+      (i: MockData) => i.level === "warning" && i.where === where,
+    );
+  const accept = (p: MockData, i: MockData) =>
+    p.send({
+      type: "accept-issue",
+      id: "S:100",
+      rule: i.rule,
+      where: i.where,
+      message: i.message,
+    });
+  const lastOf = (p: MockData, type: string) =>
+    [...p.messages].reverse().find((m: MockData) => m.type === type);
+  const PADDING = "styles.root.padding.top";
+
+  it("the key of a warning is rule|where|message", async () => {
+    const { p } = await openPlugin();
+    expect(
+      p.__test.issueKey({ rule: "raw-value", where: "styles.a", message: "m" }),
+    ).toBe("raw-value|styles.a|m");
+  });
+  it("accepting: the key is stored in the node of the base, the warning becomes an info with its suffix", async () => {
+    const { doc, p, msg } = await generatedPlugin();
+    const issue = warning(msg, PADDING);
+    expect(issue).toBeTruthy();
+    await accept(p, issue);
+    const key = issue.rule + "|" + issue.where + "|" + issue.message;
+    expect(variantSet(doc).getSharedPluginData(NS, KEY)).toBe(
+      JSON.stringify([key]),
+    );
+    const m = lastOf(p, "issues");
+    expect(m.accepted).toBe(1);
+    expect(
+      m.issues.some(
+        (i: MockData) => i.level === "warning" && i.where === PADDING,
+      ),
+    ).toBe(false);
+    const inJson = JSON.parse(m.json).issues.find(
+      (i: MockData) => i.where === PADDING,
+    );
+    expect(inJson.level).toBe("info");
+    expect(inJson.message).toBe(issue.message + " Accepté dans Figma.");
+    expect(inJson.message.endsWith(" Accepté dans Figma.")).toBe(true);
+    // the issues are sorted again: the info moved after the warnings
+    const levels: string[] = JSON.parse(m.json).issues.map(
+      (i: MockData) => i.level,
+    );
+    expect(levels).toStrictEqual(
+      [...levels].sort(
+        (a, b) =>
+          ["error", "warning", "info"].indexOf(a) -
+          ["error", "warning", "info"].indexOf(b),
+      ),
+    );
+  });
+  it("the patched JSON is identical, byte for byte, to the one of a new generation", async () => {
+    const { p, msg } = await generatedPlugin();
+    await accept(p, warning(msg, PADDING));
+    await accept(p, warning(msg, "styles.left-icon.layout.width"));
+    const patched = lastOf(p, "issues");
+    await p.send({ type: "generate" });
+    const again = lastOf(p, "sheet");
+    expect(patched.json).toBe(again.json);
+    expect(patched.json).not.toBe(msg.json);
+    expect(plain(patched.summary)).toStrictEqual(plain(again.summary));
+    expect(plain(patched.issues)).toStrictEqual(plain(again.issues));
+    expect(plain(patched.changes)).toStrictEqual(plain(again.changes));
+    expect(patched.changelog).toBe(again.changelog);
+    expect(patched.accepted).toBe(2);
+    expect(again.accepted).toBe(2);
+  });
+  it("the patched JSON keeps the chosen version", async () => {
+    const { p, msg } = await generatedPlugin();
+    await p.send({
+      type: "choose-version",
+      id: "S:100",
+      keep: false,
+      overhaul: false,
+      sheetMd: false,
+    });
+    await accept(p, warning(msg, PADDING));
+    const patched = lastOf(p, "issues");
+    expect(JSON.parse(patched.json).meta.version).toBe("1.0.0");
+  });
+  it("the keys are a sorted JSON array without duplicates", async () => {
+    const { doc, p, msg } = await generatedPlugin();
+    const a = warning(msg, "styles.left-icon.layout.width");
+    const b = warning(msg, PADDING);
+    await accept(p, b);
+    await accept(p, a);
+    await accept(p, b);
+    const keys: string[] = JSON.parse(
+      variantSet(doc).getSharedPluginData(NS, KEY),
+    );
+    expect(keys).toHaveLength(2);
+    expect(keys).toStrictEqual([...keys].sort());
+    expect(new Set(keys).size).toBe(2);
+  });
+  it("a modified value brings the warning back, and the old key stays stored", async () => {
+    const { doc, p, msg } = await generatedPlugin();
+    const issue = warning(msg, PADDING);
+    await accept(p, issue);
+    for (const v of variantSet(doc).children) v.paddingTop = 10;
+    await p.send({ type: "generate" });
+    const again = lastOf(p, "sheet");
+    const back = warning(again, PADDING);
+    expect(back).toBeTruthy();
+    expect(back.message).not.toBe(issue.message);
+    expect(again.accepted).toBe(0);
+    expect(
+      JSON.parse(variantSet(doc).getSharedPluginData(NS, KEY)),
+    ).toStrictEqual([issue.rule + "|" + issue.where + "|" + issue.message]);
+    // back to the value: accepted again
+    for (const v of variantSet(doc).children) v.paddingTop = 12;
+    await p.send({ type: "generate" });
+    expect(warning(lastOf(p, "sheet"), PADDING)).toBeUndefined();
+  });
+  it("Réafficher: the list is emptied and the sheet is generated again with the warnings", async () => {
+    const { doc, p, msg } = await generatedPlugin();
+    await accept(p, warning(msg, PADDING));
+    const before = p.messages.filter(
+      (m: MockData) => m.type === "sheet",
+    ).length;
+    await p.send({ type: "reveal-issues", id: "S:100" });
+    expect(variantSet(doc).getSharedPluginData(NS, KEY)).toBe("");
+    const sheets = p.messages.filter((m: MockData) => m.type === "sheet");
+    expect(sheets).toHaveLength(before + 1);
+    const again = sheets.at(-1);
+    expect(again.accepted).toBe(0);
+    expect(again.json).toBe(msg.json);
+    expect(warning(again, PADDING)).toBeTruthy();
+  });
+  it("Réafficher for another component than the displayed one does nothing", async () => {
+    const { doc, p, msg } = await generatedPlugin();
+    await accept(p, warning(msg, PADDING));
+    await p.send({ type: "reveal-issues", id: "S:999" });
+    expect(variantSet(doc).getSharedPluginData(NS, KEY)).not.toBe("");
+  });
+  it("an error is never accepted, even with a key that matches", async () => {
+    const { p } = await openPlugin();
+    const error = {
+      issue: { level: "error", rule: "read-failed", where: "w", message: "m" },
+      location: { ids: [], variants: 0 },
+    };
+    const accepted = new Set(["read-failed|w|m"]);
+    expect(
+      plain(
+        p.__test
+          .acceptIssues([error], accepted)
+          .map((s: MockData) => s.issue.level),
+      ),
+    ).toStrictEqual(["error"]);
+    const { doc, p: q } = await generatedPlugin();
+    await q.send({
+      type: "accept-issue",
+      id: "S:100",
+      rule: "read-failed",
+      where: "w",
+      message: "m",
+    });
+    expect(variantSet(doc).getSharedPluginData(NS, KEY)).toBe("");
+    expect(q.messages.some((m: MockData) => m.type === "issues")).toBe(false);
+  });
+  it("an unreadable list accepts nothing", async () => {
+    const doc = buttonDocument();
+    variantSet(doc).setSharedPluginData(NS, KEY, "pas du JSON");
+    const { msg } = await generatedPlugin(doc);
+    expect(warning(msg, PADDING)).toBeTruthy();
+    expect(msg.accepted).toBe(0);
+  });
+  it("accepting does not touch the base, so an export after it is not refused", async () => {
+    const { doc, p, msg } = await generatedPlugin();
+    await accept(p, warning(msg, PADDING));
+    expect(variantSet(doc).getSharedPluginData(NS, "export")).toBe("");
+    const errors = p.messages.filter(
+      (m: MockData) => m.type === "error",
+    ).length;
+    await p.send({ type: "record-export", id: "S:100" });
+    expect(p.messages.filter((m: MockData) => m.type === "error")).toHaveLength(
+      errors,
+    );
+    const stored = JSON.parse(
+      variantSet(doc).getSharedPluginData(NS, "export"),
+    );
+    expect(stored.issues.find((i: MockData) => i.where === PADDING).level).toBe(
+      "info",
+    );
+  });
+  it("a write of plugin data on the component does not make the JSON stale", async () => {
+    const { p } = await openPlugin();
+    const root = { id: "S:100" };
+    const ids = new Set(["S:100"]);
+    const change = (properties: string[]) => ({
+      type: "PROPERTY_CHANGE",
+      id: "S:100",
+      node: root,
+      properties,
+    });
+    expect(p.__test.concernsComponent(change(["pluginData"]), root, ids)).toBe(
+      false,
+    );
+    expect(
+      p.__test.concernsComponent(change(["x", "pluginData"]), root, ids),
+    ).toBe(false);
+    expect(p.__test.concernsComponent(change(["name"]), root, ids)).toBe(true);
+    expect(
+      p.__test.concernsComponent(change(["name", "pluginData"]), root, ids),
+    ).toBe(true);
   });
 });

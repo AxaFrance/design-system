@@ -3,7 +3,7 @@
 // component set (or of a single component). Returns the JSON of the sheet, as text.
 const ID_COMPONENT_SET = "COMPONENT_SET_ID"
 
-const VERSION = "0.7.14";
+const VERSION = "0.7.15";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -1943,6 +1943,13 @@ async function extractDetail(target, opts) {
                 " n'a pas pu être importé : il manque aux valeurs préférées.",
         });
     }
+    const rawIssues = sortIssues(issues);
+    const rawLocations = locateIssues(ctx, prep, rawIssues, all);
+    const raw = rawIssues.map((issue, k) => ({
+        issue,
+        location: rawLocations[k],
+    }));
+    const shown = acceptIssues(raw, options.accepted);
     const sheet = {
         formatVersion: FORMAT,
         meta,
@@ -1954,10 +1961,10 @@ async function extractDetail(target, opts) {
         textStyles,
         components,
         modeCollections,
-        issues: sortIssues(issues),
+        issues: shown.map((s) => s.issue),
         _tool: "canopee-export-components " + VERSION,
     };
-    return { sheet, locations: locateIssues(ctx, prep, sheet.issues, all) };
+    return { sheet, locations: shown.map((s) => s.location), raw };
 }
 // The Figma nodes designated by each issue, in the order of the list: { ids, variants }.
 // These ids only serve the interface, they never enter the sheet.
@@ -2023,10 +2030,38 @@ function sortIssues(list) {
         seen[sig] = true;
         out.push(i);
     }
-    return out.sort((a, b) => LEVELS.indexOf(a.level) - LEVELS.indexOf(b.level) ||
+    return out.sort(compareIssues);
+}
+function compareIssues(a, b) {
+    return (LEVELS.indexOf(a.level) - LEVELS.indexOf(b.level) ||
         alphaOrder(a.rule, b.rule) ||
         alphaOrder(a.where, b.where) ||
         alphaOrder(a.message, b.message));
+}
+// The key of an accepted warning. The message holds the value, so a changed value is a new key.
+const issueKey = (i) => i.rule + "|" + i.where + "|" + i.message;
+const ACCEPTED_SUFFIX = "Accepté dans Figma.";
+// A warning whose key is accepted becomes an info, with the suffix after its message. The list
+// stays in the order of sortIssues. A new generation and a patch of the displayed JSON both
+// go through here, so they give the same issues.
+function acceptIssues(list, accepted) {
+    if (!accepted || !accepted.size)
+        return list;
+    const changed = (s) => s.issue.level === "warning" && accepted.has(issueKey(s.issue));
+    if (!list.some(changed))
+        return list;
+    return list
+        .map((s) => changed(s)
+        ? {
+            issue: {
+                ...s.issue,
+                level: "info",
+                message: s.issue.message + " " + ACCEPTED_SUFFIX,
+            },
+            location: s.location,
+        }
+        : s)
+        .sort((a, b) => compareIssues(a.issue, b.issue));
 }
 const serialize = (sheet) => JSON.stringify(sheet, null, 2) + "\n";
 

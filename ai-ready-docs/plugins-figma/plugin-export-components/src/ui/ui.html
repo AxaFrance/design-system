@@ -163,12 +163,16 @@
           /></svg
       ></span>
       <p class="empty-title">Rien à corriger</p>
-      <p class="help">
+      <p class="help" id="issues-ok-help">
         Le composant respecte la nomenclature. Générer le JSON pour calculer sa
         version et son changelog.
       </p>
     </div>
     <ul class="list" id="issues-list"></ul>
+    <p class="accepted" id="issues-accepted" hidden>
+      <span id="accepted-text"></span>
+      <button type="button" class="reveal" id="reveal">Réafficher</button>
+    </p>
   </div>
 
   <div

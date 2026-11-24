@@ -33,10 +33,12 @@ const DOCS = path.join(HERE, "..", "..", "..");
 // Message contract between the interface and the plugin. A type renamed on one side only,
 // or that no journey exercises any more, makes the last test fail.
 const TYPES_UI_TO_PLUGIN = [
+  "accept-issue",
   "choose-version",
   "check",
   "generate",
   "record-export",
+  "reveal-issues",
   "resize",
   "resize-manual",
   "select",
@@ -49,6 +51,7 @@ const TYPES_PLUGIN_TO_UI = [
   "error",
   "sheet",
   "init",
+  "issues",
   "stale",
   "progress",
   "recompute-height",
@@ -851,6 +854,97 @@ describe("Interface and plugin: end-to-end journeys", () => {
     expect(ui.plugin.resizes.at(-1)).toStrictEqual([440, 320]);
     ui.noError();
     expect(ui.text()).toMatchSnapshot();
+  });
+});
+
+describe("Accepting a warning, end to end", () => {
+  // the Accepter button of the line that holds this text
+  const acceptButton = (ui: MockData, text: string): HTMLElement => {
+    const rows = [...ui.document.querySelectorAll("li.with-action")].filter(
+      (li: Element) => (li.textContent ?? "").includes(text),
+    );
+    expect(rows.length, `${rows.length} lines "${text}"`).toBe(1);
+    const b = rows[0].querySelector("button.accept");
+    if (!b) throw new Error("no Accepter button");
+    return b as HTMLElement;
+  };
+  const CAPTION = "caption, couleur du texte";
+  // the icon that generates again: it has no text, only a label
+  const regenerate = (ui: MockData): HTMLElement =>
+    ui.document.getElementById("regenerate");
+
+  it("(m) Accepter: the line disappears, the counter and the JSON follow, and a new generation gives the same JSON", async () => {
+    const ui = await openUi(buttonDocument());
+    await ui.clickOn(ui.button("Générer le JSON"));
+    expect(ui.text()).toContain(CAPTION);
+    expect(ui.text()).not.toContain("Avertissements acceptés");
+    expect(ui.text()).toContain("À corriger2");
+    await ui.clickOn(acceptButton(ui, CAPTION));
+    expect(ui.sent).toContain("accept-issue");
+    expect(ui.received).toContain("issues");
+    expect(ui.text()).not.toContain(CAPTION);
+    expect(ui.text()).toContain("À corriger1");
+    expect(ui.text()).toContain("Avertissements acceptés : 1");
+    // the guards of the export do not fire
+    expect(ui.received).not.toContain("stale");
+    expect(ui.text()).not.toContain(
+      "Le composant a changé depuis la génération de ce JSON.",
+    );
+    ui.noError();
+    const shown = ui.text();
+    // the JSON copied is the patched JSON
+    await ui.clickOn(ui.button("Copier le JSON"));
+    expect(ui.received).not.toContain("error");
+    expect(ui.text()).toContain("JSON copié.");
+    const copied = JSON.parse(ui.copies[0]).issues.filter((i: MockData) =>
+      i.where.startsWith("styles.caption."),
+    );
+    expect(copied.map((i: MockData) => i.level)).toStrictEqual(["info"]);
+    expect(copied[0].message).toMatch(/ Accepté dans Figma\.$/);
+    // a new generation: the same JSON, byte for byte
+    await ui.clickOn(regenerate(ui));
+    await ui.clickOn(ui.button("Copier le JSON"));
+    expect(ui.copies[1]).toBe(ui.copies[0]);
+    expect(ui.text()).toContain("Avertissements acceptés : 1");
+    expect(ui.text()).not.toContain(CAPTION);
+    expect(shown).toContain("Avertissements acceptés : 1");
+    ui.noError();
+    expect(shown).toMatchSnapshot();
+  });
+
+  it("(n) Réafficher: the warnings come back and the JSON is the one without acceptance", async () => {
+    const ui = await openUi(buttonDocument());
+    await ui.clickOn(ui.button("Générer le JSON"));
+    await ui.clickOn(ui.button("Copier le JSON"));
+    const original = ui.copies[0];
+    await ui.clickOn(acceptButton(ui, CAPTION));
+    await ui.clickOn(acceptButton(ui, "Propriété Size"));
+    expect(ui.text()).toContain("Avertissements acceptés : 2");
+    expect(ui.text()).toContain("Rien à corriger");
+    // the tab stays, so that Réafficher can be reached
+    await ui.clickOn(ui.button("Réafficher"));
+    expect(ui.sent).toContain("reveal-issues");
+    expect(ui.text()).not.toContain("Avertissements acceptés");
+    expect(ui.text()).toContain(CAPTION);
+    expect(
+      ui.doc.set.getSharedPluginData("canopee_sheets", "accepted-issues"),
+    ).toBe("");
+    await ui.clickOn(ui.button("Copier le JSON"));
+    expect(ui.copies.at(-1)).toBe(original);
+    ui.noError();
+  });
+
+  it("(o) a modified value brings the accepted warning back", async () => {
+    const ui = await openUi(buttonDocument());
+    await ui.clickOn(ui.button("Générer le JSON"));
+    await ui.clickOn(acceptButton(ui, CAPTION));
+    expect(ui.text()).not.toContain(CAPTION);
+    for (const v of ui.doc.set.children)
+      v.children[1].fills = [solid(0.3, 0.3, 0.3)];
+    await ui.clickOn(regenerate(ui));
+    expect(ui.text()).toContain(CAPTION);
+    expect(ui.text()).toContain("Valeur brute (#4D4D4D)");
+    ui.noError();
   });
 });
 

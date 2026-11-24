@@ -206,6 +206,8 @@ Les défauts repérés par l'export : une valeur brute, un écart à la nomencla
 
 Chaque défaut a un `level` (`error`, `warning` ou `info`), une `rule` qui le nomme, un `where` qui dit où il se trouve, et un `message`. Un défaut de style porte aussi `occurrences`, le nombre de variantes où il apparaît. Il est absent quand le défaut ne se retrouve dans aucune variante.
 
+Un avertissement que le designer a accepté dans le plugin passe en `info`, et son `message` se termine par « Accepté dans Figma. ».
+
 ```json
 { "level": "warning", "rule": "raw-value", "where": "styles.root.padding.top", "message": "Valeur brute (12) : la relier à une variable.", "occurrences": 50 }
 ```

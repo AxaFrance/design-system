@@ -26,6 +26,8 @@ export interface VersionView {
   level: string | null;
   detected: string | null;
   tokensVersion: string | null;
+  // tokens and styles that no published version of Canopée holds yet
+  tokensUnpublished: number;
   kept: boolean;
   next: string | null;
 }
@@ -54,6 +56,14 @@ export type UiToPluginMessage =
       overhaul: boolean;
       sheetMd: boolean;
     }
+  | {
+      type: "accept-issue";
+      id: string | null;
+      rule: string;
+      where: string;
+      message: string;
+    }
+  | { type: "reveal-issues"; id: string | null }
   | { type: "select"; ids: string[]; id?: string | null }
   | { type: "resize"; height: number }
   | { type: "resize-manual"; width: number; height: number }
@@ -75,9 +85,20 @@ export type PluginToUiMessage =
       file: string;
       changelogFile: string;
       issues: IssueDetail[];
+      accepted: number;
       summary: Summary;
       changes: { sentences: Sentence[] } | null;
       version: VersionView;
+      changelog: string;
+    }
+  | {
+      type: "issues";
+      id: string;
+      json: string;
+      issues: IssueDetail[];
+      accepted: number;
+      summary: Summary;
+      changes: { sentences: Sentence[] } | null;
       changelog: string;
     }
   | { type: "stale"; id: string }

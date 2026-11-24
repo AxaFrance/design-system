@@ -192,6 +192,42 @@ body.measuring #json {
 .list li {
   padding: 4px 0;
 }
+.list li.with-action {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.list li.with-action .line {
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+}
+.accept,
+.reveal {
+  flex: none;
+  margin: 0;
+  padding: 2px 8px;
+  border: 1px solid var(--figma-color-border, #e6e6e6);
+  border-radius: 4px;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.accept:hover,
+.reveal:hover {
+  background: var(--figma-color-bg-hover, rgba(0, 0, 0, 0.05));
+}
+.accepted {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 8px 0 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--figma-color-border, #e6e6e6);
+  color: var(--figma-color-text-secondary, #737373);
+}
 .where {
   font-weight: 700;
   overflow-wrap: anywhere;
