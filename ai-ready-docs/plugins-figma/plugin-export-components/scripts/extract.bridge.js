@@ -3,7 +3,7 @@
 // component set (or of a single component). Returns the JSON of the sheet, as text.
 const ID_COMPONENT_SET = "COMPONENT_SET_ID"
 
-const VERSION = "0.7.13";
+const VERSION = "0.7.14";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -1275,8 +1275,14 @@ function stylesIssues(styles, drawn, native) {
             // the size of the component itself follows its container in a mockup, and a
             // minimum or maximum size is a layout guard: neither is meant to carry a token
             const location = path.replace(/^styles\.(default\.|overrides\[[^\]]*\]\.(styles\.)?)?/, "");
-            const rootSize = size && (location === "root.layout.width" || location === "root.layout.height");
-            const minMax = ["minWidth", "maxWidth", "minHeight", "maxHeight"].includes(key);
+            const rootSize = size &&
+                (location === "root.layout.width" || location === "root.layout.height");
+            const minMax = [
+                "minWidth",
+                "maxWidth",
+                "minHeight",
+                "maxHeight",
+            ].includes(key);
             const excluded = rootSize ||
                 minMax ||
                 (size &&

@@ -50,7 +50,7 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> START EXTRACTION
-const VERSION = "0.7.13";
+const VERSION = "0.7.14";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -1672,10 +1672,14 @@ function stylesIssues(
         "",
       );
       const rootSize =
-        size && (location === "root.layout.width" || location === "root.layout.height");
-      const minMax = ["minWidth", "maxWidth", "minHeight", "maxHeight"].includes(
-        key,
-      );
+        size &&
+        (location === "root.layout.width" || location === "root.layout.height");
+      const minMax = [
+        "minWidth",
+        "maxWidth",
+        "minHeight",
+        "maxHeight",
+      ].includes(key);
       const excluded =
         rootSize ||
         minMax ||
@@ -1962,7 +1966,8 @@ async function nestedTokens(
       }
       const name = componentName(mc) || "";
       if (!name || /^(icon|pictogram|logo|flag|native)\//.test(name)) continue;
-      const inside = typeof n.findAll === "function" ? n.findAll(() => true) : [];
+      const inside =
+        typeof n.findAll === "function" ? n.findAll(() => true) : [];
       for (const l of [n, ...inside]) {
         if (isRecord(l.boundVariables))
           for (const v of Object.values(l.boundVariables)) collect(v);
@@ -2150,7 +2155,11 @@ async function extractDetail(
   const exposedLayers: InstanceLayer[] = [];
   // an instance exposed inside another instance belongs to that one: its own sheet lists it
   const insideInstance = (n: Layer): boolean => {
-    for (let p = n.parent; p && p.type !== "COMPONENT" && p.type !== "COMPONENT_SET"; p = p.parent)
+    for (
+      let p = n.parent;
+      p && p.type !== "COMPONENT" && p.type !== "COMPONENT_SET";
+      p = p.parent
+    )
       if (p.type === "INSTANCE") return true;
     return false;
   };
@@ -4334,6 +4343,58 @@ interface Stored<T> {
 const isHistory = (value: unknown): value is ChangelogEntry[] =>
   Array.isArray(value);
 const isSheetLike = (value: unknown): value is SheetLike => isRecord(value);
+// Figma limits each shared plugin data entry to 100 kB: a longer text is split into
+// several entries. key holds the first chunk, key.1, key.2... the next ones, and
+// key.chunks the number of chunks (empty when the text fits in one).
+const MAX_CHUNK_BYTES = 90000;
+function splitByBytes(text: string, max: number): string[] {
+  const chunks: string[] = [];
+  let current = "";
+  let size = 0;
+  // iterating by code point never cuts a surrogate pair
+  for (const c of text) {
+    const w = byteSize(c);
+    if (size + w > max) {
+      chunks.push(current);
+      current = "";
+      size = 0;
+    }
+    current += c;
+    size += w;
+  }
+  chunks.push(current);
+  return chunks;
+}
+function storedChunkCount(node: Layer, key: string): number {
+  const n = parseInt(
+    node.getSharedPluginData(BASE_NAMESPACE, key + ".chunks") || "",
+    10,
+  );
+  return n > 1 ? n : 1;
+}
+function readShared(node: Layer, key: string): string {
+  let text = node.getSharedPluginData(BASE_NAMESPACE, key) || "";
+  if (!text) return "";
+  const count = storedChunkCount(node, key);
+  for (let i = 1; i < count; i++)
+    text += node.getSharedPluginData(BASE_NAMESPACE, key + "." + i) || "";
+  return text;
+}
+function writeShared(node: Layer, key: string, text: string): void {
+  const before = storedChunkCount(node, key);
+  const chunks = splitByBytes(text, MAX_CHUNK_BYTES);
+  // the next chunks, then the count, then the key last: a failed write leaves the previous key
+  for (let i = 1; i < chunks.length; i++)
+    node.setSharedPluginData(BASE_NAMESPACE, key + "." + i, chunks[i]);
+  // an unchanged count is not written again, so a short text leaves no extra entry
+  const count = chunks.length > 1 ? String(chunks.length) : "";
+  if (node.getSharedPluginData(BASE_NAMESPACE, key + ".chunks") !== count)
+    node.setSharedPluginData(BASE_NAMESPACE, key + ".chunks", count);
+  node.setSharedPluginData(BASE_NAMESPACE, key, chunks[0]);
+  // the chunks left over from a previous longer write
+  for (let i = chunks.length; i < before; i++)
+    node.setSharedPluginData(BASE_NAMESPACE, key + "." + i, "");
+}
 function readStored<T>(
   node: Layer,
   key: string,
@@ -4341,7 +4402,7 @@ function readStored<T>(
 ): Stored<T> {
   let text = "";
   try {
-    text = node.getSharedPluginData(BASE_NAMESPACE, key) || "";
+    text = readShared(node, key);
     let legacy = false;
     if (!text) {
       text =
@@ -5000,7 +5061,7 @@ const handlers: Handlers = {
     }
     const base = JSON.stringify(d.sheet);
     try {
-      node.setSharedPluginData(BASE_NAMESPACE, BASE_KEY, base);
+      writeShared(node, BASE_KEY, base);
     } catch (e) {
       post({
         type: "error",
@@ -5022,7 +5083,7 @@ const handlers: Handlers = {
       for (const s of d.subs) copies[s.name] = s.sheet;
       const text = JSON.stringify(copies);
       try {
-        node.setSharedPluginData(BASE_NAMESPACE, SUBS_KEY, text);
+        writeShared(node, SUBS_KEY, text);
       } catch (e) {
         post({
           type: "error",
@@ -5045,7 +5106,7 @@ const handlers: Handlers = {
       consequence: string,
     ): void => {
       try {
-        node.setSharedPluginData(BASE_NAMESPACE, key, text);
+        writeShared(node, key, text);
       } catch (e) {
         post({
           type: "error",
@@ -5165,6 +5226,8 @@ const testHooks = {
   matches,
   effectiveStyles,
   canonical,
+  writeShared,
+  readShared,
 };
 
 declare global {

@@ -50,7 +50,7 @@ Chaque composant a sa propre version `X.Y.Z`, indépendante de celle du code. Un
 
 Un sous-composant rattaché compte comme le composant lui-même. Son nom commence par `_`, le composant l'utilise, directement ou dans un autre sous-composant rattaché, et son premier lien de documentation pointe vers la même fiche. Exemple : _Tab pour Tabs. À chaque génération, le plugin extrait ces sous-composants et les compare à la copie gardée dans le component set du composant, à la clé `subExports`. Le changement le plus fort donne le niveau, et le changelog du composant reprend ceux de ses sous-composants, précédés de leur nom. L'export du composant met cette copie à jour, et un export du sous-composant seul n'y touche pas. Sans copie, comme au premier export avec la version 0.7.11, un sous-composant ne compte pas.
 
-La version précédente et la base de comparaison sont lues dans le component set, au namespace `canopee_sheets` et à la clé `export` (`getSharedPluginData`). Si cette donnée n'existe pas, le composant n'a pas de version et reçoit `1.0.0`. Si l'écriture de la base échoue, par exemple à cause de la taille, le plugin affiche l'erreur dans la fenêtre et n'écrit ni l'historique ni la version précédente : la version n'est alors pas enregistrée, et le prochain export repart de la version précédente.
+La version précédente et la base de comparaison sont lues dans le component set, au namespace `canopee_sheets` et à la clé `export` (`getSharedPluginData`). Si cette donnée n'existe pas, le composant n'a pas de version et reçoit `1.0.0`. Une base de plus de 100 Ko se découpe en plusieurs entrées (`export`, `export.1`, `export.2`, avec le nombre d'entrées dans `export.chunks`), que le plugin recolle à la lecture. Si l'écriture de la base échoue, par exemple parce que Figma la refuse, le plugin affiche l'erreur dans la fenêtre et n'écrit ni l'historique ni la version précédente : la version n'est alors pas enregistrée, et le prochain export repart de la version précédente.
 
 Une donnée rangée dans le component set est absente, lisible ou illisible. Absente, elle vaut une première version. Illisible, elle n'est jamais écrasée sans message :
 
@@ -96,7 +96,7 @@ Les cas particuliers :
 
 ### Le stockage de l'historique
 
-Le plugin range l'historique dans le component set, au namespace `canopee_sheets`, à côté de la base. Figma limite chaque entrée à 100 Ko, donc chaque donnée a sa clé.
+Le plugin range l'historique dans le component set, au namespace `canopee_sheets`, à côté de la base. Figma limite chaque entrée à 100 Ko, donc chaque donnée a sa clé. Une donnée de plus de 100 Ko se découpe en plusieurs entrées : la clé garde le premier morceau, `clé.1`, `clé.2` les suivants, et `clé.chunks` le nombre de morceaux. Le plugin les recolle à la lecture.
 
 - `changelog` : le tableau JSON des entrées `{ version, date, added, modified, removed }`, la plus récente en premier. La date est celle de l'export, au format `AAAA-MM-JJ`. Le fichier téléchargé l'affiche au format `JJ/MM/AA`.
 - `previous-version` : le JSON exporté de la version précédente. Il sert à recalculer l'entrée d'une version gardée.

@@ -4071,9 +4071,12 @@ describe("A template, recognized by its page in the library", () => {
     const variant = d.selection[0].children[0];
     const base = (name: string, id: string) =>
       connect(
-        layer("COMPONENT", name, { id, key: "KEY-" + name, width: 200, height: 40 }, [
-          layer("TEXT", "label", { characters: "x", autoRename: false }),
-        ]),
+        layer(
+          "COMPONENT",
+          name,
+          { id, key: "KEY-" + name, width: 200, height: 40 },
+          [layer("TEXT", "label", { characters: "x", autoRename: false })],
+        ),
       );
     for (const [layerName, comp] of [
       ["label", base("_FormLabel", "C:21")],
@@ -4103,14 +4106,20 @@ describe("A template, recognized by its page in the library", () => {
     const d = inPage("Forms", { description: "Le champ." });
     const variant = d.selection[0].children[0];
     const link = connect(
-      layer("COMPONENT", "Link", { id: "C:41", key: "KEY-LINK", width: 80, height: 24 }, [
-        layer("TEXT", "label", { characters: "x", autoRename: false }),
-      ]),
+      layer(
+        "COMPONENT",
+        "Link",
+        { id: "C:41", key: "KEY-LINK", width: 80, height: 24 },
+        [layer("TEXT", "label", { characters: "x", autoRename: false })],
+      ),
     );
     const formLabel = connect(
-      layer("COMPONENT", "_FormLabel", { id: "C:42", key: "KEY-FL", width: 300, height: 80 }, [
-        layer("TEXT", "label", { characters: "x", autoRename: false }),
-      ]),
+      layer(
+        "COMPONENT",
+        "_FormLabel",
+        { id: "C:42", key: "KEY-FL", width: 300, height: 80 },
+        [layer("TEXT", "label", { characters: "x", autoRename: false })],
+      ),
     );
     const outer = connect(
       layer("INSTANCE", "label", {
@@ -4131,12 +4140,17 @@ describe("A template, recognized by its page in the library", () => {
     outer.children = [inner];
     variant.children.push(outer);
     const { sheet } = await exportSheet(d);
-    expect(sheet.api.exposed.map((e: MockData) => e.from)).toStrictEqual(["_FormLabel"]);
+    expect(sheet.api.exposed.map((e: MockData) => e.from)).toStrictEqual([
+      "_FormLabel",
+    ]);
   });
   it("a hidden layer keeps its size without an issue, Figma gives it a fixed size", async () => {
     const d = inPage("Forms", { description: "Le champ." });
     const variant = d.selection[0].children[0];
-    for (const [name, visible] of [["hidden-box", false], ["shown-box", true]] as const) {
+    for (const [name, visible] of [
+      ["hidden-box", false],
+      ["shown-box", true],
+    ] as const) {
       const frame = connect(
         layer("FRAME", name, {
           visible,
@@ -4151,14 +4165,25 @@ describe("A template, recognized by its page in the library", () => {
     }
     const { sheet } = await exportSheet(d);
     const where = issuesFor(sheet, "raw-value").map((i: MockData) => i.where);
-    expect(where.some((w: string) => w.startsWith("styles.hidden-box."))).toBe(false);
-    expect(where.some((w: string) => w.startsWith("styles.shown-box."))).toBe(true);
+    expect(where.some((w: string) => w.startsWith("styles.hidden-box."))).toBe(
+      false,
+    );
+    expect(where.some((w: string) => w.startsWith("styles.shown-box."))).toBe(
+      true,
+    );
   });
   it("an element drawn by the browser (native/) keeps its size without an issue", async () => {
     const d = inPage("Forms", { description: "Le champ." });
     const variant = d.selection[0].children[0];
     const comp = (name: string, id: string) =>
-      connect(layer("COMPONENT", name, { id, key: "KEY-" + id, width: 4, height: 24 }));
+      connect(
+        layer("COMPONENT", name, {
+          id,
+          key: "KEY-" + id,
+          width: 4,
+          height: 24,
+        }),
+      );
     for (const [name, mc] of [
       ["cursor", comp("native/Cursor", "C:31")],
       ["badge", comp("Badge", "C:32")],
@@ -4178,7 +4203,9 @@ describe("A template, recognized by its page in the library", () => {
     }
     const { sheet } = await exportSheet(d);
     const where = issuesFor(sheet, "raw-value").map((i: MockData) => i.where);
-    expect(where.some((w: string) => w.startsWith("styles.cursor."))).toBe(false);
+    expect(where.some((w: string) => w.startsWith("styles.cursor."))).toBe(
+      false,
+    );
     expect(where.some((w: string) => w.startsWith("styles.badge."))).toBe(true);
   });
   it("the tokens version counts the tokens of a nested component, not those of an asset", async () => {
@@ -4186,7 +4213,12 @@ describe("A template, recognized by its page in the library", () => {
       const d = inPage("Forms", { description: "Le champ." });
       const variant = d.selection[0].children[0];
       const mc = connect(
-        layer("COMPONENT", componentName, { id: "C:61", key: "KEY-C:61", width: 8, height: 8 }),
+        layer("COMPONENT", componentName, {
+          id: "C:61",
+          key: "KEY-C:61",
+          width: 8,
+          height: 8,
+        }),
       );
       const instance = connect(
         layer(
@@ -4217,7 +4249,8 @@ describe("A template, recognized by its page in the library", () => {
                 level: "warning",
                 rule: "token-unpublished",
                 where: "tokens.color/blue/800",
-                message: "Token absent de toutes les versions publiées de Canopée : color/blue/800.",
+                message:
+                  "Token absent de toutes les versions publiées de Canopée : color/blue/800.",
               },
             ],
           };
@@ -4229,7 +4262,9 @@ describe("A template, recognized by its page in the library", () => {
     expect(Object.keys(component.inputs.tokens)).toContain("color/blue/800");
     // the nested token counts for the version, but stays out of the tokens index of the sheet
     expect(Object.keys(component.sheet.tokens)).not.toContain("color/blue/800");
-    const issue = component.sheet.issues.find((i: MockData) => i.rule === "token-unpublished");
+    const issue = component.sheet.issues.find(
+      (i: MockData) => i.rule === "token-unpublished",
+    );
     expect(issue.where).toBe("structure.uses");
     expect(issue.message).toContain("dans un composant inclus");
     const asset = await seen("icon/star");
@@ -4239,7 +4274,14 @@ describe("A template, recognized by its page in the library", () => {
     const d = inPage("Forms", { description: "Le champ." });
     const variant = d.selection[0].children[0];
     const comp = (name: string, id: string) =>
-      connect(layer("COMPONENT", name, { id, key: "KEY-" + id, width: 200, height: 300 }));
+      connect(
+        layer("COMPONENT", name, {
+          id,
+          key: "KEY-" + id,
+          width: 200,
+          height: 300,
+        }),
+      );
     for (const [name, mc] of [
       ["picker", comp("native/DatePicker", "C:41")],
       ["panel", comp("Panel", "C:42")],
@@ -4256,7 +4298,14 @@ describe("A template, recognized by its page in the library", () => {
           paddingRight: 16,
           paddingBottom: 16,
           paddingLeft: 16,
-          fills: [{ type: "SOLID", visible: true, opacity: 1, color: { r: 1, g: 1, b: 1 } }],
+          fills: [
+            {
+              type: "SOLID",
+              visible: true,
+              opacity: 1,
+              color: { r: 1, g: 1, b: 1 },
+            },
+          ],
         }),
         variant,
       );
@@ -4264,7 +4313,9 @@ describe("A template, recognized by its page in the library", () => {
     }
     const { sheet } = await exportSheet(d);
     const where = issuesFor(sheet, "raw-value").map((i: MockData) => i.where);
-    expect(where.some((w: string) => w.startsWith("styles.picker."))).toBe(false);
+    expect(where.some((w: string) => w.startsWith("styles.picker."))).toBe(
+      false,
+    );
     expect(where.some((w: string) => w.startsWith("styles.panel."))).toBe(true);
   });
   it("a description without a mention is reported, and the level stays written", async () => {
@@ -5765,6 +5816,74 @@ describe("The version in the plugin", () => {
       "previous version not written",
     ).toBe("");
   });
+  const longDescription = (n: number, unit = "Un bouton très long. ") =>
+    unit.repeat(Math.ceil(n / unit.length)).slice(0, n);
+  it("a base over 100 kB is split into several entries, read back identically, and the version does not go up", async () => {
+    const doc = buttonDocument();
+    doc.nodes[1].shareLimit = 100000;
+    variantSet(doc).componentPropertyDefinitions["label#1:1"].defaultValue =
+      longDescription(230000);
+    const { p } = await generatedPlugin(doc);
+    await p.send({ type: "record-export", id: "S:100" });
+    expect(p.lastMessage().type).not.toBe("error");
+    const stored = variantSet(doc).getSharedPluginData(NS, "export");
+    expect(stored.length).toBeLessThan(100000);
+    expect(
+      Number(variantSet(doc).getSharedPluginData(NS, "export.chunks")),
+    ).toBeGreaterThan(2);
+    const back = JSON.parse(
+      [
+        stored,
+        ...[1, 2, 3, 4].map((i) =>
+          variantSet(doc).getSharedPluginData(NS, "export." + i),
+        ),
+      ].join(""),
+    );
+    expect(back.meta.version).toBe("1.0.0");
+    await p.send({ type: "generate" });
+    const v = p.lastMessage().version;
+    expect(v.none).toBe(true);
+    expect(v.current).toBe("1.0.0");
+    expect(v.version).toBe("1.0.0");
+    expect(plain(p.lastMessage().changes.sentences)).toStrictEqual([]);
+  });
+  it("a shorter write after a long one empties the extra chunks", async () => {
+    const doc = buttonDocument();
+    doc.nodes[1].shareLimit = 100000;
+    variantSet(doc).componentPropertyDefinitions["label#1:1"].defaultValue =
+      longDescription(230000);
+    const { p } = await exported(doc);
+    expect(
+      Number(variantSet(doc).getSharedPluginData(NS, "export.chunks")),
+    ).toBeGreaterThan(2);
+    variantSet(doc).componentPropertyDefinitions["label#1:1"].defaultValue =
+      "Label";
+    await p.send({ type: "generate" });
+    await p.send({ type: "record-export", id: "S:100" });
+    expect(p.lastMessage().type).not.toBe("error");
+    expect(variantSet(doc).getSharedPluginData(NS, "export.chunks")).toBe("");
+    for (const i of [1, 2, 3, 4])
+      expect(variantSet(doc).getSharedPluginData(NS, "export." + i)).toBe("");
+    expect(
+      JSON.parse(variantSet(doc).getSharedPluginData(NS, "export")).meta
+        .tokensVersion,
+    ).toBeDefined();
+  });
+  it("a text with accents and emoji cut at a chunk boundary is read back identically", async () => {
+    const node = variantSet(buttonDocument());
+    const { plugin } = await button();
+    const { writeShared, readShared } = plugin.__test;
+    // 4-byte emoji and 2-byte accents: each unit puts the boundary on another character
+    for (const unit of ["é😀", "😀é", "a😀é", "😀😀é"]) {
+      const text = unit.repeat(40000);
+      node.shareLimit = 100000;
+      writeShared(node, "k", text);
+      expect(Number(node.getSharedPluginData(NS, "k.chunks"))).toBeGreaterThan(
+        1,
+      );
+      expect(readShared(node, "k")).toBe(text);
+    }
+  });
   it("offline: tokensVersion null and tokens-unreachable issue, the JSON is produced", async () => {
     const doc = buttonDocument();
     doc.network = fakeNetwork({ outage: true });
@@ -6601,7 +6720,10 @@ describe("The sub-components attached to a component", () => {
     const tabVariant = subOf(doc).children[0];
     tabVariant.children.push(
       connect(
-        layer("INSTANCE", "mark", { id: "MI:1", mainComponent: mark.children[0] }),
+        layer("INSTANCE", "mark", {
+          id: "MI:1",
+          mainComponent: mark.children[0],
+        }),
         tabVariant,
       ),
     );
