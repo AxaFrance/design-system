@@ -31,7 +31,7 @@ Le titre de l'étape est un titre de niveau 2, sous le titre de la page.
 
 ### showMessage=true
 
-Un _FormHelperText sous les barres, neutre et sans icône par défaut. Il donne une aide qui vaut pour toute l'étape, comme « Sauf mention du contraire, tous les champs sont obligatoires. » Il peut aussi confirmer l'étape précédente ou signaler une erreur ou un avertissement.
+Un _FormHelperText sous les barres, neutre et sans icône par défaut. Il donne une aide qui vaut pour toute l'étape, comme « Sauf mention du contraire, tous les champs sont obligatoires. » Il peut aussi confirmer l'étape précédente. Le message ne sert qu'au Stepper : une erreur ou un avertissement sur le formulaire de l'étape va dans une Alert, au-dessus du formulaire.
 
 ### breakpoint=0
 
@@ -50,6 +50,7 @@ Sur un écran de moins de 1024 px de large. Les textes utilisent la version mobi
 - Afficher le pourcentage d'une barre.
 - Déplacer le Stepper ailleurs que sous le Header, au-dessus du contenu de l'étape.
 - Modifier localement la taille, l'espacement ou les couleurs du Stepper, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system.
+- Une erreur ou un avertissement sur le formulaire de l'étape, dans le message du Stepper : prendre Alert.
 
 ## Contenu
 
