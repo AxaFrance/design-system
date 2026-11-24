@@ -10028,5 +10028,5 @@
       "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-export-components 0.7.13"
+  "_tool": "canopee-export-components 0.7.14"
 }
