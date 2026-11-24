@@ -15,6 +15,7 @@ Dans la colonne Valeurs, une liste de valeurs séparées par des virgules est im
 | open, selected, current | Variante | true, false | L'état de l'élément : ouvert, sélectionné, en cours. Le nom est celui de l'attribut HTML ou ARIA, sans préfixe. Exemple : selected, jamais isSelected. | Oui, parfois sous un autre nom |
 | required | Booléen | true, false | Le champ est obligatoire. Il affiche la marque des champs obligatoires sans changer le reste du rendu. | Oui |
 | filled | Variante | true, false | Le champ contient une valeur. | Non, Figma seulement. Le code lit la valeur saisie. |
+| scrollable | Variante | true, false | Le contenu dépasse la hauteur du composant et défile. | Non, Figma seulement. Le code détecte le défilement. |
 | checked | Variante | true, false, mixed | La case, le bouton radio ou l'interrupteur est coché. mixed pour une case qui regroupe des cases cochées et d'autres non. | Oui, parfois sous un autre nom |
 | loading | Variante | true, false | Le composant est en train de charger. Seulement si le chargement est sa seule étape, sinon c'est status. Jamais une valeur de state, qui est réservé aux interactions. | Oui, parfois sous un autre nom |
 | status | Variante | Propres au composant | L'étape en cours, pour un composant qui en a plusieurs, chargement compris. S'il n'y a que le chargement, c'est loading. Exemple : processing et completed pour un envoi de fichier. | Oui, sous un autre nom |

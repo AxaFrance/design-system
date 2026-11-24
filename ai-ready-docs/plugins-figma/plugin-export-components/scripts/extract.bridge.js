@@ -3,7 +3,7 @@
 // component set (or of a single component). Returns the JSON of the sheet, as text.
 const ID_COMPONENT_SET = "COMPONENT_SET_ID"
 
-const VERSION = "0.7.12";
+const VERSION = "0.7.13";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -37,6 +37,7 @@ const ORDER = [
         "selected",
         "current",
         "filled",
+        "scrollable",
         "checked",
         "loading",
         "status",
@@ -89,6 +90,7 @@ const TRUE_FALSE_VARIANTS = {
     selected: ["true", "false"],
     current: ["true", "false"],
     filled: ["true", "false"],
+    scrollable: ["true", "false"],
     loading: ["true", "false"],
     checked: ["true", "false", "mixed"],
     first: ["true", "false"],
@@ -121,6 +123,7 @@ const PRIORITY = [
     "even",
     "sort",
     "filled",
+    "scrollable",
     "checked",
     "selected",
     "open",
