@@ -168,6 +168,7 @@ Ces noms désignent Radio. Le seul nom à employer est Radio.
 - **Groupe de Radio.** Aucun composant ne regroupe des Radio avec un titre. Le Fieldset du code est une carte avec un titre, pas un groupe d'options. En attendant : écrire le `<fieldset>` et sa `<legend>` à la main, comme dans l'exemple.
 - **Contraste au hover.** Au hover, le contour color/gray/500 atteint 2,57:1 sur le halo color/blue/100, sous les 3:1 du WCAG. En attendant : signaler.
 - **Plugin Copilot.** Le plugin Copilot décrit le bouton radio seul, pas `RadioText`. En attendant : suivre l'exemple de cette fiche.
+- **Message sous le groupe.** Le _FormHelperText n'est pas publié dans la librairie Figma, comme tout sous-composant. Le designer ne peut donc pas le poser seul sous un groupe de Radio. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

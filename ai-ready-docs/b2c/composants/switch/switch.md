@@ -148,6 +148,7 @@ Ces noms désignent Switch. Le seul nom à employer est Switch.
 - **Hover dans le code.** Le code n'a pas de hover (`ToggleCommon.css`). En attendant : signaler.
 - **Anneau de focus dans le code.** Le code trace l'anneau autour de la piste seule (`ToggleCommon.css:69`), car le libellé s'écrit à part. En attendant : signaler.
 - **Couleurs dans le code.** Le code diffère de Figma sur quatre couleurs. La piste en checked=false est d'un gris plus clair (`ToggleCommon.css:3`). La piste en checked=true est d'un bleu plus foncé (`ToggleCommon.css:75`). L'anneau de focus est bleu foncé (`ToggleCommon.css:5`). En disabled=true, la piste et l'icône sont en gris moyen (`ToggleCommon.css:22`). Les couleurs de Figma font foi. En attendant : signaler.
+- **Message sous le Switch.** Le _FormHelperText n'est pas publié dans la librairie Figma, comme tout sous-composant. Le designer ne peut donc pas le poser seul sous un Switch. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

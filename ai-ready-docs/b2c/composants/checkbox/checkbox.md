@@ -168,6 +168,7 @@ Ces noms désignent Checkbox. Le seul nom à employer est Checkbox.
 - **Groupe de Checkbox.** Aucun composant ne regroupe des Checkbox avec un titre. Le Fieldset du code est une carte avec un titre, pas un groupe d'options. En attendant : écrire le `<fieldset>` et sa `<legend>` à la main.
 - **Nombre d'options imposé.** Quand un groupe demande un nombre minimal ou maximal d'options, la fiche ne dit pas comment signaler l'erreur, car une Checkbox cochée ne peut pas passer en tone=error. En attendant : signaler.
 - **Contraste au hover.** Au hover, le contour color/gray/500 atteint 2,57:1 sur le halo color/blue/100, sous les 3:1 du WCAG. En attendant : signaler.
+- **Message sous la Checkbox ou le groupe.** Le _FormHelperText n'est pas publié dans la librairie Figma, comme tout sous-composant. Le designer ne peut donc pas le poser seul sous une Checkbox ou un groupe. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 
