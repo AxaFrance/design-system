@@ -131,9 +131,8 @@ const [niveau, setNiveau] = useState(1);
 | stepsCount | `stepsCount` |
 | Les boutons moins et plus, des IconButton | Deux `ClickIcon`, nommés par `minusAriaLabel` et `plusAriaLabel` |
 | Les barres, des _LevelSelectorStep | Des boutons radio, sans composant à part |
-| _theme | Le chemin d'import, `/prospect` ou `/client` |
 
-breakpoint n'a pas d'équivalent dans le code. Le LevelSelector ne garde pas le niveau choisi : la page passe `value` et le met à jour dans `onChange`. Il n'accepte pas `name`, et son niveau ne part pas avec un formulaire HTML.
+Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. breakpoint n'a pas d'équivalent dans le code. Le LevelSelector ne garde pas le niveau choisi : la page passe `value` et le met à jour dans `onChange`. Il n'accepte pas `name`, et son niveau ne part pas avec un formulaire HTML.
 
 ## Noms à ne pas employer
 
@@ -143,13 +142,13 @@ Ces noms désignent LevelSelector. Le seul nom à employer est LevelSelector.
 
 ## Décisions
 
-- **1.0.0 - 20/11/26.** Le LevelSelector garde la propriété _theme, car ses IconButton changent de forme entre les thèmes : ronds dans le thème prospect, avec un arrondi de 8 px dans le thème client. Le reste du composant est le même dans les deux thèmes.
 - **1.0.0 - 20/11/26.** La propriété stepsCount règle le nombre de barres, de 1 à 3, et vaut 2 par défaut, comme dans le code. Avant cette version, Figma avait toujours trois barres.
-- **1.0.0 - 20/11/26.** Le LevelSelector a 36 variantes : une par valeur de value, de 0 à stepsCount, pour chaque valeur de stepsCount, chaque breakpoint et chaque thème.
+- **1.0.0 - 20/11/26.** Le LevelSelector a 18 variantes : une par valeur de value, de 0 à stepsCount, pour chaque valeur de stepsCount et chaque breakpoint.
 - **1.0.0 - 20/11/26.** Les boutons moins et plus sont des IconButton secondaires, à la petite taille, avec les icônes icon/remove et icon/add de la librairie Figma Fondations Canopée. Ils remplacent l'ancien composant Figma ClickIcon, archivé.
 - **1.0.0 - 20/11/26.** Les barres suivent les principes d'interaction du pattern Fond. Une barre pleine est en color/blue/600, et une barre vide a une bordure color/blue/600 de 1 px. Au hover, une barre vide prend un fond color/gray/100. Au focus, elle garde ce fond et prend une bordure color/blue/400 de 2 px. Le code met du bleu foncé, et une outline de 1 px au hover comme au focus.
 - **1.0.0 - 20/11/26.** Dans Figma, les thèmes prospect et client avaient chacun leur _LevelSelectorStep, identiques. Un seul _LevelSelectorStep sert maintenant aux deux thèmes.
 - **1.0.0 - 23/11/26.** Au focus, une barre pleine garde son fond color/blue/600, séparé de la bordure color/blue/400 par un liseré color/white de 2 px. Sans ce liseré, le focus ne contrastait qu'à 1,58:1 avec le fond.
+- **1.0.0 - 24/11/26.** Le LevelSelector n'a pas de propriété _theme, car il est le même dans les deux thèmes. Ses IconButton changent de forme, ronds dans le thème prospect et arrondis à 8 px dans le thème client : dans ce thème, le designer règle leur _theme dans le panneau du LevelSelector, où ils sont exposés.
 
 ## Points ouverts
 

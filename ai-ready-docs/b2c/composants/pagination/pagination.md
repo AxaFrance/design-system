@@ -166,7 +166,7 @@ Ces noms désignent Pagination. Le seul nom à employer est Pagination.
 - **1.0.0 - 20/11/26.** showPrevNext reprend la convention show des booléens, à l'inverse de `hidePrevNext` dans le code. Il n'agit qu'en breakpoint=1024, car le code affiche toujours les flèches sur mobile.
 - **1.0.0 - 20/11/26.** La Pagination a une propriété breakpoint, avec une variante par largeur d'écran : breakpoint=1024 pour desktop et breakpoint=0 pour mobile. La valeur par défaut est breakpoint=1024.
 - **1.0.0 - 23/11/26.** Toutes les variantes contiennent les numéros et le compteur, comme le code : le compteur est masqué en breakpoint=1024, et les numéros en breakpoint=0. Le compteur vaut « Page 1 sur 7 » par défaut, comme les 7 numéros d'items.
-- **1.0.0 - 23/11/26.** La Pagination a une propriété _theme, car ses flèches, des IconButton, changent de forme entre les thèmes : rondes dans le thème prospect, avec un arrondi de 8 px dans le thème client. Dans le thème client, le cadre prend border/radius/16 : l'arrondi des flèches, plus les 8 px qui les séparent du bord, pour des arrondis concentriques. La page en cours reste ronde dans les deux thèmes, comme dans le code.
+- **1.0.0 - 23/11/26.** La Pagination a une propriété _theme, car son cadre change de forme entre les thèmes. Dans le thème client, il prend border/radius/16 : l'arrondi de 8 px des flèches, des IconButton, plus les 8 px qui les séparent du bord, pour des arrondis concentriques. Dans le thème prospect, le cadre et les flèches restent ronds. La page en cours reste ronde dans les deux thèmes, comme dans le code.
 
 ## Points ouverts
 

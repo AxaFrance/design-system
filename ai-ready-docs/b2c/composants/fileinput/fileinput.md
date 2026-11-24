@@ -135,9 +135,8 @@ Exemple :
 | Les textes de la zone de dépôt | `dropzoneLabels`, avec `dropzone`, `or` et `button` |
 | disabled | `disabled`, sans rendu prévu dans le code, voir les points ouverts |
 | state | Sans équivalent, le code utilise `:hover` et `:focus` |
-| _theme | Le chemin d'import, `/prospect` ou `/client` |
 
-breakpoint n'a pas d'équivalent dans le code : une media query affiche les textes de la zone à partir de 1024 px. Le composant accepte les attributs d'un `<input>`, comme `accept`, `multiple`, `name` ou `onChange`, sauf `type`. `messageType` vaut `error` par défaut (`InputFileCommon.tsx:113`). Sans équivalent dans Figma : `onMoreButtonClick`, `onSideButtonClick`, `labelProps`, `containerProps`, et `children`, que FileUpload utilise pour afficher la liste des fichiers.
+Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. breakpoint n'a pas d'équivalent dans le code : une media query affiche les textes de la zone à partir de 1024 px. Le composant accepte les attributs d'un `<input>`, comme `accept`, `multiple`, `name` ou `onChange`, sauf `type`. `messageType` vaut `error` par défaut (`InputFileCommon.tsx:113`). Sans équivalent dans Figma : `onMoreButtonClick`, `onSideButtonClick`, `labelProps`, `containerProps`, et `children`, que FileUpload utilise pour afficher la liste des fichiers.
 
 ## Noms à ne pas employer
 
@@ -152,9 +151,9 @@ Ces noms désignent FileInput. Le seul nom à employer est FileInput.
 - **1.0.0 - 23/11/26.** Le Button « Importer fichier » est un Button tertiary, avec l'icône icon/add-circle-fill de la librairie Figma Fondations Canopée. Il remplace un ancien ButtonTertiary archivé. Il prend son hover quand le FileInput prend le hover ou le focus : c'est une exception à la règle des composants imbriqués.
 - **1.0.0 - 23/11/26.** Les textes de la zone de dépôt sont en color/blue/600, comme le Button. La version précédente de FileUpload les mettait en color/blue/700.
 - **1.0.0 - 23/11/26.** Sur un écran de moins de 1024 px, seul le Button s'affiche dans la zone, comme dans le code.
-- **1.0.0 - 23/11/26.** FileInput garde la propriété _theme, car son Button change de forme entre les thèmes. Le reste du champ est le même dans les deux thèmes.
 - **1.0.0 - 23/11/26.** FileInput n'a pas de ton d'avertissement, contrairement aux autres champs. Un avertissement porte presque toujours sur un fichier précis, comme un fichier lourd : il se montre sur la ligne de ce fichier, dans FileUpload. Le code ne donne d'ailleurs aucun rendu d'avertissement à la zone de dépôt (`InputFileCommon.tsx:162`).
-- **1.0.0 - 23/11/26.** FileInput a 28 variantes : toutes les combinaisons de state et tone, et une variante en disabled=true, pour chaque breakpoint et chaque thème.
+- **1.0.0 - 23/11/26.** FileInput a 14 variantes : toutes les combinaisons de state et tone, et une variante en disabled=true, pour chaque breakpoint.
+- **1.0.0 - 24/11/26.** FileInput n'a pas de propriété _theme, car le champ est le même dans les deux thèmes. Son Button change de forme : dans le thème client, le designer règle son _theme dans le panneau de FileInput, où il est exposé.
 
 ## Points ouverts
 
