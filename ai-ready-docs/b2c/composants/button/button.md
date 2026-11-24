@@ -41,11 +41,11 @@ L'action existe mais n'est pas disponible pour l'instant, par exemple tant qu'un
 
 ### loading=true
 
-L'action est lancée et le traitement est en cours, par exemple l'envoi d'un formulaire. Le bouton garde sa couleur et son libellé. Un Spinner s'ajoute à droite du libellé, après l'icône de droite s'il y en a une. Le Spinner prend la couleur du libellé : blanc pour hierarchy=primary avec colorScheme=default ou colorScheme=business, bleu dans les autres cas. Dans Figma, loading=true n'existe qu'avec state=default : le focus d'un bouton en chargement n'y est pas représenté.
+L'action est lancée et le traitement est en cours, par exemple l'envoi d'un formulaire. Le bouton garde sa couleur et son libellé. Un Spinner s'ajoute à droite du libellé, après l'icône de droite s'il y en a une. Le Spinner prend la couleur du libellé. Il est blanc pour hierarchy=primary en colorScheme=default ou colorScheme=business. Il est aussi blanc pour hierarchy=secondary et hierarchy=tertiary en colorScheme=inverse. Il est bleu dans les autres cas. Dans Figma, loading=true n'existe qu'avec state=default : le focus d'un bouton en chargement n'y est pas représenté.
 
 ### colorScheme=inverse
 
-Sur un fond foncé ou coloré, par exemple dans une bannière.
+Sur un fond foncé ou coloré, par exemple dans une bannière. Les trois valeurs de hierarchy existent en colorScheme=inverse. Le choix entre primary, secondary et tertiary y suit les mêmes règles qu'en colorScheme=default.
 
 ### colorScheme=business
 
@@ -78,7 +78,7 @@ Sur un écran de moins de 1024 px de large. size=large et size=medium prennent u
 
 ## Interdits
 
-- colorScheme=inverse ou colorScheme=business avec une autre hierarchy que primary.
+- colorScheme=business avec une autre hierarchy que primary.
 - loading=true avec disabled=true, state=hover ou state=press.
 - Modifier localement la taille ou les couleurs du bouton, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system.
 - Ajouter un calque dans le bouton au lieu d'activer un emplacement d'icône.
@@ -168,13 +168,14 @@ import { Icon } from "@axa-fr/canopee-react/prospect";
 | hierarchy=primary, colorScheme=business | `variant="primary-business"` |
 | hierarchy=primary, colorScheme=inverse | `variant="primary-inverse"` |
 | hierarchy=secondary | `variant="secondary"` |
+| hierarchy=secondary, colorScheme=inverse | `variant="secondary-inverse"` |
 | hierarchy=tertiary | `variant="tertiary"` |
 | label | `children` |
 | leftIcon, affichée par showLeftIcon | `iconLeft` |
 | rightIcon, affichée par showRightIcon | `iconRight` |
 | loading | `loading` |
 
-`variant` vaut `primary` par défaut. Sans équivalent dans le code : state, que le code rend par `:hover`, `:focus-visible` et `:active`, et _theme, qui correspond au chemin d'import, `/prospect` ou `/client`. size n'a pas d'équivalent non plus : le code n'a qu'une taille. breakpoint n'a pas d'équivalent non plus. Dans le code, une media query agrandit seulement le libellé à partir de 1024 px, et le bouton garde la même hauteur. Sans équivalent dans Figma : `type`, qui vaut `button` par défaut, les autres attributs HTML du `<button>`, et les variantes `secondary-inverse` et `ghost`.
+`variant` vaut `primary` par défaut. Le code n'a pas de variante pour hierarchy=tertiary en colorScheme=inverse. Sans équivalent dans le code : state, que le code rend par `:hover`, `:focus-visible` et `:active`, et _theme, qui correspond au chemin d'import, `/prospect` ou `/client`. size n'a pas d'équivalent non plus : le code n'a qu'une taille. breakpoint n'a pas d'équivalent non plus. Dans le code, une media query agrandit seulement le libellé à partir de 1024 px, et le bouton garde la même hauteur. Sans équivalent dans Figma : `type`, qui vaut `button` par défaut, les autres attributs HTML du `<button>`, et la variante `ghost`.
 
 ## Noms à ne pas employer
 
@@ -212,10 +213,13 @@ Ces noms désignent Button. Le seul nom à employer est Button.
 - **1.0.0 - 17/11/26.** Le Button prend la couleur réservée aux éléments interactifs, color/blue/600, au lieu du color/blue/700 de la marque. En hierarchy=primary, son fond passe en color/blue/700 au hover et au focus, puis en color/blue/800 au press. Dans les autres cas, le texte, l'icône, le Spinner et la border passent en color/blue/600.
 - **1.0.0 - 17/11/26.** Un appel à l'action qui mène vers une autre page garde l'apparence d'un Button dans la maquette, mais devient un Link dans le code, pour rester un lien. Le Link du code a pour cela des variantes `button-primary`, `button-secondary`… MUI et Polaris font de même, avec un bouton qui accepte une adresse.
 - **1.0.0 - 17/11/26.** En size=small, le Spinner d'un Button en chargement prend sa taille x-small, de 16 px, ajoutée pour l'occasion, au lieu d'un Spinner réduit localement.
+- **1.0.0 - 24/11/26.** hierarchy=secondary et hierarchy=tertiary ont aussi une variante colorScheme=inverse, pour une action moins prioritaire sur un fond foncé ou coloré. Ils suivent les états du colorScheme=default : seul le fond change, et le libellé, l'icône et la border du secondary restent en color/white. Au hover et au focus, le fond passe en color/blue/800, la nuance qui suit le fond color/blue/700 d'une bannière, puis en color/blue/900 au press. Désactivés, ils prennent le rendu du colorScheme=default : un fond color/gray/050, sans border, et un libellé color/gray/400. Le secondary inverse, retiré le 16/10/26, revient donc.
 
 ## Points ouverts
 
-- **Rendu du code.** Tant que le code n'a pas suivi, le rendu diffère de Figma : `secondary` a un fond blanc au repos et n'a pas les mêmes couleurs au survol et à l'appui, `tertiary` est un bouton plein clair, le press éclaircit au lieu de foncer, et `secondary-inverse` et `ghost` existent encore. En attendant : les noms du tableau des écarts s'appliquent, et `secondary-inverse` et `ghost` ne s'utilisent plus.
+- **Rendu du code.** Tant que le code n'a pas suivi, le rendu diffère de Figma : `secondary` a un fond blanc au repos et n'a pas les mêmes couleurs au hover et au press, `tertiary` est un bouton plein clair, le press éclaircit au lieu de foncer, et `ghost` existe encore. En attendant : le code utilise les noms du tableau des écarts, et n'utilise plus `ghost`.
+- **Inverse dans le code.** Dans les deux thèmes, `secondary-inverse` prend un fond gris clair et un libellé bleu au hover et au press (`ButtonApollo.css:125`, `ButtonLF.css:122`). Figma garde le libellé en color/white et fonce le fond en color/blue/800, puis en color/blue/900. Le code n'a pas de tertiary inverse. En attendant : signaler.
+- **Autres fonds foncés.** Le hover et le press du secondary et du tertiary en colorScheme=inverse sont prévus pour un fond color/blue/700. Sur un autre fond foncé ou coloré, leur fond bleu pourrait former une tache. En attendant : signaler.
 - **Chargement dans le code.** Le code désactive le bouton pendant un chargement (`disabled={disabled || loading}`). Le bouton et son Spinner deviennent gris, et le bouton perd le focus. Il n'a pas non plus `aria-busy`. Le code affiche aussi ce Spinner sur un bouton seulement désactivé. En attendant : `loading` s'utilise sans surcharge de style, l'écart se corrige dans le code.
 - **Anneau de focus.** Il est en color/blue/400 et à 2 px du bouton dans Figma, en `--blue-650` et à 3 px dans le code. En attendant : rien ne change à l'usage, l'écart se corrige dans le code.
 - **Groupe de boutons.** L'ordre des boutons à gauche du primary n'est pas documenté, ni celui des boutons empilés en colonne sur mobile, ni la place du groupe dans la page (aligné à gauche, centré ou aligné à droite). En attendant : signaler.

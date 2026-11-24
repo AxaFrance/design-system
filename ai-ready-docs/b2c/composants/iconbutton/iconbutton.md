@@ -38,7 +38,7 @@ L'action existe mais n'est pas disponible pour l'instant. Le texte autour du bou
 
 ### colorScheme=inverse
 
-Sur un fond foncé ou coloré.
+Sur un fond foncé ou coloré. Les trois valeurs de hierarchy existent en colorScheme=inverse. Le choix entre primary, secondary et tertiary y suit les mêmes règles qu'en colorScheme=default.
 
 ### size=small
 
@@ -54,10 +54,10 @@ Un IconButton placé dans un composant déjà cliquable en entier. Exemple : l'a
 - Modifier une ligne d'une liste : hierarchy=secondary, icône edit, nom accessible « Modifier l'adresse ».
 - Ouvrir un menu d'actions : hierarchy=tertiary, icône more_vert, nom accessible « Afficher plus d'actions ».
 - Lancer une vidéo sur fond bleu : hierarchy=primary, colorScheme=inverse, icône play_arrow, nom accessible « Lancer la vidéo ».
+- Fermer une bannière sur fond bleu : hierarchy=tertiary, colorScheme=inverse, icône close, nom accessible « Fermer la bannière ».
 
 ## Interdits
 
-- colorScheme=inverse avec une autre hierarchy que primary.
 - Une icône prise ailleurs que dans la bibliothèque d'icônes de Canopée, Material Symbols dans le code.
 - Modifier localement la taille ou les couleurs du bouton, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system.
 
@@ -159,12 +159,13 @@ Ces noms désignent IconButton. Le seul nom à employer est IconButton.
 - **1.0.0 - 04/11/26.** Comme pour Button, le secondary et le tertiary n'ont pas de fond au repos. Le bouton désactivé garde son fond gris.
 - **1.0.0 - 17/11/26.** L'IconButton prend la couleur réservée aux éléments interactifs, color/blue/600, au lieu du color/blue/700 de la marque. En hierarchy=primary, son fond passe en color/blue/700 au hover et au focus, puis en color/blue/800 au press. Dans les autres cas, l'icône et la border passent en color/blue/600.
 - **1.0.0 - 19/11/26.** Comme pour Button, le thème passe par une variante `_theme`, prospect ou client, parce que la forme change : l'IconButton est rond en prospect, avec un arrondi de 8 px en client.
+- **1.0.0 - 24/11/26.** Comme pour Button, hierarchy=secondary et hierarchy=tertiary ont aussi une variante colorScheme=inverse. Ils suivent les états du colorScheme=default : seul le fond change, et l'icône et la border du secondary restent en color/white. Au hover et au focus, le fond passe en color/blue/800, puis en color/blue/900 au press. Désactivés, ils prennent le rendu du colorScheme=default : un fond color/gray/050, sans border, et une icône color/gray/400.
 
 ## Points ouverts
 
 - **Code.** ClickIcon s'approche d'IconButton, mais il n'a ni primary ni colorScheme, et il n'impose pas de nom accessible. Au repos, `variant="default"` a un fond bleu clair, alors que hierarchy=secondary n'a pas de fond. En attendant : le code utilise ClickIcon selon le tableau des écarts, toujours avec un nom accessible, et hierarchy=primary et colorScheme=inverse ne s'utilisent pas dans le code.
 - **Tailles.** IconButton a deux tailles, size=small et size=x-small. Dans le code, `size` accepte aussi L et M. En attendant : `size` ne prend que `S` ou `XS`, `iconVariant` ne prend que `disabled`, et un besoin d'une autre taille se signale.
-- **Fond foncé.** colorScheme=inverse n'existe qu'avec hierarchy=primary. Une action discrète sur un fond foncé, comme fermer une bannière, n'a donc pas de variante adaptée. En attendant : signaler.
+- **Autres fonds foncés.** Le hover et le press du secondary et du tertiary en colorScheme=inverse sont prévus pour un fond color/blue/700. Sur un autre fond foncé ou coloré, leur fond bleu pourrait former une tache. En attendant : signaler.
 - **Navigation.** Zeroheight permet à Click Icon d'être un lien `<a>` quand l'action mène à une autre page. Le code ne le permet pas, et la fiche Button renvoie vers Link pour naviguer. En attendant : signaler.
 - **Plusieurs primary.** La fiche Button n'autorise qu'un seul Button primary par page, sans compter le Header. Rien ne dit si un IconButton primary compte dans cette limite. En attendant : signaler.
 - **Règles reprises de Button.** Plusieurs règles viennent de la fiche Button, sans source propre à IconButton : hierarchy, disabled=true et colorScheme, le Comportement, la Rédaction, `aria-expanded` et `aria-controls`, et le contraste de l'anneau de focus. En attendant : elles s'appliquent.
