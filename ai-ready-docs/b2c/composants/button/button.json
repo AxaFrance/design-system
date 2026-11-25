@@ -8443,7 +8443,7 @@
       },
       "root": {
         "background": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         },
         "radius": {
           "token": "border/radius/full"
@@ -8961,7 +8961,7 @@
         "styles": {
           "root": {
             "background": {
-              "token": "color/blue/700"
+              "token": "color/blue/800"
             }
           }
         }
@@ -8975,7 +8975,7 @@
         "styles": {
           "root": {
             "background": {
-              "token": "color/blue/700"
+              "token": "color/blue/800"
             }
           }
         }
@@ -8989,7 +8989,7 @@
         "styles": {
           "root": {
             "background": {
-              "token": "color/blue/800"
+              "token": "color/blue/900"
             }
           }
         }
@@ -9213,17 +9213,17 @@
         "styles": {
           "left-icon/vector": {
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           },
           "label": {
             "textColor": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           },
           "right-icon/vector": {
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           }
         }
@@ -9237,22 +9237,22 @@
         "styles": {
           "root": {
             "stroke": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           },
           "left-icon/vector": {
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           },
           "label": {
             "textColor": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           },
           "right-icon/vector": {
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           }
         }
@@ -9280,17 +9280,17 @@
         "styles": {
           "left-icon/vector": {
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           },
           "label": {
             "textColor": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           },
           "right-icon/vector": {
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           }
         }
@@ -9849,11 +9849,6 @@
       "collection": "Primitive",
       "key": "7cf31063821d1c4cfafc6be64eb8dc1485d91077"
     },
-    "color/blue/600": {
-      "library": "Fondations Canopée",
-      "collection": "Primitive",
-      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
-    },
     "color/blue/700": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
@@ -9998,35 +9993,35 @@
   },
   "issues": [
     {
-      "level": "warning",
+      "level": "info",
+      "rule": "prop-outside-nomenclature",
+      "where": "api.props._theme",
+      "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
+    },
+    {
+      "level": "info",
       "rule": "token-unpublished",
       "where": "tokens.icon/size/extra-small",
       "message": "Token absent de toutes les versions publiées de Canopée : icon/size/extra-small."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-unpublished",
       "where": "tokens.icon/size/small",
       "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "textStyles.label/1/semibold",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "textStyles.label/2/semibold",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold."
-    },
-    {
-      "level": "info",
-      "rule": "prop-outside-nomenclature",
-      "where": "api.props._theme",
-      "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-export-components 0.7.14"
+  "_tool": "canopee-export-components 0.7.15"
 }

@@ -1811,7 +1811,7 @@
       },
       "root": {
         "background": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         },
         "radius": {
           "token": "border/radius/full"
@@ -2064,7 +2064,7 @@
         "styles": {
           "root": {
             "background": {
-              "token": "color/blue/700"
+              "token": "color/blue/800"
             }
           }
         }
@@ -2078,7 +2078,7 @@
         "styles": {
           "root": {
             "background": {
-              "token": "color/blue/700"
+              "token": "color/blue/800"
             }
           }
         }
@@ -2092,7 +2092,7 @@
         "styles": {
           "root": {
             "background": {
-              "token": "color/blue/800"
+              "token": "color/blue/900"
             }
           }
         }
@@ -2316,7 +2316,7 @@
         "styles": {
           "icon/vector": {
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           }
         }
@@ -2330,12 +2330,12 @@
         "styles": {
           "root": {
             "stroke": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           },
           "icon/vector": {
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           }
         }
@@ -2363,7 +2363,7 @@
         "styles": {
           "icon/vector": {
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           }
         }
@@ -2445,11 +2445,6 @@
       "collection": "Primitive",
       "key": "7cf31063821d1c4cfafc6be64eb8dc1485d91077"
     },
-    "color/blue/600": {
-      "library": "Fondations Canopée",
-      "collection": "Primitive",
-      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
-    },
     "color/blue/700": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
@@ -2521,23 +2516,23 @@
   "modeCollections": {},
   "issues": [
     {
-      "level": "warning",
+      "level": "info",
+      "rule": "prop-outside-nomenclature",
+      "where": "api.props._theme",
+      "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
+    },
+    {
+      "level": "info",
       "rule": "token-unpublished",
       "where": "tokens.icon/size/extra-small",
       "message": "Token absent de toutes les versions publiées de Canopée : icon/size/extra-small."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-unpublished",
       "where": "tokens.icon/size/small",
       "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small."
-    },
-    {
-      "level": "info",
-      "rule": "prop-outside-nomenclature",
-      "where": "api.props._theme",
-      "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-export-components 0.7.13"
+  "_tool": "canopee-export-components 0.7.15"
 }
