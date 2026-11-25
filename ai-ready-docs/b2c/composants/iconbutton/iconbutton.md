@@ -160,6 +160,7 @@ Ces noms désignent IconButton. Le seul nom à employer est IconButton.
 - **1.0.0 - 17/11/26.** L'IconButton prend la couleur réservée aux éléments interactifs, color/blue/600, au lieu du color/blue/700 de la marque. En hierarchy=primary, son fond passe en color/blue/700 au hover et au focus, puis en color/blue/800 au press. Dans les autres cas, l'icône et la border passent en color/blue/600.
 - **1.0.0 - 19/11/26.** Comme pour Button, le thème passe par une variante `_theme`, prospect ou client, parce que la forme change : l'IconButton est rond en prospect, avec un arrondi de 8 px en client.
 - **1.0.0 - 24/11/26.** Comme pour Button, hierarchy=secondary et hierarchy=tertiary ont aussi une variante colorScheme=inverse. Ils suivent les états du colorScheme=default : seul le fond change, et l'icône et la border du secondary restent en color/white. Au hover et au focus, le fond passe en color/blue/800, puis en color/blue/900 au press. Désactivés, ils prennent le rendu du colorScheme=default : un fond color/gray/050, sans border, et une icône color/gray/400.
+- **1.0.0 - 25/11/26.** L'IconButton reprend color/blue/700, la couleur de la marque, déjà utilisée par le code. En hierarchy=primary, son fond passe en color/blue/800 au hover et au focus, puis en color/blue/900 au press. Dans les autres cas, l'icône et la border passent en color/blue/700. Cette décision remplace celle du 17/11/26.
 
 ## Points ouverts
 
@@ -169,7 +170,6 @@ Ces noms désignent IconButton. Le seul nom à employer est IconButton.
 - **Navigation.** Zeroheight permet à Click Icon d'être un lien `<a>` quand l'action mène à une autre page. Le code ne le permet pas, et la fiche Button renvoie vers Link pour naviguer. En attendant : signaler.
 - **Plusieurs primary.** La fiche Button n'autorise qu'un seul Button primary par page, sans compter le Header. Rien ne dit si un IconButton primary compte dans cette limite. En attendant : signaler.
 - **Règles reprises de Button.** Plusieurs règles viennent de la fiche Button, sans source propre à IconButton : hierarchy, disabled=true et colorScheme, le Comportement, la Rédaction, `aria-expanded` et `aria-controls`, et le contraste de l'anneau de focus. En attendant : elles s'appliquent.
-- **Bleu d'interaction dans le code.** Le code dessine l'icône de ClickIcon dans le bleu de la marque, plus foncé que color/blue/600 (`IconCommon.css:24`). En attendant : signaler.
 - **Forme dans le thème client.** Dans le code, ClickIcon reste rond dans les deux thèmes (`ClickIconCommon.css:7`), alors que l'IconButton de Figma a un arrondi de 8 px dans le thème client, comme Button (`ButtonLF.css:7`). En attendant : signaler.
 - **Chargement.** IconButton n'a pas de propriété loading, contrairement à Button. Une action en cours sur un IconButton n'a donc pas de rendu prévu. En attendant : signaler.
 

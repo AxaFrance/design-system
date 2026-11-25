@@ -146,6 +146,7 @@ Ces noms désignent _FormLabel. Le seul nom à employer est _FormLabel.
 - **1.0.0 - 16/11/26.** Dans Figma, « Modifier » est centré en hauteur à côté du libellé et de la description, dans tous les cas.
 - **1.0.0 - 17/11/26.** Les actions « Modifier » et « En savoir plus » passent par un Link small, rendu en `<button>` dans le code. Sans marge, elles s'alignent sur le libellé et gardent la hauteur du texte. Cette décision remplace celle du 02/11/26, qui les faisait passer par Button.
 - **1.0.0 - 17/11/26.** Les actions « Modifier » et « En savoir plus » prennent color/blue/600, la couleur réservée aux éléments interactifs, comme tout Link.
+- **1.0.0 - 25/11/26.** Les actions « Modifier » et « En savoir plus » reprennent color/blue/700, comme tout Link. Cette décision remplace celle du 17/11/26.
 
 ## Points ouverts
 

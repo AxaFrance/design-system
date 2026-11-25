@@ -140,6 +140,7 @@ Ces noms désignent Switch. Le seul nom à employer est Switch.
 - **1.0.0 - 17/11/26.** Le Switch mesure 40 × 24 px, comme dans le code.
 - **1.0.0 - 17/11/26.** Les icônes de la poignée viennent de Fondations Canopée, à la taille icon/size/extra-small.
 - **1.0.0 - 18/11/26.** L'anneau de focus entoure la piste et le libellé, comme celui de Checkbox et Radio, car un clic sur le libellé bascule aussi le Switch.
+- **1.0.0 - 25/11/26.** En checked=true, la piste reprend color/blue/700, la couleur de la marque et du code. Au hover et au focus, elle passe en color/blue/800. Cette décision remplace celle du 17/11/26.
 
 ## Points ouverts
 

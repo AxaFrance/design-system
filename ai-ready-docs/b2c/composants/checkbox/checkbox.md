@@ -153,6 +153,7 @@ Ces noms désignent Checkbox. Le seul nom à employer est Checkbox.
 - **1.0.0 - 18/11/26.** La Checkbox porte son libellé, à droite, comme `CheckboxText` dans le code. showLabel=false masque ce libellé quand un autre texte visible nomme déjà l'option, comme dans FormCard. La case seule n'est plus un composant à part.
 - **1.0.0 - 18/11/26.** Le message d'erreur ne fait pas partie de la Checkbox. Un _FormHelperText se pose sous la Checkbox ou sous le groupe, pour qu'un groupe n'ait qu'un seul message.
 - **1.0.0 - 18/11/26.** Une Checkbox de consentement n'est jamais cochée au départ : le RGPD ne reconnaît pas une case précochée comme un consentement (considérant 32).
+- **1.0.0 - 25/11/26.** En checked=true, la case reprend color/blue/700, la couleur de la marque, comme tous les éléments interactifs. Cette décision remplace la couleur choisie le 18/11/26.
 
 ## Points ouverts
 

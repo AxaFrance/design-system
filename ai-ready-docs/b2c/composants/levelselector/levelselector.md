@@ -149,6 +149,7 @@ Ces noms désignent LevelSelector. Le seul nom à employer est LevelSelector.
 - **1.0.0 - 20/11/26.** Dans Figma, les thèmes prospect et client avaient chacun leur _LevelSelectorStep, identiques. Un seul _LevelSelectorStep sert maintenant aux deux thèmes.
 - **1.0.0 - 23/11/26.** Au focus, une barre pleine garde son fond color/blue/600, séparé de la bordure color/blue/400 par un liseré color/white de 2 px. Sans ce liseré, le focus ne contrastait qu'à 1,58:1 avec le fond.
 - **1.0.0 - 24/11/26.** Le LevelSelector n'a pas de propriété _theme, car il est le même dans les deux thèmes. Ses IconButton changent de forme, ronds dans le thème prospect et arrondis à 8 px dans le thème client : dans ce thème, le designer règle leur _theme dans le panneau du LevelSelector, où ils sont exposés.
+- **1.0.0 - 25/11/26.** Une barre pleine et la bordure d'une barre vide passent en color/blue/700, comme tous les éléments interactifs. Au focus, le liseré color/white reste nécessaire : sans lui, la bordure color/blue/400 ne contrasterait qu'à 2,19:1 avec le fond. Cette décision remplace la couleur choisie le 20/11/26 et le 23/11/26.
 
 ## Points ouverts
 

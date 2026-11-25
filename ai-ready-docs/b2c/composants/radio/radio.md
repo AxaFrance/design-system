@@ -156,6 +156,7 @@ Ces noms désignent Radio. Le seul nom à employer est Radio.
 - **1.0.0 - 17/11/26.** Le Radio a une propriété disabled, absente du code, pour qu'une option indisponible reste visible dans son groupe.
 - **1.0.0 - 17/11/26.** tone=error et tone=warning n'existent qu'en checked=false. Un groupe en erreur est un groupe où aucune option n'est sélectionnée.
 - **1.0.0 - 18/11/26.** Le Radio porte son libellé, à droite, comme `RadioText` dans le code. showLabel=false masque ce libellé quand un autre texte visible nomme déjà l'option, comme dans FormCard. Le bouton radio seul n'est plus un composant à part.
+- **1.0.0 - 25/11/26.** En checked=true, le contour et le point reprennent color/blue/700, la couleur de la marque, comme tous les éléments interactifs. Cette décision remplace celle du 17/11/26.
 
 ## Points ouverts
 

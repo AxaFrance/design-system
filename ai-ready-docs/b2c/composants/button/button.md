@@ -214,6 +214,7 @@ Ces noms désignent Button. Le seul nom à employer est Button.
 - **1.0.0 - 17/11/26.** Un appel à l'action qui mène vers une autre page garde l'apparence d'un Button dans la maquette, mais devient un Link dans le code, pour rester un lien. Le Link du code a pour cela des variantes `button-primary`, `button-secondary`… MUI et Polaris font de même, avec un bouton qui accepte une adresse.
 - **1.0.0 - 17/11/26.** En size=small, le Spinner d'un Button en chargement prend sa taille x-small, de 16 px, ajoutée pour l'occasion, au lieu d'un Spinner réduit localement.
 - **1.0.0 - 24/11/26.** hierarchy=secondary et hierarchy=tertiary ont aussi une variante colorScheme=inverse, pour une action moins prioritaire sur un fond foncé ou coloré. Ils suivent les états du colorScheme=default : seul le fond change, et le libellé, l'icône et la border du secondary restent en color/white. Au hover et au focus, le fond passe en color/blue/800, la nuance qui suit le fond color/blue/700 d'une bannière, puis en color/blue/900 au press. Désactivés, ils prennent le rendu du colorScheme=default : un fond color/gray/050, sans border, et un libellé color/gray/400. Le secondary inverse, retiré le 16/10/26, revient donc.
+- **1.0.0 - 25/11/26.** Le Button reprend color/blue/700, la couleur de la marque, déjà utilisée par le code. En hierarchy=primary, son fond passe en color/blue/800 au hover et au focus, puis en color/blue/900 au press. Dans les autres cas, le texte, l'icône, le Spinner et la border passent en color/blue/700. Cette décision remplace celle du 17/11/26.
 
 ## Points ouverts
 
@@ -225,7 +226,6 @@ Ces noms désignent Button. Le seul nom à employer est Button.
 - **Groupe de boutons.** L'ordre des boutons à gauche du primary n'est pas documenté, ni celui des boutons empilés en colonne sur mobile, ni la place du groupe dans la page (aligné à gauche, centré ou aligné à droite). En attendant : signaler.
 - **Autres usages du medium.** En dehors du Header, size=medium peut servir dans des cas précis, qui ne sont pas encore documentés. En attendant : signaler.
 - **Tailles dans le code.** Le code n'a pas de propriété de taille, et son bouton mesure 56 px sur desktop comme sur mobile. En attendant : signaler.
-- **Bleu d'interaction dans le code.** Le code dessine le Button dans le bleu de la marque, plus foncé que color/blue/600 (`ButtonApollo.css:5`). En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

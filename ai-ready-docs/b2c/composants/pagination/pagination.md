@@ -86,9 +86,9 @@ Un élément `<nav>` qui porte un nom accessible et contient une liste `<ol>`. C
 - Le focus clavier reste toujours visible.
 - La page en cours se voit au fond plein du numéro, pas seulement à sa couleur.
 - Le WCAG demande un contraste de 4,5:1 au moins pour un texte. Il demande 3:1 pour ce qui montre un état.
-- Un numéro, en color/blue/600, atteint 10,9:1 sur fond blanc. Sur le fond du hover, en color/gray/100, il atteint 8,6:1.
+- Un numéro, en color/blue/700, atteint 15:1 sur fond blanc. Sur le fond du hover, en color/gray/100, il atteint 11,9:1.
 - Sur le fond du press, en color/gray/200, un numéro atteint 6,8:1.
-- Le numéro de la page en cours, en blanc sur color/blue/600, atteint 10,9:1.
+- Le numéro de la page en cours, en blanc sur color/blue/700, atteint 15:1.
 - L'anneau de focus atteint 6,9:1 sur fond blanc.
 - Le compteur, en color/gray/600 sur fond blanc, atteint 5,7:1.
 - La zone cliquable d'un numéro fait 40 px de côté, au-delà des 24 px que demande le WCAG 2.2.

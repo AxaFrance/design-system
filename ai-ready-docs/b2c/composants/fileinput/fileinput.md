@@ -154,6 +154,7 @@ Ces noms désignent FileInput. Le seul nom à employer est FileInput.
 - **1.0.0 - 23/11/26.** FileInput n'a pas de ton d'avertissement, contrairement aux autres champs. Un avertissement porte presque toujours sur un fichier précis, comme un fichier lourd : il se montre sur la ligne de ce fichier, dans FileUpload. Le code ne donne d'ailleurs aucun rendu d'avertissement à la zone de dépôt (`InputFileCommon.tsx:162`).
 - **1.0.0 - 23/11/26.** FileInput a 14 variantes : toutes les combinaisons de state et tone, et une variante en disabled=true, pour chaque breakpoint.
 - **1.0.0 - 24/11/26.** FileInput n'a pas de propriété _theme, car le champ est le même dans les deux thèmes. Son Button change de forme : dans le thème client, le designer règle son _theme dans le panneau de FileInput, où il est exposé.
+- **1.0.0 - 25/11/26.** Les textes de la zone de dépôt passent en color/blue/700, comme le Button. Cette décision remplace celle du 23/11/26.
 
 ## Points ouverts
 

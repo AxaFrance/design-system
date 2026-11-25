@@ -11,7 +11,7 @@ Les bords se nomment comme en CSS :
 - **underline** : la ligne sous le texte d'un Link.
 - **halo** : le cercle de couleur qui apparaît derrière la case d'une Checkbox ou le bouton d'un Radio.
 
-Une couleur porte le nom de son token, comme color/blue/600. Une épaisseur en px correspond au token border/width du même nombre. Exemple : 2 px, border/width/2.
+Une couleur porte le nom de son token, comme color/blue/700. Une épaisseur en px correspond au token border/width du même nombre. Exemple : 2 px, border/width/2.
 
 Un nom qui commence par un tiret bas, comme _Tab, désigne un sous-composant : il sert à construire d'autres composants et n'est pas posé seul dans une maquette.
 
@@ -19,9 +19,9 @@ Dans les exemples, « A → B » se lit : la valeur en default, puis la valeur d
 
 ## La couleur d'interaction
 
-Le token color/blue/600 est réservé aux éléments interactifs, et c'est leur couleur d'accent. Exemples : le fond d'un Button primary, le texte d'un Link, la piste d'un Switch en checked=true. Un élément qui ne se clique pas, comme un titre, prend une autre couleur, comme color/blue/700, la couleur de la marque.
+Les éléments interactifs prennent color/blue/700, la couleur de la marque, comme couleur d'accent. Exemples : le fond d'un Button primary, le texte d'un Link, la piste d'un Switch en checked=true. Un titre prend aussi color/blue/700 : la couleur seule ne dit donc pas qu'un élément se clique.
 
-Quand le pattern change cette couleur au hover, comme le fond d'un Button primary ou la piste d'un Switch, color/blue/600 passe à color/blue/700, puis à color/blue/800 au press. Le texte d'un Link reste en color/blue/600 au hover, car seul son soulignement change.
+Quand le pattern change cette couleur au hover, comme le fond d'un Button primary ou la piste d'un Switch, color/blue/700 passe à color/blue/800, puis à color/blue/900 au press. Le texte d'un Link reste en color/blue/700 au hover, car seul son soulignement change.
 
 ## Les quatre patterns
 
@@ -44,10 +44,10 @@ Un pattern peut préciser ces règles. Quand il s'en écarte, sa colonne Excepti
 
 | État | Règle | Exemple | Exception |
 |---|---|---|---|
-| default | Le rendu au repos, quand personne n'agit sur le composant. Tous les autres états partent de lui. | Button primary : fond color/blue/600, texte color/white. | Aucune. |
-| hover | Le survol change ce que le pattern définit : le fond, la border, la border-bottom, l'underline ou le halo, parfois deux à la fois. Une couleur qui change passe à la nuance suivante. Depuis du blanc ou du transparent, elle passe en color/gray/100. Le hover ne prend jamais une nuance 050. | Button primary : fond color/blue/600 → color/blue/700. _PaginationItem, sans fond : → fond color/gray/100. TextInput : border color/gray/500, 1 px → 2 px. | Voir le tableau de chaque pattern. |
+| default | Le rendu au repos, quand personne n'agit sur le composant. Tous les autres états partent de lui. | Button primary : fond color/blue/700, texte color/white. | Aucune. |
+| hover | Le survol change ce que le pattern définit : le fond, la border, la border-bottom, l'underline ou le halo, parfois deux à la fois. Une couleur qui change passe à la nuance suivante. Depuis du blanc ou du transparent, elle passe en color/gray/100. Le hover ne prend jamais une nuance 050. | Button primary : fond color/blue/700 → color/blue/800. _PaginationItem, sans fond : → fond color/gray/100. TextInput : border color/gray/500, 1 px → 2 px. | Voir le tableau de chaque pattern. |
 | focus | Un indicateur color/blue/400 de 2 px s'ajoute au rendu du hover. Un champ ou une surface (carte, ligne de liste, étape) le prend sur sa border, et une surface sans border en prend une. Tout autre composant prend une outline, avec un outline-offset de 2 px. | Button primary : fond color/blue/700, comme au hover, et une outline color/blue/400, 2 px. TextInput : border color/gray/500, 1 px → color/blue/400, 2 px. | Voir le tableau de chaque pattern et les composants imbriqués. |
-| press | Une nuance de plus que le hover. | Button primary : fond color/blue/600 → color/blue/800. _PaginationItem, sans fond : → fond color/gray/200. | Voir le tableau de chaque pattern. |
+| press | Une nuance de plus que le hover. | Button primary : fond color/blue/700 → color/blue/900. _PaginationItem, sans fond : → fond color/gray/200. | Voir le tableau de chaque pattern. |
 
 Le contraste du focus est d'au moins 3:1 avec les couleurs qui le touchent, comme le demande le niveau AA du WCAG.
 
@@ -55,16 +55,16 @@ Le contraste du focus est d'au moins 3:1 avec les couleurs qui le touchent, comm
 
 | État | Règle | Exemple | Exception |
 |---|---|---|---|
-| default | Le fond est coloré, color/white ou absent. | Button primary : fond color/blue/600. _PaginationItem : sans fond, texte color/blue/600. FormCard : fond color/white, border color/gray/500, 1 px. | Aucune. |
-| hover | Le fond passe à la nuance suivante de sa couleur. Un fond blanc ou transparent passe en color/gray/100. | Button primary : color/blue/600 → color/blue/700. _PaginationItem, sans fond : → color/gray/100. Switch : son fond est la piste, color/gray/500 → color/gray/600. | Button et IconButton en hierarchy=secondary ou hierarchy=tertiary : fond color/blue/100. En hierarchy=primary et colorScheme=inverse, leur fond color/white passe aussi en color/blue/100. En hierarchy=secondary ou hierarchy=tertiary et colorScheme=inverse, leur fond passe en color/blue/800, la nuance qui suit le fond color/blue/700 d'une bannière. |
-| focus | Un composant compact, de type bouton (Button, IconButton, _PaginationItem, Switch), prend une outline color/blue/400, 2 px, avec un outline-offset de 2 px, même s'il a une border. Une surface (FormCard, _LevelSelectorStep, _SelectListItem) prend le focus sur sa border, qui passe en color/blue/400, 2 px, sans outline. | Button secondary : fond color/blue/100, comme au hover, et une outline color/blue/400, 2 px. Sa border ne change pas. FormCard : border color/gray/500, 1 px → color/blue/400, 2 px. | Switch : l'outline, sans arrondi, entoure la piste et son label, comme celle de Checkbox et Radio. _LevelSelectorStep en checked=true : un liseré color/white de 2 px sépare le fond color/blue/600 de la border color/blue/400, pour que le focus contraste à 3:1. |
-| press | Une nuance de plus que le hover. | Button primary : fond color/blue/600 → color/blue/800. Button secondary : sans fond → fond color/blue/200. | Switch : pas de press, car sa poignée bouge dès l'appui. |
+| default | Le fond est coloré, color/white ou absent. | Button primary : fond color/blue/700. _PaginationItem : sans fond, texte color/blue/700. FormCard : fond color/white, border color/gray/500, 1 px. | Aucune. |
+| hover | Le fond passe à la nuance suivante de sa couleur. Un fond blanc ou transparent passe en color/gray/100. | Button primary : color/blue/700 → color/blue/800. _PaginationItem, sans fond : → color/gray/100. Switch : son fond est la piste, color/gray/500 → color/gray/600. | Button et IconButton en hierarchy=secondary ou hierarchy=tertiary : fond color/blue/100. En hierarchy=primary et colorScheme=inverse, leur fond color/white passe aussi en color/blue/100. En hierarchy=secondary ou hierarchy=tertiary et colorScheme=inverse, leur fond passe en color/blue/800, la nuance qui suit le fond color/blue/700 d'une bannière. |
+| focus | Un composant compact, de type bouton (Button, IconButton, _PaginationItem, Switch), prend une outline color/blue/400, 2 px, avec un outline-offset de 2 px, même s'il a une border. Une surface (FormCard, _LevelSelectorStep, _SelectListItem) prend le focus sur sa border, qui passe en color/blue/400, 2 px, sans outline. | Button secondary : fond color/blue/100, comme au hover, et une outline color/blue/400, 2 px. Sa border ne change pas. FormCard : border color/gray/500, 1 px → color/blue/400, 2 px. | Switch : l'outline, sans arrondi, entoure la piste et son label, comme celle de Checkbox et Radio. _LevelSelectorStep en checked=true : un liseré color/white de 2 px sépare le fond color/blue/700 de la border color/blue/400, pour que le focus contraste à 3:1. |
+| press | Une nuance de plus que le hover. | Button primary : fond color/blue/700 → color/blue/900. Button secondary : sans fond → fond color/blue/200. | Switch : pas de press, car sa poignée bouge dès l'appui. |
 
 ### Contour
 
 | État | Règle | Exemple | Exception |
 |---|---|---|---|
-| default | Border color/gray/500, 1 px, ou de la couleur du ton en tone=error et tone=warning. Le placeholder et l'icône du champ sont en color/gray/600. Link : texte et underline 1 px en color/blue/600. | TextInput : border color/gray/500, 1 px, placeholder color/gray/600. FileInput : border dashed color/gray/500, 1 px. | Aucune. |
+| default | Border color/gray/500, 1 px, ou de la couleur du ton en tone=error et tone=warning. Le placeholder et l'icône du champ sont en color/gray/600. Link : texte et underline 1 px en color/blue/700. | TextInput : border color/gray/500, 1 px, placeholder color/gray/600. FileInput : border dashed color/gray/500, 1 px. | Aucune. |
 | hover | La border passe à 2 px, sans changer de couleur. Pour Link, l'underline passe à 2 px. | TextInput : border color/gray/500, 1 px → 2 px. Link : underline 1 px → 2 px. | FileInput : le Button « Importer fichier » de la zone de dépôt prend aussi son hover, sans fond → fond color/blue/100, et le garde au focus. C'est une exception à la règle des composants imbriqués. |
 | focus | La border passe en color/blue/400, 2 px, même en tone=error ou tone=warning. Un curseur apparaît dans les champs de saisie. | TextInput : border color/gray/500 → color/blue/400, 2 px. TextInput en cours de saisie : rendu du focus, avec le curseur. | Link : underline 2 px, comme au hover, et outline color/blue/400, 2 px, avec un outline-offset de 2 px. FileInput : la border dashed color/gray/500 devient solid color/blue/400, 2 px. |
 | press | Pas de press. | TextInput : au clic, rendu du focus, sans nuance en plus. | Aucune. |
@@ -75,7 +75,7 @@ Un champ en tone=error ou tone=warning retrouve la couleur de son tone quand il 
 
 | État | Règle | Exemple | Exception |
 |---|---|---|---|
-| default | Sans fond, border-bottom 1 px. | _Tab : texte color/gray/900, border-bottom color/gray/200. Sa variante header : texte color/blue/600, border-bottom color/grape/100. | Aucune. |
+| default | Sans fond, border-bottom 1 px. | _Tab : texte color/gray/900, border-bottom color/gray/200. Sa variante header : texte color/blue/700, border-bottom color/grape/100. | Aucune. |
 | hover | Fond color/gray/100 et border-bottom 2 px, sans changer de couleur. Pas de border sur les autres côtés. | _Tab : sans fond, border-bottom color/gray/200, 1 px → fond color/gray/100, border-bottom color/gray/200, 2 px. | Aucune. |
 | focus | Outline color/blue/400, 2 px, avec un outline-offset de 2 px en haut et en bas. | _Tab : les onglets sont collés, donc l'outline passe par-dessus les 2 premiers px des onglets voisins. | L'outline-offset est de 0 sur les côtés, et non de 2 px comme le veut la règle commune. |
 | press | Fond color/gray/200 et border-bottom 2 px. | _Tab : sans fond → fond color/gray/200, border-bottom color/gray/200, 1 px → 2 px. | Aucune. |
@@ -99,10 +99,10 @@ La propriété loading a son propre rendu, avec un spinner, et n'est pas traité
 
 | État | Règle | Exemple | Exception |
 |---|---|---|---|
-| checked, selected, current | L'état dure, et le hover s'y ajoute. L'élément prend la couleur d'accent color/blue/600, en fond, en border ou en border-bottom selon le pattern. | _PaginationItem en current=true : fond color/blue/600, texte color/white. | Voir le tableau de chaque pattern. |
+| checked, selected, current | L'état dure, et le hover s'y ajoute. L'élément prend la couleur d'accent color/blue/700, en fond, en border ou en border-bottom selon le pattern. | _PaginationItem en current=true : fond color/blue/700, texte color/white. | Voir le tableau de chaque pattern. |
 | filled | La valeur saisie s'affiche. Seuls les champs ont cet état. | DateInput qui contient « 12/09/2000 » : filled=true. | Aucune. |
 | open | Le contenu s'affiche : une liste, un calendrier, le contenu d'un Accordion. Le composant garde son rendu, et le hover ou le focus s'y ajoutent quand ils ont lieu. | Accordion en open=true : l'IconButton de son en-tête prend le hover et le focus. | Aucune. |
-| disabled | Chaque élément présent passe en gris : fond color/gray/050, border et couleur d'accent color/gray/300, texte et icône color/gray/400. Un composant sans fond ou sans border n'en gagne pas. | Checkbox en checked=true et disabled=true : case color/gray/300, coche color/white. TextInput en disabled=true : placeholder ou valeur en color/gray/400. | Link dans un champ, comme « En savoir plus » : reste color/blue/600, car il reste cliquable quand le champ est désactivé. Button et IconButton : fond color/gray/050 sans border, quelle que soit leur hierarchy, même sans fond ni border en default. Switch : piste color/gray/300 en checked=false comme en checked=true, et poignée color/gray/100. Champs : le libellé et les textes d'aide gardent leur couleur, pour rester lisibles quand la valeur est bloquée. |
+| disabled | Chaque élément présent passe en gris : fond color/gray/050, border et couleur d'accent color/gray/300, texte et icône color/gray/400. Un composant sans fond ou sans border n'en gagne pas. | Checkbox en checked=true et disabled=true : case color/gray/300, coche color/white. TextInput en disabled=true : placeholder ou valeur en color/gray/400. | Link dans un champ, comme « En savoir plus » : reste color/blue/700, car il reste cliquable quand le champ est désactivé. Button et IconButton : fond color/gray/050 sans border, quelle que soit leur hierarchy, même sans fond ni border en default. Switch : piste color/gray/300 en checked=false comme en checked=true, et poignée color/gray/100. Champs : le libellé et les textes d'aide gardent leur couleur, pour rester lisibles quand la valeur est bloquée. |
 
 disabled=true n'existe qu'avec state=default et tone=neutral : un composant désactivé n'a ni hover, ni focus, ni press, ni ton d'erreur ou d'avertissement. Un champ désactivé a le même rendu, rempli ou non.
 
@@ -110,8 +110,8 @@ disabled=true n'existe qu'avec state=default et tone=neutral : un composant dés
 
 | État | Règle | Exemple | Exception |
 |---|---|---|---|
-| checked, current | Fond plein color/blue/600. Le texte et l'icône posés dessus passent en color/white. | _LevelSelectorStep en checked=true : fond color/blue/600, texte color/white. | FormCard : border color/blue/600, 2 px, sans fond. _SelectListItem : c'est sa Checkbox qui prend l'état checked. |
-| checked, current + hover | Le fond plein passe à la nuance suivante, color/blue/600 → color/blue/700, et l'état checked reste visible. | Switch en checked=true et state=hover : piste et icône color/blue/600 → color/blue/700. | FormCard, sans fond plein : fond color/gray/100, border color/blue/600, 2 px. _PaginationItem, _LevelSelectorStep : pas de hover, l'élément garde son rendu checked ou current. |
+| checked, current | Fond plein color/blue/700. Le texte et l'icône posés dessus passent en color/white. | _LevelSelectorStep en checked=true : fond color/blue/700, texte color/white. | FormCard : border color/blue/700, 2 px, sans fond. _SelectListItem : c'est sa Checkbox qui prend l'état checked. |
+| checked, current + hover | Le fond plein passe à la nuance suivante, color/blue/700 → color/blue/800, et l'état checked reste visible. | Switch en checked=true et state=hover : piste et icône color/blue/700 → color/blue/800. | FormCard, sans fond plein : fond color/gray/100, border color/blue/700, 2 px. _PaginationItem, _LevelSelectorStep : pas de hover, l'élément garde son rendu checked ou current. |
 
 ### Contour
 
@@ -124,8 +124,8 @@ disabled=true n'existe qu'avec state=default et tone=neutral : un composant dés
 
 | État | Règle | Exemple | Exception |
 |---|---|---|---|
-| selected, current | Border-bottom color/blue/600, 2 px, et texte color/blue/600. | _Tab en selected=true : texte color/blue/600, border-bottom color/blue/600, 2 px. | Variante header de _Tab : border-bottom color/red/300, 2 px. Son texte est déjà en color/blue/600. |
-| selected, current + hover | Le rendu de selected, avec un fond color/gray/100. | _Tab en selected=true et state=hover : fond color/gray/100, border-bottom color/blue/600, 2 px. | Aucune. |
+| selected, current | Border-bottom color/blue/700, 2 px, et texte color/blue/700. | _Tab en selected=true : texte color/blue/700, border-bottom color/blue/700, 2 px. | Variante header de _Tab : border-bottom color/red/300, 2 px. Son texte est déjà en color/blue/700. |
+| selected, current + hover | Le rendu de selected, avec un fond color/gray/100. | _Tab en selected=true et state=hover : fond color/gray/100, border-bottom color/blue/700, 2 px. | Aucune. |
 
 ### Halo
 
