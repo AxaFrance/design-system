@@ -159,7 +159,7 @@ Ces noms désignent Modal. Le seul nom à employer est Modal.
 - **1.0.0 - 24/11/26.** scrollable remplace l'ancienne propriété _scrollable, qui ne servait qu'au prototype. En scrollable=true, le slot a une hauteur fixe qui défile dans un prototype, avec une barre native/Scrollbar et un trait au-dessus des Button. Les marges autour des Button se resserrent comme dans le code.
 - **1.0.0 - 24/11/26.** Dans Figma, la fenêtre a une largeur d'exemple de 720 px en desktop, et le slot des hauteurs d'exemple. Dans une maquette, la hauteur suit le contenu posé dans le slot.
 - **1.0.0 - 24/11/26.** En mobile, les Button restent sur une ligne et se partagent la largeur, comme dans le code, alors qu'ailleurs ils s'empilent en colonne.
-- **1.0.0 - 25/11/26.** Le titre passe en color/gray/900, car color/blue/700 est réservé aux éléments interactifs.
+- **1.0.0 - 25/11/26.** Le titre passe en color/gray/900 et l'icône en color/gray/800, car color/blue/700 est réservé aux éléments interactifs.
 
 ## Points ouverts
 
@@ -172,7 +172,7 @@ Ces noms désignent Modal. Le seul nom à employer est Modal.
 - **Attribut title dans le code.** Le code pose aussi `title` en attribut HTML sur le `<dialog>` (`ModalCore.tsx:18`), ce qui peut afficher une infobulle au survol de la fenêtre. En attendant : signaler.
 - **Action en cours ou en échec.** L'effet du Button tertiary, et ce que fait la Modal quand l'action du Button primary charge ou échoue, ne sont pas définis. En attendant : signaler.
 - **Clic hors de la fenêtre pendant une saisie.** Fermer la Modal sur un clic hors de la fenêtre peut faire perdre une saisie en cours. En attendant : signaler.
-- **Couleur du titre dans le code.** Le Heading du code met un titre de niveau 2 en `--blue-1000` (`HeadingApollo.css:19`), alors que Figma le met en color/gray/900. En attendant : signaler.
+- **Couleurs du titre et de l'icône dans le code.** Le Heading du code met un titre de niveau 2 en `--blue-1000` (`HeadingApollo.css:19`), et son icône aussi (`IconCommon.css:64`), alors que Figma les met en color/gray/900 et color/gray/800. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 
