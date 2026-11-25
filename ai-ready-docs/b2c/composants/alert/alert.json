@@ -1059,7 +1059,7 @@
       },
       "action/vector": {
         "background": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         }
       }
     },
@@ -1270,10 +1270,10 @@
       "collection": "Primitive",
       "key": "e4db7baec72ca931eb5b6964f7a1b3dd69c6384f"
     },
-    "color/blue/600": {
+    "color/blue/700": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
-      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
+      "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
     },
     "color/gray/050": {
       "library": "Fondations Canopée",
@@ -1399,35 +1399,35 @@
   },
   "issues": [
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-unpublished",
       "where": "tokens.icon/size/small",
       "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold/line-height, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "textStyles.body/1/regular",
       "message": "Valeur absente de toutes les versions publiées de Canopée : body/1/regular."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "textStyles.title/1/semibold",
       "message": "Valeur absente de toutes les versions publiées de Canopée : title/1/semibold."
     }
   ],
-  "_tool": "canopee-export-components 0.7.11"
+  "_tool": "canopee-export-components 0.7.15"
 }

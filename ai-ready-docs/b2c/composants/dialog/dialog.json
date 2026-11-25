@@ -436,7 +436,7 @@
       },
       "secondary-button": {
         "stroke": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         },
         "strokeWeight": {
           "token": "border/width/2"
@@ -474,12 +474,12 @@
       },
       "secondary-button/vector": {
         "background": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         }
       },
       "primary-button": {
         "background": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         },
         "radius": {
           "token": "border/radius/full"
@@ -642,11 +642,6 @@
       "library": "Fondations Canopée",
       "collection": "Primitive",
       "key": "d6066603f0a6830a87efc9e782c85822c718d4ec"
-    },
-    "color/blue/600": {
-      "library": "Fondations Canopée",
-      "collection": "Primitive",
-      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
     },
     "color/blue/700": {
       "library": "Fondations Canopée",

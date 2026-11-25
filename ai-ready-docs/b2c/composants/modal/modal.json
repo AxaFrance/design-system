@@ -977,7 +977,7 @@
       },
       "close-button/vector": {
         "background": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         }
       },
       "body": {
@@ -1070,12 +1070,12 @@
       },
       "tertiary-button/vector": {
         "background": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         }
       },
       "secondary-button": {
         "stroke": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         },
         "strokeWeight": {
           "token": "border/width/2"
@@ -1113,12 +1113,12 @@
       },
       "secondary-button/vector": {
         "background": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         }
       },
       "primary-button": {
         "background": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         },
         "radius": {
           "token": "border/radius/full"
@@ -1502,11 +1502,6 @@
       "collection": "Primitive",
       "key": "d6066603f0a6830a87efc9e782c85822c718d4ec"
     },
-    "color/blue/600": {
-      "library": "Fondations Canopée",
-      "collection": "Primitive",
-      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
-    },
     "color/blue/700": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
@@ -1654,41 +1649,41 @@
       "occurrences": 2
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-unpublished",
       "where": "tokens.icon/size/medium",
       "message": "Token absent de toutes les versions publiées de Canopée : icon/size/medium."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-unpublished",
       "where": "tokens.icon/size/small",
       "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold/line-height, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "textStyles.heading/h2",
       "message": "Valeur absente de toutes les versions publiées de Canopée : heading/h2."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "textStyles.subtitle/1/regular",
       "message": "Valeur absente de toutes les versions publiées de Canopée : subtitle/1/regular."
     }
   ],
-  "_tool": "canopee-export-components 0.7.13"
+  "_tool": "canopee-export-components 0.7.15"
 }
