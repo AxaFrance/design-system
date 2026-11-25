@@ -19,7 +19,7 @@ Dans les exemples, « A → B » se lit : la valeur en default, puis la valeur d
 
 ## La couleur d'interaction
 
-Les éléments interactifs prennent color/blue/700, la couleur de la marque, comme couleur d'accent. Exemples : le fond d'un Button primary, le texte d'un Link, la piste d'un Switch en checked=true. Un titre prend aussi color/blue/700 : la couleur seule ne dit donc pas qu'un élément se clique.
+Les éléments interactifs prennent color/blue/700, la couleur de la marque, comme couleur d'accent. Exemples : le fond d'un Button primary, le texte d'un Link, la piste d'un Switch en checked=true. Cette couleur leur est réservée, pour qu'elle dise à elle seule qu'un élément se clique. Un titre prend color/gray/900, même dans un composant cliquable en entier.
 
 Quand le pattern change cette couleur au hover, comme le fond d'un Button primary ou la piste d'un Switch, color/blue/700 passe à color/blue/800, puis à color/blue/900 au press. Le texte d'un Link reste en color/blue/700 au hover, car seul son soulignement change.
 

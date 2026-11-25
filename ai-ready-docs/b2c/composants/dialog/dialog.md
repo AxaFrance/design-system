@@ -90,6 +90,7 @@ Ces noms désignent Dialog. Le seul nom à employer est Dialog.
 - **1.0.0 - 24/11/26.** En mobile, le Dialog reste centré, alors que la Modal se pose en bas de l'écran. Une question courte n'a pas besoin de toute la largeur.
 - **1.0.0 - 24/11/26.** Dans Figma, la fenêtre a une largeur d'exemple de 480 px en desktop. Dans une maquette, sa hauteur suit le titre et la description.
 - **1.0.0 - 24/11/26.** Le Dialog n'a pas de propriété _theme, comme la Modal. Dans le thème client, le designer règle le _theme des Button, exposés dans le panneau du Dialog.
+- **1.0.0 - 25/11/26.** Le titre passe en color/gray/900, car color/blue/700 est réservé aux éléments interactifs.
 
 ## Points ouverts
 

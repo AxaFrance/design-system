@@ -144,6 +144,7 @@ Ces noms désignent Stepper. Le seul nom à employer est Stepper.
 - **1.0.0 - 17/11/26.** Le Stepper garde ses deux thèmes, prospect et client, car leurs espacements diffèrent, comme dans le code.
 - **1.0.0 - 17/11/26.** Le Stepper n'a qu'un texte sous les barres, un _FormHelperText neutre et sans icône par défaut, qui porte l'aide comme le message. L'ancien texte d'aide gris disparaît.
 - **1.0.0 - 17/11/26.** Le Stepper n'a pas d'icône devant son titre. Le code retirera la sienne quand il suivra ce composant.
+- **1.0.0 - 25/11/26.** Le titre et le sous-titre passent en color/gray/900, car color/blue/700 est réservé aux éléments interactifs.
 
 ## Points ouverts
 
@@ -154,6 +155,7 @@ Ces noms désignent Stepper. Le seul nom à employer est Stepper.
 - **Aide et message dans le code.** Le code affiche l'aide (`helper`) et le message (`message`) dans deux éléments séparés, l'un sous l'autre, et le message y est un succès par défaut. Figma n'en garde qu'un, le _FormHelperText, neutre par défaut. En attendant : un seul des deux à la fois.
 - **Plugin Copilot.** Ses pages Stepper et ProgressBarGroup comptent les étapes à partir de 1, alors que le code compte à partir de 0. La page ProgressBarGroup et son Storybook le présentent aussi comme utilisable seul, sans Stepper. En attendant : la fiche fait foi.
 - **Ancienne documentation.** Une page de l'ancienne documentation du B2C décrit une navigation au clavier d'étape en étape, alors que le Stepper n'est pas interactif. En attendant : la fiche fait foi.
+- **Couleur du titre dans le code.** Le Heading du code met un titre de niveau 1 ou 2 en `--blue-1000` (`HeadingApollo.css:11` et `HeadingApollo.css:19`), alors que Figma le met en color/gray/900. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 
