@@ -778,13 +778,11 @@
       },
       "children": {
         "layout": {
+          "direction": "row",
+          "crossAlign": "center",
           "sizingH": "fixed",
           "width": {
             "raw": 208
-          },
-          "sizingV": "fixed",
-          "height": {
-            "raw": 100
           }
         }
       },
@@ -845,11 +843,9 @@
           },
           "children": {
             "layout": {
-              "sizingH": "fill",
-              "sizingV": "fixed",
-              "height": {
-                "raw": 100
-              }
+              "direction": "row",
+              "crossAlign": "center",
+              "sizingH": "fill"
             }
           }
         }
