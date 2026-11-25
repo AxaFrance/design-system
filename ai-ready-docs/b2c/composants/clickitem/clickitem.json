@@ -1,0 +1,1769 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "ClickItem",
+    "version": "1.0.0",
+    "tokensVersion": null,
+    "type": "composed",
+    "extends": "Tag",
+    "figmaKey": "21ff3878c0a274dfca35e115f4bd85cd32b8cf6c",
+    "library": "B2C",
+    "breakpoints": [
+      0,
+      1024
+    ],
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/clickitem/clickitem.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "state": {
+        "type": "enum",
+        "enum": [
+          "default",
+          "hover",
+          "focus"
+        ],
+        "default": "default"
+      },
+      "disabled": {
+        "type": "enum",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      },
+      "loading": {
+        "type": "enum",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      },
+      "showIcon": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "icon",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "showAvatar": {
+        "type": "boolean",
+        "default": false,
+        "controls": [
+          {
+            "layer": "avatar",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "showSubtitle": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "subtitle",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "showDescription": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "description",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "showCaption": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "caption",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "showTag": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "tag",
+            "attribute": "visible"
+          }
+        ]
+      }
+    },
+    "exposed": [
+      {
+        "from": "Tag",
+        "props": [
+          "label",
+          "tone",
+          "disabled",
+          "breakpoint"
+        ]
+      }
+    ]
+  },
+  "variants": [
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "loading": "false",
+        "breakpoint": "1024"
+      },
+      "position": [
+        40,
+        40
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "loading": "false",
+        "breakpoint": "0"
+      },
+      "position": [
+        40,
+        230
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "loading": "true",
+        "breakpoint": "1024"
+      },
+      "position": [
+        1680,
+        40
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "false",
+        "loading": "true",
+        "breakpoint": "0"
+      },
+      "position": [
+        1680,
+        230
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "true",
+        "loading": "false",
+        "breakpoint": "1024"
+      },
+      "position": [
+        1270,
+        40
+      ]
+    },
+    {
+      "values": {
+        "state": "default",
+        "disabled": "true",
+        "loading": "false",
+        "breakpoint": "0"
+      },
+      "position": [
+        1270,
+        230
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "loading": "false",
+        "breakpoint": "1024"
+      },
+      "position": [
+        450,
+        40
+      ]
+    },
+    {
+      "values": {
+        "state": "hover",
+        "disabled": "false",
+        "loading": "false",
+        "breakpoint": "0"
+      },
+      "position": [
+        450,
+        230
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "loading": "false",
+        "breakpoint": "1024"
+      },
+      "position": [
+        860,
+        40
+      ]
+    },
+    {
+      "values": {
+        "state": "focus",
+        "disabled": "false",
+        "loading": "false",
+        "breakpoint": "0"
+      },
+      "position": [
+        860,
+        230
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {
+      "title": {
+        "as": "children",
+        "default": {
+          "text": "Title"
+        },
+        "controls": [
+          {
+            "layer": "title",
+            "attribute": "text"
+          }
+        ]
+      },
+      "subtitle": {
+        "as": "children",
+        "default": {
+          "text": "Subtitle"
+        },
+        "controls": [
+          {
+            "layer": "subtitle",
+            "attribute": "text"
+          }
+        ]
+      },
+      "description": {
+        "as": "children",
+        "default": {
+          "text": "Description"
+        },
+        "controls": [
+          {
+            "layer": "description",
+            "attribute": "text"
+          }
+        ]
+      },
+      "caption": {
+        "as": "children",
+        "default": {
+          "text": "Caption"
+        },
+        "controls": [
+          {
+            "layer": "caption",
+            "attribute": "text"
+          }
+        ]
+      },
+      "icon": {
+        "accepts": "Instance",
+        "default": {
+          "swap": "icon/account-balance"
+        },
+        "controls": [
+          {
+            "layer": "icon",
+            "attribute": "component"
+          }
+        ]
+      }
+    },
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "leading",
+            "type": "frame",
+            "children": [
+              {
+                "name": "icon",
+                "type": "instance",
+                "component": "icon/account-balance"
+              },
+              {
+                "name": "avatar",
+                "type": "instance",
+                "hidden": true,
+                "component": "Avatar",
+                "values": {
+                  "type": "picture"
+                }
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "details",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "subtitle",
+                    "type": "text"
+                  },
+                  {
+                    "name": "description",
+                    "type": "text"
+                  },
+                  {
+                    "name": "caption",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "tag-container",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "tag",
+                    "type": "instance",
+                    "component": "Tag",
+                    "values": {
+                      "tone": "information",
+                      "disabled": "false",
+                      "breakpoint": "0"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "indicator",
+            "type": "instance",
+            "component": "IconButton",
+            "values": {
+              "state": "default",
+              "disabled": "false",
+              "loading": "false",
+              "hierarchy": "secondary",
+              "colorScheme": "default",
+              "size": "small",
+              "_theme": "prospect"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "default",
+          "disabled": "false",
+          "loading": "false",
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "leading",
+            "type": "frame",
+            "children": [
+              {
+                "name": "icon",
+                "type": "instance",
+                "component": "icon/account-balance"
+              },
+              {
+                "name": "avatar",
+                "type": "instance",
+                "hidden": true,
+                "component": "Avatar",
+                "values": {
+                  "type": "picture"
+                }
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "details",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "subtitle",
+                    "type": "text"
+                  },
+                  {
+                    "name": "description",
+                    "type": "text"
+                  },
+                  {
+                    "name": "caption",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "tag-container",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "tag",
+                    "type": "instance",
+                    "component": "Tag",
+                    "values": {
+                      "tone": "information",
+                      "disabled": "false",
+                      "breakpoint": "1024"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "indicator",
+            "type": "instance",
+            "component": "IconButton",
+            "values": {
+              "state": "default",
+              "disabled": "false",
+              "loading": "false",
+              "hierarchy": "secondary",
+              "colorScheme": "default",
+              "size": "small",
+              "_theme": "prospect"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "default",
+          "disabled": "false",
+          "loading": "true",
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "leading",
+            "type": "frame",
+            "children": [
+              {
+                "name": "icon",
+                "type": "instance",
+                "component": "icon/account-balance"
+              },
+              {
+                "name": "avatar",
+                "type": "instance",
+                "hidden": true,
+                "component": "Avatar",
+                "values": {
+                  "type": "picture"
+                }
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "details",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "subtitle",
+                    "type": "text"
+                  },
+                  {
+                    "name": "description",
+                    "type": "text"
+                  },
+                  {
+                    "name": "caption",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "tag-container",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "tag",
+                    "type": "instance",
+                    "component": "Tag",
+                    "values": {
+                      "tone": "information",
+                      "disabled": "false",
+                      "breakpoint": "1024"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "indicator",
+            "type": "instance",
+            "component": "IconButton",
+            "values": {
+              "state": "default",
+              "disabled": "false",
+              "loading": "true",
+              "hierarchy": "secondary",
+              "colorScheme": "default",
+              "size": "small",
+              "_theme": "prospect"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "default",
+          "disabled": "false",
+          "loading": "true",
+          "breakpoint": "0"
+        },
+        "tree": [
+          {
+            "name": "leading",
+            "type": "frame",
+            "children": [
+              {
+                "name": "icon",
+                "type": "instance",
+                "component": "icon/account-balance"
+              },
+              {
+                "name": "avatar",
+                "type": "instance",
+                "hidden": true,
+                "component": "Avatar",
+                "values": {
+                  "type": "picture"
+                }
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "details",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "subtitle",
+                    "type": "text"
+                  },
+                  {
+                    "name": "description",
+                    "type": "text"
+                  },
+                  {
+                    "name": "caption",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "tag-container",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "tag",
+                    "type": "instance",
+                    "component": "Tag",
+                    "values": {
+                      "tone": "information",
+                      "disabled": "false",
+                      "breakpoint": "0"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "indicator",
+            "type": "instance",
+            "component": "IconButton",
+            "values": {
+              "state": "default",
+              "disabled": "false",
+              "loading": "true",
+              "hierarchy": "secondary",
+              "colorScheme": "default",
+              "size": "small",
+              "_theme": "prospect"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "default",
+          "disabled": "true",
+          "loading": "false",
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "leading",
+            "type": "frame",
+            "children": [
+              {
+                "name": "icon",
+                "type": "instance",
+                "component": "icon/account-balance"
+              },
+              {
+                "name": "avatar",
+                "type": "instance",
+                "hidden": true,
+                "component": "Avatar",
+                "values": {
+                  "type": "picture"
+                }
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "details",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "subtitle",
+                    "type": "text"
+                  },
+                  {
+                    "name": "description",
+                    "type": "text"
+                  },
+                  {
+                    "name": "caption",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "tag-container",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "tag",
+                    "type": "instance",
+                    "component": "Tag",
+                    "values": {
+                      "tone": "neutral",
+                      "disabled": "true",
+                      "breakpoint": "1024"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "indicator",
+            "type": "instance",
+            "component": "IconButton",
+            "values": {
+              "state": "default",
+              "disabled": "true",
+              "loading": "false",
+              "hierarchy": "secondary",
+              "colorScheme": "default",
+              "size": "small",
+              "_theme": "prospect"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "default",
+          "disabled": "true",
+          "loading": "false",
+          "breakpoint": "0"
+        },
+        "tree": [
+          {
+            "name": "leading",
+            "type": "frame",
+            "children": [
+              {
+                "name": "icon",
+                "type": "instance",
+                "component": "icon/account-balance"
+              },
+              {
+                "name": "avatar",
+                "type": "instance",
+                "hidden": true,
+                "component": "Avatar",
+                "values": {
+                  "type": "picture"
+                }
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "details",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "subtitle",
+                    "type": "text"
+                  },
+                  {
+                    "name": "description",
+                    "type": "text"
+                  },
+                  {
+                    "name": "caption",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "tag-container",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "tag",
+                    "type": "instance",
+                    "component": "Tag",
+                    "values": {
+                      "tone": "neutral",
+                      "disabled": "true",
+                      "breakpoint": "0"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "indicator",
+            "type": "instance",
+            "component": "IconButton",
+            "values": {
+              "state": "default",
+              "disabled": "true",
+              "loading": "false",
+              "hierarchy": "secondary",
+              "colorScheme": "default",
+              "size": "small",
+              "_theme": "prospect"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "hover",
+          "disabled": "false",
+          "loading": "false",
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "leading",
+            "type": "frame",
+            "children": [
+              {
+                "name": "icon",
+                "type": "instance",
+                "component": "icon/account-balance"
+              },
+              {
+                "name": "avatar",
+                "type": "instance",
+                "hidden": true,
+                "component": "Avatar",
+                "values": {
+                  "type": "picture"
+                }
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "details",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "subtitle",
+                    "type": "text"
+                  },
+                  {
+                    "name": "description",
+                    "type": "text"
+                  },
+                  {
+                    "name": "caption",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "tag-container",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "tag",
+                    "type": "instance",
+                    "component": "Tag",
+                    "values": {
+                      "tone": "information",
+                      "disabled": "false",
+                      "breakpoint": "1024"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "indicator",
+            "type": "instance",
+            "component": "IconButton",
+            "values": {
+              "state": "hover",
+              "disabled": "false",
+              "loading": "false",
+              "hierarchy": "secondary",
+              "colorScheme": "default",
+              "size": "small",
+              "_theme": "prospect"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "hover",
+          "disabled": "false",
+          "loading": "false",
+          "breakpoint": "0"
+        },
+        "tree": [
+          {
+            "name": "leading",
+            "type": "frame",
+            "children": [
+              {
+                "name": "icon",
+                "type": "instance",
+                "component": "icon/account-balance"
+              },
+              {
+                "name": "avatar",
+                "type": "instance",
+                "hidden": true,
+                "component": "Avatar",
+                "values": {
+                  "type": "picture"
+                }
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "details",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "subtitle",
+                    "type": "text"
+                  },
+                  {
+                    "name": "description",
+                    "type": "text"
+                  },
+                  {
+                    "name": "caption",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "tag-container",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "tag",
+                    "type": "instance",
+                    "component": "Tag",
+                    "values": {
+                      "tone": "information",
+                      "disabled": "false",
+                      "breakpoint": "0"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "indicator",
+            "type": "instance",
+            "component": "IconButton",
+            "values": {
+              "state": "hover",
+              "disabled": "false",
+              "loading": "false",
+              "hierarchy": "secondary",
+              "colorScheme": "default",
+              "size": "small",
+              "_theme": "prospect"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "focus",
+          "disabled": "false",
+          "loading": "false",
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "leading",
+            "type": "frame",
+            "children": [
+              {
+                "name": "icon",
+                "type": "instance",
+                "component": "icon/account-balance"
+              },
+              {
+                "name": "avatar",
+                "type": "instance",
+                "hidden": true,
+                "component": "Avatar",
+                "values": {
+                  "type": "picture"
+                }
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "details",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "subtitle",
+                    "type": "text"
+                  },
+                  {
+                    "name": "description",
+                    "type": "text"
+                  },
+                  {
+                    "name": "caption",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "tag-container",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "tag",
+                    "type": "instance",
+                    "component": "Tag",
+                    "values": {
+                      "tone": "information",
+                      "disabled": "false",
+                      "breakpoint": "1024"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "indicator",
+            "type": "instance",
+            "component": "IconButton",
+            "values": {
+              "state": "hover",
+              "disabled": "false",
+              "loading": "false",
+              "hierarchy": "secondary",
+              "colorScheme": "default",
+              "size": "small",
+              "_theme": "prospect"
+            }
+          },
+          {
+            "name": "focus-ring",
+            "type": "frame"
+          }
+        ]
+      },
+      {
+        "when": {
+          "state": "focus",
+          "disabled": "false",
+          "loading": "false",
+          "breakpoint": "0"
+        },
+        "tree": [
+          {
+            "name": "leading",
+            "type": "frame",
+            "children": [
+              {
+                "name": "icon",
+                "type": "instance",
+                "component": "icon/account-balance"
+              },
+              {
+                "name": "avatar",
+                "type": "instance",
+                "hidden": true,
+                "component": "Avatar",
+                "values": {
+                  "type": "picture"
+                }
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "details",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "subtitle",
+                    "type": "text"
+                  },
+                  {
+                    "name": "description",
+                    "type": "text"
+                  },
+                  {
+                    "name": "caption",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "tag-container",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "tag",
+                    "type": "instance",
+                    "component": "Tag",
+                    "values": {
+                      "tone": "information",
+                      "disabled": "false",
+                      "breakpoint": "0"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "indicator",
+            "type": "instance",
+            "component": "IconButton",
+            "values": {
+              "state": "hover",
+              "disabled": "false",
+              "loading": "false",
+              "hierarchy": "secondary",
+              "colorScheme": "default",
+              "size": "small",
+              "_theme": "prospect"
+            }
+          },
+          {
+            "name": "focus-ring",
+            "type": "frame"
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "Avatar",
+      "IconButton",
+      "Tag",
+      "icon/account-balance"
+    ]
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "state": "default",
+        "disabled": "false",
+        "loading": "false",
+        "breakpoint": "0"
+      },
+      "modes": {
+        "Typography": "client-mobile"
+      },
+      "root": {
+        "radius": {
+          "raw": 0
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "gap": {
+          "token": "spacing/12"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center",
+          "clip": false,
+          "sizingH": "fixed",
+          "width": {
+            "raw": 350
+          },
+          "sizingV": "hug"
+        }
+      },
+      "leading": {
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center"
+        }
+      },
+      "icon": {
+        "layout": {
+          "sizingH": "fixed",
+          "width": {
+            "token": "icon/size/small"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "icon/size/small"
+          }
+        }
+      },
+      "icon/vector": {
+        "background": {
+          "token": "color/gray/800"
+        }
+      },
+      "avatar": {
+        "layout": {
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/48"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/48"
+          }
+        }
+      },
+      "content": {
+        "gap": {
+          "token": "spacing/2"
+        },
+        "layout": {
+          "direction": "column",
+          "sizingH": "fill"
+        }
+      },
+      "title": {
+        "textColor": {
+          "token": "color/gray/900"
+        },
+        "textStyle": "title/1/semibold",
+        "layout": {
+          "sizingH": "fill"
+        }
+      },
+      "details": {
+        "gap": {
+          "token": "spacing/2"
+        },
+        "layout": {
+          "direction": "column",
+          "sizingH": "fill"
+        }
+      },
+      "subtitle": {
+        "textColor": {
+          "token": "color/gray/900"
+        },
+        "textStyle": "subtitle/1/regular",
+        "layout": {
+          "sizingH": "fill"
+        }
+      },
+      "description": {
+        "textColor": {
+          "token": "color/gray/600"
+        },
+        "textStyle": "subtitle/2/regular",
+        "layout": {
+          "sizingH": "fill"
+        }
+      },
+      "caption": {
+        "textColor": {
+          "token": "color/gray/600"
+        },
+        "textStyle": "subtitle/3/regular",
+        "layout": {
+          "sizingH": "fill"
+        }
+      },
+      "tag-container": {
+        "padding": {
+          "top": {
+            "token": "spacing/6"
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "layout": {
+          "direction": "row"
+        }
+      },
+      "tag": {
+        "background": {
+          "token": "color/azure/050"
+        },
+        "radius": {
+          "token": "border/radius/4"
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "token": "spacing/6"
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "token": "spacing/6"
+          }
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center"
+        }
+      },
+      "indicator": {
+        "stroke": {
+          "token": "color/blue/700"
+        },
+        "strokeWeight": {
+          "token": "border/width/2"
+        },
+        "strokeAlign": "inside",
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/8"
+          },
+          "right": {
+            "token": "spacing/8"
+          },
+          "bottom": {
+            "token": "spacing/8"
+          },
+          "left": {
+            "token": "spacing/8"
+          }
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/40"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/40"
+          }
+        }
+      },
+      "indicator/vector": {
+        "background": {
+          "token": "color/blue/700"
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "modes": {
+            "Typography": "client-desktop"
+          },
+          "tag": {
+            "padding": {
+              "top": {
+                "raw": 0
+              },
+              "right": {
+                "token": "spacing/8"
+              },
+              "bottom": {
+                "raw": 0
+              },
+              "left": {
+                "token": "spacing/8"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "hover"
+        },
+        "styles": {
+          "indicator": {
+            "background": {
+              "token": "color/blue/100"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus"
+        },
+        "styles": {
+          "indicator": {
+            "background": {
+              "token": "color/blue/100"
+            }
+          },
+          "focus-ring": {
+            "stroke": {
+              "token": "color/blue/400"
+            },
+            "strokeWeight": {
+              "token": "border/width/2"
+            },
+            "strokeAlign": "inside"
+          }
+        }
+      },
+      {
+        "when": {
+          "disabled": "true"
+        },
+        "styles": {
+          "icon/vector": {
+            "background": {
+              "token": "color/gray/400"
+            }
+          },
+          "title": {
+            "textColor": {
+              "token": "color/gray/400"
+            }
+          },
+          "subtitle": {
+            "textColor": {
+              "token": "color/gray/400"
+            }
+          },
+          "description": {
+            "textColor": {
+              "token": "color/gray/400"
+            }
+          },
+          "caption": {
+            "textColor": {
+              "token": "color/gray/400"
+            }
+          },
+          "tag": {
+            "background": {
+              "token": "color/gray/050"
+            }
+          },
+          "indicator": {
+            "stroke": null,
+            "strokeWeight": null,
+            "strokeAlign": null,
+            "background": {
+              "token": "color/gray/050"
+            }
+          },
+          "indicator/vector": {
+            "background": {
+              "token": "color/gray/400"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus",
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "focus-ring": {
+            "layout": {
+              "absolute": true,
+              "x": -4,
+              "y": -4,
+              "constraints": {
+                "horizontal": "stretch",
+                "vertical": "stretch"
+              },
+              "sizingH": "fixed",
+              "width": {
+                "raw": 358
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 138
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "focus",
+          "breakpoint": "0"
+        },
+        "styles": {
+          "focus-ring": {
+            "layout": {
+              "absolute": true,
+              "x": -4,
+              "y": -4,
+              "constraints": {
+                "horizontal": "stretch",
+                "vertical": "stretch"
+              },
+              "sizingH": "fixed",
+              "width": {
+                "raw": 358
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 130
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/radius/4": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "31b5a8a1b3e357eefb3ba1a6bf4d8f85f93bbab1"
+    },
+    "border/radius/full": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "1fcf11522d356a0d693232bf2ced5fbcc75d781a"
+    },
+    "border/width/2": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d6066603f0a6830a87efc9e782c85822c718d4ec"
+    },
+    "color/azure/050": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "ec904b02238e2af5ea94a55745ccb3e6821e5ace"
+    },
+    "color/blue/100": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d50dea590d73aa97ad3e735e4f164f5ebb473e24"
+    },
+    "color/blue/400": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "7cf31063821d1c4cfafc6be64eb8dc1485d91077"
+    },
+    "color/blue/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
+    },
+    "color/gray/050": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "9a7161bb3eb2c89a2754cb33f96c5a8387652a88"
+    },
+    "color/gray/400": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "eaff1ed01f768ac5086ba33fed8a6e56d3c91536"
+    },
+    "color/gray/600": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d12a13846395d779ce6239438a435137917d7841"
+    },
+    "color/gray/800": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "fe28dbe1aed177067927c271ad02e997ffda2c24"
+    },
+    "color/gray/900": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d79e9ad46847476669d7028a19c83d08c1bdfa1c"
+    },
+    "icon/size/small": {
+      "library": "Fondations Canopée",
+      "collection": "Size",
+      "key": "9e4bd3df25a2a614d95da75baf2dc6ebd46f65c2"
+    },
+    "size/40": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "aecbeec91b0b99619019ff470811099ddb5a6ac9"
+    },
+    "size/48": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "e7040d5d297c3771090baa2b84f63664b7b3cde8"
+    },
+    "spacing/12": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "6cfd5a3c3e9c964463b4b26cce753ba1aec30649"
+    },
+    "spacing/2": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "e87f2294ffcf1cc7e76196ee612ceffc9fb4b2aa"
+    },
+    "spacing/6": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "8a9022b6c99d49e876e2680384edeca9db6b5e20"
+    },
+    "spacing/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f79c6b1de93d24589305065ca591b49ab3a32d6b"
+    }
+  },
+  "textStyles": {
+    "subtitle/1/regular": {
+      "library": null,
+      "key": "0737ef809688475d8b0a7a8d2bab9fcded3b9ed6"
+    },
+    "subtitle/2/regular": {
+      "library": null,
+      "key": "dc0c6152357550bf57eeab29115eea75dc5c7c66"
+    },
+    "subtitle/3/regular": {
+      "library": null,
+      "key": "e22b1ca804934f2575204e13de6a12e1097575e7"
+    },
+    "title/1/semibold": {
+      "library": null,
+      "key": "66c000bb46416a8e1c0fa469d5f40c196e8b80fb"
+    }
+  },
+  "components": {
+    "Avatar": {
+      "library": "B2C",
+      "key": "7a44fe984b9253385813a2d1a0e138495e5ab5af"
+    },
+    "IconButton": {
+      "library": "B2C",
+      "key": "921b5fa9be9ebca368ea2a027222ebc806a6dad6"
+    },
+    "Tag": {
+      "library": "B2C",
+      "key": "01d45958c08d2ff9337d8942a096d2665832f4e2"
+    },
+    "icon/account-balance": {
+      "library": null,
+      "key": "b3851c784ccef4c351dfa539b744499293b1b010"
+    }
+  },
+  "modeCollections": {
+    "Typography": {
+      "library": "Fondations Canopée",
+      "key": "be959715ddac77dedafba55e157014b702551c02"
+    }
+  },
+  "issues": [
+    {
+      "level": "info",
+      "rule": "token-unpublished",
+      "where": "tokens.icon/size/small",
+      "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold/line-height, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.subtitle/1/regular",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : subtitle/1/regular."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.subtitle/2/regular",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : subtitle/2/regular."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.subtitle/3/regular",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : subtitle/3/regular."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.title/1/semibold",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : title/1/semibold."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.15"
+}

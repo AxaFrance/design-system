@@ -17,6 +17,7 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 |---|---|---|---|
 | Button | [button.md](button/button.md) | [button.json](button/button.json) | [button-changelog.md](button/button-changelog.md) |
 | IconButton | [iconbutton.md](iconbutton/iconbutton.md) | [iconbutton.json](iconbutton/iconbutton.json) | [iconbutton-changelog.md](iconbutton/iconbutton-changelog.md) |
+| ClickItem | [clickitem.md](clickitem/clickitem.md) | [clickitem.json](clickitem/clickitem.json) | [clickitem-changelog.md](clickitem/clickitem-changelog.md) |
 | Divider | [divider.md](divider/divider.md) | [divider.json](divider/divider.json) | [divider-changelog.md](divider/divider-changelog.md) |
 | Spinner | [spinner.md](spinner/spinner.md) | [spinner.json](spinner/spinner.json) | [spinner-changelog.md](spinner/spinner-changelog.md) |
 | Avatar | [avatar.md](avatar/avatar.md) | [avatar.json](avatar/avatar.json) | [avatar-changelog.md](avatar/avatar-changelog.md) |

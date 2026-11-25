@@ -274,6 +274,7 @@
                     "values": {
                       "state": "default",
                       "disabled": "false",
+                      "loading": "false",
                       "hierarchy": "tertiary",
                       "colorScheme": "default",
                       "size": "small",
@@ -400,6 +401,7 @@
                     "values": {
                       "state": "default",
                       "disabled": "false",
+                      "loading": "false",
                       "hierarchy": "tertiary",
                       "colorScheme": "default",
                       "size": "small",
@@ -526,6 +528,7 @@
                     "values": {
                       "state": "default",
                       "disabled": "false",
+                      "loading": "false",
                       "hierarchy": "tertiary",
                       "colorScheme": "default",
                       "size": "small",
@@ -668,6 +671,7 @@
                     "values": {
                       "state": "default",
                       "disabled": "false",
+                      "loading": "false",
                       "hierarchy": "tertiary",
                       "colorScheme": "default",
                       "size": "small",
@@ -925,7 +929,7 @@
       },
       "title": {
         "textColor": {
-          "token": "color/blue/700"
+          "token": "color/gray/900"
         },
         "textStyle": "heading/h2",
         "layout": {
@@ -1526,6 +1530,11 @@
       "library": "Fondations Canopée",
       "collection": "Primitive",
       "key": "fe28dbe1aed177067927c271ad02e997ffda2c24"
+    },
+    "color/gray/900": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d79e9ad46847476669d7028a19c83d08c1bdfa1c"
     },
     "color/white": {
       "library": "Fondations Canopée",
