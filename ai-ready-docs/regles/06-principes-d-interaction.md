@@ -159,4 +159,5 @@ disabled=true n'existe qu'avec state=default et tone=neutral : un composant dés
 | FormCard | La carte prend le hover et le focus, et porte checked et tone. Son Radio ou sa Checkbox, en showLabel=false, reprend checked et tone, mais ne change pas au hover ni au focus, et n'a pas de halo. |
 | PhoneInput | Les propriétés state, filled et tone décrivent le champ du numéro. L'indicatif, toujours rempli et prérempli avec +33, garde son rendu, texte et flèche en color/gray/900. Ses propres états ne sont pas encore définis. |
 | Accordion | Pas d'état d'interaction : l'IconButton de son en-tête prend le hover, le focus et le press. Le seul état propre à l'Accordion est open. |
+| ClickItem | Le ClickItem est cliquable en entier, et son IconButton reprend ses états : il passe en state=hover quand le ClickItem prend le hover, et le garde au focus. Le titre ne change pas. En size=small, sans IconButton, c'est le titre qui se souligne au hover et au focus. |
 | FileInput | Le Button « Importer fichier » de la zone de dépôt prend aussi son hover quand FileInput le prend, et le garde au focus. |
