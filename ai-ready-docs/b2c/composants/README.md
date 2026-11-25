@@ -39,6 +39,7 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 | Pagination | [pagination.md](pagination/pagination.md) | [pagination.json](pagination/pagination.json) | [pagination-changelog.md](pagination/pagination-changelog.md) |
 | Skeleton | [skeleton.md](skeleton/skeleton.md) | [skeleton.json](skeleton/skeleton.json) | [skeleton-changelog.md](skeleton/skeleton-changelog.md) |
 | Alert | [alert.md](alert/alert.md) | [alert.json](alert/alert.json) | [alert-changelog.md](alert/alert-changelog.md) |
+| Banner | [banner.md](banner/banner.md) | [banner.json](banner/banner.json) | [banner-changelog.md](banner/banner-changelog.md) |
 | Modal | [modal.md](modal/modal.md) | [modal.json](modal/modal.json) | [modal-changelog.md](modal/modal-changelog.md) |
 | Dialog | [dialog.md](dialog/dialog.md) | [dialog.json](dialog/dialog.json) | [dialog-changelog.md](dialog/dialog-changelog.md) |
 | Table | [table.md](table/table.md) | [table.json](table/table.json) | [table-changelog.md](table/table-changelog.md) |

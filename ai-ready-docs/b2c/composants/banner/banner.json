@@ -1,0 +1,977 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "Banner",
+    "version": "1.0.0",
+    "tokensVersion": null,
+    "type": "composed",
+    "extends": "Link",
+    "figmaKey": "cbca645dc61d1450da076440aae2ac275e3cd09c",
+    "library": "B2C",
+    "breakpoints": [
+      0,
+      1024
+    ],
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/banner/banner.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "open": {
+        "type": "enum",
+        "enum": [
+          "true",
+          "false"
+        ],
+        "default": "true"
+      },
+      "tone": {
+        "type": "enum",
+        "enum": [
+          "information",
+          "error"
+        ],
+        "default": "information"
+      },
+      "showCloseButton": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "close-button",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "showDescription": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "description",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "showExpandButton": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "expand-button",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "showButton": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "button",
+            "attribute": "visible"
+          }
+        ]
+      }
+    },
+    "exposed": [
+      {
+        "from": "Link",
+        "props": [
+          "leftIcon",
+          "label",
+          "rightIcon",
+          "showRightIcon",
+          "showLeftIcon",
+          "state",
+          "colorScheme",
+          "size",
+          "breakpoint"
+        ]
+      },
+      {
+        "from": "Button",
+        "props": [
+          "rightIcon",
+          "leftIcon",
+          "label",
+          "showLeftIcon",
+          "showRightIcon",
+          "state",
+          "disabled",
+          "loading",
+          "hierarchy",
+          "colorScheme",
+          "size",
+          "breakpoint",
+          "_theme"
+        ]
+      }
+    ]
+  },
+  "variants": [
+    {
+      "values": {
+        "open": "true",
+        "tone": "information",
+        "breakpoint": "1024"
+      },
+      "position": [
+        48,
+        48
+      ]
+    },
+    {
+      "values": {
+        "open": "true",
+        "tone": "information",
+        "breakpoint": "0"
+      },
+      "position": [
+        2752,
+        48
+      ]
+    },
+    {
+      "values": {
+        "open": "true",
+        "tone": "error",
+        "breakpoint": "1024"
+      },
+      "position": [
+        48,
+        296
+      ]
+    },
+    {
+      "values": {
+        "open": "true",
+        "tone": "error",
+        "breakpoint": "0"
+      },
+      "position": [
+        2752,
+        296
+      ]
+    },
+    {
+      "values": {
+        "open": "false",
+        "tone": "information",
+        "breakpoint": "1024"
+      },
+      "position": [
+        1376,
+        48
+      ]
+    },
+    {
+      "values": {
+        "open": "false",
+        "tone": "information",
+        "breakpoint": "0"
+      },
+      "position": [
+        3175,
+        48
+      ]
+    },
+    {
+      "values": {
+        "open": "false",
+        "tone": "error",
+        "breakpoint": "1024"
+      },
+      "position": [
+        1376,
+        296
+      ]
+    },
+    {
+      "values": {
+        "open": "false",
+        "tone": "error",
+        "breakpoint": "0"
+      },
+      "position": [
+        3175,
+        296
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {
+      "title": {
+        "as": "children",
+        "default": {
+          "text": "Title"
+        },
+        "controls": [
+          {
+            "layer": "title",
+            "attribute": "text"
+          }
+        ]
+      },
+      "description": {
+        "as": "children",
+        "default": {
+          "text": "Description"
+        },
+        "controls": [
+          {
+            "layer": "description",
+            "attribute": "text"
+          }
+        ]
+      },
+      "icon": {
+        "accepts": "Instance",
+        "default": {
+          "swap": "icon/account-balance"
+        },
+        "controls": [
+          {
+            "layer": "icon",
+            "attribute": "component"
+          }
+        ]
+      }
+    },
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "container",
+            "type": "frame",
+            "children": [
+              {
+                "name": "close-button",
+                "type": "instance",
+                "component": "IconButton",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "inverse",
+                  "size": "small",
+                  "_theme": "prospect"
+                }
+              },
+              {
+                "name": "body",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "icon",
+                    "type": "instance",
+                    "component": "icon/account-balance"
+                  },
+                  {
+                    "name": "content",
+                    "type": "frame",
+                    "children": [
+                      {
+                        "name": "heading",
+                        "type": "frame",
+                        "children": [
+                          {
+                            "name": "title",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "description",
+                        "type": "text"
+                      },
+                      {
+                        "name": "expand-button",
+                        "type": "instance",
+                        "component": "Link",
+                        "values": {
+                          "state": "default",
+                          "colorScheme": "inverse",
+                          "size": "small",
+                          "breakpoint": "0"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "button",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "primary",
+                  "colorScheme": "inverse",
+                  "size": "large",
+                  "breakpoint": "0",
+                  "_theme": "prospect"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "container",
+            "type": "frame",
+            "children": [
+              {
+                "name": "close-button",
+                "type": "instance",
+                "component": "IconButton",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "inverse",
+                  "size": "small",
+                  "_theme": "prospect"
+                }
+              },
+              {
+                "name": "body",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "icon",
+                    "type": "instance",
+                    "component": "icon/account-balance"
+                  },
+                  {
+                    "name": "content",
+                    "type": "frame",
+                    "children": [
+                      {
+                        "name": "heading",
+                        "type": "frame",
+                        "children": [
+                          {
+                            "name": "title",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "description",
+                        "type": "text"
+                      },
+                      {
+                        "name": "expand-button",
+                        "type": "instance",
+                        "component": "Link",
+                        "values": {
+                          "state": "default",
+                          "colorScheme": "inverse",
+                          "size": "small",
+                          "breakpoint": "1024"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "button",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "primary",
+                  "colorScheme": "inverse",
+                  "size": "large",
+                  "breakpoint": "1024",
+                  "_theme": "prospect"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "Button",
+      "IconButton",
+      "Link",
+      "icon/account-balance"
+    ]
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "open": "true",
+        "tone": "information",
+        "breakpoint": "0"
+      },
+      "modes": {
+        "Typography": "prospect-mobile"
+      },
+      "root": {
+        "background": {
+          "token": "color/azure/700"
+        },
+        "radius": {
+          "raw": 0
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/16"
+          },
+          "right": {
+            "token": "spacing/16"
+          },
+          "bottom": {
+            "token": "spacing/16"
+          },
+          "left": {
+            "token": "spacing/16"
+          }
+        },
+        "gap": {
+          "raw": 0
+        },
+        "layout": {
+          "direction": "column",
+          "clip": false,
+          "sizingH": "fixed",
+          "width": {
+            "raw": 375
+          },
+          "sizingV": "hug"
+        }
+      },
+      "container": {
+        "gap": {
+          "token": "spacing/24"
+        },
+        "layout": {
+          "direction": "column",
+          "sizingH": "fill"
+        }
+      },
+      "close-button": {
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/8"
+          },
+          "right": {
+            "token": "spacing/8"
+          },
+          "bottom": {
+            "token": "spacing/8"
+          },
+          "left": {
+            "token": "spacing/8"
+          }
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "absolute": true,
+          "x": 315,
+          "y": -12,
+          "constraints": {
+            "horizontal": "max",
+            "vertical": "min"
+          },
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/40"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/40"
+          }
+        }
+      },
+      "close-button/vector": {
+        "background": {
+          "token": "color/white"
+        }
+      },
+      "body": {
+        "gap": {
+          "token": "spacing/8"
+        },
+        "layout": {
+          "direction": "row",
+          "sizingH": "fill"
+        }
+      },
+      "icon": {
+        "layout": {
+          "sizingH": "fixed",
+          "width": {
+            "token": "icon/size/small"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "icon/size/small"
+          }
+        }
+      },
+      "icon/vector": {
+        "background": {
+          "token": "color/white"
+        }
+      },
+      "content": {
+        "gap": {
+          "token": "spacing/8"
+        },
+        "layout": {
+          "direction": "column",
+          "mainAlign": "center",
+          "sizingH": "fill"
+        }
+      },
+      "heading": {
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "token": "spacing/24"
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "layout": {
+          "direction": "row",
+          "sizingH": "fill"
+        }
+      },
+      "title": {
+        "textColor": {
+          "token": "color/white"
+        },
+        "textStyle": "title/1/semibold",
+        "layout": {
+          "sizingH": "fill",
+          "sizingV": "fill",
+          "textAlignVertical": "center"
+        }
+      },
+      "description": {
+        "textColor": {
+          "token": "color/white"
+        },
+        "textStyle": "body/1/regular",
+        "layout": {
+          "sizingH": "fill",
+          "textAlignVertical": "center"
+        }
+      },
+      "expand-button": {
+        "gap": {
+          "token": "spacing/4"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center"
+        }
+      },
+      "expand-button/vector": {
+        "background": {
+          "token": "color/white"
+        }
+      },
+      "button": {
+        "background": {
+          "token": "color/white"
+        },
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/12"
+          },
+          "right": {
+            "token": "spacing/24"
+          },
+          "bottom": {
+            "token": "spacing/12"
+          },
+          "left": {
+            "token": "spacing/24"
+          }
+        },
+        "gap": {
+          "token": "spacing/12"
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "minHeight": {
+            "token": "size/48"
+          },
+          "sizingH": "fill"
+        }
+      },
+      "button/vector": {
+        "background": {
+          "token": "color/blue/700"
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "tone": "error"
+        },
+        "styles": {
+          "root": {
+            "background": {
+              "token": "color/red/700"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "modes": {
+            "Typography": "prospect-desktop"
+          },
+          "root": {
+            "padding": {
+              "top": {
+                "token": "spacing/24"
+              },
+              "right": {
+                "raw": 120
+              },
+              "bottom": {
+                "token": "spacing/24"
+              },
+              "left": {
+                "raw": 120
+              }
+            },
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center",
+              "clip": false,
+              "sizingH": "fixed",
+              "width": {
+                "raw": 1280
+              },
+              "sizingV": "hug"
+            }
+          },
+          "container": {
+            "gap": {
+              "token": "spacing/64"
+            },
+            "layout": {
+              "direction": "row",
+              "crossAlign": "center",
+              "sizingH": "fill"
+            },
+            "padding": {
+              "top": {
+                "raw": 0
+              },
+              "right": {
+                "token": "spacing/48"
+              },
+              "bottom": {
+                "raw": 0
+              },
+              "left": {
+                "raw": 0
+              }
+            }
+          },
+          "close-button": {
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center",
+              "absolute": true,
+              "x": 1000,
+              "y": 0,
+              "constraints": {
+                "horizontal": "max",
+                "vertical": "min"
+              },
+              "sizingH": "fixed",
+              "width": {
+                "token": "size/40"
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/40"
+              }
+            }
+          },
+          "body": {
+            "layout": {
+              "direction": "row",
+              "sizingH": "fill",
+              "sizingV": "fill"
+            }
+          },
+          "heading": {
+            "padding": null
+          },
+          "button": {
+            "padding": {
+              "top": {
+                "token": "spacing/16"
+              },
+              "right": {
+                "token": "spacing/24"
+              },
+              "bottom": {
+                "token": "spacing/16"
+              },
+              "left": {
+                "token": "spacing/24"
+              }
+            },
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center",
+              "minHeight": {
+                "token": "size/56"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "open": "false",
+          "tone": "error",
+          "breakpoint": "0"
+        },
+        "styles": {
+          "root": {
+            "layout": {
+              "direction": "column",
+              "wrap": true,
+              "clip": false,
+              "sizingH": "fixed",
+              "width": {
+                "raw": 375
+              },
+              "sizingV": "hug"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/radius/full": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "1fcf11522d356a0d693232bf2ced5fbcc75d781a"
+    },
+    "color/azure/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "e4db7baec72ca931eb5b6964f7a1b3dd69c6384f"
+    },
+    "color/blue/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
+    },
+    "color/red/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "adf5a69d4f184522878973debd0b0206086f1157"
+    },
+    "color/white": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "207050c6310c4663b3209cbaa9d2426f268f67b0"
+    },
+    "icon/size/small": {
+      "library": "Fondations Canopée",
+      "collection": "Size",
+      "key": "9e4bd3df25a2a614d95da75baf2dc6ebd46f65c2"
+    },
+    "size/40": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "aecbeec91b0b99619019ff470811099ddb5a6ac9"
+    },
+    "size/48": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "e7040d5d297c3771090baa2b84f63664b7b3cde8"
+    },
+    "size/56": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "0e0e1c903b515483bcc195921f33ddc7196c95c3"
+    },
+    "spacing/12": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "6cfd5a3c3e9c964463b4b26cce753ba1aec30649"
+    },
+    "spacing/16": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "c671d8ceb08a490376605ccd3862b43109626d25"
+    },
+    "spacing/24": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "4344572ea5671cb93751381dd4d4db2d8ee60144"
+    },
+    "spacing/4": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "ece7a179702a367a2194768137236fd4d4231725"
+    },
+    "spacing/48": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "37b73500f62bd913d47524a5456ad18b52a2eee0"
+    },
+    "spacing/64": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "ee87c07b250938d0143e193eec7b87db6de1c645"
+    },
+    "spacing/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f79c6b1de93d24589305065ca591b49ab3a32d6b"
+    }
+  },
+  "textStyles": {
+    "body/1/regular": {
+      "library": null,
+      "key": "4f1ce1e577bd77712c8f60a2fd9d0510e72fcbe2"
+    },
+    "title/1/semibold": {
+      "library": null,
+      "key": "66c000bb46416a8e1c0fa469d5f40c196e8b80fb"
+    }
+  },
+  "components": {
+    "Button": {
+      "library": "B2C",
+      "key": "cbe527a60bc95af0ec43a05d55103c699fa75f2d"
+    },
+    "IconButton": {
+      "library": "B2C",
+      "key": "921b5fa9be9ebca368ea2a027222ebc806a6dad6"
+    },
+    "Link": {
+      "library": "B2C",
+      "key": "21dffdf1d3f75cb371d309d059f95d8242b53557"
+    },
+    "icon/account-balance": {
+      "library": null,
+      "key": "b3851c784ccef4c351dfa539b744499293b1b010"
+    }
+  },
+  "modeCollections": {
+    "Typography": {
+      "library": "Fondations Canopée",
+      "key": "be959715ddac77dedafba55e157014b702551c02"
+    }
+  },
+  "issues": [
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.root.padding.left",
+      "message": "Valeur brute (120) : la relier à une variable.",
+      "occurrences": 4
+    },
+    {
+      "level": "warning",
+      "rule": "raw-value",
+      "where": "styles.root.padding.right",
+      "message": "Valeur brute (120) : la relier à une variable.",
+      "occurrences": 4
+    },
+    {
+      "level": "info",
+      "rule": "token-unpublished",
+      "where": "structure.uses",
+      "message": "Token absent de toutes les versions publiées de Canopée : icon/size/extra-small, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-unpublished",
+      "where": "tokens.icon/size/small",
+      "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold/line-height, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold/line-height, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.body/1/regular",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : body/1/regular."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.title/1/semibold",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : title/1/semibold."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.15"
+}
