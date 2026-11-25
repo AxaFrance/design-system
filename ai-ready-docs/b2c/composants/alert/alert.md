@@ -16,7 +16,7 @@ L'Alert affiche un message court et important, sans interrompre ce que fait l'ut
 ### À ne pas utiliser pour
 
 - Un message qui concerne toute la page ou tout le service, comme une maintenance prévue : prendre Banner.
-- L'erreur d'un seul champ de formulaire : prendre le _FormHelperText du champ, en tone=error.
+- L'erreur d'un seul champ de formulaire : prendre le _FormHelperText d'erreur du champ.
 - Le résultat d'une action : prendre le _FormHelperText de l'élément concerné. Une action qui ne se rattache à aucun élément, comme une demande envoyée : Non documenté.
 - Une information qui demande une réponse avant de continuer : prendre Modal.
 
