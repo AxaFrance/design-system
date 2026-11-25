@@ -915,7 +915,7 @@
       },
       "icon/vector": {
         "background": {
-          "token": "color/blue/700"
+          "token": "color/gray/800"
         }
       },
       "content-2": {
