@@ -36,6 +36,10 @@ Une action complémentaire ou facultative, la plus discrète. Exemple : fermer u
 
 L'action existe mais n'est pas disponible pour l'instant. Le texte autour du bouton dit pourquoi. Un IconButton désactivé ne sert jamais à masquer une action à laquelle l'utilisateur n'a pas droit.
 
+### loading=true
+
+L'action est lancée et le traitement est en cours. Le bouton garde sa couleur, et un Spinner remplace l'icône. Le Spinner prend la couleur de l'icône : blanc sur un fond plein, bleu sinon. Dans Figma, loading=true n'existe qu'avec state=default.
+
 ### colorScheme=inverse
 
 Sur un fond foncé ou coloré. Les trois valeurs de hierarchy existent en colorScheme=inverse. Le choix entre primary, secondary et tertiary y suit les mêmes règles qu'en colorScheme=default.
@@ -58,6 +62,7 @@ Un IconButton placé dans un composant déjà cliquable en entier. Exemple : l'a
 
 ## Interdits
 
+- loading=true avec disabled=true, state=hover ou state=press.
 - Une icône prise ailleurs que dans la bibliothèque d'icônes de Canopée, Material Symbols dans le code.
 - Modifier localement la taille ou les couleurs du bouton, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system.
 
@@ -78,7 +83,7 @@ Un IconButton placé dans un composant déjà cliquable en entier. Exemple : l'a
 - Un clic ou une activation au clavier déclenche une seule action, jamais deux effets différents.
 - Au repos, le bouton est à l'état par défaut ou désactivé. Le survol, l'appui et le focus ne viennent que de l'interaction.
 - Désactivé, le bouton ne réagit ni au clic ni au clavier.
-- Un IconButton en chargement : Non documenté.
+- Pendant un chargement, le bouton ne réagit ni au clic ni au clavier. Contrairement à un bouton désactivé, il reste atteignable au clavier et garde son anneau de focus.
 
 ## Accessibilité
 
@@ -92,6 +97,7 @@ Un élément `<button>` natif, de rôle ARIA button.
 - L'indicateur de focus reste toujours visible.
 - L'icône contraste avec le fond à 3:1 au moins, et l'anneau de focus aussi (WCAG).
 - La zone cliquable mesure au moins 24 × 24 px (WCAG 2.2).
+- `aria-busy="true"` et `aria-disabled="true"` pendant un chargement, à la place de l'attribut `disabled`, pour que le bouton garde le focus.
 - Un IconButton désactivé n'est pas atteignable au clavier. La raison de l'indisponibilité est donc écrite dans le texte autour.
 - Le bouton s'atteint avec Tab et s'active avec Entrée ou Espace, dans un ordre de tabulation logique.
 - Plusieurs IconButton liés se regroupent dans un conteneur de rôle group, avec un nom pour le groupe. Exemple : « Actions sur l'adresse » pour Modifier et Dupliquer.
@@ -139,7 +145,7 @@ import closeIcon from "@material-symbols/svg-400/outlined/close.svg";
 | size=small | `size="S"` |
 | size=x-small | `size="XS"` |
 
-`variant` vaut `default` par défaut, et `size` vaut `S`. Deux valeurs de Figma n'ont pas d'équivalent dans le code : hierarchy=primary et colorScheme=inverse. state n'en a pas non plus, et le code rend les états par `:hover`, `:focus-visible` et `:active`. _theme correspond au chemin d'import, `/prospect` ou `/client`. Sans équivalent dans Figma : les valeurs `L` et `M` de `size`, `iconVariant` pour les autres couleurs de l'icône, et les autres attributs HTML du `<button>`.
+`variant` vaut `default` par défaut, et `size` vaut `S`. Trois valeurs de Figma n'ont pas d'équivalent dans le code : hierarchy=primary, colorScheme=inverse et loading=true. state n'en a pas non plus, et le code rend les états par `:hover`, `:focus-visible` et `:active`. _theme correspond au chemin d'import, `/prospect` ou `/client`. Sans équivalent dans Figma : les valeurs `L` et `M` de `size`, `iconVariant` pour les autres couleurs de l'icône, et les autres attributs HTML du `<button>`.
 
 ## Noms à ne pas employer
 
@@ -161,6 +167,7 @@ Ces noms désignent IconButton. Le seul nom à employer est IconButton.
 - **1.0.0 - 19/11/26.** Comme pour Button, le thème passe par une variante `_theme`, prospect ou client, parce que la forme change : l'IconButton est rond en prospect, avec un arrondi de 8 px en client.
 - **1.0.0 - 24/11/26.** Comme pour Button, hierarchy=secondary et hierarchy=tertiary ont aussi une variante colorScheme=inverse. Ils suivent les états du colorScheme=default : seul le fond change, et l'icône et la border du secondary restent en color/white. Au hover et au focus, le fond passe en color/blue/800, puis en color/blue/900 au press. Désactivés, ils prennent le rendu du colorScheme=default : un fond color/gray/050, sans border, et une icône color/gray/400.
 - **1.0.0 - 25/11/26.** L'IconButton reprend color/blue/700, la couleur de la marque, déjà utilisée par le code. En hierarchy=primary, son fond passe en color/blue/800 au hover et au focus, puis en color/blue/900 au press. Dans les autres cas, l'icône et la border passent en color/blue/700. Cette décision remplace celle du 17/11/26.
+- **1.0.0 - 25/11/26.** L'IconButton a une variante loading, comme Button : un Spinner remplace l'icône, en size=small (24 px) pour l'IconButton size=small et en size=x-small (16 px) pour l'IconButton size=x-small. En loading=true, l'icône est rangée dans un cadre content masqué. Masquée seule, elle réapparaîtrait dès que le designer change d'icône. Le ClickItem l'utilise pendant son chargement.
 
 ## Points ouverts
 
@@ -171,7 +178,7 @@ Ces noms désignent IconButton. Le seul nom à employer est IconButton.
 - **Plusieurs primary.** La fiche Button n'autorise qu'un seul Button primary par page, sans compter le Header. Rien ne dit si un IconButton primary compte dans cette limite. En attendant : signaler.
 - **Règles reprises de Button.** Plusieurs règles viennent de la fiche Button, sans source propre à IconButton : hierarchy, disabled=true et colorScheme, le Comportement, la Rédaction, `aria-expanded` et `aria-controls`, et le contraste de l'anneau de focus. En attendant : elles s'appliquent.
 - **Forme dans le thème client.** Dans le code, ClickIcon reste rond dans les deux thèmes (`ClickIconCommon.css:7`), alors que l'IconButton de Figma a un arrondi de 8 px dans le thème client, comme Button (`ButtonLF.css:7`). En attendant : signaler.
-- **Chargement.** IconButton n'a pas de propriété loading, contrairement à Button. Une action en cours sur un IconButton n'a donc pas de rendu prévu. En attendant : signaler.
+- **Chargement dans le code.** ClickIcon n'a pas de chargement. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 
