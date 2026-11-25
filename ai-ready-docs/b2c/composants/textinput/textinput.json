@@ -2225,7 +2225,7 @@
       },
       "label/vector": {
         "background": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         }
       },
       "input": {
@@ -2595,10 +2595,10 @@
       "collection": "Primitive",
       "key": "7cf31063821d1c4cfafc6be64eb8dc1485d91077"
     },
-    "color/blue/600": {
+    "color/blue/700": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
-      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
+      "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
     },
     "color/gray/050": {
       "library": "Fondations Canopée",
@@ -2712,83 +2712,83 @@
   },
   "issues": [
     {
-      "level": "warning",
+      "level": "info",
+      "rule": "prop-outside-nomenclature",
+      "where": "api.props._showCursor",
+      "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
+    },
+    {
+      "level": "info",
       "rule": "token-unpublished",
       "where": "structure.uses",
       "message": "Token absent de toutes les versions publiées de Canopée : icon/size/extra-small, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-unpublished",
       "where": "tokens.icon/size/small",
       "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : caption/1/regular, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : caption/1/regular/line-height, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : caption/2/regular, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : caption/2/regular/font-size, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : caption/2/regular/line-height, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold/line-height, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold/line-height, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "textStyles.label/1/regular",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/regular."
-    },
-    {
-      "level": "info",
-      "rule": "prop-outside-nomenclature",
-      "where": "api.props._showCursor",
-      "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-export-components 0.7.6"
+  "_tool": "canopee-export-components 0.7.15"
 }

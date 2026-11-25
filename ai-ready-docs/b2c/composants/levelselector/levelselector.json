@@ -1803,7 +1803,7 @@
       },
       "item-1": {
         "stroke": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         },
         "strokeWeight": {
           "token": "border/width/1"
@@ -1823,7 +1823,7 @@
       },
       "item-2": {
         "stroke": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         },
         "strokeWeight": {
           "token": "border/width/1"
@@ -1843,7 +1843,7 @@
       },
       "plus-button": {
         "stroke": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         },
         "strokeWeight": {
           "token": "border/width/2"
@@ -1882,7 +1882,7 @@
       },
       "plus-button/vector": {
         "background": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         }
       },
       "description": {
@@ -1943,7 +1943,7 @@
           "minus-button": {
             "background": null,
             "stroke": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             },
             "strokeWeight": {
               "token": "border/width/2"
@@ -1952,7 +1952,7 @@
           },
           "minus-button/vector": {
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           },
           "item-1": {
@@ -1960,7 +1960,7 @@
             "strokeWeight": null,
             "strokeAlign": null,
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           }
         }
@@ -1973,7 +1973,7 @@
           "minus-button": {
             "background": null,
             "stroke": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             },
             "strokeWeight": {
               "token": "border/width/2"
@@ -1982,7 +1982,7 @@
           },
           "minus-button/vector": {
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           },
           "item-1": {
@@ -1990,7 +1990,7 @@
             "strokeWeight": null,
             "strokeAlign": null,
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           },
           "item-2": {
@@ -1998,7 +1998,7 @@
             "strokeWeight": null,
             "strokeAlign": null,
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           }
         }
@@ -2011,7 +2011,7 @@
           "minus-button": {
             "background": null,
             "stroke": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             },
             "strokeWeight": {
               "token": "border/width/2"
@@ -2020,7 +2020,7 @@
           },
           "minus-button/vector": {
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           },
           "item-1": {
@@ -2028,7 +2028,7 @@
             "strokeWeight": null,
             "strokeAlign": null,
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           },
           "item-2": {
@@ -2036,7 +2036,7 @@
             "strokeWeight": null,
             "strokeAlign": null,
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           },
           "plus-button": {
@@ -2054,7 +2054,7 @@
           },
           "item-3": {
             "background": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           }
         }
@@ -2157,7 +2157,7 @@
         "styles": {
           "item-3": {
             "stroke": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             },
             "strokeWeight": {
               "token": "border/width/1"
@@ -2195,7 +2195,7 @@
         "styles": {
           "item-3": {
             "stroke": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             },
             "strokeWeight": {
               "token": "border/width/1"
@@ -2233,7 +2233,7 @@
         "styles": {
           "item-3": {
             "stroke": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             },
             "strokeWeight": {
               "token": "border/width/1"
@@ -2270,10 +2270,10 @@
       "collection": "Primitive",
       "key": "d6066603f0a6830a87efc9e782c85822c718d4ec"
     },
-    "color/blue/600": {
+    "color/blue/700": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
-      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
+      "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
     },
     "color/gray/050": {
       "library": "Fondations Canopée",
@@ -2364,23 +2364,23 @@
   },
   "issues": [
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-unpublished",
       "where": "structure.uses",
       "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "textStyles.subtitle/3/regular",
       "message": "Valeur absente de toutes les versions publiées de Canopée : subtitle/3/regular."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "textStyles.title/1/regular",
       "message": "Valeur absente de toutes les versions publiées de Canopée : title/1/regular."
     }
   ],
-  "_tool": "canopee-export-components 0.7.13"
+  "_tool": "canopee-export-components 0.7.15"
 }
