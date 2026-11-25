@@ -653,7 +653,7 @@
       },
       "item-1": {
         "background": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         },
         "radius": {
           "token": "border/radius/full"
@@ -782,7 +782,7 @@
       },
       "next-button": {
         "stroke": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         },
         "strokeWeight": {
           "token": "border/width/2"
@@ -821,7 +821,7 @@
       },
       "next-button/vector": {
         "background": {
-          "token": "color/blue/600"
+          "token": "color/blue/700"
         }
       }
     },
@@ -886,10 +886,10 @@
       "collection": "Primitive",
       "key": "d6066603f0a6830a87efc9e782c85822c718d4ec"
     },
-    "color/blue/600": {
+    "color/blue/700": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
-      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
+      "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
     },
     "color/gray/050": {
       "library": "Fondations Canopée",
@@ -956,29 +956,29 @@
   },
   "issues": [
     {
-      "level": "warning",
+      "level": "info",
+      "rule": "prop-outside-nomenclature",
+      "where": "api.props._theme",
+      "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
+    },
+    {
+      "level": "info",
       "rule": "token-unpublished",
       "where": "structure.uses",
       "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold/line-height, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "textStyles.label/1/semibold",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold."
-    },
-    {
-      "level": "info",
-      "rule": "prop-outside-nomenclature",
-      "where": "api.props._theme",
-      "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-export-components 0.7.9"
+  "_tool": "canopee-export-components 0.7.15"
 }

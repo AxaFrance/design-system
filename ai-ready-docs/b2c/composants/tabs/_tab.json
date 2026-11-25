@@ -507,7 +507,7 @@
         "styles": {
           "label": {
             "textColor": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           }
         }
@@ -572,7 +572,7 @@
           },
           "label": {
             "textColor": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           }
         }
@@ -672,7 +672,7 @@
         "styles": {
           "root": {
             "stroke": {
-              "token": "color/blue/600"
+              "token": "color/blue/700"
             }
           }
         }
@@ -775,10 +775,10 @@
       "collection": "Primitive",
       "key": "7cf31063821d1c4cfafc6be64eb8dc1485d91077"
     },
-    "color/blue/600": {
+    "color/blue/700": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
-      "key": "17eb55972f1d5c5f2803d8d24aa42da6012cb978"
+      "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
     },
     "color/grape/100": {
       "library": "Fondations Canopée",
@@ -846,11 +846,11 @@
   },
   "issues": [
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "textStyles.label/2/semibold",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold."
     }
   ],
-  "_tool": "canopee-export-components 0.7.6"
+  "_tool": "canopee-export-components 0.7.15"
 }
