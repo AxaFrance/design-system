@@ -4686,6 +4686,43 @@ describe("check-sheet.mjs", () => {
       );
     }
   });
+  it("the properties of a sub-component JSON in the same folder may be quoted", () => {
+    const d = tempFolder("check-sheet");
+    fs.copyFileSync(OUTLINE, path.join(d, "trame-fiche-composant.md"));
+    fs.mkdirSync(path.join(d, "button"));
+    const md = sheet({ mention: "type=number" });
+    fs.writeFileSync(path.join(d, "button", "button.md"), md);
+    fs.writeFileSync(
+      path.join(d, "button", "button.json"),
+      JSON.stringify(MINIMAL_JSON),
+    );
+    const run = () =>
+      spawnSync(
+        "node",
+        [
+          path.join(SCRIPTS, "check-sheet.mjs"),
+          path.join(d, "button", "button.md"),
+          path.join(d, "button", "button.json"),
+        ],
+        { encoding: "utf8" },
+      );
+    const without = run();
+    expect(without.status).toBe(1);
+    expect(without.stdout).toMatch(/Propriété inconnue du JSON : type=number/);
+    fs.writeFileSync(
+      path.join(d, "button", "_buttoncell.json"),
+      JSON.stringify({
+        api: {
+          props: {
+            type: { type: "enum", enum: ["text", "number"], default: "text" },
+          },
+        },
+      }),
+    );
+    const withSub = run();
+    expect(withSub.status, withSub.stdout).toBe(0);
+    expect(withSub.stdout).not.toMatch(/type=/);
+  });
   it("a property unknown to the JSON exits with 1, with the mention at fault", () => {
     const r = check(sheet({ mention: "couleur=rouge" }));
     expect(r.code).toBe(1);

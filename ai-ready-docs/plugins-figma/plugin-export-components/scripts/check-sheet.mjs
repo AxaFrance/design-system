@@ -9,7 +9,7 @@
 // The outline is read above the sheet: one level for a component (composants/button/), two for a
 // template (templates/bloc/loader/). Exit code 1 if there is an error, 0 otherwise (the
 // remarks do not prevent exit code 0).
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 const [mdPath, jsonPath] = process.argv.slice(2);
@@ -34,6 +34,35 @@ const slots = Object.keys(
   sheet.structure && sheet.structure.slots ? sheet.structure.slots : {},
 );
 
+// The sub-components documented in this sheet: the JSON files of the same folder whose name
+// starts with an underscore. Their properties and slots may be quoted too, but their variant
+// values do not need a rule of their own here.
+const mentionValues = { ...values };
+const knownSlots = [...slots];
+const folder = dirname(jsonPath);
+for (const file of readdirSync(folder)) {
+  if (!/^_.+\.json$/.test(file) || join(folder, file) === join(jsonPath))
+    continue;
+  let sub;
+  try {
+    sub = JSON.parse(readFileSync(join(folder, file), "utf8"));
+  } catch (e) {
+    continue;
+  }
+  for (const [name, p] of Object.entries(
+    sub.api && sub.api.props ? sub.api.props : {},
+  )) {
+    const vals = p.type === "enum" ? p.enum.map(String) : ["true", "false"];
+    mentionValues[name] = [
+      ...new Set([...(mentionValues[name] || []), ...vals]),
+    ];
+  }
+  for (const s of Object.keys(
+    sub.structure && sub.structure.slots ? sub.structure.slots : {},
+  ))
+    knownSlots.push(s);
+}
+
 // The text of the Markdown, without the header comment. Code blocks are kept: the Code section
 // also quotes Figma properties in its table.
 const text = md.replace(/<!--[\s\S]*?-->/g, "");
@@ -49,13 +78,14 @@ for (const m of text.matchAll(
   const key = prop + "=" + val;
   if (seenMentions.has(key)) continue;
   seenMentions.add(key);
-  if (!(prop in values)) errors.push("Propriété inconnue du JSON : " + key);
-  else if (!values[prop].includes(val))
+  if (!(prop in mentionValues))
+    errors.push("Propriété inconnue du JSON : " + key);
+  else if (!mentionValues[prop].includes(val))
     errors.push(
       "Valeur inconnue du JSON : " +
         key +
         " (valeurs : " +
-        values[prop].join(", ") +
+        mentionValues[prop].join(", ") +
         ")",
     );
 }
@@ -71,7 +101,7 @@ for (const line of codeCategory.split("\n").filter((l) => l.startsWith("|"))) {
   );
   for (const word of figma.match(/\b[a-z]+[A-Z][a-zA-Z0-9]*\b|\blabel\b/g) ||
     []) {
-    if (!(word in values) && !slots.includes(word))
+    if (!(word in mentionValues) && !knownSlots.includes(word))
       errors.push("Propriété du tableau des écarts absente du JSON : " + word);
   }
 }
