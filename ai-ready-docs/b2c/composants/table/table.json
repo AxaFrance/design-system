@@ -1,0 +1,248 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "Table",
+    "version": "1.0.0",
+    "tokensVersion": null,
+    "type": "atom",
+    "figmaKey": "030348dd2b6d000b1327bf941f45fa20ee8395ec",
+    "library": "B2C",
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/table/table.md"
+    ]
+  },
+  "api": {
+    "props": {}
+  },
+  "variants": [
+    {
+      "values": {},
+      "position": [
+        41,
+        41
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {
+      "children": {
+        "as": "slot",
+        "controls": [
+          {
+            "layer": "children",
+            "attribute": "slotContentId"
+          }
+        ]
+      }
+    },
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "children",
+            "type": "slot",
+            "children": [
+              {
+                "name": "column",
+                "type": "instance",
+                "component": "_TableColumn"
+              },
+              {
+                "name": "column",
+                "type": "instance",
+                "component": "_TableColumn"
+              },
+              {
+                "name": "column",
+                "type": "instance",
+                "component": "_TableColumn"
+              },
+              {
+                "name": "column",
+                "type": "instance",
+                "component": "_TableColumn"
+              },
+              {
+                "name": "column",
+                "type": "instance",
+                "component": "_TableColumn"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "_TableColumn"
+    ]
+  },
+  "styles": {
+    "default": {
+      "root": {
+        "radius": {
+          "raw": 0
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "gap": {
+          "raw": 0
+        },
+        "layout": {
+          "direction": "row",
+          "clip": true,
+          "sizingH": "fixed",
+          "width": {
+            "raw": 1200
+          },
+          "sizingV": "hug"
+        }
+      },
+      "children": {
+        "layout": {
+          "direction": "row",
+          "sizingH": "fill"
+        }
+      },
+      "column-1": {
+        "layout": {
+          "direction": "column",
+          "sizingH": "fill"
+        }
+      },
+      "column-1/vector": {
+        "background": {
+          "token": "color/blue/700"
+        }
+      },
+      "column-2": {
+        "layout": {
+          "direction": "column",
+          "sizingH": "fill"
+        }
+      },
+      "column-2/vector": {
+        "background": {
+          "token": "color/blue/700"
+        }
+      },
+      "column-3": {
+        "layout": {
+          "direction": "column",
+          "sizingH": "fill"
+        }
+      },
+      "column-3/vector": {
+        "background": {
+          "token": "color/blue/700"
+        }
+      },
+      "column-4": {
+        "layout": {
+          "direction": "column",
+          "sizingH": "fill"
+        }
+      },
+      "column-4/vector": {
+        "background": {
+          "token": "color/blue/700"
+        }
+      },
+      "column-5": {
+        "layout": {
+          "direction": "column",
+          "sizingH": "fill"
+        }
+      },
+      "column-5/vector": {
+        "background": {
+          "token": "color/blue/700"
+        }
+      }
+    }
+  },
+  "tokens": {
+    "color/blue/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
+    }
+  },
+  "textStyles": {},
+  "components": {
+    "_TableColumn": {
+      "library": "B2C",
+      "key": "8531f8a91dbc7fd682d3deeae6747d960e217e91"
+    }
+  },
+  "modeCollections": {},
+  "issues": [
+    {
+      "level": "info",
+      "rule": "token-unpublished",
+      "where": "structure.uses",
+      "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : body/2/semibold, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : body/2/semibold/line-height, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/regular, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/regular/line-height, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : subtitle/2/regular, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : subtitle/2/regular/line-height, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : title/1/semibold, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : title/1/semibold/line-height, dans un composant inclus."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.15"
+}

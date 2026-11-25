@@ -41,3 +41,5 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 | Alert | [alert.md](alert/alert.md) | [alert.json](alert/alert.json) | [alert-changelog.md](alert/alert-changelog.md) |
 | Modal | [modal.md](modal/modal.md) | [modal.json](modal/modal.json) | [modal-changelog.md](modal/modal-changelog.md) |
 | Dialog | [dialog.md](dialog/dialog.md) | [dialog.json](dialog/dialog.json) | [dialog-changelog.md](dialog/dialog-changelog.md) |
+| Table | [table.md](table/table.md) | [table.json](table/table.json) | [table-changelog.md](table/table-changelog.md) |
+| TableMobileCard | [tablemobilecard.md](tablemobilecard/tablemobilecard.md) | [tablemobilecard.json](tablemobilecard/tablemobilecard.json) | [tablemobilecard-changelog.md](tablemobilecard/tablemobilecard-changelog.md) |

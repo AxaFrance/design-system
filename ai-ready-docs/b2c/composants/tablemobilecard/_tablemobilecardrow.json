@@ -1,0 +1,600 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "_TableMobileCardRow",
+    "version": "1.0.0",
+    "tokensVersion": null,
+    "type": "atom",
+    "figmaKey": "57a62fe31483395aeda180f200a12d08a1ec5d3d",
+    "library": "B2C",
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/tablemobilecard/tablemobilecard.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "colorScheme": {
+        "type": "enum",
+        "enum": [
+          "white",
+          "blue"
+        ],
+        "default": "white"
+      },
+      "type": {
+        "type": "enum",
+        "enum": [
+          "text",
+          "children"
+        ],
+        "default": "text"
+      },
+      "orientation": {
+        "type": "enum",
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "default": "horizontal"
+      },
+      "showDivider": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "divider",
+            "attribute": "visible"
+          }
+        ]
+      }
+    }
+  },
+  "variants": [
+    {
+      "values": {
+        "colorScheme": "white",
+        "type": "text",
+        "orientation": "horizontal"
+      },
+      "position": [
+        40,
+        40
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "type": "text",
+        "orientation": "vertical"
+      },
+      "position": [
+        431,
+        40
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "type": "children",
+        "orientation": "horizontal"
+      },
+      "position": [
+        822,
+        40
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "white",
+        "type": "children",
+        "orientation": "vertical"
+      },
+      "position": [
+        1213,
+        40
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "type": "text",
+        "orientation": "horizontal"
+      },
+      "position": [
+        40,
+        252
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "type": "text",
+        "orientation": "vertical"
+      },
+      "position": [
+        431,
+        252
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "type": "children",
+        "orientation": "horizontal"
+      },
+      "position": [
+        822,
+        252
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "type": "children",
+        "orientation": "vertical"
+      },
+      "position": [
+        1213,
+        252
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {
+      "label": {
+        "as": "children",
+        "default": {
+          "text": "Label"
+        },
+        "controls": [
+          {
+            "layer": "label",
+            "attribute": "text"
+          }
+        ]
+      },
+      "value": {
+        "as": "children",
+        "default": {
+          "text": "000,00"
+        },
+        "controls": [
+          {
+            "layer": "value",
+            "attribute": "text"
+          }
+        ]
+      },
+      "children": {
+        "as": "slot",
+        "controls": [
+          {
+            "layer": "children",
+            "attribute": "slotContentId"
+          }
+        ]
+      }
+    },
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "label",
+                "type": "text"
+              },
+              {
+                "name": "value",
+                "type": "text"
+              },
+              {
+                "name": "children",
+                "type": "slot",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "name": "divider",
+            "type": "instance",
+            "component": "Divider",
+            "values": {
+              "orientation": "horizontal"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "type": "children"
+        },
+        "tree": [
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "label",
+                "type": "text"
+              },
+              {
+                "name": "value",
+                "type": "text",
+                "hidden": true
+              },
+              {
+                "name": "children",
+                "type": "slot"
+              }
+            ]
+          },
+          {
+            "name": "divider",
+            "type": "instance",
+            "component": "Divider",
+            "values": {
+              "orientation": "horizontal"
+            }
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "Divider"
+    ]
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "colorScheme": "white",
+        "type": "text",
+        "orientation": "horizontal"
+      },
+      "root": {
+        "background": {
+          "token": "color/white"
+        },
+        "radius": {
+          "raw": 0
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "gap": {
+          "raw": 0
+        },
+        "layout": {
+          "direction": "column",
+          "clip": false,
+          "sizingH": "fixed",
+          "width": {
+            "raw": 351
+          },
+          "sizingV": "hug"
+        }
+      },
+      "content": {
+        "padding": {
+          "top": {
+            "token": "spacing/16"
+          },
+          "right": {
+            "token": "spacing/16"
+          },
+          "bottom": {
+            "token": "spacing/16"
+          },
+          "left": {
+            "token": "spacing/16"
+          }
+        },
+        "gap": {
+          "token": "spacing/16"
+        },
+        "layout": {
+          "direction": "row",
+          "sizingH": "fill"
+        }
+      },
+      "label": {
+        "textColor": {
+          "token": "color/gray/900"
+        },
+        "textStyle": "body/2/regular",
+        "layout": {
+          "sizingH": "fill"
+        }
+      },
+      "value": {
+        "textColor": {
+          "token": "color/gray/900"
+        },
+        "textStyle": "body/2/semibold",
+        "textAlign": "right",
+        "layout": {
+          "sizingH": "fill"
+        }
+      },
+      "children": {
+        "layout": {
+          "direction": "row",
+          "mainAlign": "end",
+          "crossAlign": "center",
+          "sizingH": "fixed",
+          "width": {
+            "raw": 95.67
+          }
+        }
+      },
+      "divider": {
+        "background": {
+          "token": "color/gray/200"
+        },
+        "layout": {
+          "direction": "row",
+          "absolute": true,
+          "x": 0,
+          "y": 55,
+          "constraints": {
+            "horizontal": "stretch",
+            "vertical": "max"
+          },
+          "maxHeight": {
+            "raw": 1
+          },
+          "sizingH": "fixed",
+          "width": {
+            "raw": 351
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "border/width/1"
+          }
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "colorScheme": "blue"
+        },
+        "styles": {
+          "root": {
+            "background": {
+              "token": "color/blue/050"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "orientation": "vertical"
+        },
+        "styles": {
+          "content": {
+            "layout": {
+              "direction": "column",
+              "sizingH": "fill"
+            }
+          },
+          "value": {
+            "textAlign": null
+          }
+        }
+      },
+      {
+        "when": {
+          "type": "text",
+          "orientation": "vertical"
+        },
+        "styles": {
+          "children": {
+            "layout": {
+              "direction": "row",
+              "crossAlign": "center",
+              "sizingH": "fixed",
+              "width": {
+                "raw": 319
+              }
+            }
+          },
+          "divider": {
+            "layout": {
+              "direction": "row",
+              "absolute": true,
+              "x": 0,
+              "y": 95,
+              "constraints": {
+                "horizontal": "stretch",
+                "vertical": "max"
+              },
+              "maxHeight": {
+                "raw": 1
+              },
+              "sizingH": "fixed",
+              "width": {
+                "raw": 351
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "border/width/1"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "type": "children",
+          "orientation": "horizontal"
+        },
+        "styles": {
+          "value": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 151.5
+              }
+            }
+          },
+          "children": {
+            "layout": {
+              "direction": "row",
+              "mainAlign": "end",
+              "crossAlign": "center",
+              "sizingH": "fill"
+            }
+          },
+          "divider": {
+            "layout": {
+              "direction": "row",
+              "absolute": true,
+              "x": 0,
+              "y": 131,
+              "constraints": {
+                "horizontal": "stretch",
+                "vertical": "max"
+              },
+              "maxHeight": {
+                "raw": 1
+              },
+              "sizingH": "fixed",
+              "width": {
+                "raw": 351
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "border/width/1"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "type": "children",
+          "orientation": "vertical"
+        },
+        "styles": {
+          "value": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 319
+              }
+            }
+          },
+          "children": {
+            "layout": {
+              "direction": "row",
+              "crossAlign": "center",
+              "sizingH": "fill"
+            }
+          },
+          "divider": {
+            "layout": {
+              "direction": "row",
+              "absolute": true,
+              "x": 0,
+              "y": 171,
+              "constraints": {
+                "horizontal": "stretch",
+                "vertical": "max"
+              },
+              "maxHeight": {
+                "raw": 1
+              },
+              "sizingH": "fixed",
+              "width": {
+                "raw": 351
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "border/width/1"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/width/1": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a3fa5d8b91d34001a5c85064ef0d8a63bb5dafd2"
+    },
+    "color/blue/050": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "3fb21c8df55ccf7a7df6229f6fb763554f92899b"
+    },
+    "color/gray/200": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a221368bce559430e99d794dd8575360a84e91a2"
+    },
+    "color/gray/900": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d79e9ad46847476669d7028a19c83d08c1bdfa1c"
+    },
+    "color/white": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "207050c6310c4663b3209cbaa9d2426f268f67b0"
+    },
+    "spacing/16": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "c671d8ceb08a490376605ccd3862b43109626d25"
+    }
+  },
+  "textStyles": {
+    "body/2/regular": {
+      "library": null,
+      "key": "432b58a5d1fb9849fccebcd3a81e25ac571b6947"
+    },
+    "body/2/semibold": {
+      "library": null,
+      "key": "30159f4182b8120f1db33dba6c3bdc6ebfab204c"
+    }
+  },
+  "components": {
+    "Divider": {
+      "library": "B2C",
+      "key": "0841d322d140783b9b43fc5aed99d67a34ccf0a6"
+    }
+  },
+  "modeCollections": {},
+  "issues": [
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.body/2/regular",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : body/2/regular."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.body/2/semibold",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : body/2/semibold."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.15"
+}

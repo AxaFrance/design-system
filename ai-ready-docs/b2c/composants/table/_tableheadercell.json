@@ -1,0 +1,622 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "_TableHeaderCell",
+    "version": "1.0.0",
+    "tokensVersion": null,
+    "type": "composed",
+    "extends": "Checkbox",
+    "figmaKey": "9ded644ed13e6b8c1eca820361debcfdbe8320cf",
+    "library": "B2C",
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/table/table.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "colorScheme": {
+        "type": "enum",
+        "enum": [
+          "blue",
+          "gray"
+        ],
+        "default": "blue"
+      },
+      "size": {
+        "type": "enum",
+        "enum": [
+          "medium",
+          "small",
+          "large"
+        ],
+        "default": "medium"
+      },
+      "placement": {
+        "type": "enum",
+        "enum": [
+          "left",
+          "right"
+        ],
+        "default": "left"
+      },
+      "showCheckbox": {
+        "type": "boolean",
+        "default": false,
+        "controls": [
+          {
+            "layer": "checkbox",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "showLabel": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "label",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "showSortButton": {
+        "type": "boolean",
+        "default": false,
+        "controls": [
+          {
+            "layer": "sort-button",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "showDivider": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "divider",
+            "attribute": "visible"
+          }
+        ]
+      }
+    },
+    "exposed": [
+      {
+        "from": "Checkbox",
+        "props": [
+          "showLabel",
+          "label",
+          "state",
+          "disabled",
+          "checked",
+          "tone",
+          "breakpoint"
+        ]
+      }
+    ]
+  },
+  "variants": [
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "medium",
+        "placement": "left"
+      },
+      "position": [
+        40,
+        40
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "medium",
+        "placement": "right"
+      },
+      "position": [
+        320,
+        40
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "small",
+        "placement": "left"
+      },
+      "position": [
+        40,
+        160
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "small",
+        "placement": "right"
+      },
+      "position": [
+        320,
+        160
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "large",
+        "placement": "left"
+      },
+      "position": [
+        40,
+        280
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "blue",
+        "size": "large",
+        "placement": "right"
+      },
+      "position": [
+        320,
+        280
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "medium",
+        "placement": "left"
+      },
+      "position": [
+        600,
+        40
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "medium",
+        "placement": "right"
+      },
+      "position": [
+        880,
+        40
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "small",
+        "placement": "left"
+      },
+      "position": [
+        600,
+        160
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "small",
+        "placement": "right"
+      },
+      "position": [
+        880,
+        160
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "large",
+        "placement": "left"
+      },
+      "position": [
+        600,
+        280
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "large",
+        "placement": "right"
+      },
+      "position": [
+        880,
+        280
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {
+      "label": {
+        "as": "children",
+        "default": {
+          "text": "Label"
+        },
+        "controls": [
+          {
+            "layer": "label",
+            "attribute": "text"
+          }
+        ]
+      }
+    },
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "checkbox",
+                "type": "instance",
+                "hidden": true,
+                "component": "Checkbox",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "checked": "false",
+                  "tone": "neutral",
+                  "breakpoint": "1024"
+                }
+              },
+              {
+                "name": "label",
+                "type": "text"
+              },
+              {
+                "name": "sort-button",
+                "type": "instance",
+                "hidden": true,
+                "component": "IconButton",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "default",
+                  "size": "small",
+                  "_theme": "prospect"
+                }
+              }
+            ]
+          },
+          {
+            "name": "divider",
+            "type": "instance",
+            "component": "Divider",
+            "values": {
+              "orientation": "horizontal"
+            }
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "Checkbox",
+      "Divider",
+      "IconButton"
+    ]
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "colorScheme": "blue",
+        "size": "medium",
+        "placement": "left"
+      },
+      "root": {
+        "background": {
+          "token": "color/blue/050"
+        },
+        "radius": {
+          "raw": 0
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "gap": {
+          "raw": 0
+        },
+        "layout": {
+          "direction": "column",
+          "clip": true,
+          "sizingH": "fixed",
+          "width": {
+            "raw": 240
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/56"
+          }
+        }
+      },
+      "content": {
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "token": "spacing/16"
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "token": "spacing/16"
+          }
+        },
+        "gap": {
+          "token": "spacing/16"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center",
+          "sizingH": "fill",
+          "sizingV": "fill"
+        }
+      },
+      "checkbox": {
+        "gap": {
+          "token": "spacing/8"
+        },
+        "layout": {
+          "direction": "row"
+        }
+      },
+      "label": {
+        "textColor": {
+          "token": "color/gray/900"
+        },
+        "textStyle": "title/1/semibold",
+        "layout": {
+          "sizingH": "fill"
+        }
+      },
+      "sort-button": {
+        "radius": {
+          "token": "border/radius/full"
+        },
+        "padding": {
+          "top": {
+            "token": "spacing/8"
+          },
+          "right": {
+            "token": "spacing/8"
+          },
+          "bottom": {
+            "token": "spacing/8"
+          },
+          "left": {
+            "token": "spacing/8"
+          }
+        },
+        "layout": {
+          "direction": "row",
+          "mainAlign": "center",
+          "crossAlign": "center",
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/40"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/40"
+          }
+        }
+      },
+      "sort-button/vector": {
+        "background": {
+          "token": "color/blue/700"
+        }
+      },
+      "divider": {
+        "background": {
+          "token": "color/gray/200"
+        },
+        "layout": {
+          "direction": "row",
+          "maxHeight": {
+            "raw": 1
+          },
+          "sizingH": "fill",
+          "sizingV": "fixed",
+          "height": {
+            "token": "border/width/1"
+          }
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "colorScheme": "gray"
+        },
+        "styles": {
+          "root": {
+            "background": {
+              "token": "color/gray/050"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "small"
+        },
+        "styles": {
+          "root": {
+            "layout": {
+              "direction": "column",
+              "clip": true,
+              "sizingH": "fixed",
+              "width": {
+                "raw": 240
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/40"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "large"
+        },
+        "styles": {
+          "root": {
+            "layout": {
+              "direction": "column",
+              "clip": true,
+              "sizingH": "fixed",
+              "width": {
+                "raw": 240
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/80"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "placement": "right"
+        },
+        "styles": {
+          "label": {
+            "textAlign": "right"
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/radius/full": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "1fcf11522d356a0d693232bf2ced5fbcc75d781a"
+    },
+    "border/width/1": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a3fa5d8b91d34001a5c85064ef0d8a63bb5dafd2"
+    },
+    "color/blue/050": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "3fb21c8df55ccf7a7df6229f6fb763554f92899b"
+    },
+    "color/blue/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
+    },
+    "color/gray/050": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "9a7161bb3eb2c89a2754cb33f96c5a8387652a88"
+    },
+    "color/gray/200": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a221368bce559430e99d794dd8575360a84e91a2"
+    },
+    "color/gray/900": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d79e9ad46847476669d7028a19c83d08c1bdfa1c"
+    },
+    "size/40": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "aecbeec91b0b99619019ff470811099ddb5a6ac9"
+    },
+    "size/56": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "0e0e1c903b515483bcc195921f33ddc7196c95c3"
+    },
+    "size/80": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "dc1082dc055800fd9b5ddaa1c8a29dc76da16f3f"
+    },
+    "spacing/16": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "c671d8ceb08a490376605ccd3862b43109626d25"
+    },
+    "spacing/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f79c6b1de93d24589305065ca591b49ab3a32d6b"
+    }
+  },
+  "textStyles": {
+    "title/1/semibold": {
+      "library": null,
+      "key": "66c000bb46416a8e1c0fa469d5f40c196e8b80fb"
+    }
+  },
+  "components": {
+    "Checkbox": {
+      "library": "B2C",
+      "key": "de8005c5bc15de5ce107df96db6d33bb192dc9ed"
+    },
+    "Divider": {
+      "library": "B2C",
+      "key": "0841d322d140783b9b43fc5aed99d67a34ccf0a6"
+    },
+    "IconButton": {
+      "library": "B2C",
+      "key": "921b5fa9be9ebca368ea2a027222ebc806a6dad6"
+    }
+  },
+  "modeCollections": {},
+  "issues": [
+    {
+      "level": "info",
+      "rule": "token-unpublished",
+      "where": "structure.uses",
+      "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/regular, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/regular/line-height, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.title/1/semibold",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : title/1/semibold."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.15"
+}
