@@ -1,0 +1,1998 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "ContentItem",
+    "version": "1.0.0",
+    "tokensVersion": null,
+    "type": "composed",
+    "extends": "Button",
+    "figmaKey": "ea7d34df2703fee6796f6b530f43bdba4689387b",
+    "library": "B2C",
+    "breakpoints": [
+      0,
+      1024
+    ],
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/contentitem/contentitem.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "size": {
+        "type": "enum",
+        "enum": [
+          "medium",
+          "large"
+        ],
+        "default": "medium"
+      },
+      "type": {
+        "type": "enum",
+        "enum": [
+          "picture",
+          "icon",
+          "stick"
+        ],
+        "default": "picture"
+      },
+      "actions": {
+        "type": "enum",
+        "enum": [
+          "none",
+          "buttons",
+          "switch"
+        ],
+        "default": "none"
+      },
+      "showIcon": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "background",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "showTitle": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "title",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "showSubtitle": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "subtitle",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "showDescription": {
+        "type": "boolean",
+        "default": false,
+        "controls": [
+          {
+            "layer": "description",
+            "attribute": "visible"
+          }
+        ]
+      }
+    },
+    "exposed": [
+      {
+        "from": "Avatar",
+        "props": [
+          "type"
+        ]
+      },
+      {
+        "from": "Button",
+        "props": [
+          "rightIcon",
+          "leftIcon",
+          "label",
+          "showLeftIcon",
+          "showRightIcon",
+          "state",
+          "disabled",
+          "loading",
+          "hierarchy",
+          "colorScheme",
+          "size",
+          "breakpoint",
+          "_theme"
+        ]
+      },
+      {
+        "from": "Button",
+        "props": [
+          "rightIcon",
+          "leftIcon",
+          "label",
+          "showLeftIcon",
+          "showRightIcon",
+          "state",
+          "disabled",
+          "loading",
+          "hierarchy",
+          "colorScheme",
+          "size",
+          "breakpoint",
+          "_theme"
+        ]
+      },
+      {
+        "from": "Switch",
+        "props": [
+          "label",
+          "showLabel",
+          "state",
+          "disabled",
+          "checked",
+          "breakpoint"
+        ]
+      }
+    ]
+  },
+  "variants": [
+    {
+      "values": {
+        "size": "medium",
+        "type": "picture",
+        "breakpoint": "1024",
+        "actions": "none"
+      },
+      "position": [
+        48,
+        48
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "picture",
+        "breakpoint": "1024",
+        "actions": "buttons"
+      },
+      "position": [
+        561,
+        48
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "picture",
+        "breakpoint": "1024",
+        "actions": "switch"
+      },
+      "position": [
+        1074,
+        48
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "picture",
+        "breakpoint": "0",
+        "actions": "none"
+      },
+      "position": [
+        48,
+        518
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "picture",
+        "breakpoint": "0",
+        "actions": "buttons"
+      },
+      "position": [
+        439,
+        518
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "picture",
+        "breakpoint": "0",
+        "actions": "switch"
+      },
+      "position": [
+        830,
+        518
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "icon",
+        "breakpoint": "1024",
+        "actions": "none"
+      },
+      "position": [
+        48,
+        250
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "icon",
+        "breakpoint": "1024",
+        "actions": "buttons"
+      },
+      "position": [
+        561,
+        250
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "icon",
+        "breakpoint": "1024",
+        "actions": "switch"
+      },
+      "position": [
+        1074,
+        250
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "icon",
+        "breakpoint": "0",
+        "actions": "none"
+      },
+      "position": [
+        48,
+        719
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "icon",
+        "breakpoint": "0",
+        "actions": "buttons"
+      },
+      "position": [
+        439,
+        719
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "icon",
+        "breakpoint": "0",
+        "actions": "switch"
+      },
+      "position": [
+        830,
+        719
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "stick",
+        "breakpoint": "1024",
+        "actions": "none"
+      },
+      "position": [
+        48,
+        348
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "stick",
+        "breakpoint": "1024",
+        "actions": "buttons"
+      },
+      "position": [
+        561,
+        348
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "stick",
+        "breakpoint": "1024",
+        "actions": "switch"
+      },
+      "position": [
+        1074,
+        348
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "stick",
+        "breakpoint": "0",
+        "actions": "none"
+      },
+      "position": [
+        48,
+        821
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "stick",
+        "breakpoint": "0",
+        "actions": "buttons"
+      },
+      "position": [
+        439,
+        821
+      ]
+    },
+    {
+      "values": {
+        "size": "medium",
+        "type": "stick",
+        "breakpoint": "0",
+        "actions": "switch"
+      },
+      "position": [
+        830,
+        821
+      ]
+    },
+    {
+      "values": {
+        "size": "large",
+        "type": "picture",
+        "breakpoint": "1024",
+        "actions": "none"
+      },
+      "position": [
+        48,
+        146
+      ]
+    },
+    {
+      "values": {
+        "size": "large",
+        "type": "picture",
+        "breakpoint": "1024",
+        "actions": "buttons"
+      },
+      "position": [
+        561,
+        146
+      ]
+    },
+    {
+      "values": {
+        "size": "large",
+        "type": "picture",
+        "breakpoint": "1024",
+        "actions": "switch"
+      },
+      "position": [
+        1074,
+        146
+      ]
+    },
+    {
+      "values": {
+        "size": "large",
+        "type": "picture",
+        "breakpoint": "0",
+        "actions": "none"
+      },
+      "position": [
+        48,
+        618
+      ]
+    },
+    {
+      "values": {
+        "size": "large",
+        "type": "picture",
+        "breakpoint": "0",
+        "actions": "buttons"
+      },
+      "position": [
+        439,
+        618
+      ]
+    },
+    {
+      "values": {
+        "size": "large",
+        "type": "picture",
+        "breakpoint": "0",
+        "actions": "switch"
+      },
+      "position": [
+        830,
+        618
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {
+      "title": {
+        "as": "children",
+        "default": {
+          "text": "Title"
+        },
+        "controls": [
+          {
+            "layer": "title",
+            "attribute": "text"
+          }
+        ]
+      },
+      "subtitle": {
+        "as": "children",
+        "default": {
+          "text": "Subtitle"
+        },
+        "controls": [
+          {
+            "layer": "subtitle",
+            "attribute": "text"
+          }
+        ]
+      },
+      "description": {
+        "as": "children",
+        "default": {
+          "text": "Description"
+        },
+        "controls": [
+          {
+            "layer": "description",
+            "attribute": "text"
+          }
+        ]
+      },
+      "icon": {
+        "accepts": "Instance",
+        "default": {
+          "swap": "icon/account-balance"
+        },
+        "controls": [
+          {
+            "layer": "icon",
+            "attribute": "component"
+          }
+        ]
+      }
+    },
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "picture",
+            "type": "instance",
+            "component": "Avatar",
+            "values": {
+              "type": "picture"
+            }
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "subtitle",
+                "type": "text"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "hidden": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "type": "picture",
+          "breakpoint": "1024",
+          "actions": "buttons"
+        },
+        "tree": [
+          {
+            "name": "picture",
+            "type": "instance",
+            "component": "Avatar",
+            "values": {
+              "type": "picture"
+            }
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "subtitle",
+                "type": "text"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "name": "actions",
+            "type": "frame",
+            "children": [
+              {
+                "name": "action",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "default",
+                  "size": "small",
+                  "breakpoint": "1024",
+                  "_theme": "prospect"
+                }
+              },
+              {
+                "name": "action",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "default",
+                  "size": "small",
+                  "breakpoint": "1024",
+                  "_theme": "prospect"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "type": "picture",
+          "breakpoint": "1024",
+          "actions": "switch"
+        },
+        "tree": [
+          {
+            "name": "picture",
+            "type": "instance",
+            "component": "Avatar",
+            "values": {
+              "type": "picture"
+            }
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "subtitle",
+                "type": "text"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "name": "switch",
+            "type": "instance",
+            "component": "Switch",
+            "values": {
+              "state": "default",
+              "disabled": "false",
+              "checked": "false",
+              "breakpoint": "1024"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "type": "picture",
+          "breakpoint": "0",
+          "actions": "buttons"
+        },
+        "tree": [
+          {
+            "name": "picture",
+            "type": "instance",
+            "component": "Avatar",
+            "values": {
+              "type": "picture"
+            }
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "subtitle",
+                "type": "text"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "name": "actions",
+            "type": "frame",
+            "children": [
+              {
+                "name": "action",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "default",
+                  "size": "small",
+                  "breakpoint": "0",
+                  "_theme": "prospect"
+                }
+              },
+              {
+                "name": "action",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "default",
+                  "size": "small",
+                  "breakpoint": "0",
+                  "_theme": "prospect"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "type": "picture",
+          "breakpoint": "0",
+          "actions": "switch"
+        },
+        "tree": [
+          {
+            "name": "picture",
+            "type": "instance",
+            "component": "Avatar",
+            "values": {
+              "type": "picture"
+            }
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "subtitle",
+                "type": "text"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "name": "switch",
+            "type": "instance",
+            "component": "Switch",
+            "values": {
+              "state": "default",
+              "disabled": "false",
+              "checked": "false",
+              "breakpoint": "0"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "size": "medium",
+          "type": "icon",
+          "actions": "none"
+        },
+        "tree": [
+          {
+            "name": "background",
+            "type": "frame",
+            "children": [
+              {
+                "name": "icon",
+                "type": "instance",
+                "component": "icon/account-balance"
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "subtitle",
+                "type": "text"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "hidden": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "size": "medium",
+          "type": "icon",
+          "breakpoint": "1024",
+          "actions": "buttons"
+        },
+        "tree": [
+          {
+            "name": "background",
+            "type": "frame",
+            "children": [
+              {
+                "name": "icon",
+                "type": "instance",
+                "component": "icon/account-balance"
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "subtitle",
+                "type": "text"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "name": "actions",
+            "type": "frame",
+            "children": [
+              {
+                "name": "action",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "default",
+                  "size": "small",
+                  "breakpoint": "1024",
+                  "_theme": "prospect"
+                }
+              },
+              {
+                "name": "action",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "default",
+                  "size": "small",
+                  "breakpoint": "1024",
+                  "_theme": "prospect"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "size": "medium",
+          "type": "icon",
+          "breakpoint": "1024",
+          "actions": "switch"
+        },
+        "tree": [
+          {
+            "name": "background",
+            "type": "frame",
+            "children": [
+              {
+                "name": "icon",
+                "type": "instance",
+                "component": "icon/account-balance"
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "subtitle",
+                "type": "text"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "name": "switch",
+            "type": "instance",
+            "component": "Switch",
+            "values": {
+              "state": "default",
+              "disabled": "false",
+              "checked": "false",
+              "breakpoint": "1024"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "size": "medium",
+          "type": "icon",
+          "breakpoint": "0",
+          "actions": "buttons"
+        },
+        "tree": [
+          {
+            "name": "background",
+            "type": "frame",
+            "children": [
+              {
+                "name": "icon",
+                "type": "instance",
+                "component": "icon/account-balance"
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "subtitle",
+                "type": "text"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "name": "actions",
+            "type": "frame",
+            "children": [
+              {
+                "name": "action",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "default",
+                  "size": "small",
+                  "breakpoint": "0",
+                  "_theme": "prospect"
+                }
+              },
+              {
+                "name": "action",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "default",
+                  "size": "small",
+                  "breakpoint": "0",
+                  "_theme": "prospect"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "size": "medium",
+          "type": "icon",
+          "breakpoint": "0",
+          "actions": "switch"
+        },
+        "tree": [
+          {
+            "name": "background",
+            "type": "frame",
+            "children": [
+              {
+                "name": "icon",
+                "type": "instance",
+                "component": "icon/account-balance"
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "subtitle",
+                "type": "text"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "name": "switch",
+            "type": "instance",
+            "component": "Switch",
+            "values": {
+              "state": "default",
+              "disabled": "false",
+              "checked": "false",
+              "breakpoint": "0"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "size": "medium",
+          "type": "stick",
+          "actions": "none"
+        },
+        "tree": [
+          {
+            "name": "stick",
+            "type": "rectangle"
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "subtitle",
+                "type": "text"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "hidden": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "size": "medium",
+          "type": "stick",
+          "breakpoint": "1024",
+          "actions": "buttons"
+        },
+        "tree": [
+          {
+            "name": "stick",
+            "type": "rectangle"
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "subtitle",
+                "type": "text"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "name": "actions",
+            "type": "frame",
+            "children": [
+              {
+                "name": "action",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "default",
+                  "size": "small",
+                  "breakpoint": "1024",
+                  "_theme": "prospect"
+                }
+              },
+              {
+                "name": "action",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "default",
+                  "size": "small",
+                  "breakpoint": "1024",
+                  "_theme": "prospect"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "size": "medium",
+          "type": "stick",
+          "breakpoint": "1024",
+          "actions": "switch"
+        },
+        "tree": [
+          {
+            "name": "stick",
+            "type": "rectangle"
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "subtitle",
+                "type": "text"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "name": "switch",
+            "type": "instance",
+            "component": "Switch",
+            "values": {
+              "state": "default",
+              "disabled": "false",
+              "checked": "false",
+              "breakpoint": "1024"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "size": "medium",
+          "type": "stick",
+          "breakpoint": "0",
+          "actions": "buttons"
+        },
+        "tree": [
+          {
+            "name": "stick",
+            "type": "rectangle"
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "subtitle",
+                "type": "text"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "name": "actions",
+            "type": "frame",
+            "children": [
+              {
+                "name": "action",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "default",
+                  "size": "small",
+                  "breakpoint": "0",
+                  "_theme": "prospect"
+                }
+              },
+              {
+                "name": "action",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "default",
+                  "size": "small",
+                  "breakpoint": "0",
+                  "_theme": "prospect"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "size": "medium",
+          "type": "stick",
+          "breakpoint": "0",
+          "actions": "switch"
+        },
+        "tree": [
+          {
+            "name": "stick",
+            "type": "rectangle"
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "subtitle",
+                "type": "text"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "name": "switch",
+            "type": "instance",
+            "component": "Switch",
+            "values": {
+              "state": "default",
+              "disabled": "false",
+              "checked": "false",
+              "breakpoint": "0"
+            }
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "Avatar",
+      "Button",
+      "Switch",
+      "icon/account-balance"
+    ]
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "size": "medium",
+        "type": "picture",
+        "breakpoint": "0",
+        "actions": "none"
+      },
+      "modes": {
+        "Typography": "prospect-mobile"
+      },
+      "root": {
+        "radius": {
+          "raw": 0
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "gap": {
+          "token": "spacing/12"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center",
+          "clip": false,
+          "sizingH": "fixed",
+          "width": {
+            "raw": 343
+          },
+          "sizingV": "hug"
+        }
+      },
+      "picture": {
+        "layout": {
+          "sizingH": "fixed",
+          "width": {
+            "token": "size/48"
+          },
+          "sizingV": "fixed",
+          "height": {
+            "token": "size/48"
+          }
+        }
+      },
+      "content": {
+        "gap": {
+          "token": "spacing/2"
+        },
+        "layout": {
+          "direction": "column",
+          "mainAlign": "center",
+          "sizingH": "fill"
+        }
+      },
+      "title": {
+        "textColor": {
+          "token": "color/gray/900"
+        },
+        "textStyle": "title/1/semibold",
+        "layout": {
+          "sizingH": "fill",
+          "textAlignVertical": "center"
+        }
+      },
+      "subtitle": {
+        "textColor": {
+          "token": "color/gray/600"
+        },
+        "textStyle": "subtitle/2/regular",
+        "layout": {
+          "sizingH": "fill"
+        }
+      },
+      "description": {
+        "textColor": {
+          "token": "color/gray/600"
+        },
+        "textStyle": "subtitle/2/regular",
+        "layout": {
+          "sizingH": "fixed",
+          "width": {
+            "raw": 283
+          }
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "type": "icon"
+        },
+        "styles": {
+          "picture": {
+            "layout": null
+          },
+          "title": {
+            "layout": {
+              "sizingH": "fill"
+            }
+          },
+          "subtitle": {
+            "textColor": {
+              "token": "color/gray/900"
+            },
+            "textStyle": "subtitle/1/regular"
+          },
+          "background": {
+            "background": {
+              "token": "color/gray/050"
+            },
+            "radius": {
+              "token": "border/radius/full"
+            },
+            "padding": {
+              "top": {
+                "token": "spacing/12"
+              },
+              "right": {
+                "token": "spacing/12"
+              },
+              "bottom": {
+                "token": "spacing/12"
+              },
+              "left": {
+                "token": "spacing/12"
+              }
+            },
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center"
+            }
+          },
+          "icon": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "token": "icon/size/small"
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "icon/size/small"
+              }
+            }
+          },
+          "icon/vector": {
+            "background": {
+              "token": "color/gray/800"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "type": "stick"
+        },
+        "styles": {
+          "picture": {
+            "layout": null
+          },
+          "title": {
+            "textStyle": "title/2/semibold"
+          },
+          "stick": {
+            "background": {
+              "token": "color/blue/700"
+            },
+            "radius": {
+              "raw": 2
+            },
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 4
+              },
+              "sizingV": "fill"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "large"
+        },
+        "styles": {
+          "title": {
+            "textStyle": null
+          },
+          "subtitle": {
+            "textStyle": "subtitle/1/regular"
+          }
+        }
+      },
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "modes": {
+            "Typography": "prospect-desktop"
+          },
+          "root": {
+            "layout": {
+              "direction": "row",
+              "crossAlign": "center",
+              "clip": false,
+              "sizingH": "fixed",
+              "width": {
+                "raw": 465
+              },
+              "sizingV": "hug"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "actions": "buttons"
+        },
+        "styles": {
+          "actions": {
+            "gap": {
+              "token": "spacing/24"
+            },
+            "layout": {
+              "direction": "row",
+              "crossAlign": "center"
+            }
+          },
+          "action-1": {
+            "radius": {
+              "token": "border/radius/full"
+            },
+            "gap": {
+              "token": "spacing/8"
+            },
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center",
+              "minHeight": {
+                "token": "size/32"
+              }
+            }
+          },
+          "action-1/vector": {
+            "background": {
+              "token": "color/blue/700"
+            }
+          },
+          "action-2": {
+            "radius": {
+              "token": "border/radius/full"
+            },
+            "gap": {
+              "token": "spacing/8"
+            },
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center",
+              "minHeight": {
+                "token": "size/32"
+              }
+            }
+          },
+          "action-2/vector": {
+            "background": {
+              "token": "color/blue/700"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "actions": "switch"
+        },
+        "styles": {
+          "switch": {
+            "gap": {
+              "token": "spacing/8"
+            },
+            "layout": {
+              "direction": "row"
+            }
+          },
+          "switch/vector": {
+            "background": {
+              "token": "color/gray/500"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "type": "picture",
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "description": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 405
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "type": "icon",
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "description": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 405
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "type": "stick",
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "description": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 449
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "type": "stick",
+          "breakpoint": "0"
+        },
+        "styles": {
+          "description": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 327
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "large",
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "title": {
+            "typography": {
+              "fontFamily": "Publico Headline",
+              "fontStyle": "Bold",
+              "fontSize": 24,
+              "lineHeight": 30
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "large",
+          "breakpoint": "0"
+        },
+        "styles": {
+          "title": {
+            "typography": {
+              "fontFamily": "Publico Headline",
+              "fontStyle": "Bold",
+              "fontSize": 20,
+              "lineHeight": 24
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "breakpoint": "1024",
+          "actions": "buttons"
+        },
+        "styles": {
+          "action-1": {
+            "padding": {
+              "top": {
+                "token": "spacing/4"
+              },
+              "right": {
+                "token": "spacing/8"
+              },
+              "bottom": {
+                "token": "spacing/4"
+              },
+              "left": {
+                "token": "spacing/8"
+              }
+            }
+          },
+          "action-2": {
+            "padding": {
+              "top": {
+                "token": "spacing/4"
+              },
+              "right": {
+                "token": "spacing/8"
+              },
+              "bottom": {
+                "token": "spacing/4"
+              },
+              "left": {
+                "token": "spacing/8"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "breakpoint": "0",
+          "actions": "buttons"
+        },
+        "styles": {
+          "action-1": {
+            "padding": {
+              "top": {
+                "token": "spacing/6"
+              },
+              "right": {
+                "token": "spacing/8"
+              },
+              "bottom": {
+                "token": "spacing/6"
+              },
+              "left": {
+                "token": "spacing/8"
+              }
+            }
+          },
+          "action-2": {
+            "padding": {
+              "top": {
+                "token": "spacing/6"
+              },
+              "right": {
+                "token": "spacing/8"
+              },
+              "bottom": {
+                "token": "spacing/6"
+              },
+              "left": {
+                "token": "spacing/8"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "border/radius/full": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "1fcf11522d356a0d693232bf2ced5fbcc75d781a"
+    },
+    "color/blue/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
+    },
+    "color/gray/050": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "9a7161bb3eb2c89a2754cb33f96c5a8387652a88"
+    },
+    "color/gray/500": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "b70dd74bd6ce12b6892e6bf6f0bcaca0e74ffe5a"
+    },
+    "color/gray/600": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d12a13846395d779ce6239438a435137917d7841"
+    },
+    "color/gray/800": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "fe28dbe1aed177067927c271ad02e997ffda2c24"
+    },
+    "color/gray/900": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d79e9ad46847476669d7028a19c83d08c1bdfa1c"
+    },
+    "icon/size/small": {
+      "library": "Fondations Canopée",
+      "collection": "Size",
+      "key": "9e4bd3df25a2a614d95da75baf2dc6ebd46f65c2"
+    },
+    "size/32": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "67485646e52a2a7bdb6ab6eeca9154deb920a387"
+    },
+    "size/48": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "e7040d5d297c3771090baa2b84f63664b7b3cde8"
+    },
+    "spacing/12": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "6cfd5a3c3e9c964463b4b26cce753ba1aec30649"
+    },
+    "spacing/2": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "e87f2294ffcf1cc7e76196ee612ceffc9fb4b2aa"
+    },
+    "spacing/24": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "4344572ea5671cb93751381dd4d4db2d8ee60144"
+    },
+    "spacing/4": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "ece7a179702a367a2194768137236fd4d4231725"
+    },
+    "spacing/6": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "8a9022b6c99d49e876e2680384edeca9db6b5e20"
+    },
+    "spacing/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f79c6b1de93d24589305065ca591b49ab3a32d6b"
+    }
+  },
+  "textStyles": {
+    "subtitle/1/regular": {
+      "library": null,
+      "key": "0737ef809688475d8b0a7a8d2bab9fcded3b9ed6"
+    },
+    "subtitle/2/regular": {
+      "library": null,
+      "key": "dc0c6152357550bf57eeab29115eea75dc5c7c66"
+    },
+    "title/1/semibold": {
+      "library": null,
+      "key": "66c000bb46416a8e1c0fa469d5f40c196e8b80fb"
+    },
+    "title/2/semibold": {
+      "library": null,
+      "key": "14a2482cb78f8f45f990156848cbf5c1dbe1e91d"
+    }
+  },
+  "components": {
+    "Avatar": {
+      "library": "B2C",
+      "key": "7a44fe984b9253385813a2d1a0e138495e5ab5af"
+    },
+    "Button": {
+      "library": "B2C",
+      "key": "cbe527a60bc95af0ec43a05d55103c699fa75f2d"
+    },
+    "Switch": {
+      "library": "B2C",
+      "key": "87be75e4b6a4d6d35a7c71451d39f33bb18bc455"
+    },
+    "icon/account-balance": {
+      "library": null,
+      "key": "b3851c784ccef4c351dfa539b744499293b1b010"
+    }
+  },
+  "modeCollections": {
+    "Typography": {
+      "library": "Fondations Canopée",
+      "key": "be959715ddac77dedafba55e157014b702551c02"
+    }
+  },
+  "issues": [
+    {
+      "level": "info",
+      "rule": "raw-value",
+      "where": "styles.stick.radius",
+      "message": "Valeur brute (2) : la relier à une variable. Accepté dans Figma.",
+      "occurrences": 6
+    },
+    {
+      "level": "info",
+      "rule": "text-style",
+      "where": "styles.title",
+      "message": "Texte sans style de texte : le relier à un style, la typo détaillée est reprise faute de mieux. Accepté dans Figma.",
+      "occurrences": 6
+    },
+    {
+      "level": "info",
+      "rule": "token-unpublished",
+      "where": "structure.uses",
+      "message": "Token absent de toutes les versions publiées de Canopée : icon/size/extra-small, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-unpublished",
+      "where": "tokens.icon/size/small",
+      "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/regular, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/regular/line-height, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold/line-height, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.subtitle/1/regular",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : subtitle/1/regular."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.subtitle/2/regular",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : subtitle/2/regular."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.title/1/semibold",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : title/1/semibold."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.title/2/semibold",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : title/2/semibold."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.19"
+}
