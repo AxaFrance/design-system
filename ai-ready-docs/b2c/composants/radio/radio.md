@@ -94,7 +94,7 @@ Un élément `<input type="radio">` dans un `<label>`. Les Radio d'un même grou
 - Le focus clavier reste toujours visible, et son anneau entoure le bouton radio et son libellé.
 - En tone=error, le groupe se relie à son message avec `aria-describedby`, et chaque Radio porte `aria-invalid="true"`.
 - La sélection se voit au point dans le bouton radio, pas seulement à la couleur.
-- Le WCAG demande un contraste de 3:1 au moins pour un composant d'interface, sauf en disabled=true. Sur fond blanc, le contour atteint 3,95:1 en checked=false et 10,9:1 en checked=true. En tone=error, il atteint 5,1:1 sur son fond, et 4,7:1 en tone=warning. L'anneau de focus atteint 6,9:1.
+- Le WCAG demande un contraste de 3:1 au moins pour un composant d'interface, sauf en disabled=true. Sur fond blanc, le contour atteint 3,95:1 en checked=false et 15:1 en checked=true. En tone=error, il atteint 5,1:1 sur son fond, et 4,7:1 en tone=warning. L'anneau de focus atteint 6,9:1.
 - La zone cliquable comprend le libellé.
 
 Référence : [ARIA Authoring Practices Guide, Radio Group Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radio/).

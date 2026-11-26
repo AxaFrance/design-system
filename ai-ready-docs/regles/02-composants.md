@@ -31,6 +31,8 @@ Un composant ne se modifie pas localement : ni sa taille, ni ses espacements, ni
 
 Seule exception, la largeur d'un composant qui suit celle de son conteneur dans le code. Dans Figma, ce composant a une largeur d'exemple, et le designer le règle en Fill container dans sa maquette. Exemple : Skeleton.
 
+Dans Figma, un composant règle les composants qu'il contient par leurs propriétés, sans modifier leurs calques. Seule la couleur d'une icône se change sur le calque.
+
 ## Les composants du navigateur
 
 Certains éléments sont affichés par le navigateur ou par le système du téléphone, et non par le code, comme la liste qui s'ouvre sous un select natif ou le clavier. Ils ont leurs propres composants, dans un dossier native. Exemple : native/SelectList. Dans la librairie Figma, ces composants ont leur page, nommée Native.

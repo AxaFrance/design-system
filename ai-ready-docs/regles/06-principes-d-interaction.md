@@ -19,7 +19,7 @@ Dans les exemples, « A → B » se lit : la valeur en default, puis la valeur d
 
 ## La couleur d'interaction
 
-Les éléments interactifs prennent color/blue/700, la couleur de la marque, comme couleur d'accent. Exemples : le fond d'un Button primary, le texte d'un Link, la piste d'un Switch en checked=true. Cette couleur leur est réservée, pour qu'elle dise à elle seule qu'un élément se clique. Un titre prend color/gray/900, même dans un composant cliquable en entier. Seuls Avatar, ProgressBar et Spinner gardent color/blue/700 sans être interactifs, comme couleur de la marque.
+Les éléments interactifs prennent color/blue/700, la couleur de la marque, comme couleur d'accent. Exemples : le fond d'un Button primary, le texte d'un Link, la piste d'un Switch en checked=true. Cette couleur leur est réservée, pour qu'elle dise à elle seule qu'un élément se clique. Un titre prend color/gray/900, même dans un composant cliquable en entier. Dans un composant qui a une propriété tone, comme Alert ou Banner, la couleur du titre dépend du ton, et la fiche du composant la donne. Seuls Avatar, ProgressBar et Spinner gardent color/blue/700 sans être interactifs, comme couleur de la marque.
 
 Quand le pattern change cette couleur au hover, comme le fond d'un Button primary ou la piste d'un Switch, color/blue/700 passe à color/blue/800, puis à color/blue/900 au press. Le texte d'un Link reste en color/blue/700 au hover, car seul son soulignement change.
 
@@ -46,7 +46,7 @@ Un pattern peut préciser ces règles. Quand il s'en écarte, sa colonne Excepti
 |---|---|---|---|
 | default | Le rendu au repos, quand personne n'agit sur le composant. Tous les autres états partent de lui. | Button primary : fond color/blue/700, texte color/white. | Aucune. |
 | hover | Le survol change ce que le pattern définit : le fond, la border, la border-bottom, l'underline ou le halo, parfois deux à la fois. Une couleur qui change passe à la nuance suivante. Depuis du blanc ou du transparent, elle passe en color/gray/100. Le hover ne prend jamais une nuance 050. | Button primary : fond color/blue/700 → color/blue/800. _PaginationItem, sans fond : → fond color/gray/100. TextInput : border color/gray/500, 1 px → 2 px. | Voir le tableau de chaque pattern. |
-| focus | Un indicateur color/blue/400 de 2 px s'ajoute au rendu du hover. Un champ ou une surface (carte, ligne de liste, étape) le prend sur sa border, et une surface sans border en prend une. Tout autre composant prend une outline, avec un outline-offset de 2 px. | Button primary : fond color/blue/700, comme au hover, et une outline color/blue/400, 2 px. TextInput : border color/gray/500, 1 px → color/blue/400, 2 px. | Voir le tableau de chaque pattern et les composants imbriqués. |
+| focus | Un indicateur color/blue/400 de 2 px s'ajoute au rendu du hover. Un champ ou une surface (carte, ligne de liste, étape) le prend sur sa border, et une surface sans border en prend une. Tout autre composant prend une outline, avec un outline-offset de 2 px. | Button primary : fond color/blue/800, comme au hover, et une outline color/blue/400, 2 px. TextInput : border color/gray/500, 1 px → color/blue/400, 2 px. | Voir le tableau de chaque pattern et les composants imbriqués. |
 | press | Une nuance de plus que le hover. | Button primary : fond color/blue/700 → color/blue/900. _PaginationItem, sans fond : → fond color/gray/200. | Voir le tableau de chaque pattern. |
 
 Le contraste du focus est d'au moins 3:1 avec les couleurs qui le touchent, comme le demande le niveau AA du WCAG.

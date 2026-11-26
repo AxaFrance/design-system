@@ -150,6 +150,7 @@ Ces noms désignent TableMobileCard. Le seul nom à employer est TableMobileCard
 - **Tri et sélection.** Ce que deviennent le tri et la sélection d'un Table une fois affiché en cartes n'est pas défini. En attendant : signaler.
 - **Contenus et mise en page non définis.** Le nombre maximal de _TableMobileCardRow, le format des nombres, des montants et des dates, et l'espace entre deux cartes ne sont pas définis. En attendant : signaler.
 - **Largeur de bascule.** La page d'exemple de Storybook passe aux TableMobileCard sous 667 px de large (`Table.tsx:240`), et non sous 1024 px. En attendant : 1024 px.
+- **Propriété _theme à valider.** La TableMobileCard et son _TableMobileCardRow n'ont pas de propriété _theme, comme les sous-composants du Table. Ce choix reste à valider avec les développeurs de Canopée. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

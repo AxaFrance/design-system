@@ -200,7 +200,7 @@ Ces noms désignent Table. Le seul nom à employer est Table.
 ## Points ouverts
 
 - **Thème client.** Dans le code, l'en-tête bleu prend `--blue-080` en prospect et `--blue-100` en client (`TableApollo.css:5`, `TableLF.css:5`). Figma garde un seul fond, color/blue/050. La suppression de _theme reste à valider avec les développeurs de Canopée. En attendant : signaler.
-- **Libellé de l'en-tête.** Le code met le libellé en semibold (`TableCommon.css:31`), et en bleu sur l'en-tête bleu (`TableCommon.css:129`). Figma le met en label/1/regular et en color/gray/900. En attendant : signaler.
+- **Libellé de l'en-tête.** Le code met le libellé en bleu sur l'en-tête bleu (`TableCommon.css:129`), alors que Figma le met en color/gray/900. En attendant : signaler.
 - **Trait entre les lignes.** Le code trace les lignes en `--blue-200` (`TableCommon.css:103`), alors que Figma prend le Divider, en color/gray/200. En attendant : signaler.
 - **Tri.** Le bouton de tri du code n'a pas de nom accessible (`Th.tsx:36`), et son icône ne montre pas l'ordre du tri. Le composant ne pose pas `aria-sort`, mais `Table.Th` le transmet à son `<th>` (`Th.tsx:31`). L'ordre du tri n'est pas défini. En attendant : passer `aria-sort` à l'en-tête de la colonne triée, et signaler le reste.
 - **Checkbox de l'en-tête.** Son usage n'est pas défini. Le code la pose sans nom accessible, et la page ne peut ni la cocher ni la mettre en état intermédiaire (`Th.tsx:33`). La page d'exemple de Storybook s'en sert pour surligner une colonne, pas pour sélectionner des lignes. En attendant : signaler.

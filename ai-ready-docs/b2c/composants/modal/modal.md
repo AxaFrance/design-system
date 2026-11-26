@@ -173,6 +173,7 @@ Ces noms désignent Modal. Le seul nom à employer est Modal.
 - **Action en cours ou en échec.** L'effet du Button tertiary, et ce que fait la Modal quand l'action du Button primary charge ou échoue, ne sont pas définis. En attendant : signaler.
 - **Clic hors de la fenêtre pendant une saisie.** Fermer la Modal sur un clic hors de la fenêtre peut faire perdre une saisie en cours. En attendant : signaler.
 - **Couleurs du titre et de l'icône dans le code.** Le Heading du code met un titre de niveau 2 en `--blue-1000` (`HeadingApollo.css:19`), et son icône aussi (`IconCommon.css:64`), alors que Figma les met en color/gray/900 et color/gray/800. En attendant : signaler.
+- **Dialog sur une Modal.** Aucune règle de Canopée ne dit si un Dialog peut s'ouvrir par-dessus une Modal, par exemple pour confirmer l'abandon d'une saisie. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

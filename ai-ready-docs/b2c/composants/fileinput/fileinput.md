@@ -158,7 +158,7 @@ Ces noms désignent FileInput. Le seul nom à employer est FileInput.
 
 ## Points ouverts
 
-- **Couleurs et épaisseurs dans le code.** Le code trace la bordure avec une outline en pointillés bleu foncé (`InputFileCommon.css:34`, `InputFileApollo.css:5`, `InputFileLF.css:5`), et met les textes de la zone en bleu foncé (`InputFileApollo.css:6`, `InputFileLF.css:6`). La bordure passe à 2 px au hover et au focus, sans changer de couleur (`InputFileCommon.css:56`). Dans le thème prospect, le Button prend un fond bleu foncé et un texte blanc au hover et au focus (`InputFileApollo.css:10`). En erreur, le rouge diffère entre les thèmes (`InputFileApollo.css:23`, `InputFileLF.css:22`). En attendant : signaler.
+- **Couleurs et épaisseurs dans le code.** Le code trace la bordure avec une outline en pointillés bleu foncé (`InputFileCommon.css:34`, `InputFileApollo.css:5`, `InputFileLF.css:5`). La bordure passe à 2 px au hover et au focus, sans changer de couleur (`InputFileCommon.css:56`). Dans le thème prospect, le Button prend un fond bleu foncé et un texte blanc au hover et au focus (`InputFileApollo.css:10`). En erreur, le rouge diffère entre les thèmes (`InputFileApollo.css:23`, `InputFileLF.css:22`). En attendant : signaler.
 - **Focus dans le code.** Le code entoure le Button d'une outline au focus (`InputFileCommon.css:61`), alors que Figma met le focus sur la bordure de la zone. En attendant : signaler.
 - **Désactivé dans le code.** Le code accepte `disabled`, mais n'a aucun rendu désactivé pour la zone de dépôt. En attendant : signaler.
 - **Lien des messages dans le code.** Le code relie le message d'erreur avec `aria-errormessage` (`InputFileCommon.tsx:170`), au lieu de `aria-describedby`. En attendant : signaler.

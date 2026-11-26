@@ -78,7 +78,7 @@ Un élément `<input type="checkbox">` avec `role="switch"`, dans un `<label>`.
 - La touche Espace le fait basculer. La touche Entrée ne fait rien, comme sur une case à cocher native.
 - Les icônes de la poignée sont décoratives et masquées au lecteur d'écran avec `aria-hidden="true"`.
 - La position du Switch se voit à la place de la poignée et à son icône, pas seulement à la couleur de la piste.
-- Le WCAG demande un contraste de 3:1 au moins pour un composant d'interface, sauf en disabled=true. Sur fond blanc, la piste atteint 3,95:1 en checked=false. Elle atteint 10,9:1 en checked=true. L'anneau de focus atteint 6,9:1.
+- Le WCAG demande un contraste de 3:1 au moins pour un composant d'interface, sauf en disabled=true. Sur fond blanc, la piste atteint 3,95:1 en checked=false. Elle atteint 15:1 en checked=true. L'anneau de focus atteint 6,9:1.
 - La zone cliquable comprend le libellé.
 
 Référence : [ARIA Authoring Practices Guide, Switch Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/switch/).
@@ -148,7 +148,7 @@ Ces noms désignent Switch. Le seul nom à employer est Switch.
 - **Libellé dans le code.** Le code n'a pas de libellé : son `<label>` n'enveloppe que le Switch, sans texte. En attendant : écrire le libellé à part et le relier par `htmlFor` ou `aria-labelledby`.
 - **Hover dans le code.** Le code n'a pas de hover (`ToggleCommon.css`). En attendant : signaler.
 - **Anneau de focus dans le code.** Le code trace l'anneau autour de la piste seule (`ToggleCommon.css:69`), car le libellé s'écrit à part. En attendant : signaler.
-- **Couleurs dans le code.** Le code diffère de Figma sur quatre couleurs. La piste en checked=false est d'un gris plus clair (`ToggleCommon.css:3`). La piste en checked=true est d'un bleu plus foncé (`ToggleCommon.css:75`). L'anneau de focus est bleu foncé (`ToggleCommon.css:5`). En disabled=true, la piste et l'icône sont en gris moyen (`ToggleCommon.css:22`). Les couleurs de Figma font foi. En attendant : signaler.
+- **Couleurs dans le code.** Le code diffère de Figma sur trois couleurs. La piste en checked=false est d'un gris plus clair (`ToggleCommon.css:3`). L'anneau de focus est bleu foncé (`ToggleCommon.css:5`). En disabled=true, la piste et l'icône sont en gris moyen (`ToggleCommon.css:22`). Les couleurs de Figma font foi. En attendant : signaler.
 - **Message sous le Switch.** Le _FormHelperText n'est pas publié dans la librairie Figma, comme tout sous-composant. Le designer ne peut donc pas le poser seul sous un Switch. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche

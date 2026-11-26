@@ -11,7 +11,7 @@ Le Spinner indique qu'un contenu est en cours de chargement, ou qu'une action es
 ### À utiliser pour
 
 - Indiquer que des données sont en cours de chargement, ou qu'une action est en cours de traitement.
-- Indiquer le chargement dans un Button, qui affiche alors un Spinner.
+- Indiquer le chargement dans un Button, un IconButton ou un TextInput, qui affiche alors un Spinner.
 
 ### À ne pas utiliser pour
 
@@ -134,7 +134,7 @@ Ces noms désignent Spinner. Le seul nom à employer est Spinner.
 - **1.0.0 - 10/11/26.** L'anneau fixe prend la couleur de l'arc qui tourne, à 20 % d'opacité, comme dans le code. En colorScheme=white, l'arc blanc reste ainsi visible sur l'anneau.
 - **1.0.0 - 10/11/26.** L'anneau laisse 4 px de marge dans son cadre, pour suivre une grille de 4 px, comme le code du thème prospect. size=x-small, ajoutée ensuite, fait exception.
 - **1.0.0 - 10/11/26.** size=large et colorScheme=blue sont les valeurs par défaut, comme dans le code.
-- **1.0.0 - 10/11/26.** La taille moyenne est retirée de Figma : elle ne servait que dans ClickItem, un composant de la page Legacy.
+- **1.0.0 - 10/11/26.** La taille moyenne est retirée de Figma : elle ne servait que dans l'ancien ClickItem, sur la page Legacy de la librairie Figma.
 - **1.0.0 - 10/11/26.** _animation ne sert qu'à animer le Spinner dans un prototype Figma.
 - **1.0.0 - 17/11/26.** size=x-small ajoute un Spinner de 16 px, pour le petit Button. Sa marge passe à 2 px et son trait à 2 px, pour que l'anneau reste lisible à cette taille.
 - **1.0.0 - 19/11/26.** En colorScheme=blue, le Spinner prend color/blue/600, la couleur réservée aux éléments interactifs, au lieu du color/blue/700 de la marque. Il suit ainsi le Button qui le contient pendant un chargement.

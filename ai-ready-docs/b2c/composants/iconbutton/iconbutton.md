@@ -38,7 +38,7 @@ L'action existe mais n'est pas disponible pour l'instant. Le texte autour du bou
 
 ### loading=true
 
-L'action est lancée et le traitement est en cours. Le bouton garde sa couleur, et un Spinner remplace l'icône. Le Spinner prend la couleur de l'icône : blanc sur un fond plein, bleu sinon. Dans Figma, loading=true n'existe qu'avec state=default.
+L'action est lancée et le traitement est en cours. Le bouton garde sa couleur, et un Spinner remplace l'icône. Le Spinner prend la couleur de l'icône. Il est blanc pour hierarchy=primary en colorScheme=default. Il est aussi blanc pour hierarchy=secondary et hierarchy=tertiary en colorScheme=inverse. Il est bleu dans les autres cas. Dans Figma, loading=true n'existe qu'avec state=default.
 
 ### colorScheme=inverse
 

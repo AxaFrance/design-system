@@ -82,8 +82,8 @@ Un conteneur `role="tablist"` qui contient les _Tab. Chaque _Tab est un `<button
 - Le contenu affiché suit la liste dans le DOM, juste après elle.
 - Le focus clavier reste toujours visible.
 - Le WCAG demande un contraste de 4,5:1 au moins pour un texte. Il demande 3:1 pour ce qui montre un état.
-- Sur fond blanc, le libellé atteint 19,3:1 hors sélection. Il atteint 10,9:1 quand le _Tab est sélectionné.
-- Le trait du _Tab sélectionné atteint 10,9:1.
+- Sur fond blanc, le libellé atteint 19,3:1 hors sélection. Il atteint 15:1 quand le _Tab est sélectionné.
+- Le trait du _Tab sélectionné atteint 15:1.
 - L'anneau de focus atteint 6,9:1.
 - La sélection se voit au trait sous le libellé, pas seulement à la couleur du texte.
 - La zone cliquable fait toute la taille du _Tab, 48 px de haut au moins.

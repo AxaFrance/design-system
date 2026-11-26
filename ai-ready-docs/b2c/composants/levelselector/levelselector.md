@@ -153,7 +153,7 @@ Ces noms désignent LevelSelector. Le seul nom à employer est LevelSelector.
 
 ## Points ouverts
 
-- **Couleurs dans le code.** Dans les deux thèmes, le code met les barres en bleu foncé (`LevelSelectorApollo.css:6`, `LevelSelectorLF.css:6`), avec une outline de 1 px au hover et au focus (`LevelSelectorCommon.css:60`), et la bordure de la carte en bleu clair (`LevelSelectorCommon.css:7`). Dans le thème prospect, il met aussi le titre en bleu foncé (`LevelSelectorApollo.css:7`). En attendant : signaler.
+- **Couleurs et contours dans le code.** Dans les deux thèmes, le code ajoute aux barres une outline de 1 px au hover et au focus (`LevelSelectorCommon.css:60`), et met la bordure de la carte en bleu clair (`LevelSelectorCommon.css:7`). Dans le thème prospect, il met aussi le titre en bleu foncé (`LevelSelectorApollo.css:7`). En attendant : signaler.
 - **Textes dans le code.** Le code affiche le titre en 16 px sur tous les écrans (`LevelSelectorCommon.css:12`), alors que title/1/regular passe à 18 px sur desktop. Dans le thème client, la description est en 16 px (`LevelSelectorLF.css:9`), alors que subtitle/3/regular reste à 14 px. L'interligne de 125 % (`LevelSelectorCommon.css:14`, `LevelSelectorCommon.css:22`) donne 20 px au titre au lieu de 24, et 17,5 px à la description du thème prospect au lieu de 20. En attendant : signaler.
 - **Thème client dans le code.** La carte du thème client garde un arrondi de 4 px (`CardLF.css:5`). En attendant : signaler.
 - **Titre masqué dans le code.** Sans `title`, le code n'affiche pas de `<legend>` (`LevelSelectorCommon.tsx:44`), et le groupe n'a plus de nom accessible. En attendant : signaler.

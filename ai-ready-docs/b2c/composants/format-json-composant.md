@@ -130,7 +130,7 @@ Les styles en cascade : ceux de la variante par défaut, puis ce qui change selo
   "default": {
     "when": { "state": "default", "disabled": "false", "hierarchy": "primary", "colorScheme": "default", "breakpoint": "0" },
     "root": {
-      "background": { "token": "color/blue/600" },
+      "background": { "token": "color/blue/700" },
       "radius": { "token": "border/radius/full" },
       "padding": { "top": { "token": "spacing/12" } },
       "layout": { "direction": "row", "mainAlign": "center", "crossAlign": "center", "clip": false, "minHeight": { "token": "size/48" } }
@@ -139,7 +139,7 @@ Les styles en cascade : ceux de la variante par défaut, puis ce qui change selo
     "left-icon/vector": { "background": { "token": "color/white" } }
   },
   "overrides": [
-    { "when": { "state": "hover", "hierarchy": "primary", "colorScheme": "default" }, "styles": { "root": { "background": { "token": "color/blue/700" } } } }
+    { "when": { "state": "hover", "hierarchy": "primary", "colorScheme": "default" }, "styles": { "root": { "background": { "token": "color/blue/800" } } } }
   ]
 }
 ```
@@ -163,7 +163,7 @@ Chaque variable utilisée, une seule fois, avec sa librairie, sa collection et s
 
 ```json
 "tokens": {
-  "color/blue/600": { "library": "Fondations Canopée", "collection": "Primitive", "key": "…" }
+  "color/blue/700": { "library": "Fondations Canopée", "collection": "Primitive", "key": "…" }
 }
 ```
 

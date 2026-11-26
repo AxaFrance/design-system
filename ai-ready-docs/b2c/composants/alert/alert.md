@@ -18,7 +18,7 @@ L'Alert affiche un message court et important, sans interrompre ce que fait l'ut
 - Un message qui concerne toute la page ou tout le service, comme une maintenance prévue : prendre Banner.
 - L'erreur d'un seul champ de formulaire : prendre le _FormHelperText d'erreur du champ.
 - Le résultat d'une action : prendre le _FormHelperText de l'élément concerné. Une action qui ne se rattache à aucun élément, comme une demande envoyée : Non documenté.
-- Une information qui demande une réponse avant de continuer : prendre Modal.
+- Une information qui demande une réponse avant de continuer : prendre Dialog pour une question courte à deux réponses, Modal sinon.
 
 ## Règles selon les propriétés
 
@@ -106,7 +106,7 @@ Un élément `<section>`. Il porte `role="alert"` en tone=error et en tone=warni
 - Ils atteignent 4,9:1 en tone=success.
 - Ils atteignent 7,3:1 en tone=warning.
 - Ils atteignent 7,8:1 en tone=error.
-- Le lien atteint 9,3:1 au moins, sur tous les fonds.
+- Le lien atteint 12,9:1 au moins, sur tous les fonds.
 
 Références : [ARIA Authoring Practices Guide, Alert Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alert/), [MUI, Alert](https://mui.com/material-ui/react-alert/) et [Carbon, Notification](https://carbondesignsystem.com/components/notification/usage/).
 

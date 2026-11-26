@@ -78,7 +78,7 @@ Sur un écran de moins de 1024 px de large. Le Tag utilise sa version mobile, pl
 
 - Deux mots au plus, et 21 caractères au plus, espaces compris. Pour un élément expiré ou résilié, tone=neutral ajoute une date après son mot. Exemple : « En attente », « Résilié le 12/03/2026 ».
 - Le texte dit le statut, sans le sujet. Exemple : « Validé », pas « Devis validé ».
-- Un ou deux mots qui se comprennent seuls. Exemple : « Nouveau », « En cours », « Action demandée ».
+- Des mots qui se comprennent seuls. Exemple : « Nouveau », « En cours », « Action demandée ».
 - Le texte ne commence pas par un verbe à l'infinitif, et ne contient ni pronom ni nom d'offre AXA. À éviter : « Terminer », « Votre contrat ».
 - Une majuscule au début seulement, sans ponctuation, sauf la barre oblique d'une date. Exemple : « Résilié le 12/03/2026 ».
 
