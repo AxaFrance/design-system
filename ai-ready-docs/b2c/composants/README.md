@@ -7,6 +7,7 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 ## Règles communes à toutes les fiches
 
 - Quand aucun composant ne convient à un besoin, l'IA le signale au lieu d'en inventer un.
+- Quand une fiche renvoie vers un composant ou un template qui n'a pas encore de fiche, l'IA le signale au lieu de deviner son usage.
 - Quand une fiche ne répond pas, l'IA le signale au lieu de deviner. La consigne est écrite à la fin de chaque fiche, parce qu'une IA peut n'en lire qu'une.
 - Les propriétés et leurs valeurs portent les noms de la nomenclature. Les noms du code n'apparaissent que dans les rubriques Code, Noms à ne pas employer, Décisions et Points ouverts de chaque fiche.
 - Un sous-composant qui ne sert qu'à un seul composant n'a pas de Markdown à lui. Son JSON est rangé dans le dossier de ce composant, et le Markdown de ce composant porte ses règles. Exemple : _SelectList, dans le dossier de Select. Un sous-composant partagé par plusieurs composants a sa propre fiche, pour que ses règles ne soient écrites qu'une fois. Exemple : _FormLabel, partagé par tous les champs.
