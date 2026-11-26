@@ -30,8 +30,8 @@ Ces calques reprennent les propriétés de contenu, qui remplissent un élément
 |---|---|
 | container | Le cadre qui porte le fond, la bordure ou l'ombre de tout le composant. |
 | content | Le cadre qui regroupe le contenu principal. |
-| header, footer | Le haut et le bas d'un composant découpé en parties, comme une carte ou une fenêtre. |
-| actions | Le groupe de boutons ou de liens d'action. Chacun y porte le nom action. |
+| header, body, footer | Le haut, le milieu et le bas d'un composant découpé en parties, comme une carte ou une fenêtre. |
+| actions | Le groupe de boutons ou de liens d'action. Des actions équivalentes y portent toutes le nom action. Une action qui s'affiche par son propre booléen porte le nom de son rôle, comme primary-button. |
 | list | Le cadre qui contient une série d'éléments répétés. |
 | item | Un élément répété dans une list. |
 | input | La zone de saisie d'un champ, ou la partie à cocher d'un Checkbox, d'un Radio ou d'un Switch. |
