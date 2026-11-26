@@ -4197,7 +4197,7 @@ describe("A template, recognized by its page in the library", () => {
       [
         "close-button",
         comp("IconButton", "C:52", 40, false),
-        { "state": { type: "VARIANT", value: "default" } },
+        { state: { type: "VARIANT", value: "default" } },
       ],
       ["primary-button", comp("Button", "C:53", 120, true), {}],
     ] as const) {
@@ -4214,6 +4214,39 @@ describe("A template, recognized by its page in the library", () => {
     const { sheet } = await exportSheet(d);
     expect(sheet.api.exposed.map((e: MockData) => e.from)).toStrictEqual([
       "IconButton",
+      "Button",
+    ]);
+    expect(sheet.meta.extends).toBe("Button");
+  });
+  it("an instance exposed only in another variant than the default one is listed, once", async () => {
+    const d = inPage("Content", { description: "L'information." });
+    const set = d.selection[0];
+    const button = connect(
+      layer(
+        "COMPONENT",
+        "Button",
+        { id: "C:61", key: "KEY-BTN", width: 120, height: 40 },
+        [layer("TEXT", "label", { characters: "x", autoRename: false })],
+      ),
+    );
+    for (const name of [
+      "Size=Large, state=enabled, isSelected=false",
+      "Size=Large, state=hover, isSelected=false",
+    ]) {
+      const variant = connect(layer("COMPONENT", name, { x: 0, y: 100 }), set);
+      const instance = connect(
+        layer("INSTANCE", "action", {
+          mainComponent: button,
+          isExposedInstance: true,
+          componentProperties: {},
+        }),
+        variant,
+      );
+      variant.children = [instance];
+      set.children.push(variant);
+    }
+    const { sheet } = await exportSheet(d);
+    expect(sheet.api.exposed.map((e: MockData) => e.from)).toStrictEqual([
       "Button",
     ]);
     expect(sheet.meta.extends).toBe("Button");

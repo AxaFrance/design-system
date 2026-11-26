@@ -72,7 +72,7 @@ Les propriétés, dans l'ordre de la nomenclature.
 ```
 
 - `enum` pour une variante, `boolean` pour un booléen. Les textes, les swaps et les slots sont décrits dans `structure.slots`.
-- `exposed` liste les instances exposées dans le panneau de Figma, dans l'ordre des calques, avec les propriétés que le designer règle depuis le composant. Exemple : le _FormLabel et les deux _FormHelperText d'un TextInput. Une icône exposée n'y figure pas. Un petit composant qui a ses propres propriétés, comme un IconButton, y figure.
+- `exposed` liste les instances exposées dans le panneau de Figma, dans toutes les variantes, une seule fois chacune, dans l'ordre des calques de la variante par défaut, puis des autres, avec les propriétés que le designer règle depuis le composant. Exemple : le _FormLabel et les deux _FormHelperText d'un TextInput. Une icône exposée n'y figure pas. Un petit composant qui a ses propres propriétés, comme un IconButton, y figure.
 - `controls` dit quel calque la propriété règle, et comment : `visible` règle l'affichage du calque, `text` son texte, `component` le composant placé dans une instance.
 - Les booléens ne figurent pas dans `variants`, qui ne liste que les combinaisons de variantes.
 - La propriété breakpoint ne figure pas dans `props`. Dans le code, c'est la largeur de l'écran qui choisit le rendu, sans prop à régler. Ses valeurs se lisent dans `meta.breakpoints`.

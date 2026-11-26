@@ -3,7 +3,7 @@
 // component set (or of a single component). Returns the JSON of the sheet, as text.
 const ID_COMPONENT_SET = "COMPONENT_SET_ID"
 
-const VERSION = "0.7.18";
+const VERSION = "0.7.19";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -1709,23 +1709,42 @@ async function extractDetail(target, opts) {
                 return true;
         return false;
     };
-    for (const n of findAll(figmaDef, (x) => x.type === "INSTANCE" && !!x.isExposedInstance).filter(isInstance)) {
-        if (insideInstance(n))
-            continue;
-        const m = await readMainComponent(ctx, n);
-        if (!m)
-            continue;
-        const small = !findOne(m, (x) => x.type === "TEXT") &&
-            typeof m.width === "number" &&
-            m.width <= MAX_ICON_SIZE &&
-            typeof m.height === "number" &&
-            m.height <= MAX_ICON_SIZE;
-        if (small && !Object.keys(n.componentProperties || {}).length)
-            continue;
-        exposedLayers.push(n);
-        if (small)
-            smallLayers.add(n);
-    }
+    // every variant is read, the default one first: an instance exposed only in some variants,
+    // like the actions of a ContentItem, is listed once, by its path and its component
+    const exposedPath = (n, root) => {
+        const path = [];
+        for (let x = n; x && x !== root; x = x.parent) {
+            const parent = x.parent;
+            const siblings = (parent && parent.children) || [];
+            const same = siblings.filter((c) => c.name === x.name);
+            path.unshift(x.name + "#" + Math.max(0, same.indexOf(x)));
+        }
+        return path.join("/");
+    };
+    const seenExposed = new Set();
+    const exposedRoots = [figmaDef].concat(variantNodes.filter((v) => v !== figmaDef));
+    for (const root of exposedRoots)
+        for (const n of findAll(root, (x) => x.type === "INSTANCE" && !!x.isExposedInstance).filter(isInstance)) {
+            if (insideInstance(n))
+                continue;
+            const m = await readMainComponent(ctx, n);
+            if (!m)
+                continue;
+            const exposedKey = exposedPath(n, root) + "|" + componentName(m);
+            if (seenExposed.has(exposedKey))
+                continue;
+            seenExposed.add(exposedKey);
+            const small = !findOne(m, (x) => x.type === "TEXT") &&
+                typeof m.width === "number" &&
+                m.width <= MAX_ICON_SIZE &&
+                typeof m.height === "number" &&
+                m.height <= MAX_ICON_SIZE;
+            if (small && !Object.keys(n.componentProperties || {}).length)
+                continue;
+            exposedLayers.push(n);
+            if (small)
+                smallLayers.add(n);
+        }
     if (exposedLayers.length) {
         const entries = [];
         for (const n of exposedLayers) {
