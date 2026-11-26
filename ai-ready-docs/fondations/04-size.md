@@ -19,6 +19,7 @@ Dans Figma, ces variables ne sont proposées que dans les champs de largeur et d
 
 - Le nom ne porte jamais la valeur. Exemple : icon/size/small, et non size/24.
 - Le nom donne l'élément (icon), la propriété (size), puis le palier, de extra-small à large.
+- Le palier extra-small reprend le mot du code. La propriété size d'un composant écrit x-small, le mot-clé du CSS. Exemple : un IconButton en size=x-small.
 
 Les règles d'écriture sont celles de la nomenclature de Canopée : en minuscules, en anglais, sans accent, avec un tiret entre les mots.
 
