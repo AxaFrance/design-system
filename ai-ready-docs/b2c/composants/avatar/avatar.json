@@ -178,7 +178,7 @@
           },
           "background": {
             "background": {
-              "token": "color/white"
+              "token": "color/gray/050"
             },
             "layout": {
               "sizingH": "fixed",
@@ -251,6 +251,11 @@
       "collection": "Primitive",
       "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
     },
+    "color/gray/050": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "9a7161bb3eb2c89a2754cb33f96c5a8387652a88"
+    },
     "color/white": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
@@ -288,11 +293,11 @@
       "occurrences": 1
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-unpublished",
       "where": "tokens.icon/size/small",
       "message": "Token absent de toutes les versions publiées de Canopée : icon/size/small."
     }
   ],
-  "_tool": "canopee-export-components 0.7.5"
+  "_tool": "canopee-export-components 0.7.18"
 }

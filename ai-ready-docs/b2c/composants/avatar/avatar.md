@@ -120,6 +120,7 @@ Ces noms désignent Avatar. Le seul nom à employer est Avatar.
 - **1.0.0 - 10/11/26.** type=picture est la valeur par défaut, car c'est l'usage le plus fréquent.
 - **1.0.0 - 10/11/26.** Le logo et l'icône viennent de Fondations Canopée, logo/axa et icon/person. L'icône prend la taille icon/size/small, et le logo la taille size/48.
 - **1.0.0 - 12/11/26.** Le texte alternatif se limite au nom de la personne, sans « Photo de profil de », car le lecteur d'écran annonce déjà une image.
+- **1.0.0 - 26/11/26.** En type=profile, le fond passe en color/gray/050, comme le rond des icônes de la Modal et de ContentItem.
 
 ## Points ouverts
 
