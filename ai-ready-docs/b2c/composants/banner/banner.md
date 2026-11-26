@@ -193,6 +193,7 @@ Ces noms désignent Banner. Le seul nom à employer est Banner.
 - **Position de la croix.** La croix est en haut à droite du contenu en desktop, et à 4 px du haut et de la droite du Banner en mobile. Figma ne relie cette position à aucun design token. En attendant : ces positions.
 - **Croix dans le code.** La croix n'existe pas encore dans le code. En attendant : signaler.
 - **« Voir plus » dans le code.** « Voir plus » et « Voir moins » n'existent pas encore dans le code. En desktop, le code affiche toujours la description entière, sans la couper (`MessageBarCommon.tsx:88`). En attendant : signaler.
+- **Hover de la croix.** Au hover puis au press, la croix prend un rond color/blue/800, puis color/blue/900, des nuances prévues pour un fond color/blue/700. Sur le fond color/red/700 de tone=error, ce rond bleu forme une tache. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 
