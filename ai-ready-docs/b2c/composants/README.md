@@ -49,3 +49,4 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 | TableMobileCard | [tablemobilecard.md](tablemobilecard/tablemobilecard.md) | [tablemobilecard.json](tablemobilecard/tablemobilecard.json) | [tablemobilecard-changelog.md](tablemobilecard/tablemobilecard-changelog.md) |
 | DropdownMenu | [dropdownmenu.md](dropdownmenu/dropdownmenu.md) | [dropdownmenu.json](dropdownmenu/dropdownmenu.json) | [dropdownmenu-changelog.md](dropdownmenu/dropdownmenu-changelog.md) |
 | _MenuItem | [_menuitem.md](_menuitem/_menuitem.md) | [_menuitem.json](_menuitem/_menuitem.json) | [_menuitem-changelog.md](_menuitem/_menuitem-changelog.md) |
+| Accordion | [accordion.md](accordion/accordion.md) | [accordion.json](accordion/accordion.json) | [accordion-changelog.md](accordion/accordion-changelog.md) |

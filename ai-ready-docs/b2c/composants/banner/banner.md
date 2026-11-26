@@ -124,7 +124,7 @@ import errorIcon from "@material-symbols/svg-400/outlined/error-fill.svg";
 />
 ```
 
-Sous 1024 px, avec une description, le code range la description et le Button dans un accordéon fermé : le Button reste caché tant que l'accordéon n'est pas ouvert (`MessageBarCommon.tsx:94`, `MessageBarCommon.tsx:102`).
+Sous 1024 px, avec une description, le code range la description et le Button dans un Accordion fermé : le Button reste caché tant que l'Accordion n'est pas ouvert (`MessageBarCommon.tsx:94`, `MessageBarCommon.tsx:102`).
 
 Le `<section>` est nommé par le titre avec `aria-labelledby` (`MessageBarCommon.tsx:108`, `MessageBarCommon.tsx:110`). Un `aria-label` ou un `aria-labelledby` passé au composant remplace ce nom (`MessageBarCommon.tsx:62`). L'icône porte `role="presentation"` (`MessageBarSummary.tsx:23`).
 
@@ -160,7 +160,7 @@ Ces noms désignent Banner. Le seul nom à employer est Banner.
 - **1.0.0 - 23/11/26.** Le ton rouge s'appelle tone=error, comme `variant="error"` dans le code. L'ancien nom Figma, warning, ne correspondait pas à sa couleur.
 - **1.0.0 - 23/11/26.** Le Button remplace l'ancien bouton de Figma, qui était archivé.
 - **1.0.0 - 23/11/26.** Les textes par défaut sont « Title » et « Description », comme pour tout composant.
-- **1.0.0 - 23/11/26.** Sur mobile, le Banner n'utilise plus d'accordéon. La description est coupée à trois lignes, et « Voir plus » ou « Voir moins » la déplie ou la replie. L'ancien accordéon de Figma n'existait que pour le Footer et le Banner : un petit composant à usage unique, qu'un designer pouvait poser seul par erreur. Le code suivra.
+- **1.0.0 - 23/11/26.** Sur mobile, le Banner n'utilise plus d'Accordion. La description est coupée à trois lignes, et « Voir plus » ou « Voir moins » la déplie ou la replie. L'ancien composant de Figma, devenu Legacy/SecondaryAccordion, n'existait que pour le Footer et le Banner : un petit composant à usage unique, qu'un designer pouvait poser seul par erreur. Le code suivra.
 - **1.0.0 - 23/11/26.** Le fond prend le palier 700 de son ton, color/azure/700 ou color/red/700, avec les textes et l'icône en blanc, pour que le Banner ressorte davantage que le reste de l'interface. Le code suivra.
 - **1.0.0 - 24/11/26.** Le Button passe en inverse, pour rester lisible sur le fond 700.
 - **1.0.0 - 24/11/26.** Dans Figma, les thèmes prospect et client partagent un seul Banner, qui n'a pas de propriété _theme. Le Button, le Link et la croix sont exposés dans le panneau du Banner : le designer y règle leur _theme.
@@ -181,7 +181,7 @@ Ces noms désignent Banner. Le seul nom à employer est Banner.
 
 ## Points ouverts
 
-- **Rendu dans le code.** Le code a des fonds clairs (`MessageBarAll.css:11`, `MessageBarAll.css:17`), avec un titre de la couleur du ton (`MessageBarAll.css:48`). Ses couleurs viennent de l'ancienne palette. En mobile, il replie la description et le Button dans un accordéon (`MessageBarCommon.tsx:88`, `MessageBarCommon.tsx:102`). Figma suit les décisions. En attendant : Figma fait foi, et signaler l'écart.
+- **Rendu dans le code.** Le code a des fonds clairs (`MessageBarAll.css:11`, `MessageBarAll.css:17`), avec un titre de la couleur du ton (`MessageBarAll.css:48`). Ses couleurs viennent de l'ancienne palette. En mobile, il replie la description et le Button dans un `AccordionCore` (`MessageBarCommon.tsx:88`, `MessageBarCommon.tsx:102`). Figma suit les décisions. En attendant : Figma fait foi, et signaler l'écart.
 - **Marges latérales.** En desktop, les marges de 120 px, déjà dans le code (`MessageBarAll.css:97`), n'ont pas de design token. Le contenu du Banner devrait s'aligner sur celui de la page à chaque breakpoint, mais Canopée n'a encore ni grille, ni marge de page, ni largeur de conteneur en design token. En attendant : 120 px.
 - **Titre.** Le titre est un paragraphe, et non un titre HTML (`MessageBarSummary.tsx:26`). En attendant : signaler.
 - **Région en mobile.** Le plugin Copilot annonce une `region` en mobile dans tous les cas (`06-message-feedback.md:144`). Le code ne la rend qu'avec une description (`MessageBarCommon.tsx:88`). En attendant : le code fait foi.
