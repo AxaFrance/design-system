@@ -50,7 +50,7 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> START EXTRACTION
-const VERSION = "0.7.17";
+const VERSION = "0.7.18";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -105,6 +105,7 @@ const ORDER: string[][] = [
     "orientation",
     "placement",
     "fullWidth",
+    "bordered",
     "first",
     "last",
     "even",
@@ -152,6 +153,7 @@ const TRUE_FALSE_VARIANTS: Record<string, string[]> = {
   last: ["true", "false"],
   even: ["true", "false"],
   fullWidth: ["true", "false"],
+  bordered: ["true", "false"],
 };
 // Names not to use, with what to write instead.
 const SYNONYMS: Record<string, string> = {
@@ -172,6 +174,7 @@ const PRIORITY = [
   "orientation",
   "placement",
   "fullWidth",
+  "bordered",
   "level",
   "first",
   "last",
