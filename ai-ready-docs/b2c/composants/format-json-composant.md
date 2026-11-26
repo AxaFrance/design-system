@@ -53,7 +53,7 @@ L'identité du composant.
 - `version` est la version du composant, propre à lui. Le plugin la calcule à chaque export, en comparant le composant et ses sous-composants sans Markdown au dernier export. Un tel sous-composant exporté seul reçoit aussi une version dans son JSON, mais cette version ne compte pas : seule celle de son composant fait foi.
 - `tokensVersion` est la première version publiée de Canopée dont le fichier de design tokens contient tous les tokens et styles de texte du composant, avec les mêmes valeurs que dans Figma. Elle vaut `null` quand aucune version ne convient ou que le plugin n'a pas pu la calculer, et un défaut dit pourquoi.
 - `templateLevel` vaut `block`, `section` ou `page` pour un template, selon sa page dans la librairie Figma. Un composant n'a pas ce champ.
-- `type` vaut `atom`, ou `composed` quand le composant expose une autre instance dans le panneau de Figma. `extends` nomme alors la première instance exposée. Pour un template, il vaut `template`, et `extends` reste écrit si le template est bâti sur un autre composant.
+- `type` vaut `atom`, ou `composed` quand le composant expose une autre instance dans le panneau de Figma. `extends` nomme alors la première instance exposée qui porte un texte ou dépasse 48 px, comme un Button, et sinon la première instance exposée. Pour un template, il vaut `template`, et `extends` reste écrit si le template est bâti sur un autre composant.
 - `figmaKey` est la clé du composant dans la librairie. Elle permet de retrouver le vrai composant.
 - `breakpoints` liste, du plus petit au plus grand, les largeurs d'écran en pixels à partir desquelles le rendu change, d'après la propriété breakpoint de Figma. Exemple : `[0, 1024]`. Un composant qui garde le même rendu sur toutes les largeurs d'écran n'a pas ce champ.
 
@@ -72,7 +72,7 @@ Les propriétés, dans l'ordre de la nomenclature.
 ```
 
 - `enum` pour une variante, `boolean` pour un booléen. Les textes, les swaps et les slots sont décrits dans `structure.slots`.
-- `exposed` liste les instances exposées dans le panneau de Figma, dans l'ordre des calques, avec les propriétés que le designer règle depuis le composant. Exemple : le _FormLabel et les deux _FormHelperText d'un TextInput. Une icône exposée n'y figure pas.
+- `exposed` liste les instances exposées dans le panneau de Figma, dans l'ordre des calques, avec les propriétés que le designer règle depuis le composant. Exemple : le _FormLabel et les deux _FormHelperText d'un TextInput. Une icône exposée n'y figure pas. Un petit composant qui a ses propres propriétés, comme un IconButton, y figure.
 - `controls` dit quel calque la propriété règle, et comment : `visible` règle l'affichage du calque, `text` son texte, `component` le composant placé dans une instance.
 - Les booléens ne figurent pas dans `variants`, qui ne liste que les combinaisons de variantes.
 - La propriété breakpoint ne figure pas dans `props`. Dans le code, c'est la largeur de l'écran qui choisit le rendu, sans prop à régler. Ses valeurs se lisent dans `meta.breakpoints`.

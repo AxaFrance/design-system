@@ -4178,6 +4178,46 @@ describe("A template, recognized by its page in the library", () => {
       "_FormHelperText",
     ]);
   });
+  it("an exposed IconButton is listed in api.exposed, an exposed icon is not, and extends names the larger component", async () => {
+    const d = inPage("Structure", { description: "La fenêtre." });
+    const variant = d.selection[0].children[0];
+    const comp = (name: string, id: string, size: number, text: boolean) =>
+      connect(
+        layer(
+          "COMPONENT",
+          name,
+          { id, key: "KEY-" + name, width: size, height: size },
+          text
+            ? [layer("TEXT", "label", { characters: "x", autoRename: false })]
+            : [layer("VECTOR", "vector", {})],
+        ),
+      );
+    for (const [layerName, c, props] of [
+      ["icon", comp("icon/close", "C:51", 24, false), {}],
+      [
+        "close-button",
+        comp("IconButton", "C:52", 40, false),
+        { "state": { type: "VARIANT", value: "default" } },
+      ],
+      ["primary-button", comp("Button", "C:53", 120, true), {}],
+    ] as const) {
+      const instance = connect(
+        layer("INSTANCE", layerName, {
+          mainComponent: c,
+          isExposedInstance: true,
+          componentProperties: props,
+        }),
+        variant,
+      );
+      variant.children.push(instance);
+    }
+    const { sheet } = await exportSheet(d);
+    expect(sheet.api.exposed.map((e: MockData) => e.from)).toStrictEqual([
+      "IconButton",
+      "Button",
+    ]);
+    expect(sheet.meta.extends).toBe("Button");
+  });
   it("an instance exposed inside another exposed instance is not listed again", async () => {
     const d = inPage("Forms", { description: "Le champ." });
     const variant = d.selection[0].children[0];

@@ -3,7 +3,7 @@
 // component set (or of a single component). Returns the JSON of the sheet, as text.
 const ID_COMPONENT_SET = "COMPONENT_SET_ID"
 
-const VERSION = "0.7.16";
+const VERSION = "0.7.17";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -1693,11 +1693,12 @@ async function extractDetail(target, opts) {
         tokensVersion: null,
         type: "atom",
     };
-    // an icon exposed in the panel does not make a base component: only a component
-    // that carries text or exceeds the size of an icon is taken as a base. Every such
-    // exposed instance is listed in api.exposed, in the order of the layers, and the
-    // first one names the base component in extends.
+    // an icon exposed in the panel is not listed: a small component without text and without
+    // properties of its own. A small component with properties, like an IconButton, is listed
+    // in api.exposed, in the order of the layers, but only a component that carries text or
+    // exceeds the size of an icon names the base component in extends, if there is one.
     const exposedLayers = [];
+    const smallLayers = new Set();
     // an instance exposed inside another instance belongs to that one: its own sheet lists it
     const insideInstance = (n) => {
         for (let p = n.parent; p && p.type !== "COMPONENT" && p.type !== "COMPONENT_SET"; p = p.parent)
@@ -1709,14 +1710,18 @@ async function extractDetail(target, opts) {
         if (insideInstance(n))
             continue;
         const m = await readMainComponent(ctx, n);
-        const icon = m &&
-            !findOne(m, (x) => x.type === "TEXT") &&
+        if (!m)
+            continue;
+        const small = !findOne(m, (x) => x.type === "TEXT") &&
             typeof m.width === "number" &&
             m.width <= MAX_ICON_SIZE &&
             typeof m.height === "number" &&
             m.height <= MAX_ICON_SIZE;
-        if (m && !icon)
-            exposedLayers.push(n);
+        if (small && !Object.keys(n.componentProperties || {}).length)
+            continue;
+        exposedLayers.push(n);
+        if (small)
+            smallLayers.add(n);
     }
     if (exposedLayers.length) {
         const entries = [];
@@ -1728,7 +1733,8 @@ async function extractDetail(target, opts) {
             });
         }
         meta.type = "composed";
-        meta.extends = entries[0].from;
+        const baseIndex = exposedLayers.findIndex((n) => !smallLayers.has(n));
+        meta.extends = entries[baseIndex >= 0 ? baseIndex : 0].from;
         api.exposed = entries;
     }
     // a template built on another component keeps extends
