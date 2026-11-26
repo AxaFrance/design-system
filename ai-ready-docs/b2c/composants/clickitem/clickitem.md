@@ -167,6 +167,7 @@ Ces noms désignent ClickItem. Le seul nom à employer est ClickItem.
 - **1.0.0 - 25/11/26.** Le titre passe en color/gray/900 et l'icône en color/gray/800, car color/blue/700 est réservé aux éléments interactifs. Dans le ClickItem, seul l'IconButton garde color/blue/700.
 - **1.0.0 - 25/11/26.** Les textes s'appellent title, subtitle, description et caption, selon la nomenclature, au lieu des anciens textes secondaire et tertiaire.
 - **1.0.0 - 25/11/26.** Le ClickItem n'a pas de propriété _theme, sous réserve de validation par les développeurs de Canopée. Figma garde le rendu du thème prospect.
+- **1.0.0 - 26/11/26.** La flèche garde la taille small d'IconButton, soit 40 px, comme le rond du code. Elle n'a pas d'action propre et signale seulement que tout le ClickItem se clique. La taille x-small, qu'IconButton prévoit pour un IconButton qui a sa propre action, ne s'applique donc pas.
 
 ## Points ouverts
 

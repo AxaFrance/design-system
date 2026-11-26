@@ -50,7 +50,7 @@ La taille par défaut, quand le composant qui contient l'IconButton n'est pas cl
 
 ### size=x-small
 
-Un IconButton placé dans un composant déjà cliquable en entier. Exemple : l'action à droite d'une ligne de liste cliquable en entier.
+Un IconButton qui a sa propre action, placé dans un composant déjà cliquable en entier. Exemple : l'action à droite d'une ligne de liste cliquable en entier.
 
 ## Exemples
 
@@ -168,6 +168,7 @@ Ces noms désignent IconButton. Le seul nom à employer est IconButton.
 - **1.0.0 - 24/11/26.** Comme pour Button, hierarchy=secondary et hierarchy=tertiary ont aussi une variante colorScheme=inverse. Ils suivent les états du colorScheme=default : seul le fond change, et l'icône et la border du secondary restent en color/white. Au hover et au focus, le fond passe en color/blue/800, puis en color/blue/900 au press. Désactivés, ils prennent le rendu du colorScheme=default : un fond color/gray/050, sans border, et une icône color/gray/400.
 - **1.0.0 - 25/11/26.** L'IconButton reprend color/blue/700, la couleur de la marque, déjà utilisée par le code. En hierarchy=primary, son fond passe en color/blue/800 au hover et au focus, puis en color/blue/900 au press. Dans les autres cas, l'icône et la border passent en color/blue/700. Cette décision remplace celle du 17/11/26.
 - **1.0.0 - 25/11/26.** L'IconButton a une variante loading, comme Button : un Spinner remplace l'icône, en size=small (24 px) pour l'IconButton size=small et en size=x-small (16 px) pour l'IconButton size=x-small. En loading=true, l'icône est rangée dans un cadre content masqué. Masquée seule, elle réapparaîtrait dès que le designer change d'icône. Le ClickItem l'utilise pendant son chargement.
+- **1.0.0 - 26/11/26.** size=x-small ne sert qu'à un IconButton qui a sa propre action dans un composant cliquable en entier. La flèche du ClickItem n'a pas d'action propre et garde donc size=small. Cette précision complète la décision du 02/11/26.
 
 ## Points ouverts
 
