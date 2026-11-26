@@ -47,3 +47,5 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 | Dialog | [dialog.md](dialog/dialog.md) | [dialog.json](dialog/dialog.json) | [dialog-changelog.md](dialog/dialog-changelog.md) |
 | Table | [table.md](table/table.md) | [table.json](table/table.json) | [table-changelog.md](table/table-changelog.md) |
 | TableMobileCard | [tablemobilecard.md](tablemobilecard/tablemobilecard.md) | [tablemobilecard.json](tablemobilecard/tablemobilecard.json) | [tablemobilecard-changelog.md](tablemobilecard/tablemobilecard-changelog.md) |
+| DropdownMenu | [dropdownmenu.md](dropdownmenu/dropdownmenu.md) | [dropdownmenu.json](dropdownmenu/dropdownmenu.json) | [dropdownmenu-changelog.md](dropdownmenu/dropdownmenu-changelog.md) |
+| _MenuItem | [_menuitem.md](_menuitem/_menuitem.md) | [_menuitem.json](_menuitem/_menuitem.json) | [_menuitem-changelog.md](_menuitem/_menuitem-changelog.md) |

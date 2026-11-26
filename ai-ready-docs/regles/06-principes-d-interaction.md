@@ -29,7 +29,7 @@ Le pattern d'un composant dit ce qui change au survol, et le rendu des autres é
 
 | Pattern | Au survol | Composants |
 |---|---|---|
-| Fond | Le fond change. | Button, IconButton, _PaginationItem, FormCard, _LevelSelectorStep, Switch, _SelectListItem, ClickItem |
+| Fond | Le fond change. | Button, IconButton, _PaginationItem, FormCard, _LevelSelectorStep, Switch, _SelectListItem, ClickItem, _MenuItem |
 | Contour | La border s'épaissit, ou l'underline pour Link. | TextInput, TextArea, PhoneInput, DateInput, FileInput, Select, Link |
 | Hybride | Le fond change et la border-bottom s'épaissit. | _Tab |
 | Halo | Un halo apparaît derrière la case ou le bouton radio. | Checkbox, Radio |

@@ -15,7 +15,7 @@ Le ClickItem présente, dans une liste, un contrat, une personne ou un autre obj
 
 ### À ne pas utiliser pour
 
-- Une entrée de menu, avec une icône, un libellé et un chevron. Elle deviendra un sous-composant de DropdownMenu, qui n'existe pas encore. En attendant : Legacy/ClickItem en petit format, l'ancien ClickItem de la librairie Figma.
+- Une entrée de menu, avec une icône, un libellé et un chevron : prendre _MenuItem, dans un DropdownMenu ou un DataAgent.
 - Une action seule, sans contenu à présenter : prendre Button.
 - Un lien dans un texte : prendre Link.
 
@@ -183,7 +183,6 @@ Ces noms désignent ClickItem. Le seul nom à employer est ClickItem.
 - **Chargement dans le code.** Le code remplace le rond par un Spinner seul, de 32 px (`ClickItemSuffixCommon.tsx:26`), alors que Figma garde le rond de l'IconButton, avec un Spinner à l'intérieur. En attendant : signaler.
 - **Format moyen.** Le code a un `variant="medium"` que Figma n'a pas. Sa règle CSS, prévue pour masquer la description, la légende et la flèche, ne s'applique jamais (`ClickItemCommon.css:88`) : tout reste affiché. En attendant : signaler.
 - **Navigation.** Un ClickItem qui mène vers une autre page est rendu en `<button>`, et non en lien. En attendant : signaler.
-- **Entrée de menu.** Le sous-composant de DropdownMenu n'existe pas encore. Dans le code, DataAgent affiche aussi ses ClickItem en petit format. En attendant : Legacy/ClickItem en petit format, l'ancien ClickItem de la librairie Figma.
 - **Propriété _theme à valider.** Le ClickItem n'a pas de propriété _theme, et Figma montre le rendu du thème prospect. Ce choix reste à valider avec les développeurs de Canopée. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
