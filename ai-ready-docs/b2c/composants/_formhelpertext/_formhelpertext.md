@@ -169,6 +169,7 @@ Ces noms désignent _FormHelperText. Le seul nom à employer est _FormHelperText
 - **Page Storybook.** Sa documentation appelle la prop `type`, alors que le composant attend `messageType`. En attendant : la fiche fait foi.
 - **tone=neutral sans source B2C.** L'ancienne documentation du B2C n'a pas de ton neutre, mais le code a déjà une aide à la saisie, la prop `helper` des champs. Cette fiche en fait un ton, comme les design systems du marché. En attendant : il s'applique.
 - **Résultat d'une action sans élément.** Aucun composant n'affiche le résultat d'une action qui ne se rattache à aucun élément, comme une demande envoyée. Un composant de type toast reste à créer. En attendant : signaler.
+- **Usage seul dans Figma.** Le _FormHelperText n'est pas publié dans la librairie Figma, comme tout sous-composant. Le designer ne peut donc pas le poser seul sous un élément qui n'est pas un champ, alors que le code l'exporte (`ItemMessage`, `prospect.ts:76`). En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 
