@@ -92,6 +92,19 @@
           "tone",
           "breakpoint"
         ]
+      },
+      {
+        "from": "IconButton",
+        "props": [
+          "icon",
+          "state",
+          "disabled",
+          "loading",
+          "hierarchy",
+          "colorScheme",
+          "size",
+          "_theme"
+        ]
       }
     ]
   },
@@ -277,6 +290,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "tertiary",
                   "colorScheme": "default",
                   "size": "small",
@@ -618,5 +632,5 @@
       "message": "Valeur absente de toutes les versions publiées de Canopée : title/1/semibold."
     }
   ],
-  "_tool": "canopee-export-components 0.7.15"
+  "_tool": "canopee-export-components 0.7.17"
 }

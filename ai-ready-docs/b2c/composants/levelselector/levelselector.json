@@ -4,7 +4,8 @@
     "name": "LevelSelector",
     "version": "1.0.0",
     "tokensVersion": null,
-    "type": "atom",
+    "type": "composed",
+    "extends": "IconButton",
     "figmaKey": "f0374fd66fe504c844fbef945f297bb9ee269029",
     "library": "B2C",
     "breakpoints": [
@@ -56,7 +57,35 @@
           }
         ]
       }
-    }
+    },
+    "exposed": [
+      {
+        "from": "IconButton",
+        "props": [
+          "icon",
+          "state",
+          "disabled",
+          "loading",
+          "hierarchy",
+          "colorScheme",
+          "size",
+          "_theme"
+        ]
+      },
+      {
+        "from": "IconButton",
+        "props": [
+          "icon",
+          "state",
+          "disabled",
+          "loading",
+          "hierarchy",
+          "colorScheme",
+          "size",
+          "_theme"
+        ]
+      }
+    ]
   },
   "variants": [
     {
@@ -304,6 +333,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "true",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -343,6 +373,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -379,6 +410,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "true",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -408,6 +440,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -444,6 +477,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "true",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -483,6 +517,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -519,6 +554,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "true",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -568,6 +604,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -604,6 +641,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -633,6 +671,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "true",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -669,6 +708,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -708,6 +748,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -744,6 +785,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -793,6 +835,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -829,6 +872,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -868,6 +912,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "true",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -904,6 +949,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -953,6 +999,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -989,6 +1036,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1038,6 +1086,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "true",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1074,6 +1123,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "true",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1103,6 +1153,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1139,6 +1190,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "true",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1188,6 +1240,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1224,6 +1277,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1253,6 +1307,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "true",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1289,6 +1344,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1328,6 +1384,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1364,6 +1421,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1413,6 +1471,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1449,6 +1508,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1488,6 +1548,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "true",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1524,6 +1585,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1573,6 +1635,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1609,6 +1672,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "false",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -1658,6 +1722,7 @@
                 "values": {
                   "state": "default",
                   "disabled": "true",
+                  "loading": "false",
                   "hierarchy": "secondary",
                   "colorScheme": "default",
                   "size": "small",
@@ -2382,5 +2447,5 @@
       "message": "Valeur absente de toutes les versions publiées de Canopée : title/1/regular."
     }
   ],
-  "_tool": "canopee-export-components 0.7.15"
+  "_tool": "canopee-export-components 0.7.17"
 }

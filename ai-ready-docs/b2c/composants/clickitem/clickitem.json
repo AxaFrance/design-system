@@ -106,6 +106,12 @@
     },
     "exposed": [
       {
+        "from": "Avatar",
+        "props": [
+          "type"
+        ]
+      },
+      {
         "from": "Tag",
         "props": [
           "label",
@@ -138,7 +144,7 @@
       },
       "position": [
         40,
-        230
+        250
       ]
     },
     {
@@ -162,7 +168,7 @@
       },
       "position": [
         1680,
-        230
+        250
       ]
     },
     {
@@ -186,7 +192,7 @@
       },
       "position": [
         1270,
-        230
+        250
       ]
     },
     {
@@ -210,7 +216,7 @@
       },
       "position": [
         450,
-        230
+        250
       ]
     },
     {
@@ -234,7 +240,7 @@
       },
       "position": [
         860,
-        230
+        250
       ]
     }
   ],
@@ -1765,5 +1771,5 @@
       "message": "Valeur absente de toutes les versions publiées de Canopée : title/1/semibold."
     }
   ],
-  "_tool": "canopee-export-components 0.7.15"
+  "_tool": "canopee-export-components 0.7.17"
 }

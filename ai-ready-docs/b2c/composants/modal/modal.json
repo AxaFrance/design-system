@@ -79,6 +79,19 @@
     },
     "exposed": [
       {
+        "from": "IconButton",
+        "props": [
+          "icon",
+          "state",
+          "disabled",
+          "loading",
+          "hierarchy",
+          "colorScheme",
+          "size",
+          "_theme"
+        ]
+      },
+      {
         "from": "Button",
         "props": [
           "rightIcon",
@@ -1694,5 +1707,5 @@
       "message": "Valeur absente de toutes les versions publiées de Canopée : subtitle/1/regular."
     }
   ],
-  "_tool": "canopee-export-components 0.7.15"
+  "_tool": "canopee-export-components 0.7.17"
 }
