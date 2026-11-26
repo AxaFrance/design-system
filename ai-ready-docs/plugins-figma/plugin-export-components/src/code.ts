@@ -50,7 +50,7 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> START EXTRACTION
-const VERSION = "0.7.15";
+const VERSION = "0.7.16";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -3459,13 +3459,9 @@ function computeHistory(p: HistoryInput): {
   if (chosen.kept) {
     const v = chosen.version;
     const existing = stored.find((e) => e.version === v);
+    // a version not delivered yet keeps the date of its first export
     if (existing && existing.added.indexOf(FIRST_VERSION) >= 0) {
-      return {
-        history: stored.map((e) =>
-          e === existing ? Object.assign({}, e, { date }) : e,
-        ),
-        previous,
-      };
+      return { history: stored, previous };
     }
     let entry: ChangelogEntry;
     if (previous) {
@@ -3509,6 +3505,7 @@ function computeHistory(p: HistoryInput): {
           if (entry[key].indexOf(x) < 0) entry[key].push(x);
     }
     entry = withChoices(entry);
+    if (existing) entry = Object.assign({}, entry, { date: existing.date });
     const history = existing
       ? stored.map((e) => (e === existing ? entry : e))
       : [entry].concat(stored);

@@ -6427,7 +6427,7 @@ describe("The changelog: the history in the plugin", () => {
     ]);
     expect(read(doc, "previous-version"), "still no previous version").toBe("");
   });
-  it("first version kept: the entry stays « Première version du composant », the date is that of the export", async () => {
+  it("first version kept: the entry stays « Première version du composant », with the date of its first export", async () => {
     const { doc } = await exported();
     const h = history(doc);
     h[0].date = "2020-01-01";
@@ -6438,8 +6438,24 @@ describe("The changelog: the history in the plugin", () => {
     expect(after.length).toBe(1);
     expect(after[0].added).toStrictEqual([FIRST]);
     expect(after[0].modified).toStrictEqual([]);
-    expect(after[0].date).toMatch(today);
-    expect(after[0].date).not.toBe("2020-01-01");
+    expect(after[0].date).toBe("2020-01-01");
+  });
+  it("kept version: the rewritten entry keeps the date of its first export", async () => {
+    const { doc } = await exported();
+    addValue(doc, "tertiary");
+    await reopen(doc);
+    const h = history(doc);
+    h[0].date = "2020-01-01";
+    variantSet(doc).setSharedPluginData(NS, "changelog", JSON.stringify(h));
+    variantSet(doc).componentPropertyDefinitions["label#1:1"].defaultValue =
+      "Libellé";
+    await reopen(doc, { keep: true });
+    const after = history(doc);
+    expect(after[0].version).toBe("1.1.0");
+    expect(after[0].modified).toStrictEqual([
+      "Slot label, texte par défaut : Label → Libellé",
+    ]);
+    expect(after[0].date).toBe("2020-01-01");
   });
   it("Markdown sheet modified: a single line under Modifié", async () => {
     const { doc } = await exported();

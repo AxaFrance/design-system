@@ -98,7 +98,7 @@ Les cas particuliers :
 
 Le plugin range l'historique dans le component set, au namespace `canopee_sheets`, à côté de la base. Figma limite chaque entrée à 100 Ko, donc chaque donnée a sa clé. Une donnée de plus de 100 Ko se découpe en plusieurs entrées : la clé garde le premier morceau, `clé.1`, `clé.2` les suivants, et `clé.chunks` le nombre de morceaux. Le plugin les recolle à la lecture.
 
-- `changelog` : le tableau JSON des entrées `{ version, date, added, modified, removed }`, la plus récente en premier. La date est celle de l'export, au format `AAAA-MM-JJ`. Le fichier téléchargé l'affiche au format `JJ/MM/AA`.
+- `changelog` : le tableau JSON des entrées `{ version, date, added, modified, removed }`, la plus récente en premier. La date est celle du premier export de la version, au format `AAAA-MM-JJ`. Le fichier téléchargé l'affiche au format `JJ/MM/AA`.
 - `previous-version` : le JSON exporté de la version précédente. Il sert à recalculer l'entrée d'une version gardée.
 - `accepted-issues` : le tableau JSON, trié et sans doublon, des avertissements acceptés. Chaque clé s'écrit `rule|where|message`. Une clé qui ne correspond plus à aucun avertissement reste stockée sans gêner. Le bouton « Accepter » l'écrit tout de suite, sans attendre un export.
 
@@ -107,7 +107,7 @@ Jusqu'à la version 0.4.43, ces données étaient rangées au namespace `canopee
 La génération n'écrit rien. L'export (copie ou téléchargement du JSON) enregistre les deux clés, comme la base, sauf si le changelog ou la base était illisible à la génération. Si une écriture échoue, le plugin affiche l'erreur dans la fenêtre.
 
 - Nouvelle version : l'entrée compare la base à la nouvelle fiche, sous le nouveau numéro, et s'ajoute en tête. À l'export, la base devient la version précédente.
-- Version gardée (« Non, garder X.Y.Z ») : l'entrée de X.Y.Z est recalculée en comparant la version précédente à la nouvelle fiche, et remplace l'ancienne, avec la date de l'export. Les exports successifs d'une version gardée ne s'empilent donc pas. Si X.Y.Z est la première version, son entrée reste « Première version du composant ». Sans version précédente, le plugin compare à la base et ajoute les lignes nouvelles à l'entrée existante, sans doublon.
+- Version gardée (« Non, garder X.Y.Z ») : l'entrée de X.Y.Z est recalculée en comparant la version précédente à la nouvelle fiche, et remplace l'ancienne, en gardant sa date. Depuis la version 0.7.16, la date reste celle du premier export de X.Y.Z. Les exports successifs d'une version gardée ne s'empilent donc pas. Si X.Y.Z est la première version, son entrée reste « Première version du composant ». Sans version précédente, le plugin compare à la base et ajoute les lignes nouvelles à l'entrée existante, sans doublon.
 
 ### Version des design tokens
 
