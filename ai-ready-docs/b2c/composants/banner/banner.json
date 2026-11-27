@@ -73,6 +73,14 @@
             "attribute": "visible"
           }
         ]
+      },
+      "_theme": {
+        "type": "enum",
+        "enum": [
+          "prospect",
+          "client"
+        ],
+        "default": "prospect"
       }
     },
     "exposed": [
@@ -128,7 +136,8 @@
       "values": {
         "open": "true",
         "tone": "information",
-        "breakpoint": "1024"
+        "breakpoint": "1024",
+        "_theme": "prospect"
       },
       "position": [
         48,
@@ -139,7 +148,20 @@
       "values": {
         "open": "true",
         "tone": "information",
-        "breakpoint": "0"
+        "breakpoint": "1024",
+        "_theme": "client"
+      },
+      "position": [
+        48,
+        784
+      ]
+    },
+    {
+      "values": {
+        "open": "true",
+        "tone": "information",
+        "breakpoint": "0",
+        "_theme": "prospect"
       },
       "position": [
         1424,
@@ -149,8 +171,21 @@
     {
       "values": {
         "open": "true",
+        "tone": "information",
+        "breakpoint": "0",
+        "_theme": "client"
+      },
+      "position": [
+        1424,
+        784
+      ]
+    },
+    {
+      "values": {
+        "open": "true",
         "tone": "error",
-        "breakpoint": "1024"
+        "breakpoint": "1024",
+        "_theme": "prospect"
       },
       "position": [
         48,
@@ -161,7 +196,20 @@
       "values": {
         "open": "true",
         "tone": "error",
-        "breakpoint": "0"
+        "breakpoint": "1024",
+        "_theme": "client"
+      },
+      "position": [
+        48,
+        1152
+      ]
+    },
+    {
+      "values": {
+        "open": "true",
+        "tone": "error",
+        "breakpoint": "0",
+        "_theme": "prospect"
       },
       "position": [
         1424,
@@ -170,9 +218,22 @@
     },
     {
       "values": {
+        "open": "true",
+        "tone": "error",
+        "breakpoint": "0",
+        "_theme": "client"
+      },
+      "position": [
+        1424,
+        1020
+      ]
+    },
+    {
+      "values": {
         "open": "false",
         "tone": "information",
-        "breakpoint": "1024"
+        "breakpoint": "1024",
+        "_theme": "prospect"
       },
       "position": [
         48,
@@ -183,7 +244,20 @@
       "values": {
         "open": "false",
         "tone": "information",
-        "breakpoint": "0"
+        "breakpoint": "1024",
+        "_theme": "client"
+      },
+      "position": [
+        48,
+        968
+      ]
+    },
+    {
+      "values": {
+        "open": "false",
+        "tone": "information",
+        "breakpoint": "0",
+        "_theme": "prospect"
       },
       "position": [
         1847,
@@ -193,8 +267,21 @@
     {
       "values": {
         "open": "false",
+        "tone": "information",
+        "breakpoint": "0",
+        "_theme": "client"
+      },
+      "position": [
+        1847,
+        784
+      ]
+    },
+    {
+      "values": {
+        "open": "false",
         "tone": "error",
-        "breakpoint": "1024"
+        "breakpoint": "1024",
+        "_theme": "prospect"
       },
       "position": [
         48,
@@ -205,11 +292,36 @@
       "values": {
         "open": "false",
         "tone": "error",
-        "breakpoint": "0"
+        "breakpoint": "1024",
+        "_theme": "client"
+      },
+      "position": [
+        48,
+        1336
+      ]
+    },
+    {
+      "values": {
+        "open": "false",
+        "tone": "error",
+        "breakpoint": "0",
+        "_theme": "prospect"
       },
       "position": [
         1847,
         284
+      ]
+    },
+    {
+      "values": {
+        "open": "false",
+        "tone": "error",
+        "breakpoint": "0",
+        "_theme": "client"
+      },
+      "position": [
+        1847,
+        1020
       ]
     }
   ],
@@ -337,7 +449,8 @@
       },
       {
         "when": {
-          "breakpoint": "1024"
+          "breakpoint": "1024",
+          "_theme": "prospect"
         },
         "tree": [
           {
@@ -418,6 +531,176 @@
             ]
           }
         ]
+      },
+      {
+        "when": {
+          "breakpoint": "1024",
+          "_theme": "client"
+        },
+        "tree": [
+          {
+            "name": "container",
+            "type": "frame",
+            "children": [
+              {
+                "name": "close-button",
+                "type": "instance",
+                "component": "IconButton",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "inverse",
+                  "size": "small",
+                  "_theme": "client"
+                }
+              },
+              {
+                "name": "body",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "icon",
+                    "type": "instance",
+                    "component": "icon/account-balance"
+                  },
+                  {
+                    "name": "content",
+                    "type": "frame",
+                    "children": [
+                      {
+                        "name": "heading",
+                        "type": "frame",
+                        "children": [
+                          {
+                            "name": "title",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "description",
+                        "type": "text"
+                      },
+                      {
+                        "name": "expand-button",
+                        "type": "instance",
+                        "component": "Link",
+                        "values": {
+                          "state": "default",
+                          "colorScheme": "inverse",
+                          "size": "small",
+                          "breakpoint": "1024"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "button",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "primary",
+                  "colorScheme": "inverse",
+                  "size": "large",
+                  "breakpoint": "1024",
+                  "_theme": "client"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "breakpoint": "0",
+          "_theme": "client"
+        },
+        "tree": [
+          {
+            "name": "container",
+            "type": "frame",
+            "children": [
+              {
+                "name": "close-button",
+                "type": "instance",
+                "component": "IconButton",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "inverse",
+                  "size": "small",
+                  "_theme": "client"
+                }
+              },
+              {
+                "name": "body",
+                "type": "frame",
+                "children": [
+                  {
+                    "name": "icon",
+                    "type": "instance",
+                    "component": "icon/account-balance"
+                  },
+                  {
+                    "name": "content",
+                    "type": "frame",
+                    "children": [
+                      {
+                        "name": "heading",
+                        "type": "frame",
+                        "children": [
+                          {
+                            "name": "title",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "description",
+                        "type": "text"
+                      },
+                      {
+                        "name": "expand-button",
+                        "type": "instance",
+                        "component": "Link",
+                        "values": {
+                          "state": "default",
+                          "colorScheme": "inverse",
+                          "size": "small",
+                          "breakpoint": "0"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "button",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "primary",
+                  "colorScheme": "inverse",
+                  "size": "large",
+                  "breakpoint": "0",
+                  "_theme": "client"
+                }
+              }
+            ]
+          }
+        ]
       }
     ],
     "uses": [
@@ -432,7 +715,8 @@
       "when": {
         "open": "true",
         "tone": "information",
-        "breakpoint": "0"
+        "breakpoint": "0",
+        "_theme": "prospect"
       },
       "modes": {
         "Typography": "prospect-mobile"
@@ -760,6 +1044,41 @@
             "padding": null
           },
           "button": {
+            "layout": {
+              "direction": "row",
+              "mainAlign": "center",
+              "crossAlign": "center",
+              "minHeight": {
+                "token": "size/56"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "_theme": "client"
+        },
+        "styles": {
+          "close-button": {
+            "radius": {
+              "token": "border/radius/8"
+            }
+          },
+          "button": {
+            "radius": {
+              "token": "border/radius/8"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "breakpoint": "1024",
+          "_theme": "prospect"
+        },
+        "styles": {
+          "button": {
             "padding": {
               "top": {
                 "token": "spacing/16"
@@ -773,13 +1092,53 @@
               "left": {
                 "token": "spacing/24"
               }
-            },
-            "layout": {
-              "direction": "row",
-              "mainAlign": "center",
-              "crossAlign": "center",
-              "minHeight": {
-                "token": "size/56"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "breakpoint": "1024",
+          "_theme": "client"
+        },
+        "styles": {
+          "button": {
+            "padding": {
+              "top": {
+                "token": "spacing/16"
+              },
+              "right": {
+                "token": "spacing/16"
+              },
+              "bottom": {
+                "token": "spacing/16"
+              },
+              "left": {
+                "token": "spacing/16"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "breakpoint": "0",
+          "_theme": "client"
+        },
+        "styles": {
+          "button": {
+            "padding": {
+              "top": {
+                "token": "spacing/12"
+              },
+              "right": {
+                "token": "spacing/16"
+              },
+              "bottom": {
+                "token": "spacing/12"
+              },
+              "left": {
+                "token": "spacing/16"
               }
             }
           }
@@ -809,6 +1168,11 @@
     ]
   },
   "tokens": {
+    "border/radius/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "a1de4b2e8994f5a0b6465f03861f2c845d0c7fe4"
+    },
     "border/radius/full": {
       "library": "Fondations Canopée",
       "collection": "Primitive",
@@ -930,14 +1294,20 @@
       "rule": "raw-value",
       "where": "styles.root.padding.left",
       "message": "Valeur brute (120) : la relier à une variable.",
-      "occurrences": 4
+      "occurrences": 8
     },
     {
       "level": "warning",
       "rule": "raw-value",
       "where": "styles.root.padding.right",
       "message": "Valeur brute (120) : la relier à une variable.",
-      "occurrences": 4
+      "occurrences": 8
+    },
+    {
+      "level": "info",
+      "rule": "prop-outside-nomenclature",
+      "where": "api.props._theme",
+      "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     },
     {
       "level": "info",
@@ -988,5 +1358,5 @@
       "message": "Valeur absente de toutes les versions publiées de Canopée : title/1/semibold."
     }
   ],
-  "_tool": "canopee-export-components 0.7.17"
+  "_tool": "canopee-export-components 0.7.20"
 }

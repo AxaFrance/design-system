@@ -39,6 +39,10 @@ La description est entière, et « Voir moins » la coupe de nouveau à trois li
 
 Sur un écran de moins de 1024 px de large.
 
+### _theme=client
+
+Dans cette variante, le Button et la croix sont en _theme=client. Le Link n'a pas de thème et ne change pas.
+
 ## Exemples
 
 - Dossier à mettre à jour : tone=information, title « Pensez à mettre à jour votre dossier client », description « Vos informations personnelles doivent être actualisées afin de maintenir la protection de vos données. », Button « Mettre à jour », showExpandButton=false.
@@ -163,7 +167,6 @@ Ces noms désignent Banner. Le seul nom à employer est Banner.
 - **1.0.0 - 23/11/26.** Sur mobile, le Banner n'utilise plus d'Accordion. La description est coupée à trois lignes, et « Voir plus » ou « Voir moins » la déplie ou la replie. L'ancien composant de Figma, devenu Legacy/SecondaryAccordion, n'existait que pour le Footer et le Banner : un petit composant à usage unique, qu'un designer pouvait poser seul par erreur. Le code suivra.
 - **1.0.0 - 23/11/26.** Le fond prend le palier 700 de son ton, color/azure/700 ou color/red/700, avec les textes et l'icône en blanc, pour que le Banner ressorte davantage que le reste de l'interface. Le code suivra.
 - **1.0.0 - 24/11/26.** Le Button passe en inverse, pour rester lisible sur le fond 700.
-- **1.0.0 - 24/11/26.** Dans Figma, les thèmes prospect et client partagent un seul Banner, qui n'a pas de propriété _theme. Le Button, le Link et la croix sont exposés dans le panneau du Banner : le designer y règle leur _theme.
 - **1.0.0 - 24/11/26.** « Voir plus » et « Voir moins » passent par un Link small, rendu en `<button>` dans le code, comme les actions du _FormLabel. Sans marge, le Link s'aligne sur la description.
 - **1.0.0 - 24/11/26.** En mobile, le titre est dans un cadre heading, avec une marge droite de 24 px, pour ne pas passer sous la croix. En desktop, heading garde une marge de 0, et n'existe que pour que desktop et mobile aient les mêmes calques.
 - **1.0.0 - 24/11/26.** Le Button reste affiché en open=false, pour que l'action reste visible même quand la description est coupée.
@@ -173,6 +176,7 @@ Ces noms désignent Banner. Le seul nom à employer est Banner.
 - **1.0.0 - 24/11/26.** Le Banner a une propriété breakpoint, avec une variante par largeur d'écran : breakpoint=1024 pour desktop et breakpoint=0 pour mobile. La valeur par défaut est breakpoint=1024. La propriété open n'a d'effet qu'en breakpoint=0. Elle vaut open=true par défaut dans Figma, car le desktop n'existe qu'ouvert.
 - **1.0.0 - 25/11/26.** L'icône se choisit selon le message, dans tous les tons, comme le code, où `icon` est obligatoire (`MessageBarCommon.tsx:24`). La propriété icon a une icône neutre par défaut, icon/account-balance, comme Button et Link.
 - **1.0.0 - 25/11/26.** Le contenu, le Button et la croix sont regroupés. La croix reste en haut à droite de ce groupe, près du message, et non au bord de l'écran.
+- **1.0.0 - 27/11/26.** Le Banner a une propriété _theme, comme le DropdownMenu, car son Button change beaucoup d'un thème à l'autre. Dans le code aussi, seuls les composants qu'il contient changent d'un thème à l'autre, comme le Button (`MessageBarLF.tsx:3`). Le Button, le Link et la croix restent exposés dans le panneau du Banner.
 - **1.0.0 - 25/11/26.** En mobile, la zone cliquable de la croix, 40 px, peut passer sur la fin du titre. Ce n'est pas une erreur : seuls l'icône et le rond du hover comptent, et ils ne touchent pas le texte. La croix est placée sous le texte, dans l'ordre des calques, pour que le titre reste lisible au hover. Le code fera de même.
 - **1.0.0 - 25/11/26.** En desktop, le groupe du contenu a une marge droite de 48 px, pour que le Button s'arrête avant la croix.
 - **1.0.0 - 25/11/26.** Le Banner n'a que deux tons. tone=error couvre aussi un danger, comme une alerte météo, que l'Alert range dans son ton d'avertissement.
