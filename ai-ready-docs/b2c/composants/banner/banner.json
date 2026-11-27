@@ -553,7 +553,7 @@
                   "hierarchy": "tertiary",
                   "colorScheme": "inverse",
                   "size": "small",
-                  "_theme": "client"
+                  "_theme": "prospect"
                 }
               },
               {
@@ -638,7 +638,7 @@
                   "hierarchy": "tertiary",
                   "colorScheme": "inverse",
                   "size": "small",
-                  "_theme": "client"
+                  "_theme": "prospect"
                 }
               },
               {
@@ -1060,11 +1060,6 @@
           "_theme": "client"
         },
         "styles": {
-          "close-button": {
-            "radius": {
-              "token": "border/radius/8"
-            }
-          },
           "button": {
             "radius": {
               "token": "border/radius/8"

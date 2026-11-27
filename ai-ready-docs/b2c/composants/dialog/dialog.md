@@ -24,6 +24,10 @@ Le Dialog pose une question courte à l'utilisateur, dans une fenêtre qui s'ouv
 
 Sur un écran de moins de 1024 px de large. Les deux Button restent sur une ligne et se partagent la largeur de la fenêtre.
 
+### _theme=client
+
+Dans cette variante, les deux Button sont en _theme=client.
+
 ## Exemples
 
 - Suppression d'un document : title « Supprimer ce document ? », description « Le document sera supprimé de votre espace, sans retour possible. », Button secondary « Annuler » et Button primary « Supprimer le document ».
@@ -89,8 +93,8 @@ Ces noms désignent Dialog. Le seul nom à employer est Dialog.
 - **1.0.0 - 24/11/26.** Les Button du Dialog gardent la grande taille, comme ceux de la Modal, car la fiche Button réserve la taille moyenne au Header.
 - **1.0.0 - 24/11/26.** En mobile, le Dialog reste centré, alors que la Modal se pose en bas de l'écran. Une question courte n'a pas besoin de toute la largeur.
 - **1.0.0 - 24/11/26.** Dans Figma, la fenêtre a une largeur d'exemple de 480 px en desktop. Dans une maquette, sa hauteur suit le titre et la description.
-- **1.0.0 - 24/11/26.** Le Dialog n'a pas de propriété _theme, comme la Modal. Dans le thème client, le designer règle le _theme des Button, exposés dans le panneau du Dialog.
 - **1.0.0 - 25/11/26.** Le titre passe en color/gray/900, car color/blue/700 est réservé aux éléments interactifs.
+- **1.0.0 - 27/11/26.** Le Dialog a une propriété _theme, car ses Button changent de forme et de typographie d'un thème à l'autre. Le designer règle les Button dans le panneau du Dialog, où ils sont exposés.
 
 ## Points ouverts
 

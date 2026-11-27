@@ -32,6 +32,10 @@ Sur un écran de moins de 1024 px de large. La fenêtre prend toute la largeur d
 
 Une troisième action, moins importante que les deux autres, placée à leur gauche.
 
+### _theme=client
+
+Dans cette variante, les Button sont en _theme=client. La croix reste ronde, comme dans le thème prospect, et la fenêtre garde l'arrondi et les marges du thème prospect.
+
 ## Exemples
 
 - Détail d'une garantie : title « Assistance 0 km », subtitle « Incluse dans votre formule », une icône de Fondations, un texte dans children, showSecondaryButton=false, Button primary « Fermer ».
@@ -155,11 +159,11 @@ Ces noms désignent Modal. Le seul nom à employer est Modal.
 - **1.0.0 - 24/11/26.** La croix est un IconButton tertiary avec l'icône icon/cross, et les actions sont des Button. Ils remplacent les anciens ClickIcon, ButtonPrimary et ButtonSecondary de Figma, archivés.
 - **1.0.0 - 24/11/26.** Les trois Button suivent le code : tertiary, secondary et primary, chacun affiché par son booléen, à la grande taille que la fiche Button prévoit pour une Modal. Le sous-titre et l'icône sont affichés par défaut, et le Button tertiary masqué.
 - **1.0.0 - 24/11/26.** L'icône est un asset de Fondations Canopée, posé dans un rond color/gray/050. L'ancien composant Icon de Figma, qui l'entourait, n'existe plus.
-- **1.0.0 - 24/11/26.** La Modal n'a pas de propriété _theme, même si son arrondi et ses marges changent entre les thèmes dans le code : ce cas se tranche avec les développeurs de Canopée. Figma garde ceux du thème prospect. Dans le thème client, le designer règle le _theme des Button et de la croix, exposés dans le panneau de la Modal.
 - **1.0.0 - 24/11/26.** scrollable remplace l'ancienne propriété _scrollable, qui ne servait qu'au prototype. En scrollable=true, le slot a une hauteur fixe qui défile dans un prototype, avec une barre native/Scrollbar et un trait au-dessus des Button. Les marges autour des Button se resserrent comme dans le code.
 - **1.0.0 - 24/11/26.** Dans Figma, la fenêtre a une largeur d'exemple de 720 px en desktop, et le slot des hauteurs d'exemple. Dans une maquette, la hauteur suit le contenu posé dans le slot.
 - **1.0.0 - 24/11/26.** En mobile, les Button restent sur une ligne et se partagent la largeur, comme dans le code, alors qu'ailleurs ils s'empilent en colonne.
 - **1.0.0 - 25/11/26.** Le titre passe en color/gray/900 et l'icône en color/gray/800, car color/blue/700 est réservé aux éléments interactifs.
+- **1.0.0 - 27/11/26.** La Modal a une propriété _theme, car ses Button changent de forme et de typographie d'un thème à l'autre. La croix reste ronde dans les deux thèmes, comme dans le code (`ClickIconCommon.css:7`). Le designer règle les Button et la croix dans le panneau de la Modal, où ils sont exposés.
 
 ## Points ouverts
 

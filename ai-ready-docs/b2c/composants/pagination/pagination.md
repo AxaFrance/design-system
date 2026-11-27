@@ -143,7 +143,6 @@ Avec ce code, un clic sur un numéro recharge aussi la page, à l'adresse `/` su
 | counter | Sans équivalent, le code écrit le compteur à partir de `currentPage` et `numberPages` |
 | Les flèches | `ClickIcon`, réglables par `prevButtonProps` et `nextButtonProps` |
 | breakpoint | Sans équivalent, une media query change l'affichage à partir de 1024 px |
-| _theme | Le chemin d'import, `/prospect` ou `/client` |
 
 `numberPages`, `currentPage` et `onChangePage` sont obligatoires. `onChangePage` reçoit le numéro de la page choisie. `aria-label` vaut « Pagination » par défaut. `asItem` remplace le lien de chaque numéro par un autre composant, par exemple `"button"`. Ce composant ne reçoit ni `href` ni `aria-current` : seule la classe `af-item-pagination--current` signale la page en cours.
 
@@ -166,8 +165,8 @@ Ces noms désignent Pagination. Le seul nom à employer est Pagination.
 - **1.0.0 - 20/11/26.** showPrevNext reprend la convention show des booléens, à l'inverse de `hidePrevNext` dans le code. Il n'agit qu'en breakpoint=1024, car le code affiche toujours les flèches sur mobile.
 - **1.0.0 - 20/11/26.** La Pagination a une propriété breakpoint, avec une variante par largeur d'écran : breakpoint=1024 pour desktop et breakpoint=0 pour mobile. La valeur par défaut est breakpoint=1024.
 - **1.0.0 - 23/11/26.** Toutes les variantes contiennent les numéros et le compteur, comme le code : le compteur est masqué en breakpoint=1024, et les numéros en breakpoint=0. Le compteur vaut « Page 1 sur 7 » par défaut, comme les 7 numéros d'items.
-- **1.0.0 - 23/11/26.** La Pagination a une propriété _theme, car son cadre change de forme entre les thèmes. Dans le thème client, il prend border/radius/16 : l'arrondi de 8 px des flèches, des IconButton, plus les 8 px qui les séparent du bord, pour des arrondis concentriques. Dans le thème prospect, le cadre et les flèches restent ronds. La page en cours reste ronde dans les deux thèmes, comme dans le code.
 - **1.0.0 - 26/11/26.** Les « ... » gardent color/blue/700 sans être cliquables, comme dans le code (`ItemPaginationApollo.css:5`). Ils prennent la couleur des numéros qu'ils remplacent, et la page des principes d'interaction en fait une exception à la règle du bleu.
+- **1.0.0 - 27/11/26.** La Pagination n'a pas de propriété _theme : son contour et ses flèches restent ronds dans les deux thèmes, comme dans le code (`PaginationCommon.css:6`, `ClickIconCommon.css:7`).
 
 ## Points ouverts
 
@@ -184,7 +183,6 @@ Ces noms désignent Pagination. Le seul nom à employer est Pagination.
 - **Suite d'une liste.** La fiche ne dit pas quel composant prendre pour charger la suite d'une liste sur la même page, avec un bouton « Afficher plus » ou au défilement. En attendant : signaler.
 - **Clic sur la page en cours.** L'effet d'un clic sur la page en cours n'est pas défini. En attendant : signaler.
 - **Chargement de la page choisie.** Ce qui s'affiche pendant le chargement de la page choisie n'est pas défini. En attendant : signaler.
-- **Forme dans le thème client.** Le code dessine les flèches avec ClickIcon, rond dans les deux thèmes (`ClickIconCommon.css:7`), et garde un cadre aux bouts ronds (`PaginationCommon.css:6`). En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

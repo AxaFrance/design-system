@@ -192,7 +192,7 @@ Ces noms désignent Alert. Le seul nom à employer est Alert.
 ## Décisions
 
 - **1.0.0 - 23/11/26.** Le composant s'appelle Alert, le nom standard du marché, comme dans MUI. Le code l'appelle Message, et MultiMessage quand il affiche plusieurs messages.
-- **1.0.0 - 23/11/26.** Dans Figma, les thèmes prospect et client partagent une seule Alert. Les variantes ne différaient que par l'arrondi, 8 px en prospect et 12 px en client. L'Alert garde 8 px. L'Alert n'a pas non plus de propriété _theme pour sa Pagination, qui change de forme dans le thème client : dans ce thème, le designer règle _theme sur la Pagination, exposée dans le panneau de l'Alert.
+- **1.0.0 - 23/11/26.** Dans Figma, les thèmes prospect et client partagent une seule Alert. Les variantes ne différaient que par l'arrondi, 8 px en prospect et 12 px en client. L'Alert garde 8 px.
 - **1.0.0 - 23/11/26.** Les icônes viennent de la librairie Figma Fondations Canopée, comme dans le code : icon/info en tone=neutral, icon/emoji-objects en tone=information, icon/check-circle en tone=success, icon/warning en tone=warning et icon/error en tone=error.
 - **1.0.0 - 23/11/26.** Les textes et l'icône prennent le palier 700 de leur ton dans les cinq tons, comme le Tag. Les tons restent alignés, et chacun atteint le contraste AA du WCAG.
 - **1.0.0 - 23/11/26.** L'Alert n'a qu'un lien, comme le code n'accepte qu'une action, et comme Carbon le fait pour ses notifications. Le deuxième lien de l'ancienne Alert de Figma est retiré.

@@ -41,7 +41,7 @@ Sur un écran de moins de 1024 px de large.
 
 ### _theme=client
 
-Dans cette variante, le Button et la croix sont en _theme=client. Le Link n'a pas de thème et ne change pas.
+Dans cette variante, le Button est en _theme=client. La croix reste ronde, comme dans le thème prospect. Le Link est le même dans les deux thèmes.
 
 ## Exemples
 
@@ -176,12 +176,12 @@ Ces noms désignent Banner. Le seul nom à employer est Banner.
 - **1.0.0 - 24/11/26.** Le Banner a une propriété breakpoint, avec une variante par largeur d'écran : breakpoint=1024 pour desktop et breakpoint=0 pour mobile. La valeur par défaut est breakpoint=1024. La propriété open n'a d'effet qu'en breakpoint=0. Elle vaut open=true par défaut dans Figma, car le desktop n'existe qu'ouvert.
 - **1.0.0 - 25/11/26.** L'icône se choisit selon le message, dans tous les tons, comme le code, où `icon` est obligatoire (`MessageBarCommon.tsx:24`). La propriété icon a une icône neutre par défaut, icon/account-balance, comme Button et Link.
 - **1.0.0 - 25/11/26.** Le contenu, le Button et la croix sont regroupés. La croix reste en haut à droite de ce groupe, près du message, et non au bord de l'écran.
-- **1.0.0 - 27/11/26.** Le Banner a une propriété _theme, comme le DropdownMenu, car son Button change beaucoup d'un thème à l'autre. Dans le code aussi, seuls les composants qu'il contient changent d'un thème à l'autre, comme le Button (`MessageBarLF.tsx:3`). Le Button, le Link et la croix restent exposés dans le panneau du Banner.
 - **1.0.0 - 25/11/26.** En mobile, la zone cliquable de la croix, 40 px, peut passer sur la fin du titre. Ce n'est pas une erreur : seuls l'icône et le rond du hover comptent, et ils ne touchent pas le texte. La croix est placée sous le texte, dans l'ordre des calques, pour que le titre reste lisible au hover. Le code fera de même.
 - **1.0.0 - 25/11/26.** En desktop, le groupe du contenu a une marge droite de 48 px, pour que le Button s'arrête avant la croix.
 - **1.0.0 - 25/11/26.** Le Banner n'a que deux tons. tone=error couvre aussi un danger, comme une alerte météo, que l'Alert range dans son ton d'avertissement.
 - **1.0.0 - 25/11/26.** En desktop, le contenu s'aligne en haut et le Button reste centré verticalement, comme dans le code (`MessageBarAll.css:102`, `MessageBarAll.css:137`).
 - **1.0.0 - 25/11/26.** « Voir plus » et « Voir moins » existent aussi en desktop, avec des variantes open=false en breakpoint=1024 : le Banner a le même comportement sur tous les écrans. open garde open=true par défaut, pour montrer le message entier. Cette décision remplace celles du 24/11/26, qui masquaient « Voir plus » en desktop et limitaient open au mobile.
+- **1.0.0 - 27/11/26.** Le Banner a une propriété _theme, car son Button change de forme et de typographie d'un thème à l'autre. Dans le code, le Banner lui-même ne change pas d'un thème à l'autre : seuls les composants qu'il contient changent, comme le Button (`MessageBarLF.tsx:3`). La croix reste ronde dans les deux thèmes, comme dans le code (`ClickIconCommon.css:7`). Le designer règle le Button, le Link et la croix dans le panneau du Banner, où ils sont exposés.
 
 ## Points ouverts
 
