@@ -23,7 +23,7 @@ Une primitive est une valeur brute du design system, comme une couleur ou un esp
 
 Le noir et les couleurs transparentes n'ont pas encore de token. Leurs lignes donnent le nom à prendre le jour où ils seront créés.
 
-Ces modèles sont les seuls admis. Le plugin Canopée signale un nom qui n'en suit aucun.
+Ces modèles sont les seuls admis. Le plugin « Canopée, design tokens » signale un nom qui n'en suit aucun.
 
 Deux parties du nom n'acceptent que certaines valeurs.
 

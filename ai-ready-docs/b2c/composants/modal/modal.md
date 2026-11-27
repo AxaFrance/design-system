@@ -16,6 +16,7 @@ La Modal affiche un contenu libre dans une fenêtre qui s'ouvre par-dessus l'éc
 
 - Une confirmation courte, avec une question et deux réponses, comme « Supprimer ce document ? » : prendre Dialog.
 - Un message qui ne bloque pas l'utilisateur : prendre Alert.
+- Un contenu qui reste dans la page, que l'utilisateur affiche ou masque : prendre Accordion.
 - Un parcours en plusieurs étapes : prendre une page, avec Stepper.
 
 ## Règles selon les propriétés
@@ -163,7 +164,7 @@ Ces noms désignent Modal. Le seul nom à employer est Modal.
 - **1.0.0 - 24/11/26.** Dans Figma, la fenêtre a une largeur d'exemple de 720 px en desktop, et le slot des hauteurs d'exemple. Dans une maquette, la hauteur suit le contenu posé dans le slot.
 - **1.0.0 - 24/11/26.** En mobile, les Button restent sur une ligne et se partagent la largeur, comme dans le code, alors qu'ailleurs ils s'empilent en colonne.
 - **1.0.0 - 25/11/26.** Le titre passe en color/gray/900 et l'icône en color/gray/800, car color/blue/700 est réservé aux éléments interactifs.
-- **1.0.0 - 27/11/26.** La Modal a une propriété _theme, car ses Button changent de forme et de typographie d'un thème à l'autre. La croix reste ronde dans les deux thèmes, comme dans le code (`ClickIconCommon.css:7`). Le designer règle les Button et la croix dans le panneau de la Modal, où ils sont exposés.
+- **1.0.0 - 27/11/26.** La Modal a une propriété _theme, car ses Button changent de forme et de typographie d'un thème à l'autre. La croix reste ronde dans les deux thèmes, comme dans le code (`ClickIconCommon.css:7`). Le designer règle les Button dans le panneau de la Modal, où ils sont exposés. La croix y est exposée aussi, mais sa forme ronde ne change pas d'un thème à l'autre.
 
 ## Points ouverts
 

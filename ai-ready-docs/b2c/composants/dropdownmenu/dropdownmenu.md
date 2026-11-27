@@ -70,7 +70,7 @@ En desktop, le panneau est un élément `<section>`, qui s'ouvre par-dessus la p
 
 ## Code
 
-Storybook, selon le thème : [prospect](https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/components-menuburger--docs) ou [client](https://axafrance.github.io/design-system/client/react/latest/?path=/docs/components-menuburger--docs).
+Storybook, selon le thème : [prospect](https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/components-menuburger-%F0%9F%9A%A7--menuburger) ou [client](https://axafrance.github.io/design-system/client/react/latest/?path=/docs/components-menuburger-%F0%9F%9A%A7--menuburger).
 
 Code source : [dossier MenuBurger sur GitHub](https://github.com/AxaFrance/design-system/tree/main/packages/canopee-react/src/prospect-client/MenuBurger).
 
@@ -112,7 +112,7 @@ Exemple :
 | clickItems, avec des _MenuItem | `clickItems`, une liste d'objets que le code affiche avec le ClickItem en `variant="small"` |
 | children | `children` |
 | breakpoint | Sans équivalent, le code change d'affichage sous 1024 px (`MenuBurgerCommon.tsx:90`) |
-| Sans équivalent | En mobile, le trait et la marge de 24 px que `MenuBurger` ajoute au-dessus de lui quand il suit d'autres éléments du menu (`MenuBurgerAll.css:2`) |
+| Sans équivalent | En mobile, quand `MenuBurger` n'est pas seul dans son conteneur, il ajoute un trait, une marge de 24 px au-dessus du trait et un padding de 24 px en dessous (`MenuBurgerAll.css:2`) |
 
 Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`.
 

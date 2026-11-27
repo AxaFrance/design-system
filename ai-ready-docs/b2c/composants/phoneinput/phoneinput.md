@@ -132,6 +132,10 @@ L'import du composant charge aussi ses styles. Il n'y a pas de CSS à importer e
 Exemple :
 
 ```tsx
+// Les drapeaux sont des fichiers SVG du projet, importés à part.
+import franceFlag from "./flags/france.svg";
+import belgiumFlag from "./flags/belgium.svg";
+
 const [phone, setPhone] = useState("");
 
 <InputPhone

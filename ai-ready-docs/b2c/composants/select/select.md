@@ -190,11 +190,11 @@ Exemple :
 | open | Sans équivalent, le navigateur ouvre la liste de `Dropdown`, et `DropdownMultiSelect` l'ouvre avec l'attribut `popover` |
 | state et filled | Sans équivalent, le code utilise `:hover`, `:focus` et la valeur choisie |
 
-Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. breakpoint n'a pas d'équivalent dans le code. `Dropdown` accepte les attributs d'un `<select>`, comme `name` ou `onChange`, sauf `multiple` : le choix multiple passe par `DropdownMultiSelect`. `DropdownMultiSelect` demande `name` et `items`. Il garde le choix en interne : la page ne peut ni le modifier ni le vider après l'affichage, et `defaultValue` préremplit le champ au premier affichage seulement. Dans `DropdownMultiSelect`, `messageType` se renseigne toujours avec `message`, sinon la bordure ne prend pas la couleur du ton. Sans équivalent dans Figma : `onMoreButtonClick`, `onSideButtonClick`, `containerProps` dans `Dropdown`, et `hideThreshold` et `inputProps` dans `DropdownMultiSelect`.
+Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. breakpoint n'a pas d'équivalent dans le code. `Dropdown` accepte les attributs d'un `<select>`, comme `name` ou `onChange`. Il accepte aussi `multiple` (`DropdownCommon.tsx:16`), mais cette prop ne s'utilise pas : le choix multiple passe par `DropdownMultiSelect`. `DropdownMultiSelect` demande `name` et `items`. Il garde le choix en interne : la page ne peut ni le modifier ni le vider après l'affichage, et `defaultValue` préremplit le champ au premier affichage seulement. Dans `DropdownMultiSelect`, `messageType` se renseigne toujours avec `message`, sinon la bordure ne prend pas la couleur du ton. Sans équivalent dans Figma : `onMoreButtonClick`, `onSideButtonClick`, `containerProps` dans `Dropdown`, et `hideThreshold` et `inputProps` dans `DropdownMultiSelect`.
 
 ## Noms à ne pas employer
 
-Dropdown, DropdownMultiSelect, MultiSelect, menu déroulant, sélecteur, picker.
+Dropdown, DropdownMultiSelect, MultiSelect, sélecteur, picker.
 
 Ces noms désignent Select. Le seul nom à employer est Select.
 
@@ -227,6 +227,7 @@ Ces noms désignent Select. Le seul nom à employer est Select.
 - **Nom accessible en multiple=true.** Le code remplace le nom du bouton par le résumé, avec `aria-label` (`DropdownMultiSelectCommon.tsx:161`). Le libellé du champ n'est alors plus annoncé, et un champ vide prend le placeholder pour nom (`useDropdownMultiSelect.hook.tsx:32`). Le nombre d'options sur le total reste dans un texte caché qu'aucun attribut ne relie au bouton (`DropdownMultiSelectCommon.tsx:168`). Le bouton annonce aussi une liste, avec `aria-haspopup="listbox"` (`DropdownMultiSelectCommon.tsx:160`), alors qu'il ouvre un groupe de cases. En attendant : signaler.
 - **Champ obligatoire et erreur en multiple=true.** Le bouton de `DropdownMultiSelect` ne reçoit aucun attribut libre (`DropdownMultiSelectCommon.tsx:155`). Un `required` passé dans `inputProps` s'appliquerait à chaque case (`DropdownMultiSelectCommon.tsx:109`), et le navigateur exigerait alors que toutes soient cochées. En attendant : signaler.
 - **Lien des messages dans le code.** `Dropdown` ne relie ni l'aide ni le message au champ, et ne pose pas `aria-invalid` (`DropdownCommon.tsx:84`). `DropdownMultiSelect` non plus (`DropdownMultiSelectCommon.tsx:199`). En attendant : signaler.
+- **Champ obligatoire dans le code.** `required` n'atteint pas le `<select>` : `DropdownCommon.tsx:79` le passe au libellé, et `DropdownCommon.tsx:84` ne le transmet pas au champ. Le navigateur ne bloque donc pas l'envoi d'un formulaire sans choix. En attendant : signaler.
 - **Placeholder dans le plugin Copilot.** Sa page Dropdown décrit le placeholder comme une option désactivée, alors que le code le laisse choisissable (`DropdownCommon.tsx:85`). En attendant : signaler.
 - **Message de succès.** Le code accepte `messageType="success"`, que Figma n'a pas. En attendant : signaler.
 - **Choix multiple pas encore publié.** `DropdownMultiSelect` est sur la branche main du code depuis le 19/11/26, mais dans aucune version publiée de Canopée. En attendant : vérifier la version de Canopée du projet avant de l'utiliser.

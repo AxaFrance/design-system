@@ -1,6 +1,6 @@
 # Format du JSON d'un composant
 
-Le JSON est la partie de la fiche qui décrit le composant tel qu'il existe dans Figma : ses propriétés, ses variantes, sa structure et ses styles. Il est généré depuis Figma par le plugin des fiches, jamais écrit à la main. L'usage, le fonctionnel et le code sont dans le Markdown, qui suit la trame commune à toutes les fiches. Les deux fichiers restent séparés.
+Le JSON est la partie de la fiche qui décrit le composant tel qu'il existe dans Figma : ses propriétés, ses variantes, sa structure et ses styles. Il est généré depuis Figma par le plugin « Canopée, composants », jamais écrit à la main. L'usage, le fonctionnel et le code sont dans le Markdown, qui suit la trame commune à toutes les fiches. Les deux fichiers restent séparés.
 
 Version du format : 0.7.
 
@@ -30,9 +30,12 @@ Version du format : 0.7.
   "textStyles": { },
   "components": { },
   "modeCollections": { },
-  "issues": [ ]
+  "issues": [ ],
+  "_tool": "canopee-export-components 0.7.5"
 }
 ```
+
+- `_tool` est la dernière clé du fichier. Elle donne le nom du plugin qui a généré le JSON, suivi de sa version. Elle ne compte pas dans le calcul de la version du composant.
 
 ## meta
 
@@ -114,7 +117,9 @@ Les calques, les contenus que l'usage remplit, et les composants imbriqués.
 ```
 
 - `slots` décrit les propriétés de texte, de swap et de slot, sous leur nom de propriété dans Figma, avec leur valeur par défaut. Un texte porte son contenu par défaut dans `default.text`. Un swap porte `default.swap` et, quand Figma en propose, la liste `preferred` des composants proposés.
-- `trees` donne l'arbre des calques. Quand la structure change selon les variantes, un arbre par cas, conditionné par `when`. L'arbre dont le `when` correspond le plus précisément à la variante s'applique en entier, et l'arbre de `when` vide vaut pour les autres. L'anneau de focus n'existe par exemple qu'en focus.
+- `as` vaut `children` pour un texte et `slot` pour un slot de Figma. `accepts` vaut `Instance` pour un swap : la propriété échange une instance de composant.
+- `controls` relie une propriété au calque qu'elle règle, par le nom du calque (`layer`) et ce qu'elle y règle (`attribute`) : `text` pour le contenu d'un texte, `visible` pour l'affichage, `component` pour le composant d'une instance, et `slotContentId` pour le contenu d'un slot.
+- `trees` donne l'arbre des calques. Quand la structure change selon les variantes, un arbre par cas, conditionné par `when`. Une valeur de `when` peut être une liste : la condition vaut alors pour toute variante dont la valeur figure dans la liste. Exemple : `"size": ["large", "medium"]`. L'arbre dont le `when` correspond le plus précisément à la variante s'applique en entier, et l'arbre de `when` vide vaut pour les autres. L'anneau de focus n'existe par exemple qu'en focus.
 - Quand aucune valeur de propriété ne distingue un arbre, il porte la liste exacte des variantes qui l'utilisent dans `configs`, avec un `when` vide, et ne vaut que pour elles. Pour une variante dont les valeurs égalent une de ces configurations, cet arbre passe avant le choix par `when`.
 - `hidden: true` signale un calque masqué par défaut.
 - `uses` liste tous les composants imbriqués dans les calques propres du composant, qu'ils soient ou non dans un ensemble de variantes, sans doublon et triés par nom. Ils sont cités par référence, leur intérieur est décrit dans leur propre JSON.
@@ -145,6 +150,7 @@ Les styles en cascade : ceux de la variante par défaut, puis ce qui change selo
 ```
 
 - Une surcharge vaut pour toutes les variantes dont les valeurs correspondent à son `when`, qui ne cite que les propriétés utiles. Elle complète le style par défaut : ce qu'elle ne cite pas reste celui du défaut, et `null` retire une valeur.
+- Quand plusieurs calques d'un même composant portent le même nom, leurs clés dans `styles` prennent un suffixe, `-1`, `-2`, dans l'ordre des calques de la variante. Exemple : `content-1` et `content-2`. Les arbres gardent le nom du calque, sans suffixe.
 - Une variante part du style par défaut et reçoit toutes les surcharges qui lui correspondent. Deux surcharges qui correspondent à une même variante ne se contredisent jamais : l'ordre ne compte pas.
 - Une valeur reliée à une variable s'écrit `{ "token": … }`, une valeur brute `{ "raw": … }`, signalée aussi dans `issues`. Les largeurs et hauteurs fixes brutes sont signalées elles aussi, avec quatre exceptions. La taille du composant lui-même suit son conteneur dans une maquette, et une taille minimale ou maximale garde la mise en page. Un calque absolu étiré sur l'axe concerné suit son parent. Une forme, un groupe (ellipse, vecteur, rectangle...) ou un élément affiché par le navigateur, comme le curseur (native/), garde la taille de son tracé.
 - Une couleur reliée à une variable mais pas tout à fait opaque garde son opacité, entre 0 et 1, à côté du token. Exemple : `{ "token": "color/blue/700", "opacity": 0.2 }`.

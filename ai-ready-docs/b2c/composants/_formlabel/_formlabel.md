@@ -156,7 +156,7 @@ Ces noms désignent _FormLabel. Le seul nom à employer est _FormLabel.
 - **Couleurs dans le code.** Le code affiche le libellé dans un gris plus clair que Figma, et la description dans un gris plus foncé (`ItemLabelApollo.css:5`). En attendant : signaler.
 - **Champ facultatif.** Le code n'ajoute pas « (facultatif) » de lui-même, et aucun champ ne le fait. En attendant : écrire la mention dans le libellé.
 - **Longueur.** L'ancienne documentation du B2C limitait aussi le libellé à cinq mots, alors que ses propres exemples en ont six. En attendant : 120 caractères et deux lignes au plus.
-- **Plugin Copilot.** Sa page ItemLabel dit que `required` ajoute l'attribut HTML `required`. Dans le code, `required` n'affiche que l'astérisque, et c'est le champ qui porte l'attribut. En attendant : la fiche fait foi.
+- **Plugin Copilot.** Sa page ItemLabel dit que `required` ajoute l'attribut HTML `required`. Dans le code, `required` n'affiche que l'astérisque, et c'est le champ qui porte l'attribut, sauf Dropdown et DropdownMultiSelect. En attendant : la fiche fait foi.
 - **Usage seul dans Figma.** Le _FormLabel n'est pas publié dans la librairie Figma, comme tout sous-composant. Le designer ne peut donc pas le poser seul pour nommer un champ propre à un produit, alors que le code l'exporte (`ItemLabel`, `prospect.ts:74`). En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche

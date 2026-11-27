@@ -15,6 +15,7 @@ La TableMobileCard présente une ligne d'un Table sous forme de carte, en paires
 ### À ne pas utiliser pour
 
 - Un écran de 1024 px de large ou plus : prendre Table.
+- Une donnée seule avec son libellé, hors tableau : prendre ContentItemDuo.
 
 ## Règles selon les propriétés
 
@@ -80,7 +81,7 @@ Une liste de définitions `<dl>`. Chaque _TableMobileCardRow regroupe un libell�
 
 ## Code
 
-Storybook, selon le thème : [prospect](https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/components-tablemobilecard--docs) ou [client](https://axafrance.github.io/design-system/client/react/latest/?path=/docs/components-tablemobilecard--docs).
+Storybook, selon le thème : [prospect](https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/components-tablemobilecard--table-mobile-card) ou [client](https://axafrance.github.io/design-system/client/react/latest/?path=/docs/components-tablemobilecard--table-mobile-card).
 
 Code source : [dossier TableMobileCard sur GitHub](https://github.com/AxaFrance/design-system/tree/main/packages/canopee-react/src/prospect-client/TableMobileCard).
 
@@ -149,7 +150,7 @@ Ces noms désignent TableMobileCard. Le seul nom à employer est TableMobileCard
 - **Nom de la carte.** Rien ne nomme une carte pour un lecteur d'écran, ni ne la relie à la ligne du tableau qu'elle représente. En attendant : signaler.
 - **Tri et sélection.** Ce que deviennent le tri et la sélection d'un Table une fois affiché en cartes n'est pas défini. En attendant : signaler.
 - **Contenus et mise en page non définis.** Le nombre maximal de _TableMobileCardRow, le format des nombres, des montants et des dates, et l'espace entre deux cartes ne sont pas définis. En attendant : signaler.
-- **Largeur de bascule.** La page d'exemple de Storybook passe aux TableMobileCard sous 667 px de large (`Table.tsx:240`), et non sous 1024 px. En attendant : 1024 px.
+- **Largeur de bascule.** La page d'exemple de Storybook passe aux TableMobileCard à 667 px de large ou moins (`Table.tsx:241`), et non sous 1024 px. En attendant : 1024 px.
 - **Propriété _theme à valider.** La TableMobileCard et son _TableMobileCardRow n'ont pas de propriété _theme, comme les sous-composants du Table. Ce choix reste à valider avec les développeurs de Canopée. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche

@@ -19,7 +19,7 @@ Les design tokens et les assets ont une documentation dédiée.
 - **Un nom, une chose.** Une propriété règle un seul réglage, un calque tient un seul rôle.
 - **Le même nom partout.** Une propriété qui joue le même rôle porte le même nom sur tous les composants.
 
-Quand Figma et le code ne donnent pas le même nom, une propriété garde le nom du code, sauf les noms à éviter de la page Propriétés. Un composant prend le nom standard du marché, et sa fiche donne le nom du code. Le code se rapproche de la nomenclature à chaque évolution du composant.
+Quand Figma et le code ne donnent pas le même nom, une propriété garde le nom du code, sauf les noms à éviter et les propriétés communes de la page Propriétés. Exemple : placement, que le code appelle `verticalAlign` ou `position`. Un composant prend le nom standard du marché, et sa fiche donne le nom du code. Le code se rapproche de la nomenclature à chaque évolution du composant.
 
 ## L'écriture
 

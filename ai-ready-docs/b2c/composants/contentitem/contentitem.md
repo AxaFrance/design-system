@@ -95,9 +95,9 @@ Un élément `<div>`, dont les textes sont des `<span>`.
 
 ## Code
 
-Storybook de ContentItemMono, selon le thème : [prospect](https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/components-contentitemmono--docs) ou [client](https://axafrance.github.io/design-system/client/react/latest/?path=/docs/components-contentitemmono--docs).
+Storybook de ContentItemMono, selon le thème : [prospect](https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/components-contentitemmono--content-item-mono) ou [client](https://axafrance.github.io/design-system/client/react/latest/?path=/docs/components-contentitemmono--content-item-mono).
 
-Storybook de ContentItemDuoAction, selon le thème : [prospect](https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/components-list-contentitemduoaction--docs) ou [client](https://axafrance.github.io/design-system/client/react/latest/?path=/docs/components-list-contentitemduoaction--docs).
+Storybook de ContentItemDuoAction, selon le thème : [prospect](https://axafrance.github.io/design-system/prospect/react/latest/?path=/story/components-list-contentitemduoaction--playground) ou [client](https://axafrance.github.io/design-system/client/react/latest/?path=/story/components-list-contentitemduoaction--playground).
 
 Code source : [dossier ContentItemMono](https://github.com/AxaFrance/design-system/tree/main/packages/canopee-react/src/prospect-client/ContentItemMono) et [dossier ContentItemDuoAction](https://github.com/AxaFrance/design-system/tree/main/packages/canopee-react/src/prospect-client/ContentItemDuoAction) sur GitHub.
 
@@ -164,8 +164,8 @@ Ces noms désignent ContentItem. Le seul nom à employer est ContentItem.
 
 ## Points ouverts
 
-- **Titre large dans le code.** En size=large, Figma met le titre en Publico Headline Bold, 24 px, sans style de texte. Le code le met en Publico Headline Light (`ContentItemMonoApollo.css:43`), en 20 px sous 1024 px de large et en 24 px au-delà (`ContentItemMonoCommon.css:46`). En attendant : Figma fait foi, et signaler.
-- **Titre large en client.** Le thème client met ce titre en Publico bold (`ContentItemMonoLF.css:43`). En attendant : signaler.
+- **Graisse du titre large dans le code.** En size=large, Figma met le titre en Publico Headline Bold. Le code le met en Publico Headline Light (`ContentItemMonoApollo.css:44`). En attendant : Figma fait foi, et signaler.
+- **Titre large en client.** Le thème client met ce titre en Publico bold (`ContentItemMonoLF.css:44`). En attendant : signaler.
 - **Propriété _theme à valider.** Les développeurs de Canopée n'ont pas encore validé l'absence de _theme. En attendant : signaler.
 - **Nom du Switch dans le code.** Le title n'a pas d'`id` (`ContentItemMonoCore.tsx:42`), et le Switch ne peut donc pas s'y relier. En attendant : `aria-label` sur le `Toggle`, avec le texte du title.
 - **Icône dans le code.** Le code affiche l'icône seule, sans rond, et en bleu (`IconCommon.css:24`). En attendant : signaler.

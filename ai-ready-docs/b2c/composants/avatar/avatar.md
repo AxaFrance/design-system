@@ -4,7 +4,7 @@ Utilise des design tokens qui ne sont pas encore dans une version publiée de Ca
 
 ## Description
 
-L'Avatar représente un interlocuteur par une image ronde : sa photo, une icône de profil ou le logo AXA. Son contenu se règle avec type : picture par défaut, profile ou logo.
+L'Avatar représente un interlocuteur par une image ronde.
 
 ## Quand l'utiliser
 
@@ -105,7 +105,7 @@ Exemple :
 | type=logo | `<BasePicture />` : sans `src`, le code affiche le logo AXA |
 | type=profile | Aucun équivalent |
 
-Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. Sans équivalent dans Figma : `className` et les autres attributs de `<img>`. Dans le code, d'autres composants affichent un BasePicture. CardRadio le règle avec `src` et `basePictureProps`, ClickItem avec `basePictureProps`, ContentItemMono et DataAgent avec `picture`.
+Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. Sans équivalent dans Figma : `className` et les autres attributs de `<img>`. Dans le code, d'autres composants affichent un BasePicture. CardRadio le règle avec `src` et `basePictureProps`, ClickItem avec `basePictureProps`, ContentItemMono avec `picture`, et DataAgent avec `agentProps.picture` (`DataAgentCommon.tsx:36`).
 
 ## Noms à ne pas employer
 

@@ -44,7 +44,7 @@ Sur un écran de moins de 1024 px de large. Les _Tab utilisent leur version mobi
 ## Interdits
 
 - Autre chose qu'un _Tab dans items, comme un Button ou un texte.
-- Un _Tab aux couleurs du menu du Header dans Tabs.
+- Un _Tab en colorScheme=header dans Tabs.
 - Plusieurs _Tab sélectionnés, ou aucun.
 - Un _Tab sélectionné à l'état press : un _Tab déjà sélectionné ne réagit plus au clic.
 - Modifier localement la hauteur, la couleur ou l'épaisseur du trait, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system.
@@ -153,7 +153,7 @@ Ces noms désignent Tabs. Le seul nom à employer est Tabs.
 - **1.0.0 - 20/11/26.** Les _Tab se posent dans le slot items, du même nom que la prop du code. items remplace l'ancienne propriété itemsCount, qui limitait Tabs à deux ou trois _Tab.
 - **1.0.0 - 20/11/26.** items n'accepte que des _Tab.
 - **1.0.0 - 20/11/26.** En fullWidth=true, le designer règle en Fill container chaque _Tab qu'il ajoute dans items, car Figma n'étire pas tout seul un _Tab ajouté dans le slot.
-- **1.0.0 - 20/11/26.** Dans Figma, Tabs a une largeur d'exemple, 522 px en desktop et 343 px en mobile. Dans une maquette, il prend la largeur de son conteneur.
+- **1.0.0 - 20/11/26.** Dans Figma, Tabs a une largeur d'exemple, 522 px en desktop et 343 px en mobile.
 - **1.0.0 - 20/11/26.** Tabs a une propriété breakpoint, avec une variante par largeur d'écran : breakpoint=1024 pour desktop et breakpoint=0 pour mobile. La valeur par défaut est breakpoint=1024.
 - **1.0.0 - 23/11/26.** La propriété qui étire les _Tab s'appelle fullWidth, comme dans MUI. Elle s'appelait placement, mais center veut dire « centré » dans la nomenclature, alors que les _Tab s'étirent. Le code l'écrit `direction="center"`.
 

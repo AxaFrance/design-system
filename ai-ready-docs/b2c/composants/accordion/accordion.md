@@ -21,6 +21,7 @@ L'Accordion affiche un en-tête qui montre ou masque la section de contenu qui l
 - Un message important qui concerne une partie de l'écran : prendre Alert.
 - Un message qui concerne toute la page ou l'ensemble du service : prendre Banner.
 - Un contenu qui demande une réponse avant de continuer : prendre Dialog pour une question courte à deux réponses, Modal sinon.
+- Un contenu qui bloque l'écran tant que l'utilisateur ne l'a pas fermé : prendre Modal.
 - Le résumé d'un contrat, avec un sous-titre, un Tag et des montants : Non documenté, voir les points ouverts.
 
 ## Règles selon les propriétés
@@ -185,7 +186,7 @@ Ces noms désignent Accordion. Le seul nom à employer est Accordion.
 - **1.0.0 - 25/11/26.** Dans Figma, la flèche est un IconButton tertiary small, comme dans la maquette de référence. Dans le code, elle reste une icône décorative du `<summary>`, avec l'aspect de l'IconButton. Le code suivra le rendu, pas l'élément, pour ne pas placer un bouton dans l'en-tête.
 - **1.0.0 - 25/11/26.** L'en-tête a des marges latérales de 24 px en desktop et de 16 px en mobile, et le contenu ouvert garde les mêmes marges. Le code suivra.
 - **1.0.0 - 25/11/26.** Dans Figma, les thèmes prospect et client partagent un seul Accordion, qui n'a pas de propriété _theme. L'IconButton est exposé dans le panneau de l'Accordion : le designer y règle son _theme.
-- **1.0.0 - 25/11/26.** Le contenu passe par le slot children, comme dans le code. Figma impose qu'un slot soit placé directement dans le composant, et la bordure est donc portée par le composant lui-même, sans calque container.
+- **1.0.0 - 25/11/26.** Le contenu passe par le slot children, comme dans le code. La bordure est portée par le composant lui-même, sans calque container.
 - **1.0.0 - 25/11/26.** Le texte par défaut est « Title », comme pour tout composant.
 - **1.0.0 - 26/11/26.** L'Accordion n'a pas de propriété tone. La valeur warning de l'ancien composant de Figma servait surtout au Banner, qui n'en utilise plus depuis le 23/11.
 - **1.0.0 - 26/11/26.** L'en-tête ouvert n'a pas de trait de séparation avec le contenu, comme dans le code (`AccordionContextualCommon.css:40`, `AccordionContextualCommon.css:41`).

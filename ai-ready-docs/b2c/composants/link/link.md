@@ -12,7 +12,7 @@ Le Link est un texte cliquable qui mène vers une autre page, un autre endroit d
 
 - Mener vers une autre page, un autre endroit de la page ou une ressource, comme un document à télécharger.
 - Proposer un autre chemin quand l'utilisateur est bloqué. Exemple : « Trouver le numéro Siret » sous le champ Siret.
-- Une action secondaire, posée à côté du texte qu'elle complète, comme « En savoir plus », « Modifier » ou « Voir plus ». Exemples : les actions d'un _FormLabel, d'un Banner ou d'un ContentItemDuo. Le code rend alors le Link en `<button>`.
+- Une action secondaire, posée à côté du texte qu'elle complète, comme « En savoir plus », « Modifier » ou « Voir plus ». Exemples : les actions d'un _FormLabel, d'un Banner ou d'un ContentItemDuo. Dans le code, le Link se rend alors en `<button>`, avec `as="button"`.
 
 ### À ne pas utiliser pour
 
@@ -74,7 +74,7 @@ Le libellé se construit d'une de ces façons :
 
 - Un verbe d'action et le sujet de la destination. Exemple : « Consulter la FAQ ».
 - Le nom complet d'un document, puis son sigle entre parenthèses.
-- Un verbe à l'infinitif seul, quand le Link mène vers la page où l'utilisateur modifie un élément. Exemple : « Modifier ». Une modification sur place passe par un Button, sauf l'action « Modifier » d'un _FormLabel, qui débloque le champ.
+- Un verbe à l'infinitif seul, quand le Link mène vers la page où l'utilisateur modifie un élément. Exemple : « Modifier ». Une modification sur place passe par un Button, sauf une action secondaire posée à côté du texte qu'elle complète, comme « Modifier » dans un _FormLabel, qui reste un Link.
 - « En savoir plus » seul, quand sa place dans l'interface dit le sujet.
 - Une adresse e-mail seule, dans une phrase ou sous un titre qui dit l'action.
 
@@ -162,6 +162,7 @@ Ces noms désignent Link. Le seul nom à employer est Link.
 - **Graisse dans le code.** Le code met le Link en regular dans le thème client, sauf quand il ouvre un nouvel onglet, et en colorScheme=inverse dans les deux thèmes. Figma le met en semibold partout. En attendant : signaler.
 - **Survol dans le code.** Le code change la couleur du Link au survol et garde un soulignement de 1 px. En attendant : rien ne change à l'usage, l'écart se corrige dans le code.
 - **Focus dans le code.** L'anneau de focus est en `--blue-650` et à 3 px du Link dans le code, contre color/blue/400 et 2 px dans Figma. En attendant : rien ne change à l'usage, l'écart se corrige dans le code.
+- **Focus en inverse.** En colorScheme=inverse, l'anneau de focus color/blue/400 atteint 2,19:1 sur un fond color/blue/700, sous les 3:1 demandés par les principes d'interaction. En attendant : signaler.
 - **Fenêtre modale.** Dans l'ancienne documentation du B2C, un Link comme « En savoir plus » ouvre une fenêtre modale. Le plugin Copilot réserve Button à l'ouverture d'une fenêtre modale. Rien ne dit encore si une action secondaire en Link peut ouvrir une fenêtre modale. En attendant : signaler.
 - **Taille small dans le code.** Le code n'a qu'une taille de Link (`LinkCommon.css:8`). En attendant : signaler.
 - **Icônes.** Aucune source ne dit quand utiliser l'icône de gauche hors d'un _FormLabel, ni une autre icône que icon/open-in-new à droite. En attendant : signaler.

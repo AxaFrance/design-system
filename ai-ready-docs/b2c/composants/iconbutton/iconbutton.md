@@ -46,7 +46,7 @@ Sur un fond foncé ou coloré. Les trois valeurs de hierarchy existent en colorS
 
 ### size=small
 
-La taille par défaut, quand le composant qui contient l'IconButton n'est pas cliquable lui-même. Exemple : la croix qui ferme une fenêtre modale.
+La taille par défaut, dans tous les cas, sauf un IconButton qui a sa propre action dans un composant cliquable en entier. Exemple : la croix qui ferme une fenêtre modale.
 
 ### size=x-small
 
@@ -95,7 +95,7 @@ Un élément `<button>` natif, de rôle ARIA button.
 - `aria-expanded` et `aria-controls` quand il ouvre ou ferme une zone de la page.
 - Le lecteur d'écran annonce le rôle et le nom du bouton quand il reçoit le focus.
 - L'indicateur de focus reste toujours visible.
-- L'icône contraste avec le fond à 3:1 au moins, et l'anneau de focus aussi (WCAG).
+- L'icône contraste avec le fond à 3:1 au moins, et l'anneau de focus aussi en colorScheme=default (WCAG).
 - La zone cliquable mesure au moins 24 × 24 px (WCAG 2.2).
 - `aria-busy="true"` et `aria-disabled="true"` pendant un chargement, à la place de l'attribut `disabled`, pour que le bouton garde le focus.
 - Un IconButton désactivé n'est pas atteignable au clavier. La raison de l'indisponibilité est donc écrite dans le texte autour.
@@ -175,6 +175,7 @@ Ces noms désignent IconButton. Le seul nom à employer est IconButton.
 - **Code.** ClickIcon s'approche d'IconButton, mais il n'a ni primary ni colorScheme, et il n'impose pas de nom accessible. Au repos, `variant="default"` a un fond bleu clair, alors que hierarchy=secondary n'a pas de fond. En attendant : le code utilise ClickIcon selon le tableau des écarts, toujours avec un nom accessible, et hierarchy=primary et colorScheme=inverse ne s'utilisent pas dans le code.
 - **Tailles.** IconButton a deux tailles, size=small et size=x-small. Dans le code, `size` accepte aussi L et M. En attendant : `size` ne prend que `S` ou `XS`, `iconVariant` ne prend que `disabled`, et un besoin d'une autre taille se signale.
 - **Autres fonds foncés.** Le hover et le press du secondary et du tertiary en colorScheme=inverse sont prévus pour un fond color/blue/700. Sur un autre fond foncé ou coloré, comme celui du Banner, leur fond bleu pourrait former une tache. En attendant : signaler.
+- **Focus en inverse.** En colorScheme=inverse, l'anneau de focus color/blue/400 atteint 2,19:1 sur un fond color/blue/700, sous les 3:1 demandés par les principes d'interaction. En attendant : signaler.
 - **Navigation.** Zeroheight permet à Click Icon d'être un lien `<a>` quand l'action mène à une autre page. Le code ne le permet pas, et la fiche Button renvoie vers Link pour naviguer. En attendant : signaler.
 - **Plusieurs primary.** La fiche Button n'autorise qu'un seul Button primary par page, sans compter le Header. Rien ne dit si un IconButton primary compte dans cette limite. En attendant : signaler.
 - **Règles reprises de Button.** Plusieurs règles viennent de la fiche Button, sans source propre à IconButton : hierarchy, disabled=true et colorScheme, le Comportement, la Rédaction, `aria-expanded` et `aria-controls`, et le contraste de l'anneau de focus. En attendant : elles s'appliquent.

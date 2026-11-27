@@ -120,7 +120,7 @@ Un élément `<button>` natif, de rôle ARIA button.
 - Le lecteur d'écran annonce le nom du bouton quand il reçoit le focus.
 - Un chargement est annoncé, par exemple « Chargement en cours ».
 - L'indicateur de focus reste toujours visible.
-- Le texte contraste avec le fond à 4,5:1 au moins, et l'anneau de focus à 3:1 au moins (WCAG).
+- Le texte contraste avec le fond à 4,5:1 au moins, et l'anneau de focus à 3:1 au moins en colorScheme=default (WCAG).
 - La zone cliquable mesure au moins 24 × 24 px (WCAG 2.2).
 - Un bouton désactivé n'est pas atteignable au clavier. La raison de l'indisponibilité est donc écrite dans le texte autour, pas seulement dans le bouton.
 - Le bouton s'atteint avec Tab et s'active avec Entrée ou Espace, dans un ordre de tabulation logique.
@@ -223,6 +223,7 @@ Ces noms désignent Button. Le seul nom à employer est Button.
 - **Autres fonds foncés.** Le hover et le press du secondary et du tertiary en colorScheme=inverse sont prévus pour un fond color/blue/700. Sur un autre fond foncé ou coloré, comme celui du Banner, leur fond bleu pourrait former une tache. En attendant : signaler.
 - **Chargement dans le code.** Le code désactive le bouton pendant un chargement (`disabled={disabled || loading}`). Le bouton et son Spinner deviennent gris, et le bouton perd le focus. Il n'a pas non plus `aria-busy`. Le code affiche aussi ce Spinner sur un bouton seulement désactivé. En attendant : `loading` s'utilise sans surcharge de style, l'écart se corrige dans le code.
 - **Anneau de focus.** Il est en color/blue/400 et à 2 px du bouton dans Figma, en `--blue-650` et à 3 px dans le code. En attendant : rien ne change à l'usage, l'écart se corrige dans le code.
+- **Focus en inverse.** En colorScheme=inverse, l'anneau de focus color/blue/400 atteint 2,19:1 sur un fond color/blue/700, sous les 3:1 demandés par les principes d'interaction. En attendant : signaler.
 - **Groupe de boutons.** L'ordre des boutons à gauche du primary n'est pas documenté, ni celui des boutons empilés en colonne sur mobile, ni la place du groupe dans la page (aligné à gauche, centré ou aligné à droite). En attendant : signaler.
 - **Autres usages du medium.** En dehors du Header, size=medium peut servir dans des cas précis, qui ne sont pas encore documentés. En attendant : signaler.
 - **Tailles dans le code.** Le code n'a pas de propriété de taille, et son bouton mesure 56 px sur desktop comme sur mobile. En attendant : signaler.

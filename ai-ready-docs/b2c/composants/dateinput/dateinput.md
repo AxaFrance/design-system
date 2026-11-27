@@ -162,7 +162,7 @@ const today = new Date().toLocaleDateString("sv-SE");
 | open | Sans équivalent, le navigateur ouvre le calendrier |
 | state et filled | Sans équivalent, le code utilise `:hover`, `:focus` et la valeur saisie |
 
-Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. breakpoint n'a pas d'équivalent dans le code. `min` et `max` bornent les dates du calendrier. Le composant accepte les attributs d'un `<input>`, comme `name` ou `autoComplete`, sauf `type`, qui dépend de `hidePicker`. Sans équivalent dans Figma : `onMoreButtonClick` et `containerProps`.
+Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. breakpoint n'a pas d'équivalent dans le code. `min` et `max` bornent les dates du calendrier. Le composant accepte les attributs d'un `<input>`, comme `name` ou `autoComplete`, sauf `type`. Avec le calendrier, le code force `type="date"` (`InputDateAtom.tsx:23`). Avec `hidePicker`, un `type` passé par la page l'emporte. Sans équivalent dans Figma : `onMoreButtonClick` et `containerProps`.
 
 ## Noms à ne pas employer
 
@@ -184,7 +184,7 @@ Ces noms désignent DateInput. Le seul nom à employer est DateInput.
 
 ## Points ouverts
 
-- **Couleurs et épaisseurs dans le code.** Dans le thème prospect, le code met une bordure bleue au repos (`InputDateApollo.css:9`). Dans les deux thèmes, la bordure passe en bleu foncé au hover et au focus (`InputDateApollo.css:17`), et le texte en bleu foncé en filled=true (`InputDateApollo.css:21`). En erreur et en avertissement, la bordure fait 2 px au repos (`InputDateCommon.css:51`) et 3 px au hover et au focus (`InputDateApollo.css:30`, `InputDateCommon.css:68`). Elle garde la couleur du ton au focus. L'icône de calendrier est bleu foncé (`InputDateCommon.css:11`). En attendant : signaler.
+- **Couleurs et épaisseurs dans le code.** Dans le thème prospect, le code met une bordure bleue au repos (`InputDateApollo.css:9`). Dans les deux thèmes, la bordure passe en bleu foncé au hover et au focus (`InputDateApollo.css:17`, `InputDateLF.css:17`), et le texte en bleu foncé en filled=true (`InputDateApollo.css:21`, `InputDateLF.css:21`). En erreur et en avertissement, la bordure fait 2 px au repos (`InputDateCommon.css:51`) et 3 px au hover et au focus (`InputDateApollo.css:30`, `InputDateCommon.css:68`). Elle garde la couleur du ton au focus. L'icône de calendrier est bleu foncé (`InputDateCommon.css:11`). En attendant : signaler.
 - **Texte saisi dans le code.** Le code affiche la date saisie en semi-gras (`InputDateCommon.css:20`), alors que Figma l'affiche en regular. En attendant : signaler.
 - **Thème client dans le code.** Le code du thème client garde un arrondi de 4 px (`InputDateLF.css:10`). En attendant : signaler.
 - **Action « Modifier » dans le code.** Le code n'accepte pas `sideButtonLabel` (`InputDateCommon.tsx:33`), alors que le _FormLabel de Figma peut afficher cette action. En attendant : ne pas l'afficher.

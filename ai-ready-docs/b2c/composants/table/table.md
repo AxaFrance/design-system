@@ -114,7 +114,7 @@ Référence : [ARIA Authoring Practices Guide, Table Pattern](https://www.w3.org
 
 ## Code
 
-Storybook, selon le thème : [prospect](https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/components-table--docs) ou [client](https://axafrance.github.io/design-system/client/react/latest/?path=/docs/components-table--docs).
+Storybook, selon le thème : [prospect](https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/components-table--table) ou [client](https://axafrance.github.io/design-system/client/react/latest/?path=/docs/components-table--table).
 
 Code source : [dossier Table sur GitHub](https://github.com/AxaFrance/design-system/tree/main/packages/canopee-react/src/prospect-client/Table).
 
@@ -177,7 +177,7 @@ Exemple :
 | showCheckbox | `onCheck` de `Table.Th` |
 | showSortButton | `onSort` de `Table.Th` |
 
-Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. `Table.THead` vaut `blue` par défaut, `Table.TBody` vaut `white`, et `Table.Tr` vaut `S`, alors que Figma prend size=medium par défaut. `size` de `Table.Tr` ne change que la hauteur des `Table.Td` (`TableCommon.css:101`). `onSort` ne reçoit aucun argument et ne trie rien : la page trie ses données et garde l'ordre en cours. Le composant ne pose pas `scope="col"`, et le développeur le passe à chaque `Table.Th`. Sans équivalent dans Figma : `position="center"` de `Table.Th` et `Table.Td`, `checkboxPosition` de `Table.Th`, et `size` de `Table.Td`.
+Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. `Table.THead` vaut `blue` par défaut, `Table.TBody` vaut `white`, et `Table.Tr` vaut `S`, alors que Figma prend size=medium par défaut. `size` de `Table.Tr` ne change que la hauteur des `Table.Td` (`TableCommon.css:102`). `onSort` ne reçoit aucun argument et ne trie rien : la page trie ses données et garde l'ordre en cours. Le composant ne pose pas `scope="col"`, et le développeur le passe à chaque `Table.Th`. Sans équivalent dans Figma : `position="center"` de `Table.Th` et `Table.Td`, `checkboxPosition` de `Table.Th`, et `size` de `Table.Td`.
 
 ## Noms à ne pas employer
 
@@ -208,7 +208,7 @@ Ces noms désignent Table. Le seul nom à employer est Table.
 - **Contenus non définis.** Le nombre maximal de colonnes et de lignes, le format des nombres, des montants et des dates, et le contenu d'une cellule sans donnée ne sont pas définis. En attendant : signaler.
 - **États du tableau.** Le rendu d'un tableau sans ligne, ou pendant le chargement des données, n'est pas défini. En attendant : signaler.
 - **Tableau plus large que l'écran.** Le défilement horizontal, ou l'adaptation des colonnes, n'est pas défini. En attendant : signaler.
-- **Largeur de bascule.** La page d'exemple de Storybook passe aux TableMobileCard sous 667 px de large (`Table.tsx:240`), et non sous 1024 px. En attendant : 1024 px.
+- **Largeur de bascule.** La page d'exemple de Storybook passe aux TableMobileCard à 667 px de large ou moins (`Table.tsx:241`), et non sous 1024 px. En attendant : 1024 px.
 - **Plugin Copilot.** Sa page Table nomme `colorVariant` et `sizeVariant` des propriétés que le code appelle `variant` et `size`. En attendant : la fiche fait foi.
 
 ## Pour l'IA qui lit cette fiche

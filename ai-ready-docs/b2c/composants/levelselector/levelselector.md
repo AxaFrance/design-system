@@ -132,7 +132,7 @@ const [niveau, setNiveau] = useState(1);
 | Les boutons moins et plus, des IconButton | Deux `ClickIcon`, nommés par `minusAriaLabel` et `plusAriaLabel` |
 | Les barres, des _LevelSelectorStep | Des boutons radio, sans composant à part |
 
-Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. breakpoint n'a pas d'équivalent dans le code. Le LevelSelector ne garde pas le niveau choisi : la page passe `value` et le met à jour dans `onChange`. Il n'accepte pas `name`, et son niveau ne part pas avec un formulaire HTML.
+Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. breakpoint n'a pas d'équivalent dans le code. Le LevelSelector ne garde pas le niveau choisi : la page passe `value` et le met à jour dans `onChange`. Il n'accepte pas `name`. Le bouton radio coché part avec un formulaire HTML, mais sous un nom généré (`LevelSelectorCommon.tsx:63`) que la page ne peut pas utiliser.
 
 ## Noms à ne pas employer
 

@@ -6,19 +6,19 @@ Un design token se crée une seule fois, dans la librairie Figma Fondations Cano
 > Seule l'équipe design system peut créer, modifier ou supprimer un token. Un designer ou un développeur qui a besoin d'un token le demande à l'équipe, comme expliqué à l'étape 1.
 
 ```
-Figma  →  plugin Canopée  →  fichier JSON  →  PR sur GitHub  →  variables CSS
+Figma  →  plugin « Canopée, design tokens »  →  fichier JSON  →  PR sur GitHub  →  variables CSS
 ```
 
-Le plugin Canopée transforme les tokens de Figma en fichier JSON. Ce fichier est envoyé sur GitHub dans une PR, c'est-à-dire une demande de modification. Les développeurs la relisent, puis l'acceptent. Ensuite, un outil appelé Terrazzo crée les variables CSS à partir du fichier.
+Le plugin « Canopée, design tokens » transforme les tokens de Figma en fichier JSON. Ce fichier est envoyé sur GitHub dans une PR, c'est-à-dire une demande de modification. Les développeurs la relisent, puis l'acceptent. Ensuite, un outil appelé Terrazzo crée les variables CSS à partir du fichier.
 
 ## Les étapes
 
 | Étape | Qui | Outil |
 |---|---|---|
 | 1. Remonter le besoin | Tout designer ou développeur | Instance design system ou Teams |
-| 2. Modifier les tokens | Équipe design system | Figma, plugin Canopée |
+| 2. Modifier les tokens | Équipe design system | Figma, plugin « Canopée, design tokens » |
 | 3. Publier et valider dans Figma | Équipe design system | Figma |
-| 4. Déposer sur GitHub | Équipe design system | GitHub, plugin Canopée |
+| 4. Déposer sur GitHub | Équipe design system | GitHub, plugin « Canopée, design tokens » |
 | 5. Relire et intégrer | Développeurs de Canopée | GitHub |
 | 6. Générer le CSS | Automatique | Terrazzo |
 | 7. Publier une version | Développeurs de Canopée | Package CSS de Canopée |
@@ -35,7 +35,7 @@ Un token sémantique porte un nom qui dit son usage, comme icon/size/small. Sa v
 
 La collection Typography change selon le B2C ou le B2B, le thème et l'écran. Elle a un jeu de valeurs, appelé mode, pour chaque combinaison, soit cinq en tout. La collection Size garde les mêmes valeurs partout et n'a qu'un mode. Pour des couleurs qui changent selon le thème, l'équipe créerait une collection Color, avec un mode par thème.
 
-Avant de publier, vérifier dans le plugin Canopée qu'il n'y a pas d'erreur.
+Avant de publier, vérifier dans le plugin « Canopée, design tokens » qu'il n'y a pas d'erreur.
 
 ### 3. Publier et valider dans Figma
 
@@ -57,9 +57,9 @@ Le dépôt fait des allers-retours entre le plugin et GitHub. Le plugin guide ch
 
 **a. Relire les changements**
 
-Ouvrir le fichier Figma Fondations Canopée et lancer le plugin Canopée. La section Changements résume ce qui part dans la PR. Cliquer sur son titre pour voir le détail : les tokens ajoutés, modifiés, supprimés et dépréciés, avec l'ancienne et la nouvelle valeur.
+Ouvrir le fichier Figma Fondations Canopée et lancer le plugin « Canopée, design tokens ». La section Changements résume ce qui part dans la PR. Cliquer sur son titre pour voir le détail : les tokens ajoutés, modifiés, supprimés et dépréciés, avec l'ancienne et la nouvelle valeur.
 
-![Le plugin Canopée : la section Changements et le bouton Déposer sur GitHub](images/depot-1-changements.png)
+![Le plugin « Canopée, design tokens » : la section Changements et le bouton Déposer sur GitHub](images/depot-1-changements.png)
 *Cliquer sur Déposer sur GitHub pour lancer le dépôt.*
 
 Cliquer sur **Déposer sur GitHub**. Le bouton est bloqué s'il reste une erreur à corriger, ou si les tokens sont identiques au code. Il est aussi bloqué tant qu'une PR de tokens est ouverte. Un bandeau bleu, juste au-dessus du bouton, donne alors son lien. Le dépôt redevient possible une fois cette PR intégrée ou fermée.
@@ -157,7 +157,7 @@ Un token déprécié est supprimé au plus tôt dans la version suivante de Cano
 
 ## Installer le plugin
 
-Le plugin Canopée se récupère sous forme de zip, en pièce jointe de la page « Créer ou modifier un token » sur Zeroheight. Il s'installe une seule fois, dans Figma Desktop.
+Le plugin « Canopée, design tokens » se récupère sous forme de zip, en pièce jointe de la page « Créer ou modifier un token » sur Zeroheight. Il s'installe une seule fois, dans Figma Desktop.
 
 1. Télécharger le zip et le décompresser sur son poste.
 2. Dans Figma Desktop, ouvrir le menu **Plugins › Development › Import plugin from manifest**.

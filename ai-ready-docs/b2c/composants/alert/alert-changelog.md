@@ -1,4 +1,4 @@
-# Changelog de Alert
+# Changelog d'Alert
 
 ## 1.0.0 - 23/11/26
 

@@ -67,7 +67,7 @@ Un élément `<button>`, que le DropdownMenu ou le DataAgent place dans un `<li>
 
 ## Code
 
-Storybook, selon le thème : [prospect](https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/components-list-clickitem--docs) ou [client](https://axafrance.github.io/design-system/client/react/latest/?path=/docs/components-list-clickitem--docs).
+Storybook, selon le thème : [prospect](https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/components-list-clickitem--clickitem) ou [client](https://axafrance.github.io/design-system/client/react/latest/?path=/docs/components-list-clickitem--clickitem).
 
 Code source : [dossier ClickItem sur GitHub](https://github.com/AxaFrance/design-system/tree/main/packages/canopee-react/src/prospect-client/List/ClickItem).
 

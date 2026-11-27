@@ -6,7 +6,7 @@ Une propriété est un réglage d'un composant : son état, sa taille, son texte
 
 Une variante change le rendu du composant. Un booléen affiche ou masque un élément. Les noms s'écrivent en camelCase et les valeurs en kebab-case, comme le fixe la nomenclature.
 
-Dans la colonne Valeurs, une liste de valeurs séparées par des virgules est imposée. Une phrase veut dire que chaque composant choisit ses valeurs.
+Dans la colonne Valeurs, une liste de valeurs séparées par des virgules est une liste commune : un composant prend les valeurs dont il a besoin dans cette liste, et seulement celles-là. Exemple : le Banner n'a que deux tons. Une phrase veut dire que chaque composant choisit ses valeurs.
 
 | Propriété | Type Figma | Valeurs | À quoi elle sert | Existe côté code |
 |---|---|---|---|---|
@@ -84,7 +84,7 @@ Une propriété texte a pour valeur par défaut son propre nom, avec une majuscu
 
 Une propriété qui commence par un tiret bas est hors nomenclature. Soit elle ne sert qu'au prototype et n'aura jamais d'équivalent dans le code, soit elle est provisoire et disparaîtra. Le tiret bas prévient les designers, et permet à un outil qui relie Figma au code de l'ignorer. Exemples : _animation, qui anime le Spinner dans un prototype, et _showCursor, qui affiche ou masque le curseur de saisie d'un champ. Le thème est aussi hors nomenclature, parce que ses couleurs passent par les modes de variables. Quand un composant a une variante par thème, elle s'écrit _theme, avec les valeurs client et prospect.
 
-Aucune règle ne dit quel composant a une propriété _theme. L'équipe design system le tranche au cas par cas avec les développeurs de Canopée, selon les contraintes du code, et la fiche du composant consigne la décision. Un composant sans _theme sert aux deux thèmes, avec le rendu de sa variante prospect dans Figma. Le designer règle alors le thème des composants qu'il contient, dans son panneau, par leurs propriétés exposées. Exemple : la Pagination d'Alert.
+Aucune règle ne dit quel composant a une propriété _theme. L'équipe design system le tranche au cas par cas avec les développeurs de Canopée, selon les contraintes du code, et la fiche du composant consigne la décision. Un composant sans _theme sert aux deux thèmes, avec le rendu de sa variante prospect dans Figma. Le designer règle alors le thème des composants qu'il contient, dans son panneau, par leurs propriétés exposées. Exemple : le Button de FileInput.
 
 Les propriétés marquées Figma seulement dans les tableaux n'ont pas de tiret bas. Elles font partie de la nomenclature, c'est simplement le code qui gère ces cas tout seul.
 

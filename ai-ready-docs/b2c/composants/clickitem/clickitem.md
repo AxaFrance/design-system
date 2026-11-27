@@ -18,6 +18,7 @@ Le ClickItem présente, dans une liste, un contrat, une personne ou un autre obj
 - Une entrée de menu, avec une icône, un libellé et un chevron : prendre _MenuItem, dans un DropdownMenu ou un DataAgent.
 - Une action seule, sans contenu à présenter : prendre Button.
 - Un lien dans un texte : prendre Link.
+- Une information qui ne se clique pas : prendre ContentItem.
 
 ## Règles selon les propriétés
 
@@ -94,7 +95,7 @@ Un élément `<button type="button">` qui contient tout le ClickItem. Sans actio
 
 ## Code
 
-Storybook, selon le thème : [prospect](https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/components-list-clickitem--docs) ou [client](https://axafrance.github.io/design-system/client/react/latest/?path=/docs/components-list-clickitem--docs).
+Storybook, selon le thème : [prospect](https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/components-list-clickitem--clickitem) ou [client](https://axafrance.github.io/design-system/client/react/latest/?path=/docs/components-list-clickitem--clickitem).
 
 Code source : [dossier ClickItem sur GitHub](https://github.com/AxaFrance/design-system/tree/main/packages/canopee-react/src/prospect-client/List/ClickItem).
 
@@ -148,7 +149,7 @@ import accountBalance from "@material-symbols/svg-400/rounded/account_balance-fi
 | L'action | `onClick` |
 | Le nom accessible | `ariaLabelForActionIcon`, posé sur tout le bouton |
 
-Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. `state` vaut `default` par défaut, et `variant` vaut `large`. Le code n'a pas de propriété pour le survol ni le focus. Une media query change la taille des textes à partir de 1024 px. `List` rend un `<ul>`, avec un `<li>` par ClickItem. Sans équivalent dans Figma : `variant="medium"`, et `variant="small"`, l'entrée de menu, qui deviendra un sous-composant de DropdownMenu.
+Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. `state` vaut `default` par défaut, et `variant` vaut `large`. Le code n'a pas de propriété pour le survol ni le focus. Une media query change la taille des textes à partir de 1024 px. `List` rend un `<ul>`, avec un `<li>` par ClickItem. Sans équivalent dans Figma : `variant="medium"`, et `variant="small"`, l'entrée de menu, devenue le sous-composant _MenuItem, qui sert au DropdownMenu.
 
 ## Noms à ne pas employer
 
@@ -158,7 +159,7 @@ Ces noms désignent ClickItem. Le seul nom à employer est ClickItem.
 
 ## Décisions
 
-- **1.0.0 - 25/11/26.** Le ClickItem ne garde que le grand format. Le petit format, une entrée de menu avec un chevron et un titre souligné au survol, deviendra un sous-composant de DropdownMenu, car son rendu et son comportement sont trop différents.
+- **1.0.0 - 25/11/26.** Le ClickItem ne garde que le grand format. Le petit format, une entrée de menu avec un chevron et un titre souligné au survol, est devenu _MenuItem, qui sert au DropdownMenu, car son rendu et son comportement sont trop différents.
 - **1.0.0 - 25/11/26.** L'ancien type agent disparaît. Une photo s'affiche avec showAvatar, à la place de l'icône, dans le même ClickItem.
 - **1.0.0 - 25/11/26.** L'icône et la photo passent par deux booléens, showIcon et showAvatar, et non par un slot, car l'élément de gauche n'a que ces deux contenus.
 - **1.0.0 - 25/11/26.** La flèche est un IconButton secondary, avec l'icône icon/arrow-forward. Il remplace l'ancien ClickIcon de Figma, archivé. Dans le code, ce rond n'est qu'un décor, car tout le ClickItem est le bouton.
@@ -177,12 +178,13 @@ Ces noms désignent ClickItem. Le seul nom à employer est ClickItem.
 - **Survol et focus dans le code.** Le code ne change le rond que si le pointeur passe sur le rond lui-même (`ClickIconApollo.css:7`). Au focus clavier, le rond ne change pas, et le ClickItem garde le contour par défaut du navigateur, car son CSS n'a pas de style de focus. En attendant : signaler.
 - **Nom de la prop dans le code.** `ariaLabelForActionIcon` nomme tout le bouton (`ClickItemCommon.tsx:40`), et non la flèche. En attendant : cette prop suit la règle du nom accessible.
 - **Contenu du bouton dans le code.** Le code place les textes dans des `<p>`, et ses zones, le Tag et le Spinner dans des `<div>` (`ClickItemCommon.tsx:58`, `ClickItemContentCommon.tsx:28`), à l'intérieur d'un `<button>`, ce que le HTML n'autorise pas. En attendant : signaler.
-- **Tag désactivé dans le code.** Le code passe le Tag en `variant="neutral"` (`ClickItemCommon.tsx:75`), mais son texte ne passe pas en gris, car le Tag du code n'a pas de prop `disabled`. En attendant : signaler.
+- **Tag désactivé dans le code.** Le code passe le Tag en `variant="neutral"` (`ClickItemCommon.tsx:75`), car le Tag du code n'a pas de prop `disabled`. Son texte reste en `--gray-800` (`TagApollo.css:36`), plus foncé que le color/gray/400 de Figma. En attendant : signaler.
 - **Photo dans le code.** Avec `variant="agent"`, le code masque la description, la légende et le Tag (`ClickItemCommon.css:80`). Il garde la flèche pendant le chargement (`ClickItemSuffixCommon.tsx:25`) et ne grise rien en désactivé (`ClickItemCommon.css:98`). En attendant : signaler.
 - **Focus pendant le chargement.** Le code désactive le bouton en `state="loading"` (`ClickItemCommon.tsx:42`), et le focus clavier risque de quitter le ClickItem. En attendant : signaler.
 - **Chargement dans le code.** Le code remplace le rond par un Spinner seul, de 32 px (`ClickItemSuffixCommon.tsx:26`), alors que Figma garde le rond de l'IconButton, avec un Spinner à l'intérieur. En attendant : signaler.
 - **Format moyen.** Le code a un `variant="medium"` que Figma n'a pas. Sa règle CSS, prévue pour masquer la description, la légende et la flèche, ne s'applique jamais (`ClickItemCommon.css:88`) : tout reste affiché. En attendant : signaler.
 - **Navigation.** Un ClickItem qui mène vers une autre page est rendu en `<button>`, et non en lien. En attendant : signaler.
+- **Contenus non définis.** Le nombre maximal de ClickItem dans une liste, la longueur maximale des textes et le comportement d'un ClickItem sans action ne sont pas définis. En attendant : signaler.
 - **Propriété _theme à valider.** Le ClickItem n'a pas de propriété _theme, et Figma montre le rendu du thème prospect. Ce choix reste à valider avec les développeurs de Canopée. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche

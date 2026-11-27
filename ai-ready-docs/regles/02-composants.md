@@ -29,7 +29,7 @@ Un sous-composant sert à construire les autres, il n'est pas posé tel quel dan
 
 Un composant ne se modifie pas localement : ni sa taille, ni ses espacements, ni ses couleurs, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system, qui fait évoluer le composant.
 
-Seule exception, la largeur d'un composant qui suit celle de son conteneur dans le code. Dans Figma, ce composant a une largeur d'exemple, et le designer le règle en Fill container dans sa maquette. Exemple : Skeleton.
+Seule exception, la largeur d'un composant qui suit celle de son conteneur dans le code. Dans Figma, ce composant a une largeur d'exemple, et le designer le règle en Fill container dans sa maquette. Exemple : Skeleton. Un trait vertical, comme le Divider en orientation=vertical, prend de même toute la hauteur de son conteneur, en Fill container en hauteur.
 
 Dans Figma, un composant règle les composants qu'il contient par leurs propriétés, sans modifier leurs calques. Seule la couleur d'une icône se change sur le calque.
 
@@ -55,9 +55,9 @@ La page porte simplement le nom de la famille, et les pages suivent l'ordre du t
 |---|---|
 | Actions | Ce qui déclenche une action : boutons, liens, cartes cliquables. |
 | Forms | Les champs de formulaire et les éléments qui les accompagnent. |
-| Navigation | Ce qui permet de se déplacer : en-tête, pied de page, onglets, pagination. |
+| Navigation | Ce qui permet de se déplacer : onglets, pagination. |
 | Content | Ce qui affiche une information : données, cartes de données, icônes, images. |
 | Feedback | Ce qui répond à l'utilisateur : messages et indicateurs de chargement. |
 | Progression | Ce qui montre l'avancement : étapes, frise, barre de progression. |
-| Structure | Ce qui organise la page : titres, accordéons, fenêtres, tableaux. |
+| Structure | Ce qui organise la page : accordéons, fenêtres, tableaux. |
 | AI | Les composants des assistants IA. |

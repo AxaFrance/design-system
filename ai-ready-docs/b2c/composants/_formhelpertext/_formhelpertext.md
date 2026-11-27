@@ -93,7 +93,7 @@ Un élément `<small>`.
 - Le champ porte `aria-describedby`, qui reprend l'`id` du _FormHelperText. Le lecteur d'écran lit ainsi le message avec le champ.
 - Un message tone=error qui apparaît après une interaction porte `role="alert"`, pour être annoncé tout de suite. Les autres messages, y compris un message tone=error affiché dès le chargement, n'ont pas de rôle ARIA : le lien par `aria-describedby` suffit.
 - L'icône est décorative et masquée au lecteur d'écran avec `aria-hidden="true"`. Le sens passe par le texte, jamais par la couleur ou l'icône seule.
-- Le message commence par un texte masqué à l'écran, lu par le lecteur d'écran, qui donne son ton : « Succès : », « Erreur : », « Attention : » ou « Information : ». Exemple : le lecteur d'écran lit « Erreur : Veuillez renseigner votre e-mail. »
+- Le message commence par un texte masqué à l'écran, lu par le lecteur d'écran, qui donne son ton : « Succès : », « Erreur : », « Attention : » ou « Information : ». Exemple : le lecteur d'écran lit « Erreur : Renseignez votre e-mail. »
 - Le WCAG demande un contraste de 4,5:1 au moins pour un texte. Sur fond blanc, le texte atteint 5,9:1 en tone=error, 5,2:1 en tone=warning et 5,7:1 en tone=neutral. En tone=success, il n'atteint que 3,0:1, voir les points ouverts.
 - Le _FormHelperText ne reçoit pas le focus et n'entre pas dans l'ordre de tabulation.
 - Le message suit le champ dans le DOM, juste après lui.
@@ -133,7 +133,7 @@ Exemple :
 | tone=neutral | Prop `helper` du champ, affichée sans icône et hors ItemMessage |
 | showIcon | Sans équivalent, l'icône est toujours affichée |
 
-Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. Sans équivalent dans Figma : `id`. Sans `message`, le composant n'affiche rien. Dans le code, d'autres composants affichent un ItemMessage avec `message` et `messageType` : InputText, TextArea, InputDate, InputPhone, Dropdown, CheckboxText, CardCheckbox, CardRadioGroup, InputFile, ContentItemDuo et Stepper. Dans Stepper, `messageType` vaut `success` par défaut. ItemFile affiche un message d'erreur avec sa prop `errorMessage`.
+Dans le code, le thème passe par le chemin d'import, `/prospect` ou `/client`. Sans équivalent dans Figma : `id`. Sans `message`, le composant n'affiche rien. Dans le code, d'autres composants affichent un ItemMessage avec `message` et `messageType` : InputText, TextArea, InputDate, InputPhone, Dropdown, DropdownMultiSelect (`DropdownMultiSelectCommon.tsx:199`), CheckboxText, CardCheckbox, CardRadioGroup, InputFile, ContentItemDuo et Stepper. Dans Stepper, `messageType` vaut `success` par défaut. ItemFile affiche un message d'erreur avec sa prop `errorMessage`.
 
 breakpoint n'a pas d'équivalent dans le code. Une media query agrandit le texte à partir de 1024 px.
 

@@ -47,7 +47,7 @@ Un bouton.
 ## Contenu
 
 - Une forme animée, sans texte ni icône, portée par un _SkeletonAnimation ([_skeletonanimation.json](_skeletonanimation.json)).
-- Sa largeur suit son conteneur, et sa hauteur vient de size. La valeur de size selon le contenu remplacé, comme une ligne de texte, un titre ou une image : Non documenté.
+- Sa largeur suit son conteneur, sauf en type=circle, où elle égale la hauteur. Sa hauteur vient de size. La valeur de size selon le contenu remplacé, comme une ligne de texte, un titre ou une image : Non documenté.
 - Plusieurs Skeleton se combinent pour reproduire la mise en page du contenu attendu.
 
 ## Rédaction

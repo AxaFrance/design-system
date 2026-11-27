@@ -131,14 +131,13 @@ Ces noms désignent Spinner. Le seul nom à employer est Spinner.
 ## Décisions
 
 - **1.0.0 - 10/11/26.** Dans Figma, les thèmes prospect et client partagent un seul Spinner, celui du thème prospect. Il est construit avec des traits, comme le code des deux thèmes, alors que celui du thème client était fait de formes pleines.
-- **1.0.0 - 10/11/26.** L'anneau fixe prend la couleur de l'arc qui tourne, à 20 % d'opacité, comme dans le code. En colorScheme=white, l'arc blanc reste ainsi visible sur l'anneau.
+- **1.0.0 - 10/11/26.** L'anneau fixe prend la couleur de l'arc qui tourne, à 20 % d'opacité, comme dans le code, sauf pour le gris du thème prospect : l'anneau y est en `--gray-500-20` et l'arc en `--gray-1000` (`SpinnerApollo.css:15`). En colorScheme=white, l'arc blanc reste ainsi visible sur l'anneau.
 - **1.0.0 - 10/11/26.** L'anneau laisse 4 px de marge dans son cadre, pour suivre une grille de 4 px, comme le code du thème prospect. size=x-small, ajoutée ensuite, fait exception.
 - **1.0.0 - 10/11/26.** size=large et colorScheme=blue sont les valeurs par défaut, comme dans le code.
-- **1.0.0 - 10/11/26.** La taille moyenne est retirée de Figma : elle ne servait que dans l'ancien ClickItem, devenu Legacy/ClickItem dans la librairie Figma.
+- **1.0.0 - 10/11/26.** La taille moyenne est retirée de Figma : elle ne servait que dans un ancien composant de liste, qui n'est plus publié.
 - **1.0.0 - 10/11/26.** _animation ne sert qu'à animer le Spinner dans un prototype Figma.
 - **1.0.0 - 17/11/26.** size=x-small ajoute un Spinner de 16 px, pour le petit Button. Sa marge passe à 2 px et son trait à 2 px, pour que l'anneau reste lisible à cette taille.
-- **1.0.0 - 19/11/26.** En colorScheme=blue, le Spinner prend color/blue/600, la couleur réservée aux éléments interactifs, au lieu du color/blue/700 de la marque. Il suit ainsi le Button qui le contient pendant un chargement.
-- **1.0.0 - 25/11/26.** En colorScheme=blue, le Spinner reprend color/blue/700, comme le Button qui le contient pendant un chargement. Cette décision remplace celle du 19/11/26.
+- **1.0.0 - 25/11/26.** En colorScheme=blue, le Spinner reprend color/blue/700, comme le Button qui le contient pendant un chargement.
 
 ## Points ouverts
 

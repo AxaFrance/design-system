@@ -85,7 +85,6 @@ Sur un écran de moins de 1024 px de large. Le Tag utilise sa version mobile, pl
 ## Comportement
 
 - Le Tag ne réagit ni au clic ni au clavier.
-- Le texte ne passe jamais à la ligne.
 
 ## Accessibilité
 
@@ -162,7 +161,7 @@ Ces noms désignent Tag. Le seul nom à employer est Tag.
 - **Filtre.** Canopée n'a pas de composant de filtre pour le B2C. En attendant : signaler.
 - **Annonce d'un statut qui change.** Canopée ne fournit pas de composant pour faire cette annonce. En attendant : une zone `aria-live` dans la page.
 - **Accessibilité de l'ancienne documentation.** Elle demande `aria-label`, `tabindex="-1"` et une liste `<ul>`, ce que le code ne fait pas. En attendant : la rubrique Accessibilité de cette fiche s'applique.
-- **disabled dans le code.** Le Tag du code n'a pas de prop `disabled`. Dans un ClickItem désactivé, le Tag passe en `variant="neutral"`, mais son texte ne passe pas en gris (`ClickItemCommon.tsx:75`). DropdownMultiSelect, le Select à choix multiple du code, garde ses Tags en `variant="info"`, même désactivé (`DropdownMultiSelectCommon.tsx:194`). En attendant : signaler.
+- **disabled dans le code.** Le Tag du code n'a pas de prop `disabled`. Dans un ClickItem désactivé, le Tag passe en `variant="neutral"`, et son texte reste en `--gray-800` (#5C5C5C, `TagApollo.css:36`, `TagLF.css:37`), plus foncé que le color/gray/400 de Figma (`ClickItemCommon.tsx:75`). DropdownMultiSelect, le Select à choix multiple du code, garde ses Tags en `variant="info"`, même désactivé (`DropdownMultiSelectCommon.tsx:194`). En attendant : signaler.
 - **Exemple du plugin Copilot.** Sa page Tag affiche « Résilié » en `variant="error"`, alors que cette fiche le met en tone=neutral. En attendant : tone=neutral.
 
 ## Pour l'IA qui lit cette fiche

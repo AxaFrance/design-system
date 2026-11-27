@@ -60,7 +60,7 @@ Pour ouvrir un complément d'information sur la donnée.
 ## Interdits
 
 - size=small avec orientation=vertical.
-- Un autre composant qu'un Link dans le bouton, ou un autre message qu'un _FormHelperText.
+- Un autre composant qu'un Link pour l'action, ou un autre message qu'un _FormHelperText.
 - Un _FormHelperText au ton neutral, car le code ne propose pas ce ton ici.
 - Modifier localement la taille, l'espacement ou les couleurs du ContentItemDuo, dans Figma comme en CSS. Un besoin particulier se traite avec l'équipe design system.
 
@@ -91,7 +91,7 @@ Un élément `<div>`, placé dans un `<dl>` avec les autres ContentItemDuo. Le l
 
 ## Code
 
-Storybook, selon le thème : [prospect](https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/components-contentitemduo--docs) ou [client](https://axafrance.github.io/design-system/client/react/latest/?path=/docs/components-contentitemduo--docs).
+Storybook, selon le thème : [prospect](https://axafrance.github.io/design-system/prospect/react/latest/?path=/docs/components-contentitemduo--contentitemduo) ou [client](https://axafrance.github.io/design-system/client/react/latest/?path=/docs/components-contentitemduo--contentitemduo).
 
 Code source : [dossier ContentItemDuo sur GitHub](https://github.com/AxaFrance/design-system/tree/main/packages/canopee-react/src/prospect-client/List/ContentItemDuo).
 
@@ -153,7 +153,7 @@ Ces noms désignent ContentItemDuo. Le seul nom à employer est ContentItemDuo.
 
 ## Points ouverts
 
-- **Bouton dans le code.** Le code affiche l'action avec un Button, et non avec un Link (`ContentItemDuoCommon.tsx:62`). En attendant : Link dans Figma, et signaler.
+- **Bouton dans le code.** Le code affiche l'action avec un Button, et non avec un Link (`ContentItemDuoCommon.tsx:60`). En attendant : Link dans Figma, et signaler.
 - **Link hors du `<dt>` et du `<dd>`.** Le code place le bouton directement dans le `<div>` (`ContentItemDuoCommon.tsx:59`), ce que le HTML n'autorise pas dans un `<dl>`. En attendant : signaler.
 - **Nom du Link dans le code.** Le code ne transmet au bouton que son texte et son action (`ContentItemDuoCommon.tsx:60`). Aucun attribut ne peut compléter « En savoir plus » pour un lecteur d'écran. En attendant : signaler.
 - **Couleurs dans le code.** Le code affiche le libellé dans un gris plus foncé que Figma, et la valeur dans un gris plus clair (`ContentItemDuoApollo.css:5`). Les deux restent au-dessus de 4,5:1. En attendant : signaler.

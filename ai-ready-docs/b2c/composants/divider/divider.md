@@ -20,6 +20,8 @@ Le Divider sépare deux groupes de contenu par un trait fin. Son sens se règle 
 
 ## Règles selon les propriétés
 
+Dans une maquette, un Divider en orientation=horizontal se pose en Fill container, et un Divider en orientation=vertical en Fill container en hauteur.
+
 ### orientation=horizontal
 
 Entre deux zones empilées.
