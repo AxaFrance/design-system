@@ -1,0 +1,11 @@
+@import "./SelectionCard.css";
+
+@layer canopee {
+  .af-checkbox__card {
+    &:has(:focus-visible) {
+      .af-checkbox__item {
+        outline: none;
+      }
+    }
+  }
+}
