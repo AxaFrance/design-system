@@ -1,17 +1,18 @@
 import { render, screen } from "@testing-library/react";
+import { axe } from "jest-axe";
 import { describe, it, expect } from "vitest";
 import { Spinner, spinnerVariants } from "../SpinnerApollo";
 
 describe("Spinner Component", () => {
   it("should render the Spinner component", () => {
     render(<Spinner />);
-    const spinnerElement = screen.getByRole("alert");
+    const spinnerElement = screen.getByRole("status");
     expect(spinnerElement).toBeInTheDocument();
   });
 
   it("should have a default variant if none is provided", () => {
     render(<Spinner />);
-    const spinnerElement = screen.getByRole("alert");
+    const spinnerElement = screen.getByRole("status");
     expect(spinnerElement).toHaveClass("af-spinner--blue");
   });
 
@@ -19,8 +20,34 @@ describe("Spinner Component", () => {
     "should apply the correct variant class for %s",
     (variant) => {
       render(<Spinner variant={variant} />);
-      const spinnerElement = screen.getByRole("alert");
+      const spinnerElement = screen.getByRole("status");
       expect(spinnerElement).toHaveClass(`af-spinner--${variant}`);
     },
   );
+});
+
+describe("Spinner accessibility", () => {
+  it("should be a polite status region with its text as content", () => {
+    render(<Spinner />);
+    const spinner = screen.getByRole("status");
+
+    expect(spinner).toHaveAccessibleName("Chargement en cours");
+    expect(spinner).toHaveTextContent("Chargement en cours");
+    expect(spinner).not.toHaveAttribute("aria-live");
+    expect(spinner).not.toHaveAttribute("aria-busy");
+  });
+
+  it("should use a custom text as name and content", () => {
+    render(<Spinner text="Envoi du fichier" />);
+    const spinner = screen.getByRole("status");
+
+    expect(spinner).toHaveAccessibleName("Envoi du fichier");
+    expect(spinner).toHaveTextContent("Envoi du fichier");
+  });
+
+  it("shouldn't have an accessibility violation", async () => {
+    const { container } = render(<Spinner />);
+
+    expect(await axe(container)).toHaveNoViolations();
+  });
 });

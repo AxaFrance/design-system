@@ -88,7 +88,6 @@ export const HeaderCommon = ({
           size="S"
           variant="ghost"
           className="af-header__menu-icon"
-          aria-haspopup={isSmallScreen ? "menu" : undefined}
           aria-label={clickIconProps?.["aria-label"] ?? "Ouvrir le menu"}
           popoverTarget={isSmallScreen ? "af-header-menu" : undefined}
           popoverTargetAction={isSmallScreen ? "toggle" : undefined}

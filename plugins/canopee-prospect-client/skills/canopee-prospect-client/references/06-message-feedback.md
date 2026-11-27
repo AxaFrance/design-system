@@ -32,11 +32,11 @@ type MessageProps = {
 
 ### Comportement aria
 
-| Variante  | `role`    |
-| --------- | --------- |
-| `error`   | `"alert"` |
-| `warning` | `"alert"` |
-| Autres    | aucun     |
+| Variante  | `role`     |
+| --------- | ---------- |
+| `error`   | `"alert"`  |
+| `warning` | `"alert"`  |
+| Autres    | `"status"` |
 
 ### Exemples
 
@@ -230,11 +230,16 @@ import {
 type SpinnerProps = {
     size?: 24 | 32 | 40; // Taille en px (défaut: 40)
     variant?: SpinnerVariants; // "blue" | "gray" | "white"  (défaut: "blue")
-    text?: string; // aria-label (défaut: "Chargement en cours")
+    text?: string; // Nom accessible et texte masqué (défaut: "Chargement en cours")
 } & ComponentPropsWithoutRef<'div'>;
 ```
 
-Le spinner est accessible : `role="alert"`, `aria-busy`, `aria-live="assertive"`.
+### Accessibilité
+
+Le spinner est une région `role="status"`, annoncée poliment par les lecteurs d'écran, sans
+`aria-live` ni `aria-busy`. `text` lui donne son nom (`aria-label`) et figure aussi dans son
+contenu en texte masqué visuellement, ce qui permet l'annonce. Dans un `Button` en chargement ou
+un `ClickItem` `state="loading"`, le nom du bouton ou du lien ne change pas.
 
 ### Exemple
 
