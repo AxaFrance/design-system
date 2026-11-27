@@ -59,6 +59,10 @@
       position-area: bottom span-left;
       position-try-fallbacks: flip-block, flip-inline;
 
+      &:not(:popover-open) {
+        display: none;
+      }
+
       &:popover-open {
         opacity: 1;
         @starting-style {
