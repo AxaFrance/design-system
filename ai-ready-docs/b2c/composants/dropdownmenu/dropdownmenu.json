@@ -20,24 +20,14 @@
       "_theme": {
         "type": "enum",
         "enum": [
-          "client",
-          "prospect"
+          "prospect",
+          "client"
         ],
         "default": "prospect"
       }
     }
   },
   "variants": [
-    {
-      "values": {
-        "breakpoint": "1024",
-        "_theme": "client"
-      },
-      "position": [
-        795,
-        40
-      ]
-    },
     {
       "values": {
         "breakpoint": "1024",
@@ -50,11 +40,11 @@
     },
     {
       "values": {
-        "breakpoint": "0",
+        "breakpoint": "1024",
         "_theme": "client"
       },
       "position": [
-        1135,
+        795,
         40
       ]
     },
@@ -65,6 +55,16 @@
       },
       "position": [
         380,
+        40
+      ]
+    },
+    {
+      "values": {
+        "breakpoint": "0",
+        "_theme": "client"
+      },
+      "position": [
+        1135,
         40
       ]
     }
@@ -186,101 +186,6 @@
       {
         "when": {
           "breakpoint": "1024",
-          "_theme": "client"
-        },
-        "tree": [
-          {
-            "name": "clickItems",
-            "type": "slot",
-            "children": [
-              {
-                "name": "item",
-                "type": "instance",
-                "component": "_MenuItem",
-                "values": {
-                  "state": "default",
-                  "breakpoint": "1024"
-                }
-              },
-              {
-                "name": "item",
-                "type": "instance",
-                "component": "_MenuItem",
-                "values": {
-                  "state": "default",
-                  "breakpoint": "1024"
-                }
-              },
-              {
-                "name": "item",
-                "type": "instance",
-                "component": "_MenuItem",
-                "values": {
-                  "state": "default",
-                  "breakpoint": "1024"
-                }
-              },
-              {
-                "name": "item",
-                "type": "instance",
-                "component": "_MenuItem",
-                "values": {
-                  "state": "default",
-                  "breakpoint": "1024"
-                }
-              },
-              {
-                "name": "item",
-                "type": "instance",
-                "component": "_MenuItem",
-                "values": {
-                  "state": "default",
-                  "breakpoint": "1024"
-                }
-              }
-            ]
-          },
-          {
-            "name": "children",
-            "type": "slot",
-            "children": [
-              {
-                "name": "secondary-button",
-                "type": "instance",
-                "component": "Button",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "loading": "false",
-                  "hierarchy": "secondary",
-                  "colorScheme": "default",
-                  "size": "large",
-                  "breakpoint": "1024",
-                  "_theme": "client"
-                }
-              },
-              {
-                "name": "tertiary-button",
-                "type": "instance",
-                "component": "Button",
-                "values": {
-                  "state": "default",
-                  "disabled": "false",
-                  "loading": "false",
-                  "hierarchy": "tertiary",
-                  "colorScheme": "default",
-                  "size": "large",
-                  "breakpoint": "1024",
-                  "_theme": "client"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "when": {
-          "breakpoint": "1024",
           "_theme": "prospect"
         },
         "tree": [
@@ -367,6 +272,101 @@
                   "size": "large",
                   "breakpoint": "1024",
                   "_theme": "prospect"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "breakpoint": "1024",
+          "_theme": "client"
+        },
+        "tree": [
+          {
+            "name": "clickItems",
+            "type": "slot",
+            "children": [
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_MenuItem",
+                "values": {
+                  "state": "default",
+                  "breakpoint": "1024"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_MenuItem",
+                "values": {
+                  "state": "default",
+                  "breakpoint": "1024"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_MenuItem",
+                "values": {
+                  "state": "default",
+                  "breakpoint": "1024"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_MenuItem",
+                "values": {
+                  "state": "default",
+                  "breakpoint": "1024"
+                }
+              },
+              {
+                "name": "item",
+                "type": "instance",
+                "component": "_MenuItem",
+                "values": {
+                  "state": "default",
+                  "breakpoint": "1024"
+                }
+              }
+            ]
+          },
+          {
+            "name": "children",
+            "type": "slot",
+            "children": [
+              {
+                "name": "secondary-button",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "secondary",
+                  "colorScheme": "default",
+                  "size": "large",
+                  "breakpoint": "1024",
+                  "_theme": "client"
+                }
+              },
+              {
+                "name": "tertiary-button",
+                "type": "instance",
+                "component": "Button",
+                "values": {
+                  "state": "default",
+                  "disabled": "false",
+                  "loading": "false",
+                  "hierarchy": "tertiary",
+                  "colorScheme": "default",
+                  "size": "large",
+                  "breakpoint": "1024",
+                  "_theme": "client"
                 }
               }
             ]
@@ -863,60 +863,6 @@
       {
         "when": {
           "breakpoint": "1024",
-          "_theme": "client"
-        },
-        "styles": {
-          "modes": {
-            "Typography": "client-desktop"
-          },
-          "root": {
-            "layout": {
-              "direction": "column",
-              "clip": false,
-              "sizingH": "fixed",
-              "width": {
-                "raw": 300
-              },
-              "sizingV": "hug"
-            }
-          },
-          "secondary-button": {
-            "padding": {
-              "top": {
-                "token": "spacing/16"
-              },
-              "right": {
-                "token": "spacing/16"
-              },
-              "bottom": {
-                "token": "spacing/16"
-              },
-              "left": {
-                "token": "spacing/16"
-              }
-            }
-          },
-          "tertiary-button": {
-            "padding": {
-              "top": {
-                "token": "spacing/16"
-              },
-              "right": {
-                "token": "spacing/16"
-              },
-              "bottom": {
-                "token": "spacing/16"
-              },
-              "left": {
-                "token": "spacing/16"
-              }
-            }
-          }
-        }
-      },
-      {
-        "when": {
-          "breakpoint": "1024",
           "_theme": "prospect"
         },
         "styles": {
@@ -964,6 +910,60 @@
               },
               "left": {
                 "token": "spacing/24"
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "breakpoint": "1024",
+          "_theme": "client"
+        },
+        "styles": {
+          "modes": {
+            "Typography": "client-desktop"
+          },
+          "root": {
+            "layout": {
+              "direction": "column",
+              "clip": false,
+              "sizingH": "fixed",
+              "width": {
+                "raw": 300
+              },
+              "sizingV": "hug"
+            }
+          },
+          "secondary-button": {
+            "padding": {
+              "top": {
+                "token": "spacing/16"
+              },
+              "right": {
+                "token": "spacing/16"
+              },
+              "bottom": {
+                "token": "spacing/16"
+              },
+              "left": {
+                "token": "spacing/16"
+              }
+            }
+          },
+          "tertiary-button": {
+            "padding": {
+              "top": {
+                "token": "spacing/16"
+              },
+              "right": {
+                "token": "spacing/16"
+              },
+              "bottom": {
+                "token": "spacing/16"
+              },
+              "left": {
+                "token": "spacing/16"
               }
             }
           }

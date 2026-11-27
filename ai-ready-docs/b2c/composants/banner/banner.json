@@ -21,8 +21,8 @@
       "open": {
         "type": "enum",
         "enum": [
-          "true",
-          "false"
+          "false",
+          "true"
         ],
         "default": "true"
       },
@@ -134,102 +134,6 @@
   "variants": [
     {
       "values": {
-        "open": "true",
-        "tone": "information",
-        "breakpoint": "1024",
-        "_theme": "prospect"
-      },
-      "position": [
-        48,
-        48
-      ]
-    },
-    {
-      "values": {
-        "open": "true",
-        "tone": "information",
-        "breakpoint": "1024",
-        "_theme": "client"
-      },
-      "position": [
-        48,
-        784
-      ]
-    },
-    {
-      "values": {
-        "open": "true",
-        "tone": "information",
-        "breakpoint": "0",
-        "_theme": "prospect"
-      },
-      "position": [
-        1424,
-        48
-      ]
-    },
-    {
-      "values": {
-        "open": "true",
-        "tone": "information",
-        "breakpoint": "0",
-        "_theme": "client"
-      },
-      "position": [
-        1424,
-        784
-      ]
-    },
-    {
-      "values": {
-        "open": "true",
-        "tone": "error",
-        "breakpoint": "1024",
-        "_theme": "prospect"
-      },
-      "position": [
-        48,
-        416
-      ]
-    },
-    {
-      "values": {
-        "open": "true",
-        "tone": "error",
-        "breakpoint": "1024",
-        "_theme": "client"
-      },
-      "position": [
-        48,
-        1152
-      ]
-    },
-    {
-      "values": {
-        "open": "true",
-        "tone": "error",
-        "breakpoint": "0",
-        "_theme": "prospect"
-      },
-      "position": [
-        1424,
-        284
-      ]
-    },
-    {
-      "values": {
-        "open": "true",
-        "tone": "error",
-        "breakpoint": "0",
-        "_theme": "client"
-      },
-      "position": [
-        1424,
-        1020
-      ]
-    },
-    {
-      "values": {
         "open": "false",
         "tone": "information",
         "breakpoint": "1024",
@@ -321,6 +225,102 @@
       },
       "position": [
         1847,
+        1020
+      ]
+    },
+    {
+      "values": {
+        "open": "true",
+        "tone": "information",
+        "breakpoint": "1024",
+        "_theme": "prospect"
+      },
+      "position": [
+        48,
+        48
+      ]
+    },
+    {
+      "values": {
+        "open": "true",
+        "tone": "information",
+        "breakpoint": "1024",
+        "_theme": "client"
+      },
+      "position": [
+        48,
+        784
+      ]
+    },
+    {
+      "values": {
+        "open": "true",
+        "tone": "information",
+        "breakpoint": "0",
+        "_theme": "prospect"
+      },
+      "position": [
+        1424,
+        48
+      ]
+    },
+    {
+      "values": {
+        "open": "true",
+        "tone": "information",
+        "breakpoint": "0",
+        "_theme": "client"
+      },
+      "position": [
+        1424,
+        784
+      ]
+    },
+    {
+      "values": {
+        "open": "true",
+        "tone": "error",
+        "breakpoint": "1024",
+        "_theme": "prospect"
+      },
+      "position": [
+        48,
+        416
+      ]
+    },
+    {
+      "values": {
+        "open": "true",
+        "tone": "error",
+        "breakpoint": "1024",
+        "_theme": "client"
+      },
+      "position": [
+        48,
+        1152
+      ]
+    },
+    {
+      "values": {
+        "open": "true",
+        "tone": "error",
+        "breakpoint": "0",
+        "_theme": "prospect"
+      },
+      "position": [
+        1424,
+        284
+      ]
+    },
+    {
+      "values": {
+        "open": "true",
+        "tone": "error",
+        "breakpoint": "0",
+        "_theme": "client"
+      },
+      "position": [
+        1424,
         1020
       ]
     }

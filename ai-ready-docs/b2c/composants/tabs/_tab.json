@@ -22,8 +22,8 @@
         "enum": [
           "default",
           "hover",
-          "press",
-          "focus"
+          "focus",
+          "press"
         ],
         "default": "default"
       },
@@ -240,54 +240,6 @@
     },
     {
       "values": {
-        "state": "press",
-        "selected": "false",
-        "colorScheme": "default",
-        "breakpoint": "1024"
-      },
-      "position": [
-        48,
-        208
-      ]
-    },
-    {
-      "values": {
-        "state": "press",
-        "selected": "false",
-        "colorScheme": "default",
-        "breakpoint": "0"
-      },
-      "position": [
-        421,
-        208
-      ]
-    },
-    {
-      "values": {
-        "state": "press",
-        "selected": "false",
-        "colorScheme": "header",
-        "breakpoint": "1024"
-      },
-      "position": [
-        48,
-        616
-      ]
-    },
-    {
-      "values": {
-        "state": "press",
-        "selected": "false",
-        "colorScheme": "header",
-        "breakpoint": "0"
-      },
-      "position": [
-        421,
-        616
-      ]
-    },
-    {
-      "values": {
         "state": "focus",
         "selected": "false",
         "colorScheme": "default",
@@ -380,6 +332,54 @@
       "position": [
         537,
         696
+      ]
+    },
+    {
+      "values": {
+        "state": "press",
+        "selected": "false",
+        "colorScheme": "default",
+        "breakpoint": "1024"
+      },
+      "position": [
+        48,
+        208
+      ]
+    },
+    {
+      "values": {
+        "state": "press",
+        "selected": "false",
+        "colorScheme": "default",
+        "breakpoint": "0"
+      },
+      "position": [
+        421,
+        208
+      ]
+    },
+    {
+      "values": {
+        "state": "press",
+        "selected": "false",
+        "colorScheme": "header",
+        "breakpoint": "1024"
+      },
+      "position": [
+        48,
+        616
+      ]
+    },
+    {
+      "values": {
+        "state": "press",
+        "selected": "false",
+        "colorScheme": "header",
+        "breakpoint": "0"
+      },
+      "position": [
+        421,
+        616
       ]
     }
   ],
@@ -605,32 +605,6 @@
       },
       {
         "when": {
-          "state": "press"
-        },
-        "styles": {
-          "root": {
-            "strokeWeights": {
-              "top": {
-                "raw": 0
-              },
-              "right": {
-                "raw": 0
-              },
-              "bottom": {
-                "token": "border/width/2"
-              },
-              "left": {
-                "raw": 0
-              }
-            },
-            "background": {
-              "token": "color/gray/200"
-            }
-          }
-        }
-      },
-      {
-        "when": {
           "state": "focus"
         },
         "styles": {
@@ -661,6 +635,32 @@
               "token": "border/width/2"
             },
             "strokeAlign": "inside"
+          }
+        }
+      },
+      {
+        "when": {
+          "state": "press"
+        },
+        "styles": {
+          "root": {
+            "strokeWeights": {
+              "top": {
+                "raw": 0
+              },
+              "right": {
+                "raw": 0
+              },
+              "bottom": {
+                "token": "border/width/2"
+              },
+              "left": {
+                "raw": 0
+              }
+            },
+            "background": {
+              "token": "color/gray/200"
+            }
           }
         }
       },
@@ -852,5 +852,5 @@
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold."
     }
   ],
-  "_tool": "canopee-export-components 0.7.15"
+  "_tool": "canopee-export-components 0.7.20"
 }

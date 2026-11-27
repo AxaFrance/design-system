@@ -25,9 +25,9 @@
       "size": {
         "type": "enum",
         "enum": [
+          "x-small",
           "small",
-          "large",
-          "x-small"
+          "large"
         ],
         "default": "large"
       },
@@ -47,94 +47,6 @@
     {
       "values": {
         "colorScheme": "blue",
-        "size": "small",
-        "_animation": "1"
-      },
-      "position": [
-        40,
-        88
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "blue",
-        "size": "small",
-        "_animation": "2"
-      },
-      "position": [
-        90,
-        88
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "blue",
-        "size": "small",
-        "_animation": "3"
-      },
-      "position": [
-        140,
-        88
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "blue",
-        "size": "small",
-        "_animation": "4"
-      },
-      "position": [
-        190,
-        88
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "blue",
-        "size": "large",
-        "_animation": "1"
-      },
-      "position": [
-        40,
-        40
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "blue",
-        "size": "large",
-        "_animation": "2"
-      },
-      "position": [
-        90,
-        40
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "blue",
-        "size": "large",
-        "_animation": "3"
-      },
-      "position": [
-        140,
-        40
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "blue",
-        "size": "large",
-        "_animation": "4"
-      },
-      "position": [
-        190,
-        40
-      ]
-    },
-    {
-      "values": {
-        "colorScheme": "blue",
         "size": "x-small",
         "_animation": "1"
       },
@@ -178,90 +90,90 @@
     },
     {
       "values": {
-        "colorScheme": "white",
+        "colorScheme": "blue",
         "size": "small",
         "_animation": "1"
       },
       "position": [
         40,
-        376
+        88
       ]
     },
     {
       "values": {
-        "colorScheme": "white",
+        "colorScheme": "blue",
         "size": "small",
         "_animation": "2"
       },
       "position": [
         90,
-        376
+        88
       ]
     },
     {
       "values": {
-        "colorScheme": "white",
+        "colorScheme": "blue",
         "size": "small",
         "_animation": "3"
       },
       "position": [
         140,
-        376
+        88
       ]
     },
     {
       "values": {
-        "colorScheme": "white",
+        "colorScheme": "blue",
         "size": "small",
         "_animation": "4"
       },
       "position": [
         190,
-        376
+        88
       ]
     },
     {
       "values": {
-        "colorScheme": "white",
+        "colorScheme": "blue",
         "size": "large",
         "_animation": "1"
       },
       "position": [
         40,
-        328
+        40
       ]
     },
     {
       "values": {
-        "colorScheme": "white",
+        "colorScheme": "blue",
         "size": "large",
         "_animation": "2"
       },
       "position": [
         90,
-        328
+        40
       ]
     },
     {
       "values": {
-        "colorScheme": "white",
+        "colorScheme": "blue",
         "size": "large",
         "_animation": "3"
       },
       "position": [
         140,
-        328
+        40
       ]
     },
     {
       "values": {
-        "colorScheme": "white",
+        "colorScheme": "blue",
         "size": "large",
         "_animation": "4"
       },
       "position": [
         190,
-        328
+        40
       ]
     },
     {
@@ -310,90 +222,90 @@
     },
     {
       "values": {
-        "colorScheme": "gray",
+        "colorScheme": "white",
         "size": "small",
         "_animation": "1"
       },
       "position": [
         40,
-        232
+        376
       ]
     },
     {
       "values": {
-        "colorScheme": "gray",
+        "colorScheme": "white",
         "size": "small",
         "_animation": "2"
       },
       "position": [
         90,
-        232
+        376
       ]
     },
     {
       "values": {
-        "colorScheme": "gray",
+        "colorScheme": "white",
         "size": "small",
         "_animation": "3"
       },
       "position": [
         140,
-        232
+        376
       ]
     },
     {
       "values": {
-        "colorScheme": "gray",
+        "colorScheme": "white",
         "size": "small",
         "_animation": "4"
       },
       "position": [
         190,
-        232
+        376
       ]
     },
     {
       "values": {
-        "colorScheme": "gray",
+        "colorScheme": "white",
         "size": "large",
         "_animation": "1"
       },
       "position": [
         40,
-        184
+        328
       ]
     },
     {
       "values": {
-        "colorScheme": "gray",
+        "colorScheme": "white",
         "size": "large",
         "_animation": "2"
       },
       "position": [
         90,
-        184
+        328
       ]
     },
     {
       "values": {
-        "colorScheme": "gray",
+        "colorScheme": "white",
         "size": "large",
         "_animation": "3"
       },
       "position": [
         140,
-        184
+        328
       ]
     },
     {
       "values": {
-        "colorScheme": "gray",
+        "colorScheme": "white",
         "size": "large",
         "_animation": "4"
       },
       "position": [
         190,
-        184
+        328
       ]
     },
     {
@@ -438,6 +350,94 @@
       "position": [
         194,
         280
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "small",
+        "_animation": "1"
+      },
+      "position": [
+        40,
+        232
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "small",
+        "_animation": "2"
+      },
+      "position": [
+        90,
+        232
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "small",
+        "_animation": "3"
+      },
+      "position": [
+        140,
+        232
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "small",
+        "_animation": "4"
+      },
+      "position": [
+        190,
+        232
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "large",
+        "_animation": "1"
+      },
+      "position": [
+        40,
+        184
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "large",
+        "_animation": "2"
+      },
+      "position": [
+        90,
+        184
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "large",
+        "_animation": "3"
+      },
+      "position": [
+        140,
+        184
+      ]
+    },
+    {
+      "values": {
+        "colorScheme": "gray",
+        "size": "large",
+        "_animation": "4"
+      },
+      "position": [
+        190,
+        184
       ]
     }
   ],
@@ -578,62 +578,6 @@
       },
       {
         "when": {
-          "size": "small"
-        },
-        "styles": {
-          "root": {
-            "layout": {
-              "clip": false,
-              "sizingH": "fixed",
-              "width": {
-                "token": "size/24"
-              },
-              "sizingV": "fixed",
-              "height": {
-                "token": "size/24"
-              }
-            }
-          },
-          "content": {
-            "layout": {
-              "sizingH": "fixed",
-              "width": {
-                "raw": 13
-              },
-              "sizingV": "fixed",
-              "height": {
-                "raw": 13
-              }
-            }
-          },
-          "track": {
-            "layout": {
-              "sizingH": "fixed",
-              "width": {
-                "raw": 13
-              },
-              "sizingV": "fixed",
-              "height": {
-                "raw": 13
-              }
-            }
-          },
-          "arc": {
-            "layout": {
-              "sizingH": "fixed",
-              "width": {
-                "raw": 13
-              },
-              "sizingV": "fixed",
-              "height": {
-                "raw": 6.5
-              }
-            }
-          }
-        }
-      },
-      {
-        "when": {
           "size": "x-small"
         },
         "styles": {
@@ -689,6 +633,62 @@
               "sizingV": "fixed",
               "height": {
                 "raw": 5
+              }
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "small"
+        },
+        "styles": {
+          "root": {
+            "layout": {
+              "clip": false,
+              "sizingH": "fixed",
+              "width": {
+                "token": "size/24"
+              },
+              "sizingV": "fixed",
+              "height": {
+                "token": "size/24"
+              }
+            }
+          },
+          "content": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 13
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 13
+              }
+            }
+          },
+          "track": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 13
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 13
+              }
+            }
+          },
+          "arc": {
+            "layout": {
+              "sizingH": "fixed",
+              "width": {
+                "raw": 13
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 6.5
               }
             }
           }
@@ -749,5 +749,5 @@
       "message": "Propriété hors nomenclature (tiret bas) : un outil qui relie Figma au code l'ignore."
     }
   ],
-  "_tool": "canopee-export-components 0.7.15"
+  "_tool": "canopee-export-components 0.7.20"
 }
