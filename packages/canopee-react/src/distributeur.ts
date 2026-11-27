@@ -49,6 +49,7 @@ export { Select, SelectInput } from "./distributeur/Form/Select";
 export { Text, TextInput } from "./distributeur/Form/Text";
 export { Textarea, TextareaInput } from "./distributeur/Form/Textarea";
 export { Footer } from "./distributeur/Layout/Footer";
+export { FileDownload } from "./distributeur/FileDownload/FileDownload";
 export {
   Header,
   HeaderTitle,
