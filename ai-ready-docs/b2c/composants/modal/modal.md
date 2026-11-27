@@ -160,11 +160,14 @@ Ces noms désignent Modal. Le seul nom à employer est Modal.
 - **1.0.0 - 24/11/26.** La croix est un IconButton tertiary avec l'icône icon/cross, et les actions sont des Button. Ils remplacent les anciens ClickIcon, ButtonPrimary et ButtonSecondary de Figma, archivés.
 - **1.0.0 - 24/11/26.** Les trois Button suivent le code : tertiary, secondary et primary, chacun affiché par son booléen, à la grande taille que la fiche Button prévoit pour une Modal. Le sous-titre et l'icône sont affichés par défaut, et le Button tertiary masqué.
 - **1.0.0 - 24/11/26.** L'icône est un asset de Fondations Canopée, posé dans un rond color/gray/050. L'ancien composant Icon de Figma, qui l'entourait, n'existe plus.
-- **1.0.0 - 24/11/26.** scrollable remplace l'ancienne propriété _scrollable, qui ne servait qu'au prototype. En scrollable=true, le slot a une hauteur fixe qui défile dans un prototype, avec une barre native/Scrollbar et un trait au-dessus des Button. Les marges autour des Button se resserrent comme dans le code.
-- **1.0.0 - 24/11/26.** Dans Figma, la fenêtre a une largeur d'exemple de 720 px en desktop, et le slot des hauteurs d'exemple. Dans une maquette, la hauteur suit le contenu posé dans le slot.
+- **1.0.0 - 24/11/26.** scrollable remplace l'ancienne propriété _scrollable, qui ne servait qu'au prototype. En scrollable=true, le body a une hauteur fixe qui défile dans un prototype, avec une barre native/Scrollbar et un trait au-dessus des Button. Les marges autour des Button se resserrent comme dans le code.
+- **1.0.0 - 24/11/26.** Dans Figma, la fenêtre a une largeur d'exemple de 720 px en desktop. Dans une maquette, la hauteur suit le contenu posé dans le slot.
 - **1.0.0 - 24/11/26.** En mobile, les Button restent sur une ligne et se partagent la largeur, comme dans le code, alors qu'ailleurs ils s'empilent en colonne.
 - **1.0.0 - 25/11/26.** Le titre passe en color/gray/900 et l'icône en color/gray/800, car color/blue/700 est réservé aux éléments interactifs.
 - **1.0.0 - 27/11/26.** La Modal a une propriété _theme, car ses Button changent de forme et de typographie d'un thème à l'autre. La croix reste ronde dans les deux thèmes, comme dans le code (`ClickIconCommon.css:7`). Le designer règle les Button dans le panneau de la Modal, où ils sont exposés. La croix y est exposée aussi, mais sa forme ronde ne change pas d'un thème à l'autre.
+- **1.0.0 - 27/11/26.** Le voile est un calque overlay en color/gray/800, à 48 % d'opacité, comme le voile du thème client dans le code (`ModalLF.css:9`). L'opacité est portée par le calque, pour que les instances la gardent.
+- **1.0.0 - 27/11/26.** Le slot children a un auto layout vertical et suit la hauteur de son contenu, avec 100 px au minimum pour qu'un slot vide reste visible.
+- **1.0.0 - 27/11/26.** Le titre et la croix sont centrés verticalement dans le header, pour que le titre seul, sans icône ni subtitle, reste aligné sur la croix.
 
 ## Points ouverts
 
@@ -179,6 +182,7 @@ Ces noms désignent Modal. Le seul nom à employer est Modal.
 - **Clic hors de la fenêtre pendant une saisie.** Fermer la Modal sur un clic hors de la fenêtre peut faire perdre une saisie en cours. En attendant : signaler.
 - **Couleurs du titre et de l'icône dans le code.** Le Heading du code met un titre de niveau 2 en `--blue-1000` (`HeadingApollo.css:19`), et son icône aussi (`IconCommon.css:64`), alors que Figma les met en color/gray/900 et color/gray/800. En attendant : signaler.
 - **Dialog sur une Modal.** Aucune règle de Canopée ne dit si un Dialog peut s'ouvrir par-dessus une Modal, par exemple pour confirmer l'abandon d'une saisie. En attendant : signaler.
+- **Voile du thème prospect dans le code.** Le code du thème prospect a un voile bleu à 40 % (`ModalApollo.css:8`), alors que Figma garde le voile gris des deux thèmes. En attendant : signaler.
 
 ## Pour l'IA qui lit cette fiche
 

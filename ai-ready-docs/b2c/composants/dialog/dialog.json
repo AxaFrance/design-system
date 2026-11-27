@@ -140,6 +140,10 @@
         "when": {},
         "tree": [
           {
+            "name": "overlay",
+            "type": "rectangle"
+          },
+          {
             "name": "container",
             "type": "frame",
             "children": [
@@ -222,6 +226,10 @@
         },
         "tree": [
           {
+            "name": "overlay",
+            "type": "rectangle"
+          },
+          {
             "name": "container",
             "type": "frame",
             "children": [
@@ -304,6 +312,10 @@
         },
         "tree": [
           {
+            "name": "overlay",
+            "type": "rectangle"
+          },
+          {
             "name": "container",
             "type": "frame",
             "children": [
@@ -385,6 +397,10 @@
           "_theme": "client"
         },
         "tree": [
+          {
+            "name": "overlay",
+            "type": "rectangle"
+          },
           {
             "name": "container",
             "type": "frame",
@@ -476,9 +492,6 @@
         "Typography": "prospect-mobile"
       },
       "root": {
-        "background": {
-          "token": "color/gray/800"
-        },
         "radius": {
           "raw": 0
         },
@@ -503,6 +516,29 @@
           "direction": "row",
           "crossAlign": "center",
           "clip": true,
+          "sizingH": "fixed",
+          "width": {
+            "raw": 375
+          },
+          "sizingV": "fixed",
+          "height": {
+            "raw": 800
+          }
+        }
+      },
+      "overlay": {
+        "background": {
+          "token": "color/gray/800"
+        },
+        "opacity": 0.48,
+        "layout": {
+          "absolute": true,
+          "x": 0,
+          "y": 0,
+          "constraints": {
+            "horizontal": "stretch",
+            "vertical": "stretch"
+          },
           "sizingH": "fixed",
           "width": {
             "raw": 375
@@ -545,6 +581,7 @@
         },
         "layout": {
           "direction": "row",
+          "crossAlign": "center",
           "sizingH": "fill"
         }
       },
@@ -554,6 +591,7 @@
         },
         "layout": {
           "direction": "row",
+          "crossAlign": "center",
           "sizingH": "fill",
           "sizingV": "fill"
         }
@@ -740,6 +778,25 @@
               "mainAlign": "center",
               "crossAlign": "center",
               "clip": true,
+              "sizingH": "fixed",
+              "width": {
+                "raw": 825
+              },
+              "sizingV": "fixed",
+              "height": {
+                "raw": 1262
+              }
+            }
+          },
+          "overlay": {
+            "layout": {
+              "absolute": true,
+              "x": 0,
+              "y": 0,
+              "constraints": {
+                "horizontal": "stretch",
+                "vertical": "stretch"
+              },
               "sizingH": "fixed",
               "width": {
                 "raw": 825

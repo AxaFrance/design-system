@@ -95,6 +95,7 @@ Ces noms désignent Dialog. Le seul nom à employer est Dialog.
 - **1.0.0 - 24/11/26.** Dans Figma, la fenêtre a une largeur d'exemple de 480 px en desktop. Dans une maquette, sa hauteur suit le titre et la description.
 - **1.0.0 - 25/11/26.** Le titre passe en color/gray/900, car color/blue/700 est réservé aux éléments interactifs.
 - **1.0.0 - 27/11/26.** Le Dialog a une propriété _theme, car ses Button changent de forme et de typographie d'un thème à l'autre. Le designer règle les Button dans le panneau du Dialog, où ils sont exposés.
+- **1.0.0 - 27/11/26.** Le voile reprend celui de la Modal : un calque overlay en color/gray/800, à 48 % d'opacité. L'opacité est portée par le calque, pour que les instances la gardent.
 
 ## Points ouverts
 
