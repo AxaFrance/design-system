@@ -1208,7 +1208,7 @@
         "breakpoint": "0"
       },
       "modes": {
-        "Typography": "client-mobile"
+        "Typography": "prospect-mobile"
       },
       "root": {
         "radius": {
@@ -1429,7 +1429,7 @@
         },
         "styles": {
           "modes": {
-            "Typography": "client-desktop"
+            "Typography": "prospect-desktop"
           },
           "tag": {
             "padding": {
@@ -1771,5 +1771,5 @@
       "message": "Valeur absente de toutes les versions publiées de Canopée : title/1/semibold."
     }
   ],
-  "_tool": "canopee-export-components 0.7.17"
+  "_tool": "canopee-export-components 0.7.20"
 }

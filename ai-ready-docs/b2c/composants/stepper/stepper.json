@@ -222,6 +222,44 @@
             "component": "_FormHelperText",
             "values": {
               "tone": "neutral",
+              "breakpoint": "0"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "tree": [
+          {
+            "name": "header",
+            "type": "frame",
+            "children": [
+              {
+                "name": "subtitle",
+                "type": "text"
+              },
+              {
+                "name": "title",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "name": "progress",
+            "type": "instance",
+            "component": "_StepperProgress",
+            "values": {
+              "stepsCount": "8"
+            }
+          },
+          {
+            "name": "message",
+            "type": "instance",
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "neutral",
               "breakpoint": "1024"
             }
           }
@@ -530,5 +568,5 @@
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/regular."
     }
   ],
-  "_tool": "canopee-export-components 0.7.15"
+  "_tool": "canopee-export-components 0.7.20"
 }

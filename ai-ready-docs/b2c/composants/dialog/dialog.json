@@ -720,9 +720,6 @@
           "breakpoint": "1024"
         },
         "styles": {
-          "modes": {
-            "Typography": "prospect-desktop"
-          },
           "root": {
             "padding": {
               "top": {
@@ -817,6 +814,9 @@
           "_theme": "prospect"
         },
         "styles": {
+          "modes": {
+            "Typography": "prospect-desktop"
+          },
           "secondary-button": {
             "padding": {
               "top": {
@@ -857,6 +857,9 @@
           "_theme": "client"
         },
         "styles": {
+          "modes": {
+            "Typography": "client-desktop"
+          },
           "secondary-button": {
             "padding": {
               "top": {
@@ -897,6 +900,9 @@
           "_theme": "client"
         },
         "styles": {
+          "modes": {
+            "Typography": "client-mobile"
+          },
           "secondary-button": {
             "padding": {
               "top": {

@@ -34,7 +34,7 @@
         "_theme": "client"
       },
       "position": [
-        1258,
+        795,
         40
       ]
     },
@@ -44,7 +44,7 @@
         "_theme": "prospect"
       },
       "position": [
-        439,
+        40,
         40
       ]
     },
@@ -54,7 +54,7 @@
         "_theme": "client"
       },
       "position": [
-        859,
+        1135,
         40
       ]
     },
@@ -64,7 +64,7 @@
         "_theme": "prospect"
       },
       "position": [
-        40,
+        380,
         40
       ]
     }
@@ -1148,5 +1148,5 @@
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold/line-height, dans un composant inclus."
     }
   ],
-  "_tool": "canopee-export-components 0.7.17"
+  "_tool": "canopee-export-components 0.7.20"
 }

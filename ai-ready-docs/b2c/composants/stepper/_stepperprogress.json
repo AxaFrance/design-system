@@ -42,6 +42,48 @@
           "showPercentage",
           "value"
         ]
+      },
+      {
+        "from": "ProgressBar",
+        "props": [
+          "showPercentage",
+          "value"
+        ]
+      },
+      {
+        "from": "ProgressBar",
+        "props": [
+          "showPercentage",
+          "value"
+        ]
+      },
+      {
+        "from": "ProgressBar",
+        "props": [
+          "showPercentage",
+          "value"
+        ]
+      },
+      {
+        "from": "ProgressBar",
+        "props": [
+          "showPercentage",
+          "value"
+        ]
+      },
+      {
+        "from": "ProgressBar",
+        "props": [
+          "showPercentage",
+          "value"
+        ]
+      },
+      {
+        "from": "ProgressBar",
+        "props": [
+          "showPercentage",
+          "value"
+        ]
       }
     ]
   },
@@ -822,17 +864,17 @@
   },
   "issues": [
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold, dans un composant inclus."
     },
     {
-      "level": "warning",
+      "level": "info",
       "rule": "token-value-unpublished",
       "where": "structure.uses",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold/line-height, dans un composant inclus."
     }
   ],
-  "_tool": "canopee-export-components 0.7.6"
+  "_tool": "canopee-export-components 0.7.20"
 }

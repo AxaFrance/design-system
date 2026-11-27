@@ -286,9 +286,6 @@
                 "raw": 40
               }
             }
-          },
-          "label": {
-            "textStyle": "label/1/semibold"
           }
         }
       },
@@ -424,10 +421,6 @@
     }
   },
   "textStyles": {
-    "label/1/semibold": {
-      "library": null,
-      "key": "93f55f2c2de90c39788c6b9212105e0463dd959d"
-    },
     "label/2/semibold": {
       "library": null,
       "key": "fb08d79b8680b675f8f78bedc146317e675eb5dc"
@@ -454,15 +447,9 @@
     {
       "level": "info",
       "rule": "token-value-unpublished",
-      "where": "textStyles.label/1/semibold",
-      "message": "Valeur absente de toutes les versions publiées de Canopée : label/1/semibold."
-    },
-    {
-      "level": "info",
-      "rule": "token-value-unpublished",
       "where": "textStyles.label/2/semibold",
       "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold."
     }
   ],
-  "_tool": "canopee-export-components 0.7.17"
+  "_tool": "canopee-export-components 0.7.20"
 }

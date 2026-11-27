@@ -67,8 +67,7 @@
           "showPrevNext",
           "items",
           "counter",
-          "breakpoint",
-          "_theme"
+          "breakpoint"
         ]
       },
       {
@@ -253,8 +252,7 @@
                     "hidden": true,
                     "component": "Pagination",
                     "values": {
-                      "breakpoint": "0",
-                      "_theme": "prospect"
+                      "breakpoint": "0"
                     }
                   },
                   {
@@ -319,8 +317,7 @@
                     "hidden": true,
                     "component": "Pagination",
                     "values": {
-                      "breakpoint": "0",
-                      "_theme": "prospect"
+                      "breakpoint": "0"
                     }
                   },
                   {
@@ -385,8 +382,7 @@
                     "hidden": true,
                     "component": "Pagination",
                     "values": {
-                      "breakpoint": "0",
-                      "_theme": "prospect"
+                      "breakpoint": "0"
                     }
                   },
                   {
@@ -451,8 +447,7 @@
                     "hidden": true,
                     "component": "Pagination",
                     "values": {
-                      "breakpoint": "0",
-                      "_theme": "prospect"
+                      "breakpoint": "0"
                     }
                   },
                   {
@@ -517,8 +512,7 @@
                     "hidden": true,
                     "component": "Pagination",
                     "values": {
-                      "breakpoint": "0",
-                      "_theme": "prospect"
+                      "breakpoint": "0"
                     }
                   },
                   {
@@ -583,8 +577,7 @@
                     "hidden": true,
                     "component": "Pagination",
                     "values": {
-                      "breakpoint": "0",
-                      "_theme": "prospect"
+                      "breakpoint": "0"
                     }
                   },
                   {
@@ -649,8 +642,7 @@
                     "hidden": true,
                     "component": "Pagination",
                     "values": {
-                      "breakpoint": "0",
-                      "_theme": "prospect"
+                      "breakpoint": "0"
                     }
                   },
                   {
@@ -715,8 +707,7 @@
                     "hidden": true,
                     "component": "Pagination",
                     "values": {
-                      "breakpoint": "0",
-                      "_theme": "prospect"
+                      "breakpoint": "0"
                     }
                   },
                   {
@@ -781,8 +772,7 @@
                     "hidden": true,
                     "component": "Pagination",
                     "values": {
-                      "breakpoint": "0",
-                      "_theme": "prospect"
+                      "breakpoint": "0"
                     }
                   },
                   {
@@ -847,8 +837,7 @@
                     "hidden": true,
                     "component": "Pagination",
                     "values": {
-                      "breakpoint": "0",
-                      "_theme": "prospect"
+                      "breakpoint": "0"
                     }
                   },
                   {
@@ -1429,5 +1418,5 @@
       "message": "Valeur absente de toutes les versions publiées de Canopée : title/1/semibold."
     }
   ],
-  "_tool": "canopee-export-components 0.7.15"
+  "_tool": "canopee-export-components 0.7.20"
 }

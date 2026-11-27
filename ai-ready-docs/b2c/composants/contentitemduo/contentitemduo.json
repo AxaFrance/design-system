@@ -166,7 +166,7 @@
       "value": {
         "as": "children",
         "default": {
-          "text": "Réponses"
+          "text": "Value"
         },
         "controls": [
           {

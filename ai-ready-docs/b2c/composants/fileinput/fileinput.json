@@ -656,7 +656,7 @@
             "type": "instance",
             "component": "_FormLabel",
             "values": {
-              "breakpoint": "1024"
+              "breakpoint": "0"
             }
           },
           {
@@ -1031,6 +1031,9 @@
         "tone": "neutral",
         "breakpoint": "0"
       },
+      "modes": {
+        "Typography": "prospect-mobile"
+      },
       "root": {
         "radius": {
           "raw": 0
@@ -1231,6 +1234,9 @@
           "breakpoint": "1024"
         },
         "styles": {
+          "modes": {
+            "Typography": "prospect-desktop"
+          },
           "dropzone": {
             "padding": {
               "top": {
@@ -1511,7 +1517,12 @@
       "key": "ce6bf2d97aff5d9deefb5aa4d0763b09325bca29"
     }
   },
-  "modeCollections": {},
+  "modeCollections": {
+    "Typography": {
+      "library": "Fondations Canopée",
+      "key": "be959715ddac77dedafba55e157014b702551c02"
+    }
+  },
   "issues": [
     {
       "level": "info",
@@ -1598,5 +1609,5 @@
       "message": "Valeur absente de toutes les versions publiées de Canopée : body/1/regular."
     }
   ],
-  "_tool": "canopee-export-components 0.7.15"
+  "_tool": "canopee-export-components 0.7.20"
 }
