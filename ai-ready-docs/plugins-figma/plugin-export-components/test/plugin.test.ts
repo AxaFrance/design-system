@@ -4251,6 +4251,51 @@ describe("A template, recognized by its page in the library", () => {
     ]);
     expect(sheet.meta.extends).toBe("Button");
   });
+  it("an exposed instance placed in another frame from one variant to the next is listed once", async () => {
+    const d = inPage("Content", { description: "La donnée." });
+    const set = d.selection[0];
+    const helper = connect(
+      layer(
+        "COMPONENT",
+        "_FormHelperText",
+        { id: "C:71", key: "KEY-FHT", width: 200, height: 24 },
+        [layer("TEXT", "message", { characters: "x", autoRename: false })],
+      ),
+    );
+    const first = set.children[0];
+    const box = connect(layer("FRAME", "content", {}), first);
+    const inBox = connect(
+      layer("INSTANCE", "message", {
+        mainComponent: helper,
+        isExposedInstance: true,
+        componentProperties: {},
+      }),
+      box,
+    );
+    box.children = [inBox];
+    first.children.push(box);
+    const other = connect(
+      layer("COMPONENT", "Size=Large, state=enabled, isSelected=false", {
+        x: 0,
+        y: 100,
+      }),
+      set,
+    );
+    const atRoot = connect(
+      layer("INSTANCE", "message", {
+        mainComponent: helper,
+        isExposedInstance: true,
+        componentProperties: {},
+      }),
+      other,
+    );
+    other.children = [atRoot];
+    set.children.push(other);
+    const { sheet } = await exportSheet(d);
+    expect(sheet.api.exposed.map((e: MockData) => e.from)).toStrictEqual([
+      "_FormHelperText",
+    ]);
+  });
   it("an instance exposed inside another exposed instance is not listed again", async () => {
     const d = inPage("Forms", { description: "Le champ." });
     const variant = d.selection[0].children[0];

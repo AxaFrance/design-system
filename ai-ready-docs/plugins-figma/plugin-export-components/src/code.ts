@@ -50,7 +50,7 @@ const post = (message: PluginToUiMessage): void =>
   figma.ui.postMessage(message);
 
 // >>> START EXTRACTION
-const VERSION = "0.7.19";
+const VERSION = "0.7.20";
 const FORMAT = "0.7";
 // The library written in the JSON. The Figma file name does not fit: in a Figma
 // branch, it is the name of the branch. To review for the B2B components.
@@ -2175,22 +2175,15 @@ async function extractDetail(
     return false;
   };
   // every variant is read, the default one first: an instance exposed only in some variants,
-  // like the actions of a ContentItem, is listed once, by its path and its component
-  const exposedPath = (n: Layer, root: Layer): string => {
-    const path: string[] = [];
-    for (let x: Layer | null | undefined = n; x && x !== root; x = x.parent) {
-      const parent = x.parent as unknown as Layer | null | undefined;
-      const siblings: readonly Layer[] = (parent && parent.children) || [];
-      const same = siblings.filter((c: Layer) => c.name === x!.name);
-      path.unshift(x.name + "#" + Math.max(0, same.indexOf(x)));
-    }
-    return path.join("/");
-  };
+  // like the actions of a ContentItem, is listed once. An instance is known by its name and
+  // its rank among the exposed instances of the same name in its variant, whatever its frame,
+  // and by its component.
   const seenExposed = new Set<string>();
   const exposedRoots = [figmaDef].concat(
     variantNodes.filter((v) => v !== figmaDef),
   );
-  for (const root of exposedRoots)
+  for (const root of exposedRoots) {
+    const ranks: Record<string, number> = {};
     for (const n of findAll(
       root,
       (x) => x.type === "INSTANCE" && !!x.isExposedInstance,
@@ -2198,7 +2191,8 @@ async function extractDetail(
       if (insideInstance(n)) continue;
       const m = await readMainComponent(ctx, n);
       if (!m) continue;
-      const exposedKey = exposedPath(n, root) + "|" + componentName(m);
+      const rank = (ranks[n.name] = (ranks[n.name] || 0) + 1);
+      const exposedKey = n.name + "#" + rank + "|" + componentName(m);
       if (seenExposed.has(exposedKey)) continue;
       seenExposed.add(exposedKey);
       const small =
@@ -2211,6 +2205,7 @@ async function extractDetail(
       exposedLayers.push(n);
       if (small) smallLayers.add(n);
     }
+  }
   if (exposedLayers.length) {
     const entries = [];
     for (const n of exposedLayers) {
