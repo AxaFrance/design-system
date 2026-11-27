@@ -20,7 +20,7 @@ jobs:
       - name: Build packages
         run: npm run build
 
-      - uses: chromaui/action@5d18868345f53a8f61258ad393396c7e169100fd # v18.14.4
+      - uses: chromaui/action@25d2d37fcbe164dfbf5479a432fbd73d03bae733 # v18.15.2
         name: Run Chromatic for design-system-slash-react
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_SLASH_REACT }}
@@ -31,7 +31,7 @@ jobs:
           skip: "@(renovate/**|dependabot/**)"
           autoAcceptChanges: "main"
 
-      - uses: chromaui/action@5d18868345f53a8f61258ad393396c7e169100fd # v18.14.4
+      - uses: chromaui/action@25d2d37fcbe164dfbf5479a432fbd73d03bae733 # v18.15.2
         name: Run Chromatic for design-system-lookandfeel-react
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_LOOKANDFEEL_REACT }}
@@ -41,7 +41,7 @@ jobs:
           onlyChanged: true
           skip: "@(renovate/**|dependabot/**)"
           autoAcceptChanges: "main"
-      - uses: chromaui/action@5d18868345f53a8f61258ad393396c7e169100fd # v18.14.4
+      - uses: chromaui/action@25d2d37fcbe164dfbf5479a432fbd73d03bae733 # v18.15.2
         name: Run Chromatic for design-system-apollo-react
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_APOLLO_REACT }}
