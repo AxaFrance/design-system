@@ -12,11 +12,11 @@ Le Link est un texte cliquable qui mène vers une autre page, un autre endroit d
 
 - Mener vers une autre page, un autre endroit de la page ou une ressource, comme un document à télécharger.
 - Proposer un autre chemin quand l'utilisateur est bloqué. Exemple : « Trouver le numéro Siret » sous le champ Siret.
-- Les actions « Modifier » et « En savoir plus » d'un _FormLabel, et « Voir plus » et « Voir moins » d'un Banner. Le code rend alors le Link en `<button>`.
+- Une action secondaire, posée à côté du texte qu'elle complète, comme « En savoir plus », « Modifier » ou « Voir plus ». Exemples : les actions d'un _FormLabel, d'un Banner ou d'un ContentItemDuo. Le code rend alors le Link en `<button>`.
 
 ### À ne pas utiliser pour
 
-- Déclencher une action, comme envoyer un formulaire : prendre Button. Les actions d'un _FormLabel et d'un Banner sont les seules exceptions.
+- Une action principale, comme envoyer un formulaire : prendre Button.
 - Une navigation qui doit avoir l'apparence d'un bouton : prendre Button dans la maquette. Le code garde alors un Link, voir la rubrique Code.
 
 ## Règles selon les propriétés
@@ -85,7 +85,7 @@ Le libellé se construit d'une de ces façons :
 
 ## Accessibilité
 
-Un élément `<a>` avec un `href`, de rôle ARIA link. Pour une action d'un _FormLabel ou d'un Banner, un élément `<button>`, de rôle ARIA button.
+Un élément `<a>` avec un `href`, de rôle ARIA link. Pour une action secondaire, un élément `<button>`, de rôle ARIA button.
 
 - Le nom accessible est le libellé. Quand le libellé visible est peu explicite, comme « En savoir plus », le nom accessible le complète pour dire le sujet. Exemple : « En savoir plus sur la demande de carte grise ». La façon de le compléter : Non documenté.
 - Chaque Link s'atteint avec la touche Tab, dans un ordre qui suit la lecture de la page.
@@ -155,13 +155,14 @@ Ces noms désignent Link. Le seul nom à employer est Link.
 - **1.0.0 - 17/11/26.** Une navigation qui doit avoir l'apparence d'un bouton passe par Button dans la maquette, et par un Link en variante `button-primary`, `button-secondary`… dans le code, pour rester un lien. MUI et Polaris font de même, avec un bouton qui accepte une adresse.
 - **1.0.0 - 24/11/26.** « Voir plus » et « Voir moins » d'un Banner passent aussi par un Link small, rendu en `<button>` dans le code, comme les actions de _FormLabel.
 - **1.0.0 - 25/11/26.** Le texte, le soulignement et l'icône du Link reprennent color/blue/700, la couleur de la marque, déjà utilisée par le code. Cette décision remplace celle du 17/11/26.
+- **1.0.0 - 27/11/26.** Un Link peut déclencher une action secondaire, posée à côté du texte qu'elle complète, et non plus seulement dans _FormLabel et Banner. Le « En savoir plus » de ContentItemDuo en est un exemple. Une action principale reste un Button.
 
 ## Points ouverts
 
 - **Graisse dans le code.** Le code met le Link en regular dans le thème client, sauf quand il ouvre un nouvel onglet, et en colorScheme=inverse dans les deux thèmes. Figma le met en semibold partout. En attendant : signaler.
 - **Survol dans le code.** Le code change la couleur du Link au survol et garde un soulignement de 1 px. En attendant : rien ne change à l'usage, l'écart se corrige dans le code.
 - **Focus dans le code.** L'anneau de focus est en `--blue-650` et à 3 px du Link dans le code, contre color/blue/400 et 2 px dans Figma. En attendant : rien ne change à l'usage, l'écart se corrige dans le code.
-- **Fenêtre modale.** Dans l'ancienne documentation du B2C, un Link comme « En savoir plus » ouvre une fenêtre modale. Le plugin Copilot réserve Button à l'ouverture d'une fenêtre modale. Seules les actions de _FormLabel et de Banner sont tranchées : un Link rendu en `<button>`. En attendant : signaler pour les autres cas.
+- **Fenêtre modale.** Dans l'ancienne documentation du B2C, un Link comme « En savoir plus » ouvre une fenêtre modale. Le plugin Copilot réserve Button à l'ouverture d'une fenêtre modale. Rien ne dit encore si une action secondaire en Link peut ouvrir une fenêtre modale. En attendant : signaler.
 - **Taille small dans le code.** Le code n'a qu'une taille de Link (`LinkCommon.css:8`). En attendant : signaler.
 - **Icônes.** Aucune source ne dit quand utiliser l'icône de gauche hors d'un _FormLabel, ni une autre icône que icon/open-in-new à droite. En attendant : signaler.
 - **Nouvel onglet.** L'icône open_in_new du code n'a pas de texte alternatif : un lecteur d'écran n'annonce pas l'ouverture dans un nouvel onglet. En attendant : signaler.

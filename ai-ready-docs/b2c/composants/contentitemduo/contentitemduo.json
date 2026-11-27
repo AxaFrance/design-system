@@ -1,0 +1,741 @@
+{
+  "formatVersion": "0.7",
+  "meta": {
+    "name": "ContentItemDuo",
+    "version": "1.0.0",
+    "tokensVersion": null,
+    "type": "composed",
+    "extends": "_FormHelperText",
+    "figmaKey": "1499f0f99052a33b666c912513a6c485d722b35e",
+    "library": "B2C",
+    "breakpoints": [
+      0,
+      1024
+    ],
+    "documentationLinks": [
+      "https://github.com/AxaFrance/design-system/blob/main/ai-ready-docs/b2c/composants/contentitemduo/contentitemduo.md"
+    ]
+  },
+  "api": {
+    "props": {
+      "size": {
+        "type": "enum",
+        "enum": [
+          "large",
+          "small"
+        ],
+        "default": "large"
+      },
+      "orientation": {
+        "type": "enum",
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "default": "horizontal"
+      },
+      "showButton": {
+        "type": "boolean",
+        "default": true,
+        "controls": [
+          {
+            "layer": "button",
+            "attribute": "visible"
+          }
+        ]
+      },
+      "showMessage": {
+        "type": "boolean",
+        "default": false,
+        "controls": [
+          {
+            "layer": "message",
+            "attribute": "visible"
+          }
+        ]
+      }
+    },
+    "exposed": [
+      {
+        "from": "_FormHelperText",
+        "props": [
+          "showIcon",
+          "message",
+          "tone",
+          "breakpoint"
+        ]
+      },
+      {
+        "from": "Link",
+        "props": [
+          "rightIcon",
+          "leftIcon",
+          "label",
+          "showRightIcon",
+          "showLeftIcon",
+          "state",
+          "colorScheme",
+          "size",
+          "breakpoint"
+        ]
+      }
+    ]
+  },
+  "variants": [
+    {
+      "values": {
+        "size": "large",
+        "breakpoint": "1024",
+        "orientation": "horizontal"
+      },
+      "position": [
+        48,
+        48
+      ]
+    },
+    {
+      "values": {
+        "size": "large",
+        "breakpoint": "1024",
+        "orientation": "vertical"
+      },
+      "position": [
+        48,
+        144
+      ]
+    },
+    {
+      "values": {
+        "size": "large",
+        "breakpoint": "0",
+        "orientation": "horizontal"
+      },
+      "position": [
+        699,
+        48
+      ]
+    },
+    {
+      "values": {
+        "size": "large",
+        "breakpoint": "0",
+        "orientation": "vertical"
+      },
+      "position": [
+        699,
+        136
+      ]
+    },
+    {
+      "values": {
+        "size": "small",
+        "breakpoint": "1024",
+        "orientation": "horizontal"
+      },
+      "position": [
+        48,
+        240
+      ]
+    },
+    {
+      "values": {
+        "size": "small",
+        "breakpoint": "0",
+        "orientation": "horizontal"
+      },
+      "position": [
+        699,
+        228
+      ]
+    }
+  ],
+  "structure": {
+    "slots": {
+      "label": {
+        "as": "children",
+        "default": {
+          "text": "Label"
+        },
+        "controls": [
+          {
+            "layer": "label",
+            "attribute": "text"
+          }
+        ]
+      },
+      "value": {
+        "as": "children",
+        "default": {
+          "text": "Réponses"
+        },
+        "controls": [
+          {
+            "layer": "value",
+            "attribute": "text"
+          }
+        ]
+      }
+    },
+    "trees": [
+      {
+        "when": {},
+        "tree": [
+          {
+            "name": "label",
+            "type": "text"
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "value",
+                "type": "text"
+              },
+              {
+                "name": "message",
+                "type": "instance",
+                "hidden": true,
+                "component": "_FormHelperText",
+                "values": {
+                  "tone": "warning",
+                  "breakpoint": "0"
+                }
+              },
+              {
+                "name": "button",
+                "type": "instance",
+                "component": "Link",
+                "values": {
+                  "state": "default",
+                  "colorScheme": "default",
+                  "size": "small",
+                  "breakpoint": "0"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "breakpoint": "1024",
+          "orientation": "horizontal"
+        },
+        "tree": [
+          {
+            "name": "label",
+            "type": "text"
+          },
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "value",
+                "type": "text"
+              },
+              {
+                "name": "message",
+                "type": "instance",
+                "hidden": true,
+                "component": "_FormHelperText",
+                "values": {
+                  "tone": "warning",
+                  "breakpoint": "1024"
+                }
+              },
+              {
+                "name": "button",
+                "type": "instance",
+                "component": "Link",
+                "values": {
+                  "state": "default",
+                  "colorScheme": "default",
+                  "size": "small",
+                  "breakpoint": "1024"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "size": "large",
+          "breakpoint": "1024",
+          "orientation": "vertical"
+        },
+        "tree": [
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "label",
+                "type": "text"
+              },
+              {
+                "name": "button",
+                "type": "instance",
+                "component": "Link",
+                "values": {
+                  "state": "default",
+                  "colorScheme": "default",
+                  "size": "small",
+                  "breakpoint": "1024"
+                }
+              }
+            ]
+          },
+          {
+            "name": "value",
+            "type": "text"
+          },
+          {
+            "name": "message",
+            "type": "instance",
+            "hidden": true,
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "warning",
+              "breakpoint": "1024"
+            }
+          }
+        ]
+      },
+      {
+        "when": {
+          "size": "large",
+          "breakpoint": "0",
+          "orientation": "vertical"
+        },
+        "tree": [
+          {
+            "name": "content",
+            "type": "frame",
+            "children": [
+              {
+                "name": "label",
+                "type": "text"
+              },
+              {
+                "name": "button",
+                "type": "instance",
+                "component": "Link",
+                "values": {
+                  "state": "default",
+                  "colorScheme": "default",
+                  "size": "small",
+                  "breakpoint": "0"
+                }
+              }
+            ]
+          },
+          {
+            "name": "value",
+            "type": "text"
+          },
+          {
+            "name": "message",
+            "type": "instance",
+            "hidden": true,
+            "component": "_FormHelperText",
+            "values": {
+              "tone": "warning",
+              "breakpoint": "0"
+            }
+          }
+        ]
+      }
+    ],
+    "uses": [
+      "Link",
+      "_FormHelperText"
+    ]
+  },
+  "styles": {
+    "default": {
+      "when": {
+        "size": "large",
+        "breakpoint": "0",
+        "orientation": "horizontal"
+      },
+      "modes": {
+        "Typography": "prospect-mobile"
+      },
+      "root": {
+        "radius": {
+          "raw": 0
+        },
+        "padding": {
+          "top": {
+            "raw": 0
+          },
+          "right": {
+            "raw": 0
+          },
+          "bottom": {
+            "raw": 0
+          },
+          "left": {
+            "raw": 0
+          }
+        },
+        "gap": {
+          "token": "spacing/16"
+        },
+        "layout": {
+          "direction": "row",
+          "clip": false,
+          "sizingH": "fixed",
+          "width": {
+            "raw": 531
+          },
+          "sizingV": "hug"
+        }
+      },
+      "label": {
+        "textColor": {
+          "token": "color/gray/600"
+        },
+        "textStyle": "body/2/regular",
+        "layout": {
+          "sizingH": "fill"
+        }
+      },
+      "content": {
+        "gap": {
+          "token": "spacing/8"
+        },
+        "layout": {
+          "direction": "column",
+          "sizingH": "fill"
+        }
+      },
+      "value": {
+        "textColor": {
+          "token": "color/gray/900"
+        },
+        "textStyle": "body/2/semibold",
+        "layout": {
+          "sizingH": "fill"
+        }
+      },
+      "message": {
+        "gap": {
+          "token": "spacing/4"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center"
+        }
+      },
+      "message/vector": {
+        "background": {
+          "token": "color/orange/600"
+        }
+      },
+      "button": {
+        "gap": {
+          "token": "spacing/4"
+        },
+        "layout": {
+          "direction": "row",
+          "crossAlign": "center"
+        }
+      },
+      "button/vector": {
+        "background": {
+          "token": "color/blue/700"
+        }
+      }
+    },
+    "overrides": [
+      {
+        "when": {
+          "size": "small"
+        },
+        "styles": {
+          "content": {
+            "layout": {
+              "direction": "column",
+              "crossAlign": "end",
+              "sizingH": "fill",
+              "sizingV": "fill"
+            }
+          },
+          "value": {
+            "layout": {
+              "sizingH": "fill",
+              "textAlignVertical": "center"
+            },
+            "textAlign": "right"
+          }
+        }
+      },
+      {
+        "when": {
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "modes": {
+            "Typography": "prospect-desktop"
+          }
+        }
+      },
+      {
+        "when": {
+          "orientation": "vertical"
+        },
+        "styles": {
+          "root": {
+            "gap": {
+              "token": "spacing/8"
+            },
+            "layout": {
+              "direction": "column",
+              "clip": false,
+              "sizingH": "fixed",
+              "width": {
+                "raw": 531
+              },
+              "sizingV": "hug"
+            }
+          },
+          "content": {
+            "gap": {
+              "token": "spacing/12"
+            },
+            "layout": {
+              "direction": "row",
+              "sizingH": "fill"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "large",
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "label": {
+            "textStyle": "body/1/regular"
+          },
+          "value": {
+            "textStyle": "body/1/semibold"
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "small",
+          "breakpoint": "1024"
+        },
+        "styles": {
+          "message": {
+            "layout": {
+              "direction": "row",
+              "mainAlign": "end",
+              "crossAlign": "center"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "small",
+          "breakpoint": "0"
+        },
+        "styles": {
+          "label": {
+            "layout": {
+              "sizingH": "fill",
+              "textAlignVertical": "center"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "breakpoint": "0",
+          "orientation": "vertical"
+        },
+        "styles": {
+          "label": {
+            "layout": {
+              "sizingH": "fill",
+              "textAlignVertical": "center"
+            }
+          },
+          "message": {
+            "layout": {
+              "direction": "row",
+              "mainAlign": "end",
+              "crossAlign": "center"
+            }
+          }
+        }
+      },
+      {
+        "when": {
+          "size": "large",
+          "breakpoint": "1024",
+          "orientation": "horizontal"
+        },
+        "styles": {
+          "root": {
+            "gap": {
+              "token": "spacing/40"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tokens": {
+    "color/blue/700": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "504df5da9d2859b9c7727e6b6be8150159cf9e22"
+    },
+    "color/gray/600": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d12a13846395d779ce6239438a435137917d7841"
+    },
+    "color/gray/900": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "d79e9ad46847476669d7028a19c83d08c1bdfa1c"
+    },
+    "color/orange/600": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "7fb4e2f2ed2dc7ebbd5db1d092c3bf16d2268c2c"
+    },
+    "spacing/12": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "6cfd5a3c3e9c964463b4b26cce753ba1aec30649"
+    },
+    "spacing/16": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "c671d8ceb08a490376605ccd3862b43109626d25"
+    },
+    "spacing/4": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "ece7a179702a367a2194768137236fd4d4231725"
+    },
+    "spacing/40": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "1130cf6a02a53ff1dfe504039cbb3074801003f2"
+    },
+    "spacing/8": {
+      "library": "Fondations Canopée",
+      "collection": "Primitive",
+      "key": "f79c6b1de93d24589305065ca591b49ab3a32d6b"
+    }
+  },
+  "textStyles": {
+    "body/1/regular": {
+      "library": null,
+      "key": "4f1ce1e577bd77712c8f60a2fd9d0510e72fcbe2"
+    },
+    "body/1/semibold": {
+      "library": null,
+      "key": "f8cfaeac6c5c58690e6b59867b741a2e6a2a5374"
+    },
+    "body/2/regular": {
+      "library": null,
+      "key": "432b58a5d1fb9849fccebcd3a81e25ac571b6947"
+    },
+    "body/2/semibold": {
+      "library": null,
+      "key": "30159f4182b8120f1db33dba6c3bdc6ebfab204c"
+    }
+  },
+  "components": {
+    "Link": {
+      "library": "B2C",
+      "key": "21dffdf1d3f75cb371d309d059f95d8242b53557"
+    },
+    "_FormHelperText": {
+      "library": "B2C",
+      "key": "ff44f9fe2270f928a96a8ca2b509b56c7d45cc74"
+    }
+  },
+  "modeCollections": {
+    "Typography": {
+      "library": "Fondations Canopée",
+      "key": "be959715ddac77dedafba55e157014b702551c02"
+    }
+  },
+  "issues": [
+    {
+      "level": "info",
+      "rule": "token-unpublished",
+      "where": "structure.uses",
+      "message": "Token absent de toutes les versions publiées de Canopée : icon/size/extra-small, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : caption/2/regular, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : caption/2/regular/font-size, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : caption/2/regular/line-height, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "structure.uses",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : label/2/semibold/line-height, dans un composant inclus."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.body/1/regular",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : body/1/regular."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.body/1/semibold",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : body/1/semibold."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.body/2/regular",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : body/2/regular."
+    },
+    {
+      "level": "info",
+      "rule": "token-value-unpublished",
+      "where": "textStyles.body/2/semibold",
+      "message": "Valeur absente de toutes les versions publiées de Canopée : body/2/semibold."
+    }
+  ],
+  "_tool": "canopee-export-components 0.7.20"
+}

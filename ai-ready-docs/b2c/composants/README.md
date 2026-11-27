@@ -51,3 +51,4 @@ Le Markdown suit la [trame de la fiche d'un composant](trame-fiche-composant.md)
 | _MenuItem | [_menuitem.md](_menuitem/_menuitem.md) | [_menuitem.json](_menuitem/_menuitem.json) | [_menuitem-changelog.md](_menuitem/_menuitem-changelog.md) |
 | Accordion | [accordion.md](accordion/accordion.md) | [accordion.json](accordion/accordion.json) | [accordion-changelog.md](accordion/accordion-changelog.md) |
 | ContentItem | [contentitem.md](contentitem/contentitem.md) | [contentitem.json](contentitem/contentitem.json) | [contentitem-changelog.md](contentitem/contentitem-changelog.md) |
+| ContentItemDuo | [contentitemduo.md](contentitemduo/contentitemduo.md) | [contentitemduo.json](contentitemduo/contentitemduo.json) | [contentitemduo-changelog.md](contentitemduo/contentitemduo-changelog.md) |
