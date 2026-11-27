@@ -31,6 +31,12 @@ export type ItemFileProps = {
    */
   errorMessage?: string;
   /**
+   * Text alternative of the success icon shown once the file is loaded. The
+   * error icon stays decorative, as the error message carries the information.
+   * @default "Fichier chargé"
+   */
+  successLabel?: string;
+  /**
    * Callback invoked when the remove action is triggered. Receives the file
    * and the click event.
    */
@@ -81,6 +87,7 @@ export const ItemFileCommon = ({
   file,
   isLoading,
   errorMessage,
+  successLabel = "Fichier chargé",
   className,
   onRemove = () => {},
   onPreview = () => {},
@@ -110,9 +117,16 @@ export const ItemFileCommon = ({
         <ItemIconComponent
           size="S"
           src={hasError ? errorIcon : validationIcon}
+          alt={hasError ? undefined : successLabel}
         />
       ),
-    [ItemIconComponent, ItemSpinnerComponent, hasError, isLoading],
+    [
+      ItemIconComponent,
+      ItemSpinnerComponent,
+      hasError,
+      isLoading,
+      successLabel,
+    ],
   );
 
   return (
@@ -137,7 +151,7 @@ export const ItemFileCommon = ({
             <ClickIconComponent
               src={previewIcon}
               onClick={handleClick(onPreview)}
-              aria-label={`Previsualiser le fichier ${file.name}`}
+              aria-label={`Prévisualiser le fichier ${file.name}`}
               {...previewProps}
             />
           )}

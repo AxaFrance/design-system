@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import { Dropdown } from "../DropdownLF";
+import { Dropdown as DropdownApollo } from "../DropdownApollo";
 
 const selectLabel = "Label";
 const errorMessage = "Titre du Message";
@@ -68,5 +69,38 @@ describe("Select", () => {
     const selectElement = screen.getByLabelText(/label/i);
     expect(selectElement).toBeDisabled();
     expect(selectElement).toHaveClass("af-form__dropdown-input");
+  });
+});
+
+describe("<Dropdown /> description and error", () => {
+  it("should describe the select with its description, helper and message", async () => {
+    const { container } = render(
+      <DropdownApollo
+        label="Pays"
+        description="Description"
+        helper="Aide"
+        message="Erreur"
+        messageType="error"
+      >
+        <option value="fr">France</option>
+      </DropdownApollo>,
+    );
+
+    const select = screen.getByRole("combobox", { name: "Pays" });
+    expect(select).toHaveAccessibleDescription("Description Aide Erreur");
+    expect(select).toHaveAttribute("aria-invalid", "true");
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("should not set aria-invalid or aria-describedby without error or text", () => {
+    render(
+      <DropdownApollo label="Pays">
+        <option value="fr">France</option>
+      </DropdownApollo>,
+    );
+
+    const select = screen.getByRole("combobox", { name: "Pays" });
+    expect(select).not.toHaveAttribute("aria-invalid");
+    expect(select).not.toHaveAttribute("aria-describedby");
   });
 });
