@@ -56,13 +56,24 @@
     font-weight: 600;
   }
 
-  .af-card-radio--invalid:not(:has(input:checked)) {
+  .af-card-radio--invalid:not(:has(input:checked)),
+  .af-card-radio--warning:not(:has(input:checked)) {
     --radio-border-width: 2px;
 
     &:hover,
     &:focus-visible,
     &:focus-within {
       --radio-border-width: 3px;
+    }
+  }
+
+  .af-card-radio--warning:not(:has(input:checked)) {
+    --radio-border-color: var(--orange-800);
+
+    &:hover,
+    &:focus-visible,
+    &:focus-within {
+      --radio-border-color: var(--orange-1050);
     }
   }
 

@@ -67,7 +67,9 @@ const meta: Meta<
 
 export default meta;
 
-export const CardRadioStory: StoryObj<ComponentProps<typeof CardRadio>> = {
+type Story = StoryObj<ComponentProps<typeof CardRadio>>;
+
+export const CardRadioStory: Story = {
   name: "Playground",
   render: ({
     icon,
@@ -93,4 +95,12 @@ export const CardRadioStory: StoryObj<ComponentProps<typeof CardRadio>> = {
       </div>
     ),
   ],
+};
+
+export const CardRadioWarningStory: Story = {
+  ...CardRadioStory,
+  name: "Warning",
+  args: {
+    variant: "warning",
+  },
 };
