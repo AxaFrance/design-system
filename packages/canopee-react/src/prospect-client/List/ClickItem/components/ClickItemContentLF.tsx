@@ -1,9 +1,9 @@
 import { Tag } from "../../../Tag/TagLF";
 import {
   ClickItemContentCommon,
-  type ClickItemContentProps,
+  type ClickItemContentComponentProps,
 } from "./ClickItemContentCommon";
 
-export const ClickItemContent = (props: ClickItemContentProps) => (
+export const ClickItemContent = (props: ClickItemContentComponentProps) => (
   <ClickItemContentCommon {...props} TagComponent={Tag} />
 );
